@@ -16,6 +16,30 @@
     <a href="index.html">
       <img class="lpp_logo" src="./img/logo_les-petits-plats.svg" alt="Les petits plats page d'accueil">
     </a>
+    <form class="form-search-bar">
+      <input id="search-bar" type="text" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+      <button type="submit" class="search-btn">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+    <div class="tags-list"></div>
+    <section class="tags-selection">
+      <div class="btn-select btn-select--ingredients">
+        <input id="search-ingredients" type="text" placeholder="Ingrédients">
+        <button><i class="fas fa-chevron-down"></i></button>
+        <ul class="ingredients-list"></ul>
+      </div>
+      <div class="btn-select btn-select--appliances">
+        <input id="search-appliances" type="text" placeholder="Appareils">
+        <button><i class="fas fa-chevron-down"></i></button>
+        <ul class="appliances-list"></ul>
+      </div>
+      <div class="btn-select btn-select--utensils">
+        <input id="search-utensils" type="text" placeholder="Ustensiles">
+        <button><i class="fas fa-chevron-down"></i></button>
+        <ul class="utensils-list"></ul>
+      </div>
+    </section>
   </header>
   <!-- MAIN -->
   <main id="recipes-main" class="recipes-list"></main>
