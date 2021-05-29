@@ -3,34 +3,52 @@
   border-radius: $radius;
   background-color: $color-light-grey;
 
-  .recipe-card_img {
+  &__img {
     height: 15rem;
     border-radius: $radius $radius 0 0;
     background-color: $color-dark-grey;
   }
-}
 
-.recipe-card_content {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-
-  h2 {
+  &__content {
     display: flex;
-    justify-content: space-between;
-    margin: 0;
-  }
+    flex-direction: column;
+    padding: 2rem;
+  
+    h2 {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
 
-  .recipe-card_description {
-    display: flex;
-    justify-content: space-between;
-  }
+      @include breakpoint(xs) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  
+    &__description {
+      display: flex;
+      flex-direction: column;
 
-  ul {
-    width: 50%;
-  }
+      @include breakpoint(xs) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  
+    ul {
+      width: 50%;
+    }
+  
+    p {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 8;
+      overflow: hidden;
+      width: 100%;
 
-  p {
-    width: 50%;
+      @include breakpoint(xs) {
+        width: 50%;
+      }
+    }
   }
 }

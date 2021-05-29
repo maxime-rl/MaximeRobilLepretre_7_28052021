@@ -1,0 +1,28 @@
+.tags-selection {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 15px 0 15px;
+
+  @include breakpoint(xs) {
+    flex-direction: row;
+  }
+}
+
+.tags-list {
+  position: absolute;
+  display: none;
+  // display: flex; if open
+  flex-wrap: wrap;
+  padding: 10px;
+  top: 37px;
+  width: -webkit-fill-available;
+  height: auto;
+  overflow: hidden;
+  border-radius: 0 0 $radius $radius;
+
+  li {
+    padding: 8px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}

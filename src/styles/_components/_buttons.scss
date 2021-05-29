@@ -2,7 +2,7 @@
   position: absolute;
   height: 69%;
   top: 12px;
-  right: 15px;
+  right: 25px;
   border: none;
   background-color: $color-light-grey;
 
@@ -17,10 +17,12 @@
 }
 
 .btn-select {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 170px;
+  width: 170px;
+  // width: 100%; if clicked
   margin: 20px 0 0 0;
   border-radius: $radius;
 
@@ -97,12 +99,12 @@
     }
   }
 
-  &--utensils {
-    background-color: $color-utensils;
+  &--ustensils {
+    background-color: $color-ustensils;
 
     input[type=text] {
-      border: 1px solid $color-utensils;
-      background-color: $color-utensils;
+      border: 1px solid $color-ustensils;
+      background-color: $color-ustensils;
       color: $color-body;
     }
   }

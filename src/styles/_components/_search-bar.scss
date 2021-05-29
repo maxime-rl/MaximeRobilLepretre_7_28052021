@@ -1,0 +1,29 @@
+.form-search-bar {
+  position: relative;
+  margin: 15px 0 0 0;
+  padding: 0 15px;
+
+  input[type=text] {
+    width: 100%;
+    padding: 20px;
+    margin: 8px 0;
+    display: inline-block;
+    font-size: 1.2rem;
+    border: 1px solid $color-light-grey;
+    background-color: $color-light-grey;
+    border-radius: $radius;
+    box-sizing: border-box;
+
+    @include breakpoint(lg) {
+      font-size: 1.4rem;
+    }
+
+    @include breakpoint(xl) {
+      font-size: 1.6rem;
+    }
+
+    &::placeholder {
+      opacity: .6;
+    }
+  }
+}

@@ -393,3 +393,18 @@ video {
 button {
   cursor: pointer;
 }
+
+[data-cat=ingredients] {
+  background-color: $color-ingredients;
+  color: white;
+}
+
+[data-cat=appliances] {
+  background-color: $color-appliances;
+  color: white;
+}
+
+[data-cat=ustensils] {
+  background-color: $color-ustensils;
+  color: white;
+}
