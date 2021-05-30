@@ -19,7 +19,7 @@ export class Recipe {
     const cardContentElt = createElementFactory("div", { class: "recipe-card__content" });
 
     const h2Elt = document.createElement("h2");
-    const titleElt = createElementFactory("span", {}, `${this.name}`);
+    const titleElt = createElementFactory("span", { class: "recipe-card__content__title" }, `${this.name}`);
     const timeContainerElt = createElementFactory("span", {}, ` ${this.time} min`);
     const timeIconElt = createElementFactory("i", { class: "far fa-clock" });
 
@@ -53,5 +53,24 @@ export class Recipe {
     articleElt.appendChild(cardContentElt);
 
     recipesListDOMElt.appendChild(articleElt);
+  }
+
+  createTagsListDOMElt () {
+    const allTagsList = document.querySelectorAll(".tags-list");
+
+    allTagsList.forEach(tagsList => {
+      if (tagsList.dataset.cat === "ingredients") {
+        this.ingredients.forEach(elt => {
+          const liElt = createElementFactory("li", {}, `${elt.ingredient}`);
+          tagsList.appendChild(liElt);
+        });
+      } else if (tagsList.dataset.cat === "appliances") {
+        const liElt = createElementFactory("li", {}, `${this.appliance}`);
+        tagsList.appendChild(liElt);
+      } else if (tagsList.dataset.cat === "ustensils") {
+        const liElt = createElementFactory("li", {}, `${this.ustensils}`);
+        tagsList.appendChild(liElt);
+      }
+    });
   }
 }
