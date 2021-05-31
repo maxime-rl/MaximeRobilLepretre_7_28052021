@@ -1,9 +1,9 @@
 import { Recipe } from "./Recipe";
 
-const createRecipesList = (data) => {
+const createRecipesList = (recipes) => {
   const recipesList = [];
 
-  data.forEach((recipe) => {
+  recipes.forEach((recipe) => {
     recipesList.push(new Recipe(
       recipe.id,
       recipe.name,

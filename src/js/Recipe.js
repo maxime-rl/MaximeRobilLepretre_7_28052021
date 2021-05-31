@@ -54,23 +54,4 @@ export class Recipe {
 
     recipesListDOMElt.appendChild(articleElt);
   }
-
-  createTagsListDOMElt () {
-    const allTagsList = document.querySelectorAll(".tags-list");
-
-    allTagsList.forEach(tagsList => {
-      if (tagsList.dataset.cat === "ingredients") {
-        this.ingredients.forEach(elt => {
-          const liElt = createElementFactory("li", {}, `${elt.ingredient}`);
-          tagsList.appendChild(liElt);
-        });
-      } else if (tagsList.dataset.cat === "appliances") {
-        const liElt = createElementFactory("li", {}, `${this.appliance}`);
-        tagsList.appendChild(liElt);
-      } else if (tagsList.dataset.cat === "ustensils") {
-        const liElt = createElementFactory("li", {}, `${this.ustensils}`);
-        tagsList.appendChild(liElt);
-      }
-    });
-  }
 }

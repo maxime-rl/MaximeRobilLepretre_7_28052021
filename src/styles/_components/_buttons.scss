@@ -16,7 +16,7 @@
   }
 }
 
-.btn-select {
+.custom-select {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -48,7 +48,7 @@
   input[type=text] {
     padding: 10px;
     margin: 8px 0 8px 8px;
-    width: 75%;
+    width: 60%;
     font-size: 12px;
     font-weight: 700;
     color: $color-body;
@@ -68,11 +68,63 @@
     }
   }
 
-  button {
+  &__btn-select {
+    position: relative;
     margin: 0 4px 0 0;
     height: 100%;
+    width: 30px;
     border: none;
     background-color: transparent;
+
+    &:before {
+      position: absolute;
+      content: "";
+      right: 14px;
+      width: 12px;
+      height: 3px;
+      transform: rotate(-130deg);
+      border-radius: $radius;
+      background-color: $color-body;
+      transition: transform .2s ease-in;
+    }
+
+    &:after {
+      position: absolute;
+      content: "";
+      right: 7px;
+      width: 12px;
+      height: 3px;
+      transform: rotate(130deg);
+      border-radius: $radius;
+      background-color: $color-body;
+      transition: transform .2s ease-in-out;
+    }
+
+    &--selected {
+      &:before {
+        position: absolute;
+        content: "";
+        right: 14px;
+        width: 12px;
+        height: 3px;
+        transform: rotate(-45deg);
+        border-radius: $radius;
+        background-color: $color-body;
+        transition: transform .2s ease-in;
+      }
+  
+      &:after {
+        position: absolute;
+        content: "";
+        right: 7px;
+        width: 12px;
+        height: 3px;
+        transform: rotate(45deg);
+        border-radius: $radius;
+        background-color: $color-body;
+        transition: transform .2s ease-in;
+      }
+    }
   }
 
   .fas {

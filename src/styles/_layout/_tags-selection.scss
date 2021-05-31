@@ -8,21 +8,65 @@
   }
 }
 
-.tags-list {
+.custom-select__tags-list {
   position: absolute;
   display: none;
   // display: flex; if open
   flex-wrap: wrap;
-  padding: 10px;
-  top: 37px;
-  width: -webkit-fill-available;
-  height: auto;
-  overflow: hidden;
-  border-radius: 0 0 $radius $radius;
+  z-index: 10;
+  column-gap: 7px;
+  padding: 20px 10px;
+  top: 31px;
+  // overflow: hidden;
+  border-radius: $radius;
 
   li {
+    white-space: nowrap;
     padding: 8px;
+    width: -webkit-fill-available;
     font-weight: 700;
     cursor: pointer;
+  }
+
+  &--ingredients {
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 0 20px;
+  }
+
+  &--appliances {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 0 20px;
+  }
+
+  &--ustensils {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 0 20px;
+  }
+}
+
+.custom-select__tags-list--ingredients {
+  li:hover {
+    background-color: $color-body;
+    color: $color-ingredients;
+    border-radius: $radius;
+  }
+}
+
+.custom-select__tags-list--appliances {
+  li:hover {
+    background-color: $color-body;
+    color: $color-appliances;
+    border-radius: $radius;
+  }
+}
+
+.custom-select__tags-list--ustensils {
+  li:hover {
+    background-color: $color-body;
+    color: $color-ustensils;
+    border-radius: $radius;
   }
 }

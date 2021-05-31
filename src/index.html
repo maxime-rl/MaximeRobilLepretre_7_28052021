@@ -28,23 +28,22 @@
   <div class="tags-selected-container"></div>
   <!-- TAGS SELECTION -->
   <section class="tags-selection">
-    <div class="btn-select btn-select--ingredients">
-      <input id="search-ingredients" type="text" placeholder="Ingrédients">
-      <button><i class="fas fa-chevron-down"></i></button>
-      <ul class="tags-list" data-cat="ingredients"></ul>
+    <div class="custom-select custom-select--ingredients">
+      <input class="custom-select__search" type="text" placeholder="Ingrédients">
+      <button class="custom-select__btn-select" tab-index="-1"></button>
+      <ul class="custom-select__tags-list custom-select__tags-list--ingredients" data-cat="ingredients" aria-expanded="false"></ul>
     </div>
-    <div class="btn-select btn-select--appliances">
-      <input id="search-appliances" type="text" placeholder="Appareils">
-      <button><i class="fas fa-chevron-down"></i></button>
-      <ul class="tags-list" data-cat="appliances"></ul>
+    <div class="custom-select custom-select--appliances">
+      <input class="custom-select__search" type="text" placeholder="Appareils">
+      <button class="custom-select__btn-select" tab-index="-1"></button>
+      <ul class="custom-select__tags-list custom-select__tags-list--appliances" data-cat="appliances" aria-expanded="false"></ul>
     </div>
-    <div class="btn-select btn-select--ustensils">
-      <input id="search-ustensils" type="text" placeholder="Ustensiles">
-      <button><i class="fas fa-chevron-down"></i></button>
-      <ul class="tags-list" data-cat="ustensils"></ul>
+    <div class="custom-select custom-select--ustensils">
+      <input class="custom-select__search" type="text" placeholder="Ustensiles">
+      <button class="custom-select__btn-select" tab-index="-1"></button>
+      <ul class="custom-select__tags-list custom-select__tags-list--ustensils" data-cat="ustensils" aria-expanded="false"></ul>
     </div>
   </section>
-  
   <!-- MAIN - RECIPES -->
   <main id="recipes-main" class="recipes-list"></main>
 </body>
