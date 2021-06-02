@@ -394,6 +394,7 @@ button {
   cursor: pointer;
 }
 
+// Data attribute for different categories
 [data-cat=ingredients] {
   background-color: $color-ingredients;
   color: white;

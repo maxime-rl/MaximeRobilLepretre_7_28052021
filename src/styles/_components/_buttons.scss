@@ -16,33 +16,33 @@
   }
 }
 
-.custom-select {
+.select {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 170px;
-  // width: 100%; if clicked
+  width: 100%;
   margin: 20px 0 0 0;
   border-radius: $radius;
 
   &:first-child {
     margin: 0;
 
-    @include breakpoint(xs) {
+    @include breakpoint(sm) {
       margin: 0 20px 0 0;
     }
   }
 
   &:last-child {
 
-    @include breakpoint(xs) {
+    @include breakpoint(sm) {
       margin: 0;
     }
   }
 
-  @include breakpoint(xs) {
+  @include breakpoint(sm) {
     margin: 0 20px 0 0;
+    width: 170px;
   }
 
   input[type=text] {
@@ -52,6 +52,7 @@
     font-size: 12px;
     font-weight: 700;
     color: $color-body;
+    outline: none;
     border-radius: $radius;
 
     @include breakpoint(lg) {
@@ -68,7 +69,7 @@
     }
   }
 
-  &__btn-select {
+  &__btn {
     position: relative;
     margin: 0 4px 0 0;
     height: 100%;
@@ -139,6 +140,14 @@
       background-color: $color-ingredients;
       color: $color-body;
     }
+
+    &--open {
+      flex: 1;
+
+      @include breakpoint(sm) {
+        flex: auto;
+      }
+    }
   }
 
   &--appliances {
@@ -149,6 +158,18 @@
       background-color: $color-appliances;
       color: $color-body;
     }
+
+    &--open {
+      flex: 0.5;
+
+      @include breakpoint(sm) {
+        flex: auto;
+      }
+
+      @include breakpoint(lg) {
+        flex: 0.5;
+      }
+    }
   }
 
   &--ustensils {
@@ -158,6 +179,14 @@
       border: 1px solid $color-ustensils;
       background-color: $color-ustensils;
       color: $color-body;
+    }
+
+    &--open {
+      flex: 1;
+
+      @include breakpoint(sm) {
+        flex: auto;
+      }
     }
   }
 }

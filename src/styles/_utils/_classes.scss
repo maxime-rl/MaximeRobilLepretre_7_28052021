@@ -14,8 +14,40 @@
   display: grid!important;
 }
 
+// Custom wrapper for control data in selects
 .wrapper {
-  max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
 }
+
+@include breakpoint(sm) {
+  .wrapper {
+    max-width: 540px;
+  }
+}
+
+@include breakpoint(md) {
+  .wrapper {
+    max-width: 740px;
+  }
+}
+
+@include breakpoint(lg) {
+  .wrapper {
+    max-width: 960px;
+  }
+}
+
+@include breakpoint(xl) {
+  .wrapper {
+    max-width: 1140px;
+  }
+}
+
+@include breakpoint(xxl) {
+  .wrapper {
+    max-width: 1400px;
+  }
+}
+
 

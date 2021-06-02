@@ -3,51 +3,61 @@
   flex-direction: column;
   padding: 12px 15px 0 15px;
 
-  @include breakpoint(xs) {
+  @include breakpoint(sm) {
     flex-direction: row;
   }
 }
 
-.custom-select__tags-list {
+.select__tags-list {
   position: absolute;
   display: none;
-  // display: flex; if open
-  flex-wrap: wrap;
   z-index: 10;
-  column-gap: 7px;
   padding: 20px 10px;
-  top: 31px;
-  // overflow: hidden;
+  top: 27px;
+  max-height: 277px;
+  width: -webkit-fill-available;
+  overflow: hidden;
   border-radius: $radius;
 
+  @include breakpoint(md) {
+    grid-template-rows: repeat(6, auto);
+    grid-auto-flow: column;
+    column-gap: 7px;
+    max-height: none;
+  }
+
   li {
+    width: 115px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
     padding: 8px;
-    width: -webkit-fill-available;
     font-weight: 700;
     cursor: pointer;
-  }
 
-  &--ingredients {
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: auto;
-    grid-gap: 0 20px;
-  }
+    @include breakpoint(sm) {
+      width: 95px;
+    }
 
-  &--appliances {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
-    grid-gap: 0 20px;
-  }
+    @include breakpoint(md) {
+      width: 135px;
+    }
 
-  &--ustensils {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: auto;
-    grid-gap: 0 20px;
+    @include breakpoint(lg) {
+      width: 113px;
+    }
+
+    @include breakpoint(xl) {
+      width: 120px;
+    }
+
+    @include breakpoint(xxl) {
+      width: 140px;
+    }
   }
 }
 
-.custom-select__tags-list--ingredients {
+.select__tags-list--ingredients {
   li:hover {
     background-color: $color-body;
     color: $color-ingredients;
@@ -55,7 +65,7 @@
   }
 }
 
-.custom-select__tags-list--appliances {
+.select__tags-list--appliances {
   li:hover {
     background-color: $color-body;
     color: $color-appliances;
@@ -63,7 +73,7 @@
   }
 }
 
-.custom-select__tags-list--ustensils {
+.select__tags-list--ustensils {
   li:hover {
     background-color: $color-body;
     color: $color-ustensils;

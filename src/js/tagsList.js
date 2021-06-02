@@ -3,7 +3,7 @@ import { createElementFactory } from "./createElementFactory.js";
 /**
  * DOM Elements
  */
-const allTagsList = document.querySelectorAll(".custom-select__tags-list");
+const allTagsList = document.querySelectorAll(".select__tags-list");
 
 /**
  * Ingredient list creation
