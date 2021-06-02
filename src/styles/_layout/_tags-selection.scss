@@ -59,24 +59,24 @@
 
 .select__tags-list--ingredients {
   li:hover {
-    background-color: $color-body;
-    color: $color-ingredients;
+    background-color: $body-color;
+    color: $primary-color;
     border-radius: $radius;
   }
 }
 
 .select__tags-list--appliances {
   li:hover {
-    background-color: $color-body;
-    color: $color-appliances;
+    background-color: $body-color;
+    color: $secondary-color;
     border-radius: $radius;
   }
 }
 
 .select__tags-list--ustensils {
   li:hover {
-    background-color: $color-body;
-    color: $color-ustensils;
+    background-color: $body-color;
+    color: $tertiary-color;
     border-radius: $radius;
   }
 }

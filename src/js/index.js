@@ -2,10 +2,13 @@ import "../styles/main.scss";
 
 import { recipes } from "./data";
 import { createRecipesList } from "./recipesList";
-import { createAllTagsList } from "./tagsList";
-import { handleAllSelect, listeningToDocument } from "./handleCustomSelect";
+import { createAllTagLists, createAllBtnTagsSelected } from "./tagsList";
+import { handleAllSelects, listeningToDocument } from "./handleSelects";
+import { handleAllTags } from "./handleTags";
 
 createRecipesList(recipes);
-createAllTagsList(recipes);
-handleAllSelect();
+createAllTagLists(recipes);
+createAllBtnTagsSelected(recipes);
+handleAllSelects();
+handleAllTags();
 listeningToDocument();

@@ -1,12 +1,12 @@
 .recipe-card {
   margin: 1.5rem;
   border-radius: $radius;
-  background-color: $color-light-grey;
+  background-color: $grey-light-color;
 
   &__img {
     height: 15rem;
     border-radius: $radius $radius 0 0;
-    background-color: $color-dark-grey;
+    background-color: $grey-color;
   }
 
   &__content {

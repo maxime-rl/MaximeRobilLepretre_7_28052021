@@ -17,6 +17,10 @@ const ingredientsTagsList = document.querySelector(".select__tags-list--ingredie
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
 
+const ingredientsPlaceholderElt = document.getElementsByName("ingredients")[0];
+const appliancesPlaceholderElt = document.getElementsByName("appliances")[0];
+const ustensilsPlaceholderElt = document.getElementsByName("ustensils")[0];
+
 /**
  * Management of custom select categories
  * @param {HTMLElement} btnElt
@@ -42,18 +46,21 @@ const handlerForCurrentBtn = (btnElt) => {
     ustensilsSelect.classList.remove("select--ustensils--open");
     appliancesTagsList.classList.remove("show-grid");
     ustensilsTagsList.classList.remove("show-grid");
+    ingredientsPlaceholderElt.placeholder = "Recherchez des ingredients";
   } else if (btnElt === appliancesBtn) {
     appliancesSelect.classList.toggle("select--appliances--open");
     ingredientsSelect.classList.remove("select--ingredients--open");
     ustensilsSelect.classList.remove("select--ustensils--open");
     ingredientsTagsList.classList.remove("show-grid");
     ustensilsTagsList.classList.remove("show-grid");
+    appliancesPlaceholderElt.placeholder = "Recherchez des appareils";
   } else {
     ustensilsSelect.classList.toggle("select--ustensils--open");
     ingredientsSelect.classList.remove("select--ingredients--open");
     appliancesSelect.classList.remove("select--appliances--open");
     ingredientsTagsList.classList.remove("show-grid");
     appliancesTagsList.classList.remove("show-grid");
+    ustensilsPlaceholderElt.placeholder = "Recherchez des ustensiles";
   }
 };
 
@@ -73,6 +80,7 @@ const listeningDocumentForIngredients = () => {
     ingredientsTagsList.classList.remove("show-grid");
     ingredientsSelect.classList.remove("select--ingredients--open");
     ingredientsBtn.classList.remove("select__btn--selected");
+    ingredientsPlaceholderElt.placeholder = "Ingredients";
   });
 };
 
@@ -92,6 +100,7 @@ const listeningDocumentForAppliances = () => {
     appliancesTagsList.classList.remove("show-grid");
     appliancesSelect.classList.remove("select--appliances--open");
     appliancesBtn.classList.remove("select__btn--selected");
+    appliancesPlaceholderElt.placeholder = "Appareils";
   });
 };
 
@@ -111,10 +120,11 @@ const listeningDocumentForUstensils = () => {
     ustensilsTagsList.classList.remove("show-grid");
     ustensilsSelect.classList.remove("select--ustensils--open");
     ustensilsBtn.classList.remove("select__btn--selected");
+    ustensilsPlaceholderElt.placeholder = "Ustensiles";
   });
 };
 
-const handleAllSelect = () => {
+const handleAllSelects = () => {
   handleCategoriesBtnClick(ingredientsBtn, ingredientsTagsList);
   handleCategoriesBtnClick(appliancesBtn, appliancesTagsList);
   handleCategoriesBtnClick(ustensilsBtn, ustensilsTagsList);
@@ -126,4 +136,4 @@ const listeningToDocument = () => {
   listeningDocumentForUstensils();
 };
 
-export { handleAllSelect, listeningToDocument };
+export { handleAllSelects, listeningToDocument };

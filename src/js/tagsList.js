@@ -4,6 +4,7 @@ import { createElementFactory } from "./createElementFactory.js";
  * DOM Elements
  */
 const allTagsList = document.querySelectorAll(".select__tags-list");
+const tagsListSelected = document.querySelector(".tags-selected-container");
 
 /**
  * Ingredient list creation
@@ -14,10 +15,20 @@ const createIngredientsTagsList = (recipes) => {
   allTagsList.forEach(tagsList => {
     if (tagsList.dataset.cat === "ingredients") {
       collectSortedTagsIngredients(recipes).forEach((ingredient) => {
-        const liElt = createElementFactory("li", { "data-cat": "ingredients" }, `${ingredient}`);
+        const liElt = createElementFactory("li", { class: "tag", "data-cat": "ingredients" }, `${ingredient}`);
         tagsList.appendChild(liElt);
       });
     }
+  });
+};
+
+const createIngredientsBtnTags = (recipes) => {
+  collectSortedTagsIngredients(recipes).forEach((ingredient) => {
+    const btnElt = createElementFactory("button", { class: "btn-tag-selected hide", "data-cat": "ingredients" }, `${ingredient}`);
+    const iconCloseElt = createElementFactory("span", { class: "icon-close icon-close--ingredients" }, "x");
+
+    btnElt.appendChild(iconCloseElt);
+    tagsListSelected.appendChild(btnElt);
   });
 };
 
@@ -47,10 +58,20 @@ const createAppliancesTagsList = (recipes) => {
   allTagsList.forEach(tagsList => {
     if (tagsList.dataset.cat === "appliances") {
       collectSortedTagsAppliances(recipes).forEach((appliance) => {
-        const liElt = createElementFactory("li", { "data-cat": "appliances" }, `${appliance}`);
+        const liElt = createElementFactory("li", { class: "tag", "data-cat": "appliances" }, `${appliance}`);
         tagsList.appendChild(liElt);
       });
     }
+  });
+};
+
+const createAppliancesBtnTags = (recipes) => {
+  collectSortedTagsAppliances(recipes).forEach((appliance) => {
+    const btnElt = createElementFactory("button", { class: "btn-tag-selected hide", "data-cat": "appliances" }, `${appliance}`);
+    const iconCloseElt = createElementFactory("span", { class: "icon-close icon-close--appliances" }, "x");
+
+    btnElt.appendChild(iconCloseElt);
+    tagsListSelected.appendChild(btnElt);
   });
 };
 
@@ -77,11 +98,21 @@ const collectSortedTagsAppliances = (recipes) => {
 const createUstensilsTagsList = (recipes) => {
   allTagsList.forEach(tagsList => {
     if (tagsList.dataset.cat === "ustensils") {
-      collectSortedTagsUstensils(recipes).forEach((ustensils) => {
-        const liElt = createElementFactory("li", { "data-cat": "ustensils" }, `${ustensils}`);
+      collectSortedTagsUstensils(recipes).forEach((ustensil) => {
+        const liElt = createElementFactory("li", { class: "tag", "data-cat": "ustensils" }, `${ustensil}`);
         tagsList.appendChild(liElt);
       });
     }
+  });
+};
+
+const createUstensilsBtnTags = (recipes) => {
+  collectSortedTagsUstensils(recipes).forEach((ustensil) => {
+    const btnElt = createElementFactory("button", { class: "btn-tag-selected hide", "data-cat": "ustensils" }, `${ustensil}`);
+    const iconCloseElt = createElementFactory("span", { class: "icon-close icon-close--ustensils" }, "x");
+
+    btnElt.appendChild(iconCloseElt);
+    tagsListSelected.appendChild(btnElt);
   });
 };
 
@@ -102,10 +133,16 @@ const collectSortedTagsUstensils = (recipes) => {
   return tagsUstensils.sort();
 };
 
-const createAllTagsList = (recipes) => {
+const createAllTagLists = (recipes) => {
   createAppliancesTagsList(recipes);
   createUstensilsTagsList(recipes);
   createIngredientsTagsList(recipes);
 };
 
-export { createAllTagsList };
+const createAllBtnTagsSelected = (recipes) => {
+  createIngredientsBtnTags(recipes);
+  createAppliancesBtnTags(recipes);
+  createUstensilsBtnTags(recipes);
+};
+
+export { createAllTagLists, createAllBtnTagsSelected };

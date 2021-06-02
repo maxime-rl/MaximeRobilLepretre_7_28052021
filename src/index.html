@@ -20,7 +20,7 @@
   <!-- SEARCH BAR -->
   <form class="form-search-bar">
     <input id="search-bar" type="text" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
-    <button type="submit" class="search-btn">
+    <button type="submit" class="btn-search">
       <i class="fas fa-search"></i>
     </button>
   </form>
@@ -29,17 +29,17 @@
   <!-- TAGS SELECTION -->
   <section class="tags-selection">
     <div class="select select--ingredients">
-      <input id="ingredients-research" type="text" placeholder="Ingrédients">
+      <input id="ingredients-research" name="ingredients" type="text" placeholder="Ingrédients">
       <button class="select__btn select__btn--ingredients" tab-index="-1"></button>
       <ul class="select__tags-list select__tags-list--ingredients" data-cat="ingredients" aria-expanded="false"></ul>
     </div>
     <div class="select select--appliances">
-      <input id="appliances-research" type="text" placeholder="Appareils">
+      <input id="appliances-research" name="appliances" type="text" placeholder="Appareils">
       <button class="select__btn select__btn--appliances" tab-index="-1"></button>
       <ul class="select__tags-list select__tags-list--appliances" data-cat="appliances" aria-expanded="false"></ul>
     </div>
     <div class="select select--ustensils">
-      <input id="ustensils-research" type="text" placeholder="Ustensiles">
+      <input id="ustensils-research" name="ustensils" type="text" placeholder="Ustensiles">
       <button class="select__btn select__btn--ustensils" tab-index="-1"></button>
       <ul class="select__tags-list select__tags-list--ustensils" data-cat="ustensils" aria-expanded="false"></ul>
     </div>
