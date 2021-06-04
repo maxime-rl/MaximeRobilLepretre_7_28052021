@@ -4,7 +4,6 @@ import { createElementFactory } from "./createElementFactory.js";
  * DOM Elements
  */
 const allTagsList = document.querySelectorAll(".select__tags-list");
-const tagsListSelected = document.querySelector(".tags-selected-container");
 
 /**
  * Ingredient list creation
@@ -19,16 +18,6 @@ const createIngredientsTagsList = (recipes) => {
         tagsList.appendChild(liElt);
       });
     }
-  });
-};
-
-const createIngredientsBtnTags = (recipes) => {
-  collectSortedTagsIngredients(recipes).forEach((ingredient) => {
-    const btnElt = createElementFactory("button", { class: "btn-tag-selected hide", "data-cat": "ingredients" }, `${ingredient}`);
-    const iconCloseElt = createElementFactory("span", { class: "icon-close" });
-
-    btnElt.appendChild(iconCloseElt);
-    tagsListSelected.appendChild(btnElt);
   });
 };
 
@@ -65,16 +54,6 @@ const createAppliancesTagsList = (recipes) => {
   });
 };
 
-const createAppliancesBtnTags = (recipes) => {
-  collectSortedTagsAppliances(recipes).forEach((appliance) => {
-    const btnElt = createElementFactory("button", { class: "btn-tag-selected hide", "data-cat": "appliances" }, `${appliance}`);
-    const iconCloseElt = createElementFactory("span", { class: "icon-close" });
-
-    btnElt.appendChild(iconCloseElt);
-    tagsListSelected.appendChild(btnElt);
-  });
-};
-
 const createUniqueTagsAppliancesArr = (recipes) => {
   const tagsAppliances = new Set();
   for (const recipe of recipes) {
@@ -106,16 +85,6 @@ const createUstensilsTagsList = (recipes) => {
   });
 };
 
-const createUstensilsBtnTags = (recipes) => {
-  collectSortedTagsUstensils(recipes).forEach((ustensil) => {
-    const btnElt = createElementFactory("button", { class: "btn-tag-selected hide", "data-cat": "ustensils" }, `${ustensil}`);
-    const iconCloseElt = createElementFactory("span", { class: "icon-close" });
-
-    btnElt.appendChild(iconCloseElt);
-    tagsListSelected.appendChild(btnElt);
-  });
-};
-
 const createUniqueTagsUstensilsArr = (recipes) => {
   const tagsUstensils = new Set();
   for (const recipe of recipes) {
@@ -139,10 +108,4 @@ const createAllTagLists = (recipes) => {
   createIngredientsTagsList(recipes);
 };
 
-const createAllBtnTagsSelected = (recipes) => {
-  createIngredientsBtnTags(recipes);
-  createAppliancesBtnTags(recipes);
-  createUstensilsBtnTags(recipes);
-};
-
-export { createAllTagLists, createAllBtnTagsSelected };
+export { createAllTagLists };
