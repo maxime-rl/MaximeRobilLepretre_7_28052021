@@ -8,17 +8,21 @@ const allBtnsTag = document.getElementsByClassName("btn-tag-selected");
 const allTagsElt = document.getElementsByClassName("tag");
 
 /**
- * Display of the btn tag on click in a tags list
+ * show a btn tag on click in a tags list
  */
 const handleSelectedTags = () => {
-  allTagsElt.forEach(tagList => {
-    tagList.addEventListener("click", () => {
-      const currentTag = tagList.textContent;
-
+  allTagsElt.forEach(tagElt => {
+    tagElt.addEventListener("click", () => {
       for (let i = 0; i < allBtnsTag.length; i++) {
-        const newBtnTag = allBtnsTag[i].textContent;
-
-        if (currentTag === newBtnTag) {
+        if ((tagElt.dataset.cat === "ingredients") && (allBtnsTag[i].dataset.cat === "ingredients") && (tagElt.textContent === allBtnsTag[i].textContent)) {
+          allBtnsTag[i].classList.add("show-flex");
+          allBtnsTag[i].classList.remove("hide");
+        }
+        if ((tagElt.dataset.cat === "appliances") && (allBtnsTag[i].dataset.cat === "appliances") && (tagElt.textContent === allBtnsTag[i].textContent)) {
+          allBtnsTag[i].classList.add("show-flex");
+          allBtnsTag[i].classList.remove("hide");
+        }
+        if ((tagElt.dataset.cat === "ustensils") && (allBtnsTag[i].dataset.cat === "ustensils") && (tagElt.textContent === allBtnsTag[i].textContent)) {
           allBtnsTag[i].classList.add("show-flex");
           allBtnsTag[i].classList.remove("hide");
         }
@@ -28,9 +32,11 @@ const handleSelectedTags = () => {
 };
 
 /**
- * Remove a btn tag on click
+ * hide a btn tag on click
  */
 const closeCurrentTag = () => {
+  const allBtnsTag = document.getElementsByClassName("btn-tag-selected");
+
   allBtnsTag.forEach(btnTag => {
     btnTag.addEventListener("click", () => {
       if (btnTag.classList.contains("show-flex")) {
@@ -41,14 +47,7 @@ const closeCurrentTag = () => {
   });
 };
 
-const handleAllTags = () => {
-  handleSelectedTags();
-  closeCurrentTag();
-};
-
-export { handleAllTags };
-
-// TEST create btns tag when click list
+// TEST  create btns tag when click list
 
 // const createIngredientsBtnTags = () => {
 //   allTagsElt.forEach(tagElt => {
@@ -79,6 +78,7 @@ export { handleAllTags };
 
 //         btnElt.appendChild(iconCloseElt);
 //         tagsListSelected.appendChild(btnElt);
+//         console.log(btnElt);
 //       }
 //     });
 //   });
@@ -102,24 +102,19 @@ export { handleAllTags };
 // };
 
 /**
- * Remove a btn tag on click
+ * Remove a btn tag on click  elt.remove();
  */
-//  const closeCurrentTag = () => {
-//   const allBtnsTag = document.querySelectorAll(".btn-tag-selected");
-
-//   for (let i = 0; i < allBtnsTag.lenght; i++) {
-//     console.log("test");
-//     allBtnsTag[i].addEventListener("click", () => {
-//       if (allBtnsTag[i].classList.contains("show-flex")) {
-//         console.log(allBtnsTag[i]);
-//         allBtnsTag[i].classList.contains("hide");
-//       }
+// const closeCurrentTag = () => {
+//   allBtnsTag.forEach(btnTag => {
+//     btnTag.addEventListener("click", () => {
+//       btnTag.remove();
 //     });
-//   };
+//   });
 // };
 
-// const createAllBtnsTag = () => {
-//   createIngredientsBtnTags();
-//   createAppliancesBtnTags();
-//   createUstensilsBtnTags();
-// };
+const handleAllTags = () => {
+  handleSelectedTags();
+  closeCurrentTag();
+};
+
+export { handleAllTags };
