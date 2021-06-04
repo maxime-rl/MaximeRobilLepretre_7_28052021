@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FishEye, site web de photographes freelances">
+  <title>Les petits plats</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script defer src="main.bundle.js"></script></head>
+<body class="wrapper">
+  <!-- HEADER -->
+  <header>
+    <a href="index.html">
+      <img class="lpp_logo" src="./img/logo_les-petits-plats.svg" alt="Les petits plats page d'accueil">
+    </a>
+  </header>
+  <!-- SEARCH BAR -->
+  <form class="form-search-bar">
+    <input id="search-bar" type="text" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+    <button type="submit" class="btn-search">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+  <!-- TAGS SELECTED -->
+  <div class="tags-selected-container"></div>
+  <!-- TAGS SELECTION -->
+  <section class="tags-selection">
+    <div class="select select--ingredients">
+      <label for="ingredients-research" class="hide">Ingrédients</label>
+      <input id="ingredients-research" name="ingredients" type="text" placeholder="Ingrédients">
+      <button class="select__btn select__btn--ingredients" tab-index="-1"></button>
+      <ul class="select__tags-list select__tags-list--ingredients" data-cat="ingredients" aria-expanded="false"></ul>
+    </div>
+    <div class="select select--appliances">
+      <label for="appliances-research" class="hide">Appareil</label>
+      <input id="appliances-research" name="appliances" type="text" placeholder="Appareil">
+      <button class="select__btn select__btn--appliances" tab-index="-1"></button>
+      <ul class="select__tags-list select__tags-list--appliances" data-cat="appliances" aria-expanded="false"></ul>
+    </div>
+    <div class="select select--ustensils">
+      <label for="ustensils-research" class="hide">Ustensiles</label>
+      <input id="ustensils-research" name="ustensils" type="text" placeholder="Ustensiles">
+      <button class="select__btn select__btn--ustensils" tab-index="-1"></button>
+      <ul class="select__tags-list select__tags-list--ustensils" data-cat="ustensils" aria-expanded="false"></ul>
+    </div>
+  </section>
+  <!-- MAIN - RECIPES -->
+  <main id="recipes-main" class="recipes-list"></main>
+</body>
+</html>
