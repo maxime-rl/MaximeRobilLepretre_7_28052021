@@ -6,6 +6,7 @@
   width: 100%;
   margin: 20px 0 0 0;
   border-radius: $radius;
+  cursor: pointer;
 
   &:first-child {
     margin: 0;
@@ -28,14 +29,14 @@
   }
 
   input[type=text] {
-    padding: 10px;
-    margin: 8px 0 8px 8px;
+    padding: 18px 10px 18px 18px;
     width: 85%;
     font-size: 12px;
     font-weight: 700;
     color: $body-color;
     outline: none;
     border-radius: $radius;
+    cursor: pointer;
 
     @include breakpoint(sm) {
       width: 60%;
@@ -129,6 +130,10 @@
       border: 1px solid $primary-color;
       background-color: $primary-color;
       color: $body-color;
+
+      &:hover {
+        background-color: $primary-dark-color;
+      }
     }
 
     &--open {
@@ -136,6 +141,24 @@
 
       @include breakpoint(sm) {
         flex: auto;
+      }
+
+      &:hover {
+        background-color: $primary-color!important;
+
+        input[type=text] {
+          background-color: $primary-color!important;
+          border-color: $primary-color!important;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: $primary-dark-color;
+
+      input[type=text] {
+        background-color: $primary-dark-color;
+        border-color: $primary-dark-color;
       }
     }
   }
@@ -147,6 +170,10 @@
       border: 1px solid $secondary-color;
       background-color: $secondary-color;
       color: $body-color;
+
+      &:hover {
+        background-color: $secondary-dark-color;
+      }
     }
 
     &--open {
@@ -159,6 +186,24 @@
       @include breakpoint(lg) {
         flex: 0.5;
       }
+
+      &:hover {
+        background-color: $secondary-color!important;
+
+        input[type=text] {
+          background-color: $secondary-color!important;
+          border-color: $secondary-color!important;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: $secondary-dark-color;
+
+      input[type=text] {
+        background-color: $secondary-dark-color;
+        border-color: $secondary-dark-color;
+      }
     }
   }
 
@@ -169,6 +214,10 @@
       border: 1px solid $tertiary-color;
       background-color: $tertiary-color;
       color: $body-color;
+
+      &:hover {
+        background-color: $tertiary-dark-color;
+      }
     }
 
     &--open {
@@ -176,6 +225,24 @@
 
       @include breakpoint(sm) {
         flex: auto;
+      }
+
+      &:hover {
+        background-color: $tertiary-color!important;
+        
+        input[type=text] {
+          background-color: $tertiary-color!important;
+          border-color: $tertiary-color!important;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: $tertiary-dark-color;
+
+      input[type=text] {
+        background-color: $tertiary-dark-color;
+        border-color: $tertiary-dark-color;
       }
     }
   }

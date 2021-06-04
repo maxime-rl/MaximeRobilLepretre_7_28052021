@@ -25,7 +25,7 @@ const createIngredientsTagsList = (recipes) => {
 const createIngredientsBtnTags = (recipes) => {
   collectSortedTagsIngredients(recipes).forEach((ingredient) => {
     const btnElt = createElementFactory("button", { class: "btn-tag-selected hide", "data-cat": "ingredients" }, `${ingredient}`);
-    const iconCloseElt = createElementFactory("span", { class: "icon-close icon-close--ingredients" }, "x");
+    const iconCloseElt = createElementFactory("span", { class: "icon-close" });
 
     btnElt.appendChild(iconCloseElt);
     tagsListSelected.appendChild(btnElt);
@@ -68,7 +68,7 @@ const createAppliancesTagsList = (recipes) => {
 const createAppliancesBtnTags = (recipes) => {
   collectSortedTagsAppliances(recipes).forEach((appliance) => {
     const btnElt = createElementFactory("button", { class: "btn-tag-selected hide", "data-cat": "appliances" }, `${appliance}`);
-    const iconCloseElt = createElementFactory("span", { class: "icon-close icon-close--appliances" }, "x");
+    const iconCloseElt = createElementFactory("span", { class: "icon-close" });
 
     btnElt.appendChild(iconCloseElt);
     tagsListSelected.appendChild(btnElt);
@@ -109,7 +109,7 @@ const createUstensilsTagsList = (recipes) => {
 const createUstensilsBtnTags = (recipes) => {
   collectSortedTagsUstensils(recipes).forEach((ustensil) => {
     const btnElt = createElementFactory("button", { class: "btn-tag-selected hide", "data-cat": "ustensils" }, `${ustensil}`);
-    const iconCloseElt = createElementFactory("span", { class: "icon-close icon-close--ustensils" }, "x");
+    const iconCloseElt = createElementFactory("span", { class: "icon-close" });
 
     btnElt.appendChild(iconCloseElt);
     tagsListSelected.appendChild(btnElt);

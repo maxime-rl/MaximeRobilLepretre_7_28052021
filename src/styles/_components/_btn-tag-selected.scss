@@ -1,5 +1,4 @@
 .btn-tag-selected {
-  display: flex;
   align-items: center;
   margin: 0 15px 0 0;
   padding: 0 10px;
@@ -8,23 +7,62 @@
   border-radius: $radius;
   border: none;
 
+  .icon-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 0 0 15px;
+    padding: 0 10px 0 0;
+    transition: all .15s ease-in;
+  
+    &::before {
+      position: absolute;
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 35px;
+      background-color: transparent;
+      border: solid 2px white;
+  
+      @include breakpoint(lg) {
+        border: solid 3px white;
+      }
+    }
+  
+    &::after {
+      position: absolute;
+      content: "\002716";
+      font-size: 9px;
+      color: $body-color;
+  
+      @include breakpoint(lg) {
+        font-weight: 700;
+      }
+    }
+  }
+
   &:hover {
     .icon-close {
-      border: solid 3px $body-color;
-      background-color: $body-color;
-      transition: all .15s ease-in;
+      &:before {
+        background-color: $body-color;
+      }
 
-      &--ingredients {
-        color: $primary-color-text;
-      }
-    
-      &--appliances {
-        color: $primary-color-text;
-      }
-    
-      &--ustensils {
+      &:after {
         color: $primary-color-text;
       }
     }
+  }
+
+  &[data-cat=ingredients]:hover {
+    background-color: $primary-dark-color;
+  }
+  
+  &[data-cat=appliances]:hover {
+    background-color: $secondary-dark-color;
+  }
+  
+  &[data-cat=ustensils]:hover {
+    background-color: $tertiary-dark-color;
   }
 }
