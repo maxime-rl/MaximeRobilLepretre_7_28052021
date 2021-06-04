@@ -363,7 +363,7 @@ body {
   line-height: 1.6rem;
   font-family: 'Lato', sans-serif;
   font-size: 1.6rem;
-  color: $color-text-primary;
+  color: $primary-color-text;
   scroll-behavior: smooth;
 }
 
@@ -392,4 +392,20 @@ video {
 
 button {
   cursor: pointer;
+}
+
+// Data attribute for different categories
+[data-cat=ingredients] {
+  background-color: $primary-color;
+  color: white;
+}
+
+[data-cat=appliances] {
+  background-color: $secondary-color;
+  color: white;
+}
+
+[data-cat=ustensils] {
+  background-color: $tertiary-color;
+  color: white;
 }

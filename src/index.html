@@ -17,7 +17,37 @@
       <img class="lpp_logo" src="./img/logo_les-petits-plats.svg" alt="Les petits plats page d'accueil">
     </a>
   </header>
-  <!-- MAIN -->
+  <!-- SEARCH BAR -->
+  <form class="form-search-bar">
+    <input id="search-bar" type="text" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+    <button type="submit" class="btn-search">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+  <!-- TAGS SELECTED -->
+  <div class="tags-selected-container"></div>
+  <!-- TAGS SELECTION -->
+  <section class="tags-selection">
+    <div class="select select--ingredients">
+      <label for="ingredients-research" class="hide">Ingrédients</label>
+      <input id="ingredients-research" name="ingredients" type="text" placeholder="Ingrédients">
+      <button class="select__btn select__btn--ingredients" tab-index="-1"></button>
+      <ul class="select__tags-list select__tags-list--ingredients" data-cat="ingredients" aria-expanded="false"></ul>
+    </div>
+    <div class="select select--appliances">
+      <label for="appliances-research" class="hide">Appareil</label>
+      <input id="appliances-research" name="appliances" type="text" placeholder="Appareil">
+      <button class="select__btn select__btn--appliances" tab-index="-1"></button>
+      <ul class="select__tags-list select__tags-list--appliances" data-cat="appliances" aria-expanded="false"></ul>
+    </div>
+    <div class="select select--ustensils">
+      <label for="ustensils-research" class="hide">Ustensiles</label>
+      <input id="ustensils-research" name="ustensils" type="text" placeholder="Ustensiles">
+      <button class="select__btn select__btn--ustensils" tab-index="-1"></button>
+      <ul class="select__tags-list select__tags-list--ustensils" data-cat="ustensils" aria-expanded="false"></ul>
+    </div>
+  </section>
+  <!-- MAIN - RECIPES -->
   <main id="recipes-main" class="recipes-list"></main>
 </body>
 </html>

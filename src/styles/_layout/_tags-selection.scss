@@ -1,0 +1,82 @@
+.tags-selection {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 15px 0 15px;
+
+  @include breakpoint(sm) {
+    flex-direction: row;
+  }
+}
+
+.select__tags-list {
+  position: absolute;
+  display: none;
+  z-index: 10;
+  padding: 20px 10px;
+  top: 27px;
+  max-height: 277px;
+  width: -webkit-fill-available;
+  overflow: hidden;
+  border-radius: $radius;
+
+  @include breakpoint(md) {
+    grid-template-rows: repeat(6, auto);
+    grid-auto-flow: column;
+    column-gap: 7px;
+    max-height: none;
+  }
+
+  li {
+    width: 115px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 8px;
+    font-weight: 700;
+    cursor: pointer;
+
+    @include breakpoint(sm) {
+      width: 95px;
+    }
+
+    @include breakpoint(md) {
+      width: 135px;
+    }
+
+    @include breakpoint(lg) {
+      width: 113px;
+    }
+
+    @include breakpoint(xl) {
+      width: 120px;
+    }
+
+    @include breakpoint(xxl) {
+      width: 140px;
+    }
+  }
+}
+
+.select__tags-list--ingredients {
+  li:hover {
+    background-color: $primary-dark-color;
+    color: $body-color;
+    border-radius: $radius;
+  }
+}
+
+.select__tags-list--appliances {
+  li:hover {
+    background-color: $secondary-dark-color;
+    color: $body-color;
+    border-radius: $radius;
+  }
+}
+
+.select__tags-list--ustensils {
+  li:hover {
+    background-color: $tertiary-dark-color;
+    color: $body-color;
+    border-radius: $radius;
+  }
+}

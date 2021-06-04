@@ -1,0 +1,12 @@
+header {
+  text-align: center;
+  padding: 15px;
+
+  .lpp_logo {
+    width: 200px;
+
+    @include breakpoint(xl) {
+      width: 320px;
+    }
+  }
+}

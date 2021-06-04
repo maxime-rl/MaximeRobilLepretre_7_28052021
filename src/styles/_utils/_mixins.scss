@@ -6,7 +6,7 @@ $breakpoints: (
   'md': 768px,
   'lg': 991px,
   'xl': 1200px,
-  'xxl': 1330px
+  'xxl': 1440px
 );
 
 // Use ex: @include breakpoint(md) { ... }
@@ -14,4 +14,10 @@ $breakpoints: (
   @media (min-width: map-get($breakpoints, $breakpoint)) {
     @content;
   }
+}
+
+@mixin hide-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

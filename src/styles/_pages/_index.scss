@@ -1,14 +1,14 @@
-header {
-  text-align: center;
-  padding: 15px;
+.recipes-list {
+  display: flex;
+  flex-direction: column;
 
-  .lpp_logo {
-    width: 200px;
+  @include breakpoint(lg) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
 
-    @include breakpoint(xl) {
-      width: 320px;
-    }
+  @include breakpoint(xl) {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
-
-
