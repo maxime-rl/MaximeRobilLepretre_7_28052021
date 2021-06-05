@@ -7,7 +7,8 @@ const btnsTagSelected = document.querySelector(".tags-selected-container");
 const allTagsElt = document.getElementsByClassName("tag");
 
 /**
- * Display a btn tag on click in a tags list
+ * DOM manage selected ingredients tag
+ * Create or remove btn tag
  */
 const createIngredientsBtnTags = () => {
   allTagsElt.forEach(tagElt => {
@@ -30,6 +31,10 @@ const createIngredientsBtnTags = () => {
   });
 };
 
+/**
+ * DOM manage selected appliances tag
+ * Create or remove btn tag
+ */
 const createAppliancesBtnTags = () => {
   allTagsElt.forEach(tagElt => {
     tagElt.addEventListener("click", () => {
@@ -51,6 +56,10 @@ const createAppliancesBtnTags = () => {
   });
 };
 
+/**
+ * DOM manage selected ustensils tag
+ * Create or remove btn tag
+ */
 const createUstensilsBtnTags = () => {
   allTagsElt.forEach(tagElt => {
     tagElt.addEventListener("click", () => {

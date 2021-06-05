@@ -1,103 +1,53 @@
-import { Recipe } from "./Recipe";
+import { createElementFactory } from "./createElementFactory";
 
-const searchInput = document.querySelector("#search-bar");
-// const recipesDOMName = document.getElementsByClassName(".recipe-card__content__title");
-// const recipesDOMList = document.querySelector(".recipes-list");
-// const recipeDOMElt = document.querySelector(".recipe-card");
-// const allRecipesCardDOMElt = document.querySelectorAll(".recipe-card");
-
-// const createRecipesList = (recipes) => {
-//   const recipesListArr = [];
-
-//   recipes.forEach((recipe) => {
-//     recipesListArr.push(new Recipe(
-//       recipe.id,
-//       recipe.name,
-//       recipe.servings,
-//       recipe.ingredients,
-//       recipe.time,
-//       recipe.description,
-//       recipe.appliance,
-//       recipe.ustensils
-//     ).createRecipeDOMElt()
-//     );
-//   });
-// };
-
+/**
+ * Creation DOM list of recipes
+ * @param {object} data recipes
+ * @returns {HTMLElement} recipes list
+ */
 const createRecipesList = (recipes) => {
-  const recipesListArr = [];
+  recipes.forEach(recipe => {
+    const recipesListDOMElt = document.querySelector(".recipes-list");
+    const articleElt = createElementFactory("article", { class: "recipe-card" });
+    const imgElt = createElementFactory("div", { class: "recipe-card__img" });
+    const cardContentElt = createElementFactory("div", { class: "recipe-card__content" });
 
-  for (const recipe of recipes) {
-    recipe.name = recipe.name.toLowerCase();
-    recipe.appliance = recipe.appliance.toLowerCase();
+    const h2Elt = document.createElement("h2");
+    const titleElt = createElementFactory("span", { class: "recipe-card__content__title" }, `${recipe.name}`);
+    const timeContainerElt = createElementFactory("span", {}, ` ${recipe.time} min`);
+    const timeIconElt = createElementFactory("i", { class: "far fa-clock" });
 
-    for (const elt of recipe.ingredients) {
-      elt.ingredient = elt.ingredient.toLowerCase();
+    const descriptionElts = createElementFactory("div", { class: "recipe-card__content__description" });
+    const ingredientsElt = document.createElement("ul");
 
-      searchInput.addEventListener("input", () => {
-        if (elt.ingredient === searchInput.value) {
-          recipesListArr.push(new Recipe(
-            recipe.id,
-            recipe.name,
-            recipe.servings,
-            recipe.ingredients,
-            recipe.time,
-            recipe.description,
-            recipe.appliance,
-            recipe.ustensils
-          ).createRecipeDOMElt()
-          );
-        }
-      });
-    };
+    recipe.ingredients.forEach(elt => {
+      const quantity = elt.quantity ? `: ${elt.quantity}` : "";
+      const unit = elt.unit ? ` ${elt.unit}` : "";
 
-    for (let ustensil of recipe.ustensils) {
-      ustensil = ustensil.toLowerCase();
+      const liElt = createElementFactory("li", {}, `${quantity}` + `${unit}`);
+      const strongElt = createElementFactory("strong", {}, `${elt.ingredient}`);
 
-      searchInput.addEventListener("input", () => {
-        if (ustensil === searchInput.value) {
-          recipesListArr.push(new Recipe(
-            recipe.id,
-            recipe.name,
-            recipe.servings,
-            recipe.ingredients,
-            recipe.time,
-            recipe.description,
-            recipe.appliance,
-            recipe.ustensils
-          ).createRecipeDOMElt()
-          );
-        }
-      });
-    };
-
-    searchInput.addEventListener("input", () => {
-      if (recipe.name === searchInput.value ||
-          recipe.appliance === searchInput.value) {
-        recipesListArr.push(new Recipe(
-          recipe.id,
-          recipe.name,
-          recipe.servings,
-          recipe.ingredients,
-          recipe.time,
-          recipe.description,
-          recipe.appliance,
-          recipe.ustensils
-        ).createRecipeDOMElt()
-        );
-      }
+      liElt.insertAdjacentElement("afterbegin", strongElt);
+      ingredientsElt.appendChild(liElt);
     });
-  };
-};
 
-// const linearSearch = (list, value) => {
-//   for (let i = 0; i < list.length; i++) {
-//     if (list[i] === value) {
-//       console.log("linear search : VALUE OK");
-//       return list[i];
-//     }
-//   }
-//   return -1;
-// };
+    const descriptionElt = createElementFactory("p", {}, `${recipe.description}`);
+
+    h2Elt.appendChild(titleElt);
+    timeContainerElt.insertAdjacentElement("afterbegin", timeIconElt);
+    h2Elt.appendChild(timeContainerElt);
+
+    articleElt.appendChild(imgElt);
+    cardContentElt.appendChild(h2Elt);
+
+    descriptionElts.appendChild(ingredientsElt);
+    descriptionElts.appendChild(descriptionElt);
+
+    cardContentElt.appendChild(descriptionElts);
+    articleElt.appendChild(cardContentElt);
+
+    recipesListDOMElt.appendChild(articleElt);
+  });
+};
 
 export { createRecipesList };

@@ -6,8 +6,8 @@ import { createElementFactory } from "./createElementFactory.js";
 const allTagsList = document.querySelectorAll(".select__tags-list");
 
 /**
- * Ingredient list creation
- * @param {Array} recipes
+ * Creation ingredients list in select
+ * @param {object} recipes
  * @returns {HTMLElement}
  */
 const createIngredientsTagsList = (recipes) => {
@@ -21,6 +21,11 @@ const createIngredientsTagsList = (recipes) => {
   });
 };
 
+/**
+ * Remove duplicates from the ingredients list
+ * @param {*} recipes
+ * @returns {Array} ingredients list
+ */
 const createUniqueTagsIngredientsArr = (recipes) => {
   const tagsIngredients = new Set();
   for (const recipe of recipes) {
@@ -32,6 +37,11 @@ const createUniqueTagsIngredientsArr = (recipes) => {
   return [...tagsIngredients];
 };
 
+/**
+ * Sorts ingredients
+ * @param {*} recipes
+ * @returns {Array} ingredients list
+ */
 const collectSortedTagsIngredients = (recipes) => {
   const tagsIngredients = createUniqueTagsIngredientsArr(recipes);
 
@@ -39,8 +49,8 @@ const collectSortedTagsIngredients = (recipes) => {
 };
 
 /**
- * Appliance list creation
- * @param {Array} recipes
+ * Creation appliance list in select
+ * @param {object} recipes
  * @returns {HTMLElement}
  */
 const createAppliancesTagsList = (recipes) => {
@@ -54,6 +64,11 @@ const createAppliancesTagsList = (recipes) => {
   });
 };
 
+/**
+ * Remove duplicates from the appliances list
+ * @param {object} recipes
+ * @returns {Array} appliances list
+ */
 const createUniqueTagsAppliancesArr = (recipes) => {
   const tagsAppliances = new Set();
   for (const recipe of recipes) {
@@ -63,6 +78,11 @@ const createUniqueTagsAppliancesArr = (recipes) => {
   return [...tagsAppliances];
 };
 
+/**
+ * Sorts appliances
+ * @param {*} recipes
+ * @returns {Array} appliances list
+ */
 const collectSortedTagsAppliances = (recipes) => {
   const tagsAppliances = createUniqueTagsAppliancesArr(recipes);
 
@@ -70,8 +90,8 @@ const collectSortedTagsAppliances = (recipes) => {
 };
 
 /**
- * Ustensil list creation
- * @param {Array} recipes
+ * Creation ustensils list in select
+ * @param {object} recipes
  * @returns {HTMLElement}
  */
 const createUstensilsTagsList = (recipes) => {
@@ -85,6 +105,11 @@ const createUstensilsTagsList = (recipes) => {
   });
 };
 
+/**
+ * Remove duplicates from the ustensils list
+ * @param {*} recipes
+ * @returns {Array} ustensils list
+ */
 const createUniqueTagsUstensilsArr = (recipes) => {
   const tagsUstensils = new Set();
   for (const recipe of recipes) {
@@ -96,6 +121,11 @@ const createUniqueTagsUstensilsArr = (recipes) => {
   return [...tagsUstensils];
 };
 
+/**
+ * Sorts ustensils
+ * @param {*} recipes
+ * @returns {Array} ustensils list
+ */
 const collectSortedTagsUstensils = (recipes) => {
   const tagsUstensils = createUniqueTagsUstensilsArr(recipes);
 
