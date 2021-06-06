@@ -1,22 +1,54 @@
-import { createElementFactory } from "./utils/createElementFactory.js";
+import { createElementFactory } from "./utils/createElementFactory";
+import { normalize } from "./utils/normalize";
+
+import { createRecipesList } from "./recipesList";
+import { createIngredientsTagsList } from "./categoriesList/ingredientsList";
+import { createAppliancesTagsList } from "./categoriesList/appliancesList";
+import { createUstensilsTagsList } from "./categoriesList/ustensilsList";
 
 /**
  * DOM Elements
  */
 const btnsTagSelected = document.querySelector(".tags-selected-container");
 const allTagsElt = document.getElementsByClassName("tag");
+// const allRecipeCardsElt = document.querySelectorAll(".recipe-card");
+// const allBtnTagsElt = document.querySelector(".btn-tag-selected");
 
-/**
- * DOM manage selected ingredients tag
- * Create or remove btn tag
- */
-const createIngredientsSelectedTags = () => {
+const recipesDOMList = document.querySelector(".recipes-list");
+const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
+const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+
+const removeDataDOMRecipes = () => {
+  recipesDOMList.innerHTML = "";
+  ingredientsTagsList.innerHTML = "";
+  appliancesTagsList.innerHTML = "";
+  ustensilsTagsList.innerHTML = "";
+};
+
+const ingredientsDataCat = "ingredients";
+const appliancesDataCat = "appliances";
+const ustensilsDataCat = "ustensils";
+
+const createDataDOMRecipes = (elt) => {
+  createRecipesList(elt);
+  createIngredientsTagsList(elt);
+  createAppliancesTagsList(elt);
+  createUstensilsTagsList(elt);
+};
+
+// CODE DE BASE
+const createCategorieSelectedTags = (categorieElt) => {
   allTagsElt.forEach(tagElt => {
-    tagElt.addEventListener("click", () => {
-      if (tagElt.dataset.cat === "ingredients") {
+    tagElt.addEventListener("click", (e) => {
+      // e.stopPropagation();
+      tagElt.classList.add("display-none");
+      tagElt.classList.remove("display-flex");
+
+      if (tagElt.dataset.cat === `${categorieElt}`) {
         const btnElt = createElementFactory("button", {
           class: "btn-tag-selected display-flex",
-          "data-cat": "ingredients"
+          "data-cat": `${categorieElt}`
         }, `${tagElt.textContent}`);
         const iconCloseElt = createElementFactory("span", { class: "icon-close" });
 
@@ -24,7 +56,8 @@ const createIngredientsSelectedTags = () => {
         btnsTagSelected.appendChild(btnElt);
 
         btnElt.addEventListener("click", () => {
-          btnElt.remove();
+          tagElt.classList.add("display-flex");
+          tagElt.classList.remove("display-none");
         });
       }
     });
@@ -32,53 +65,64 @@ const createIngredientsSelectedTags = () => {
 };
 
 /**
- * DOM manage selected appliances tag
- * Create or remove btn tag
+ * Remove selected tag
  */
-const createAppliancesSelectedTags = () => {
+const removeCategorieSelectedTags = (recipes) => {
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("icon-close")) {
+      e.target.parentNode.remove();
+      e.target.remove();
+    }
+    if (e.target.classList.contains("btn-tag-selected")) {
+      // const filteredRecipes = recipes.filter((recipe) => {
+      //   const name = normalize(recipe.name);
+      //   const appliance = normalize(recipe.appliance);
+      //   const description = normalize(recipe.description);
+
+      //   return (
+      //     name.includes(e.target.textContent) ||
+      //     appliance.includes(e.target.textContent) ||
+      //     description.includes(e.target.textContent) ||
+      //     recipe.ingredients.some(i => normalize(i.ingredient).includes(e.target.textContent)) ||
+      //     recipe.ustensils.some(u => normalize(u).includes(e.target.textContent))
+      //   );
+      // });
+      removeDataDOMRecipes();
+      createDataDOMRecipes(recipes);
+      createCategorieSelectedTags(ingredientsDataCat);
+      createCategorieSelectedTags(appliancesDataCat);
+      createCategorieSelectedTags(ustensilsDataCat);
+      e.target.parentNode.removeChild(e.target);
+    }
+  });
+};
+
+const test = (recipes) => {
   allTagsElt.forEach(tagElt => {
-    tagElt.addEventListener("click", () => {
-      if (tagElt.dataset.cat === "appliances") {
-        const btnElt = createElementFactory("button", {
-          class: "btn-tag-selected display-flex",
-          "data-cat": "appliances"
-        }, `${tagElt.textContent}`);
-        const iconCloseElt = createElementFactory("span", { class: "icon-close" });
+    tagElt.addEventListener("click", (e) => {
+      // e.stopPropagation();
+      const selectedAddTag = e.target.textContent;
 
-        btnElt.appendChild(iconCloseElt);
-        btnsTagSelected.appendChild(btnElt);
+      const filteredRecipes = recipes.filter((recipe) => {
+        const name = normalize(recipe.name);
+        const appliance = normalize(recipe.appliance);
+        const description = normalize(recipe.description);
 
-        btnElt.addEventListener("click", () => {
-          btnElt.remove();
-        });
-      }
+        return (
+          name.includes(selectedAddTag) ||
+          appliance.includes(selectedAddTag) ||
+          description.includes(selectedAddTag) ||
+          recipe.ingredients.some(i => normalize(i.ingredient).includes(selectedAddTag)) ||
+          recipe.ustensils.some(u => normalize(u).includes(selectedAddTag))
+        );
+      });
+      removeDataDOMRecipes();
+      createDataDOMRecipes(filteredRecipes);
+      createCategorieSelectedTags(ingredientsDataCat);
+      createCategorieSelectedTags(appliancesDataCat);
+      createCategorieSelectedTags(ustensilsDataCat);
     });
   });
 };
 
-/**
- * DOM manage selected ustensils tag
- * Create or remove btn tag
- */
-const createUstensilsSelectedTags = () => {
-  allTagsElt.forEach(tagElt => {
-    tagElt.addEventListener("click", () => {
-      if (tagElt.dataset.cat === "ustensils") {
-        const btnElt = createElementFactory("button", {
-          class: "btn-tag-selected display-flex",
-          "data-cat": "ustensils"
-        }, `${tagElt.textContent}`);
-        const iconCloseElt = createElementFactory("span", { class: "icon-close" });
-
-        btnElt.appendChild(iconCloseElt);
-        btnsTagSelected.appendChild(btnElt);
-
-        btnElt.addEventListener("click", () => {
-          btnElt.remove();
-        });
-      }
-    });
-  });
-};
-
-export { createIngredientsSelectedTags, createAppliancesSelectedTags, createUstensilsSelectedTags };
+export { createCategorieSelectedTags, removeCategorieSelectedTags, test };

@@ -2,12 +2,7 @@ import { createRecipesList } from "./recipesList";
 import { createIngredientsTagsList } from "./categoriesList/ingredientsList";
 import { createAppliancesTagsList } from "./categoriesList/appliancesList";
 import { createUstensilsTagsList } from "./categoriesList/ustensilsList";
-
-import {
-  createIngredientsSelectedTags,
-  createAppliancesSelectedTags,
-  createUstensilsSelectedTags
-} from "./handleTags";
+import { createCategorieSelectedTags } from "./handleTags";
 
 import { normalize } from "./utils/normalize";
 
@@ -27,17 +22,15 @@ const removeDataDOMRecipes = () => {
   ustensilsTagsList.innerHTML = "";
 };
 
-const createDataDOMRecipes = (elt) => {
-  createRecipesList(elt);
-  createIngredientsTagsList(elt);
-  createAppliancesTagsList(elt);
-  createUstensilsTagsList(elt);
-};
+const ingredientsDataCat = "ingredients";
+const appliancesDataCat = "appliances";
+const ustensilsDataCat = "ustensils";
 
-const createAllSelectedTags = () => {
-  createIngredientsSelectedTags();
-  createAppliancesSelectedTags();
-  createUstensilsSelectedTags();
+const createDataDOMRecipes = (filteredelt) => {
+  createRecipesList(filteredelt);
+  createIngredientsTagsList(filteredelt);
+  createAppliancesTagsList(filteredelt);
+  createUstensilsTagsList(filteredelt);
 };
 
 /**
@@ -66,10 +59,15 @@ const updateRecipesList = (recipes) => {
       });
       removeDataDOMRecipes();
       createDataDOMRecipes(filteredRecipes);
-      createAllSelectedTags();
+      createCategorieSelectedTags(ingredientsDataCat);
+      createCategorieSelectedTags(appliancesDataCat);
+      createCategorieSelectedTags(ustensilsDataCat);
     } else {
       removeDataDOMRecipes();
       createDataDOMRecipes(recipes);
+      createCategorieSelectedTags(ingredientsDataCat);
+      createCategorieSelectedTags(appliancesDataCat);
+      createCategorieSelectedTags(ustensilsDataCat);
     }
   });
 };

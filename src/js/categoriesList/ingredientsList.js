@@ -1,5 +1,5 @@
 import { createElementFactory } from "../utils/createElementFactory.js";
-import { createIngredientsSelectedTags } from "../handleTags";
+import { createCategorieSelectedTags } from "../handleTags";
 import { normalize } from "../utils/normalize";
 
 /**
@@ -8,17 +8,18 @@ import { normalize } from "../utils/normalize";
 const allTagsList = document.querySelectorAll(".select__tags-list");
 const searchInput = document.querySelector("#ingredients-research");
 const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
+const ingredientsDataCat = "ingredients";
 
 const updateIngredientsList = (recipes) => {
   searchInput.addEventListener("keyup", (e) => {
     const userInputValue = normalize(e.target.value);
 
     const filteredIngredients = recipes.filter((recipe) => {
-      return recipe.ingredients.some(u => normalize(u).includes(userInputValue));
+      return recipe.ingredients.some(i => normalize(i.ingredient).includes(userInputValue));
     });
     ingredientsTagsList.innerHTML = "";
     createIngredientsTagsList(filteredIngredients);
-    createIngredientsSelectedTags();
+    createCategorieSelectedTags(ingredientsDataCat);
   });
 };
 
@@ -31,7 +32,7 @@ const createIngredientsTagsList = (recipes) => {
   allTagsList.forEach(tagsList => {
     if (tagsList.dataset.cat === "ingredients") {
       collectSortedTagsIngredients(recipes).forEach((ingredient) => {
-        const liElt = createElementFactory("li", { class: "tag", "data-cat": "ingredients" }, `${ingredient}`);
+        const liElt = createElementFactory("li", { class: "tag", "data-cat": "ingredients", "data-cat-value": `${ingredient}` }, `${ingredient}`);
         tagsList.appendChild(liElt);
       });
     }

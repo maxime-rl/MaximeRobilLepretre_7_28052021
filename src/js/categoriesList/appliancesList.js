@@ -1,5 +1,5 @@
-import { createElementFactory } from "../utils/createElementFactory.js";
-import { createAppliancesSelectedTags } from "../handleTags";
+import { createElementFactory } from "../utils/createElementFactory";
+import { createCategorieSelectedTags } from "../handleTags";
 import { normalize } from "../utils/normalize";
 
 /**
@@ -8,6 +8,7 @@ import { normalize } from "../utils/normalize";
 const allTagsList = document.querySelectorAll(".select__tags-list");
 const searchInput = document.querySelector("#appliances-research");
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+const appliancesDataCat = "appliances";
 
 const updateAppliancesList = (recipes) => {
   searchInput.addEventListener("keyup", (e) => {
@@ -20,7 +21,7 @@ const updateAppliancesList = (recipes) => {
     });
     appliancesTagsList.innerHTML = "";
     createAppliancesTagsList(filteredAppliances);
-    createAppliancesSelectedTags();
+    createCategorieSelectedTags(appliancesDataCat);
   });
 };
 
@@ -33,7 +34,7 @@ const createAppliancesTagsList = (recipes) => {
   allTagsList.forEach(tagsList => {
     if (tagsList.dataset.cat === "appliances") {
       collectSortedTagsAppliances(recipes).forEach((appliance) => {
-        const liElt = createElementFactory("li", { class: "tag", "data-cat": "appliances" }, `${appliance}`);
+        const liElt = createElementFactory("li", { class: "tag", "data-cat": "appliances", "data-cat-value": `${appliance}` }, `${appliance}`);
         tagsList.appendChild(liElt);
       });
     }

@@ -20,11 +20,11 @@ import {
   updateUstensilsList
 } from "./categoriesList/ustensilsList";
 
-import {
-  createIngredientsSelectedTags,
-  createAppliancesSelectedTags,
-  createUstensilsSelectedTags
-} from "./handleTags";
+import { createCategorieSelectedTags, removeCategorieSelectedTags, test } from "./handleTags";
+
+const ingredientsDataCat = "ingredients";
+const appliancesDataCat = "appliances";
+const ustensilsDataCat = "ustensils";
 
 createRecipesList(recipes);
 updateRecipesList(recipes);
@@ -36,10 +36,12 @@ createAppliancesTagsList(recipes);
 updateAppliancesList(recipes);
 
 createUstensilsTagsList(recipes);
-updateUstensilsList();
+updateUstensilsList(recipes);
 
 handleAllSelects();
 
-createIngredientsSelectedTags();
-createAppliancesSelectedTags();
-createUstensilsSelectedTags();
+createCategorieSelectedTags(ingredientsDataCat);
+createCategorieSelectedTags(appliancesDataCat);
+createCategorieSelectedTags(ustensilsDataCat);
+removeCategorieSelectedTags(recipes);
+test(recipes);

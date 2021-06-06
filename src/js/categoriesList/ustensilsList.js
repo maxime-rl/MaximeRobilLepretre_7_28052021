@@ -1,5 +1,5 @@
 import { createElementFactory } from "../utils/createElementFactory";
-import { createUstensilsSelectedTags } from "../handleTags";
+import { createCategorieSelectedTags } from "../handleTags";
 import { normalize } from "../utils/normalize";
 
 /**
@@ -8,17 +8,18 @@ import { normalize } from "../utils/normalize";
 const allTagsList = document.querySelectorAll(".select__tags-list");
 const searchInput = document.querySelector("#ustensils-research");
 const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+const ustensilsDataCat = "ustensils";
 
 const updateUstensilsList = (recipes) => {
   searchInput.addEventListener("keyup", (e) => {
     const userInputValue = normalize(e.target.value);
 
     const filteredUstensils = recipes.filter((recipe) => {
-      return recipe.ustensils.some(u => normalize(u).includes(userInputValue));
+      return recipe.ustensils.some(i => normalize(i).includes(userInputValue));
     });
     ustensilsTagsList.innerHTML = "";
     createUstensilsTagsList(filteredUstensils);
-    createUstensilsSelectedTags();
+    createCategorieSelectedTags(ustensilsDataCat);
   });
 };
 
@@ -31,7 +32,7 @@ const createUstensilsTagsList = (recipes) => {
   allTagsList.forEach(tagsList => {
     if (tagsList.dataset.cat === "ustensils") {
       collectSortedTagsUstensils(recipes).forEach((ustensil) => {
-        const liElt = createElementFactory("li", { class: "tag", "data-cat": "ustensils" }, `${ustensil}`);
+        const liElt = createElementFactory("li", { class: "tag", "data-cat": "ustensils", "data-cat-value": `${ustensil}` }, `${ustensil}`);
         tagsList.appendChild(liElt);
       });
     }
