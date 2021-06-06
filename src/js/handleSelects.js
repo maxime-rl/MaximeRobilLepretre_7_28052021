@@ -43,6 +43,7 @@ const handlerForCurrentBtn = (btnElt) => {
     appliancesTagsList.classList.remove("display-grid");
     ustensilsTagsList.classList.remove("display-grid");
     ingredientsPlaceholderElt.placeholder = "Recherchez des ingredients";
+    ingredientsPlaceholderElt.classList.toggle("opacity-50");
   } else if (btnElt === appliancesBtn) {
     appliancesSelect.classList.toggle("select--appliances--open");
     ingredientsSelect.classList.remove("select--ingredients--open");
@@ -50,6 +51,7 @@ const handlerForCurrentBtn = (btnElt) => {
     ingredientsTagsList.classList.remove("display-grid");
     ustensilsTagsList.classList.remove("display-grid");
     appliancesPlaceholderElt.placeholder = "Recherchez des appareils";
+    appliancesPlaceholderElt.classList.toggle("opacity-50");
   } else {
     ustensilsSelect.classList.toggle("select--ustensils--open");
     ingredientsSelect.classList.remove("select--ingredients--open");
@@ -57,6 +59,7 @@ const handlerForCurrentBtn = (btnElt) => {
     ingredientsTagsList.classList.remove("display-grid");
     appliancesTagsList.classList.remove("display-grid");
     ustensilsPlaceholderElt.placeholder = "Recherchez des ustensiles";
+    ustensilsPlaceholderElt.classList.toggle("opacity-50");
   }
 };
 
@@ -78,6 +81,7 @@ const listeningDocumentForIngredients = () => {
     ingredientsSelect.classList.remove("select--ingredients--open");
     ingredientsBtn.classList.remove("select__btn--selected");
     ingredientsPlaceholderElt.placeholder = "Ingredients";
+    ingredientsPlaceholderElt.classList.remove("opacity-50");
   });
 };
 
@@ -98,6 +102,7 @@ const listeningDocumentForAppliances = () => {
     appliancesSelect.classList.remove("select--appliances--open");
     appliancesBtn.classList.remove("select__btn--selected");
     appliancesPlaceholderElt.placeholder = "Appareils";
+    appliancesPlaceholderElt.classList.remove("opacity-50");
   });
 };
 
@@ -118,13 +123,8 @@ const listeningDocumentForUstensils = () => {
     ustensilsSelect.classList.remove("select--ustensils--open");
     ustensilsBtn.classList.remove("select__btn--selected");
     ustensilsPlaceholderElt.placeholder = "Ustensiles";
+    ustensilsPlaceholderElt.classList.remove("opacity-50");
   });
-};
-
-const handleAllSelects = () => {
-  handleCategoriesBtnClick(ingredientsBtn, ingredientsTagsList);
-  handleCategoriesBtnClick(appliancesBtn, appliancesTagsList);
-  handleCategoriesBtnClick(ustensilsBtn, ustensilsTagsList);
 };
 
 const listeningToDocument = () => {
@@ -133,4 +133,11 @@ const listeningToDocument = () => {
   listeningDocumentForUstensils();
 };
 
-export { handleAllSelects, listeningToDocument };
+const handleAllSelects = () => {
+  handleCategoriesBtnClick(ingredientsBtn, ingredientsTagsList);
+  handleCategoriesBtnClick(appliancesBtn, appliancesTagsList);
+  handleCategoriesBtnClick(ustensilsBtn, ustensilsTagsList);
+  listeningToDocument();
+};
+
+export { handleAllSelects };

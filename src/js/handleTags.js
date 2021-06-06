@@ -1,4 +1,4 @@
-import { createElementFactory } from "./createElementFactory.js";
+import { createElementFactory } from "./utils/createElementFactory.js";
 
 /**
  * DOM Elements
@@ -10,7 +10,7 @@ const allTagsElt = document.getElementsByClassName("tag");
  * DOM manage selected ingredients tag
  * Create or remove btn tag
  */
-const createIngredientsBtnTags = () => {
+const createIngredientsSelectedTags = () => {
   allTagsElt.forEach(tagElt => {
     tagElt.addEventListener("click", () => {
       if (tagElt.dataset.cat === "ingredients") {
@@ -35,7 +35,7 @@ const createIngredientsBtnTags = () => {
  * DOM manage selected appliances tag
  * Create or remove btn tag
  */
-const createAppliancesBtnTags = () => {
+const createAppliancesSelectedTags = () => {
   allTagsElt.forEach(tagElt => {
     tagElt.addEventListener("click", () => {
       if (tagElt.dataset.cat === "appliances") {
@@ -60,7 +60,7 @@ const createAppliancesBtnTags = () => {
  * DOM manage selected ustensils tag
  * Create or remove btn tag
  */
-const createUstensilsBtnTags = () => {
+const createUstensilsSelectedTags = () => {
   allTagsElt.forEach(tagElt => {
     tagElt.addEventListener("click", () => {
       if (tagElt.dataset.cat === "ustensils") {
@@ -81,10 +81,4 @@ const createUstensilsBtnTags = () => {
   });
 };
 
-const handleAllTags = () => {
-  createIngredientsBtnTags();
-  createAppliancesBtnTags();
-  createUstensilsBtnTags();
-};
-
-export { handleAllTags };
+export { createIngredientsSelectedTags, createAppliancesSelectedTags, createUstensilsSelectedTags };

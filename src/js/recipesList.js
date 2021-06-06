@@ -1,4 +1,4 @@
-import { createElementFactory } from "./createElementFactory";
+import { createElementFactory } from "./utils/createElementFactory";
 
 /**
  * Creation DOM list of recipes
