@@ -10,37 +10,6 @@ const searchInput = document.querySelector("#appliances-research");
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 const appliancesDataCat = "appliances";
 
-const updateAppliancesList = (recipes) => {
-  searchInput.addEventListener("keyup", (e) => {
-    const userInputValue = normalize(e.target.value);
-
-    const filteredAppliances = recipes.filter((recipe) => {
-      const appliance = normalize(recipe.appliance);
-
-      return appliance.includes(userInputValue);
-    });
-    appliancesTagsList.innerHTML = "";
-    createAppliancesTagsList(filteredAppliances);
-    createCategorieSelectedTags(appliancesDataCat);
-  });
-};
-
-/**
- * Creation appliance list in select
- * @param {object} recipes
- * @returns {HTMLElement}
- */
-const createAppliancesTagsList = (recipes) => {
-  allTagsList.forEach(tagsList => {
-    if (tagsList.dataset.cat === "appliances") {
-      collectSortedTagsAppliances(recipes).forEach((appliance) => {
-        const liElt = createElementFactory("li", { class: "tag", "data-cat": "appliances", "data-cat-value": `${appliance}` }, `${appliance}`);
-        tagsList.appendChild(liElt);
-      });
-    }
-  });
-};
-
 /**
  * Remove duplicates from the appliances list
  * @param {object} recipes
@@ -64,6 +33,41 @@ const collectSortedTagsAppliances = (recipes) => {
   const tagsAppliances = createUniqueTagsAppliancesArr(recipes);
 
   return tagsAppliances.sort();
+};
+
+/**
+ * Creation appliance list in select
+ * @param {object} recipes
+ * @returns {HTMLElement}
+ */
+const createAppliancesTagsList = (recipes) => {
+  allTagsList.forEach(tagsList => {
+    if (tagsList.dataset.cat === "appliances") {
+      collectSortedTagsAppliances(recipes).forEach((appliance) => {
+        const liElt = createElementFactory("li", { class: "tag", "data-cat": "appliances" }, `${appliance}`);
+        tagsList.appendChild(liElt);
+      });
+    }
+  });
+};
+
+/**
+ * Update appliances list input search
+ * @param {object} recipes
+ */
+const updateAppliancesList = (recipes) => {
+  searchInput.addEventListener("keyup", (e) => {
+    const userInputValue = normalize(e.target.value);
+
+    const filteredAppliances = recipes.filter((recipe) => {
+      const appliance = normalize(recipe.appliance);
+
+      return appliance.includes(userInputValue);
+    });
+    appliancesTagsList.innerHTML = "";
+    createAppliancesTagsList(filteredAppliances);
+    createCategorieSelectedTags(appliancesDataCat);
+  });
 };
 
 export { createAppliancesTagsList, updateAppliancesList };

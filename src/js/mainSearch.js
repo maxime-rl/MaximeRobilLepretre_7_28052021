@@ -3,7 +3,6 @@ import { createIngredientsTagsList } from "./categoriesList/ingredientsList";
 import { createAppliancesTagsList } from "./categoriesList/appliancesList";
 import { createUstensilsTagsList } from "./categoriesList/ustensilsList";
 import { createCategorieSelectedTags } from "./handleTags";
-
 import { normalize } from "./utils/normalize";
 
 /**
@@ -14,6 +13,9 @@ const recipesDOMList = document.querySelector(".recipes-list");
 const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+const ingredientsDataCat = "ingredients";
+const appliancesDataCat = "appliances";
+const ustensilsDataCat = "ustensils";
 
 const removeDataDOMRecipes = () => {
   recipesDOMList.innerHTML = "";
@@ -22,15 +24,17 @@ const removeDataDOMRecipes = () => {
   ustensilsTagsList.innerHTML = "";
 };
 
-const ingredientsDataCat = "ingredients";
-const appliancesDataCat = "appliances";
-const ustensilsDataCat = "ustensils";
-
 const createDataDOMRecipes = (filteredelt) => {
   createRecipesList(filteredelt);
   createIngredientsTagsList(filteredelt);
   createAppliancesTagsList(filteredelt);
   createUstensilsTagsList(filteredelt);
+};
+
+const createAllCategoriesSelectedTags = (recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat) => {
+  createCategorieSelectedTags(recipes, ingredientsDataCat);
+  createCategorieSelectedTags(recipes, appliancesDataCat);
+  createCategorieSelectedTags(recipes, ustensilsDataCat);
 };
 
 /**
@@ -46,28 +50,23 @@ const updateRecipesList = (recipes) => {
     if (userInputValue.length > 2) {
       const filteredRecipes = recipes.filter((recipe) => {
         const name = normalize(recipe.name);
-        const appliance = normalize(recipe.appliance);
         const description = normalize(recipe.description);
 
         return (
           name.includes(userInputValue) ||
-          appliance.includes(userInputValue) ||
           description.includes(userInputValue) ||
-          recipe.ingredients.some(i => normalize(i.ingredient).includes(userInputValue)) ||
-          recipe.ustensils.some(u => normalize(u).includes(userInputValue))
+          recipe.ingredients.some(i => normalize(i.ingredient).includes(userInputValue))
         );
       });
+      // Filtered recipes and update tags list
       removeDataDOMRecipes();
       createDataDOMRecipes(filteredRecipes);
-      createCategorieSelectedTags(ingredientsDataCat);
-      createCategorieSelectedTags(appliancesDataCat);
-      createCategorieSelectedTags(ustensilsDataCat);
+      createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
+      // Create full recipes and all tags
     } else {
       removeDataDOMRecipes();
       createDataDOMRecipes(recipes);
-      createCategorieSelectedTags(ingredientsDataCat);
-      createCategorieSelectedTags(appliancesDataCat);
-      createCategorieSelectedTags(ustensilsDataCat);
+      createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
     }
   });
 };

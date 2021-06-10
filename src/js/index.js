@@ -6,8 +6,8 @@ import { updateRecipesList } from "./mainSearch";
 import { handleAllSelects } from "./handleSelects";
 
 import {
-  createIngredientsTagsList,
-  updateIngredientsList
+  updateIngredientsList,
+  createIngredientsTagsList
 } from "./categoriesList/ingredientsList";
 
 import {
@@ -20,7 +20,7 @@ import {
   updateUstensilsList
 } from "./categoriesList/ustensilsList";
 
-import { createCategorieSelectedTags, removeCategorieSelectedTags, test } from "./handleTags";
+import { createCategorieSelectedTags, removeCategorieSelectedTags } from "./handleTags";
 
 const ingredientsDataCat = "ingredients";
 const appliancesDataCat = "appliances";
@@ -30,18 +30,19 @@ createRecipesList(recipes);
 updateRecipesList(recipes);
 
 createIngredientsTagsList(recipes);
-updateIngredientsList(recipes);
-
 createAppliancesTagsList(recipes);
-updateAppliancesList(recipes);
-
 createUstensilsTagsList(recipes);
+
+createCategorieSelectedTags(recipes, ingredientsDataCat);
+createCategorieSelectedTags(recipes, appliancesDataCat);
+createCategorieSelectedTags(recipes, ustensilsDataCat);
+
+updateIngredientsList(recipes);
+updateAppliancesList(recipes);
 updateUstensilsList(recipes);
 
-handleAllSelects();
+// filteredRecipesByTags(recipes);
 
-createCategorieSelectedTags(ingredientsDataCat);
-createCategorieSelectedTags(appliancesDataCat);
-createCategorieSelectedTags(ustensilsDataCat);
 removeCategorieSelectedTags(recipes);
-test(recipes);
+
+handleAllSelects();

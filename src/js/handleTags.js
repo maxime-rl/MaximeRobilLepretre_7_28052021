@@ -1,19 +1,15 @@
 import { createElementFactory } from "./utils/createElementFactory";
-import { normalize } from "./utils/normalize";
-
 import { createRecipesList } from "./recipesList";
 import { createIngredientsTagsList } from "./categoriesList/ingredientsList";
 import { createAppliancesTagsList } from "./categoriesList/appliancesList";
 import { createUstensilsTagsList } from "./categoriesList/ustensilsList";
+// import { normalize } from "./utils/normalize";
 
 /**
  * DOM Elements
  */
 const btnsTagSelected = document.querySelector(".tags-selected-container");
-const allTagsElt = document.getElementsByClassName("tag");
-// const allRecipeCardsElt = document.querySelectorAll(".recipe-card");
-// const allBtnTagsElt = document.querySelector(".btn-tag-selected");
-
+const allTags = document.getElementsByClassName("tag");
 const recipesDOMList = document.querySelector(".recipes-list");
 const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
@@ -37,92 +33,100 @@ const createDataDOMRecipes = (elt) => {
   createUstensilsTagsList(elt);
 };
 
-// CODE DE BASE
-const createCategorieSelectedTags = (categorieElt) => {
-  allTagsElt.forEach(tagElt => {
-    tagElt.addEventListener("click", (e) => {
-      // e.stopPropagation();
-      tagElt.classList.add("display-none");
-      tagElt.classList.remove("display-flex");
+const createAllCategoriesSelectedTags = (recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat) => {
+  createCategorieSelectedTags(recipes, ingredientsDataCat);
+  createCategorieSelectedTags(recipes, appliancesDataCat);
+  createCategorieSelectedTags(recipes, ustensilsDataCat);
+};
 
-      if (tagElt.dataset.cat === `${categorieElt}`) {
-        const btnElt = createElementFactory("button", {
-          class: "btn-tag-selected display-flex",
-          "data-cat": `${categorieElt}`
-        }, `${tagElt.textContent}`);
-        const iconCloseElt = createElementFactory("span", { class: "icon-close" });
-
-        btnElt.appendChild(iconCloseElt);
-        btnsTagSelected.appendChild(btnElt);
-
-        btnElt.addEventListener("click", () => {
-          tagElt.classList.add("display-flex");
-          tagElt.classList.remove("display-none");
-        });
-      }
+/**
+ * Create a selected btn tag and update list of recipes each time tag is clicked
+ * @param {object} recipes
+ * @param {string} categorieElt
+ */
+const createCategorieSelectedTags = (recipes, categorieElt) => {
+  allTags.forEach(tag => {
+    tag.addEventListener("click", () => {
+      tag.classList.add("display-none");
+      console.log(tag);
+      createBtnSelectedTag(tag, categorieElt);
+      // filteredRecipesByTags(recipes);
     });
   });
 };
 
 /**
- * Remove selected tag
+ * Create DOM btn selected tag
+ * @param {HTMLElement} tag
+ * @param {string} categorieElt
+ */
+const createBtnSelectedTag = (tag, categorieElt) => {
+  if (tag.dataset.cat === `${categorieElt}`) {
+    const btnElt = createElementFactory("button", {
+      class: "btn-tag-selected display-flex",
+      "data-cat": `${categorieElt}`
+    }, `${tag.textContent}`);
+    const iconCloseElt = createElementFactory("span", { class: "icon-close" });
+
+    btnElt.appendChild(iconCloseElt);
+    btnsTagSelected.appendChild(btnElt);
+  };
+};
+
+// /**CREATE BUG IN TAGS LIST
+//  * Detects if a tag is selected, if so, update recipes
+//  * @param {object} recipes
+//  */
+// const filteredRecipesByTags = (recipes) => {
+//   if (btnsTagSelected.hasChildNodes()) {
+//     const btnChildren = btnsTagSelected.childNodes;
+
+//     btnChildren.forEach(btnChild => {
+//       const btnValue = btnChild.textContent;
+//       const btnNormalizeValue = normalize(btnValue);
+
+//       const filteredRecipes = recipes.filter((recipe) => {
+//         const name = normalize(recipe.name);
+//         const appliance = normalize(recipe.appliance);
+//         const description = normalize(recipe.description);
+
+//         return (
+//           name.includes(btnNormalizeValue) ||
+//           appliance.includes(btnNormalizeValue) ||
+//           description.includes(btnNormalizeValue) ||
+//           recipe.ingredients.some(i => normalize(i.ingredient).includes(btnNormalizeValue)) ||
+//           recipe.ustensils.some(u => normalize(u).includes(btnNormalizeValue))
+//         );
+//       });
+//       removeDataDOMRecipes();
+//       createDataDOMRecipes(filteredRecipes);
+//       createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
+//     });
+//   } else {
+//     removeDataDOMRecipes();
+//     createDataDOMRecipes(recipes);
+//     createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
+//   };
+// };
+
+/**
+ * Remove selected tag on click
+ * @param {object} recipes
  */
 const removeCategorieSelectedTags = (recipes) => {
   document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("icon-close")) {
-      e.target.parentNode.remove();
-      e.target.remove();
-    }
-    if (e.target.classList.contains("btn-tag-selected")) {
-      // const filteredRecipes = recipes.filter((recipe) => {
-      //   const name = normalize(recipe.name);
-      //   const appliance = normalize(recipe.appliance);
-      //   const description = normalize(recipe.description);
-
-      //   return (
-      //     name.includes(e.target.textContent) ||
-      //     appliance.includes(e.target.textContent) ||
-      //     description.includes(e.target.textContent) ||
-      //     recipe.ingredients.some(i => normalize(i.ingredient).includes(e.target.textContent)) ||
-      //     recipe.ustensils.some(u => normalize(u).includes(e.target.textContent))
-      //   );
-      // });
+    if (e.target.classList.contains("icon-close") || e.target.classList.contains("btn-tag-selected")) {
       removeDataDOMRecipes();
       createDataDOMRecipes(recipes);
-      createCategorieSelectedTags(ingredientsDataCat);
-      createCategorieSelectedTags(appliancesDataCat);
-      createCategorieSelectedTags(ustensilsDataCat);
-      e.target.parentNode.removeChild(e.target);
+      createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
+      if (e.target.classList.contains("icon-close")) {
+        e.target.parentNode.remove();
+        e.target.remove();
+      } else if (e.target.classList.contains("btn-tag-selected")) {
+        e.target.parentNode.removeChild(e.target);
+      }
     }
   });
 };
 
-const test = (recipes) => {
-  allTagsElt.forEach(tagElt => {
-    tagElt.addEventListener("click", (e) => {
-      // e.stopPropagation();
-      const selectedAddTag = e.target.textContent;
-
-      const filteredRecipes = recipes.filter((recipe) => {
-        const name = normalize(recipe.name);
-        const appliance = normalize(recipe.appliance);
-        const description = normalize(recipe.description);
-
-        return (
-          name.includes(selectedAddTag) ||
-          appliance.includes(selectedAddTag) ||
-          description.includes(selectedAddTag) ||
-          recipe.ingredients.some(i => normalize(i.ingredient).includes(selectedAddTag)) ||
-          recipe.ustensils.some(u => normalize(u).includes(selectedAddTag))
-        );
-      });
-      removeDataDOMRecipes();
-      createDataDOMRecipes(filteredRecipes);
-      createCategorieSelectedTags(ingredientsDataCat);
-      createCategorieSelectedTags(appliancesDataCat);
-      createCategorieSelectedTags(ustensilsDataCat);
-    });
-  });
-};
-
-export { createCategorieSelectedTags, removeCategorieSelectedTags, test };
+export { createCategorieSelectedTags, removeCategorieSelectedTags };
