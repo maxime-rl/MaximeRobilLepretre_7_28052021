@@ -1,146 +1,549 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/Recipe.js":
-/*!**************************!*\
-  !*** ./src/js/Recipe.js ***!
-  \**************************/
+/***/ "./src/js/categoriesList/appliancesList.js":
+/*!*************************************************!*\
+  !*** ./src/js/categoriesList/appliancesList.js ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Recipe": () => (/* binding */ Recipe)
+/* harmony export */   "createAppliancesTagsList": () => (/* binding */ createAppliancesTagsList),
+/* harmony export */   "updateAppliancesList": () => (/* binding */ updateAppliancesList)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.symbol.js */ "./node_modules/core-js/modules/es.symbol.js");
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _createElementFactory_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createElementFactory.js */ "./src/js/createElementFactory.js");
+/* harmony import */ var core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.set.js */ "./node_modules/core-js/modules/es.set.js");
+/* harmony import */ var core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules/core-js/modules/es.string.iterator.js");
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.iterator.js */ "./node_modules/core-js/modules/es.array.iterator.js");
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/es.array.from.js */ "./node_modules/core-js/modules/es.array.from.js");
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! core-js/modules/es.symbol.js */ "./node_modules/core-js/modules/es.symbol.js");
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! core-js/modules/es.symbol.iterator.js */ "./node_modules/core-js/modules/es.symbol.iterator.js");
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _utils_createElementFactory__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../utils/createElementFactory */ "./src/js/utils/createElementFactory.js");
+/* harmony import */ var _handleTags__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../handleTags */ "./src/js/handleTags.js");
+/* harmony import */ var _utils_normalize__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../utils/normalize */ "./src/js/utils/normalize.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
 
 
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
-var Recipe = /*#__PURE__*/function () {
-  function Recipe(id, name, servings, ingredients, time, description, appliance, ustensils) {
-    _classCallCheck(this, Recipe);
 
-    this.id = id;
-    this.name = name;
-    this.servings = servings;
-    this.ingredients = ingredients;
-    this.time = time;
-    this.description = description;
-    this.appliance = appliance;
-    this.ustensils = ustensils;
-  }
 
-  _createClass(Recipe, [{
-    key: "createRecipeDOMElt",
-    value: function createRecipeDOMElt() {
-      var recipesListDOMElt = document.querySelector(".recipes-list");
-      var articleElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("article", {
-        class: "recipe-card"
-      });
-      var imgElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("div", {
-        class: "recipe-card__img"
-      });
-      var cardContentElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("div", {
-        class: "recipe-card__content"
-      });
-      var h2Elt = document.createElement("h2");
-      var titleElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("span", {
-        class: "recipe-card__content__title"
-      }, "".concat(this.name));
-      var timeContainerElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("span", {}, " ".concat(this.time, " min"));
-      var timeIconElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("i", {
-        class: "far fa-clock"
-      });
-      var descriptionElts = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("div", {
-        class: "recipe-card__content__description"
-      });
-      var ingredientsElt = document.createElement("ul");
-      this.ingredients.forEach(function (elt) {
-        var quantity = elt.quantity ? ": ".concat(elt.quantity) : "";
-        var unit = elt.unit ? " ".concat(elt.unit) : "";
-        var liElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("li", {}, "".concat(quantity) + "".concat(unit));
-        var strongElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("strong", {}, "".concat(elt.ingredient));
-        liElt.insertAdjacentElement("afterbegin", strongElt);
-        ingredientsElt.appendChild(liElt);
-      });
-      var descriptionElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("p", {}, "".concat(this.description));
-      h2Elt.appendChild(titleElt);
-      timeContainerElt.insertAdjacentElement("afterbegin", timeIconElt);
-      h2Elt.appendChild(timeContainerElt);
-      articleElt.appendChild(imgElt);
-      cardContentElt.appendChild(h2Elt);
-      descriptionElts.appendChild(ingredientsElt);
-      descriptionElts.appendChild(descriptionElt);
-      cardContentElt.appendChild(descriptionElts);
-      articleElt.appendChild(cardContentElt);
-      recipesListDOMElt.appendChild(articleElt);
-    }
-  }]);
 
-  return Recipe;
-}();
 
-/***/ }),
 
-/***/ "./src/js/createElementFactory.js":
-/*!****************************************!*\
-  !*** ./src/js/createElementFactory.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createElementFactory": () => (/* binding */ createElementFactory)
-/* harmony export */ });
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__);
+
+
+
+
 
 
 /**
- * Function allowing the creation of DOM elements
- * @param {*} type
- * @param {*} attributes
- * @param  {...any} children
+ * DOM Elements
+ */
+
+var allTagsList = document.querySelectorAll(".select__tags-list");
+var searchInput = document.querySelector("#appliances-research");
+var appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+var appliancesDataCat = "appliances";
+/**
+ * Remove duplicates from the appliances list
+ * @param {object} recipes
+ * @returns {Array} appliances list
+ */
+
+var createUniqueTagsAppliancesArr = function createUniqueTagsAppliancesArr(recipes) {
+  var tagsAppliances = new Set();
+
+  var _iterator = _createForOfIteratorHelper(recipes),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var recipe = _step.value;
+      recipe.appliance = recipe.appliance.toLowerCase();
+      tagsAppliances.add(recipe.appliance);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  ;
+  return _toConsumableArray(tagsAppliances);
+};
+/**
+ * Sort appliances
+ * @param {*} recipes
+ * @returns {Array} appliances list
+ */
+
+
+var collectSortedTagsAppliances = function collectSortedTagsAppliances(recipes) {
+  var tagsAppliances = createUniqueTagsAppliancesArr(recipes);
+  return tagsAppliances.sort();
+};
+/**
+ * Creation appliance list in select
+ * @param {object} recipes
  * @returns {HTMLElement}
  */
-var createElementFactory = function createElementFactory(type, attributes) {
-  var elt = document.createElement(type);
-  var key = "";
 
-  for (key in attributes) {
-    elt.setAttribute(key, attributes[key]);
-  }
 
-  for (var _len = arguments.length, children = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-    children[_key - 2] = arguments[_key];
-  }
-
-  children.forEach(function (child) {
-    if (typeof child === "string") {
-      elt.appendChild(document.createTextNode(child));
-    } else {
-      elt.appendChild(child);
+var createAppliancesTagsList = function createAppliancesTagsList(recipes) {
+  allTagsList.forEach(function (tagsList) {
+    if (tagsList.dataset.cat === "appliances") {
+      collectSortedTagsAppliances(recipes).forEach(function (appliance) {
+        var liElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("li", {
+          class: "tag",
+          "data-cat": "appliances"
+        }, "".concat(appliance));
+        tagsList.appendChild(liElt);
+      });
     }
   });
-  return elt;
+};
+/**
+ * Update appliances list input search
+ * @param {object} recipes
+ */
+
+
+var updateAppliancesList = function updateAppliancesList(recipes) {
+  searchInput.addEventListener("keyup", function (e) {
+    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(e.target.value);
+    var filteredAppliances = recipes.filter(function (recipe) {
+      var appliance = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(recipe.appliance);
+      return appliance.includes(userInputValue);
+    });
+    appliancesTagsList.innerHTML = "";
+    createAppliancesTagsList(filteredAppliances);
+    (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.createCategorieSelectedTags)(appliancesDataCat);
+  });
+};
+
+
+
+/***/ }),
+
+/***/ "./src/js/categoriesList/ingredientsList.js":
+/*!**************************************************!*\
+  !*** ./src/js/categoriesList/ingredientsList.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createIngredientsTagsList": () => (/* binding */ createIngredientsTagsList),
+/* harmony export */   "updateIngredientsList": () => (/* binding */ updateIngredientsList)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.set.js */ "./node_modules/core-js/modules/es.set.js");
+/* harmony import */ var core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules/core-js/modules/es.string.iterator.js");
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.iterator.js */ "./node_modules/core-js/modules/es.array.iterator.js");
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/es.array.from.js */ "./node_modules/core-js/modules/es.array.from.js");
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! core-js/modules/es.symbol.js */ "./node_modules/core-js/modules/es.symbol.js");
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! core-js/modules/es.symbol.iterator.js */ "./node_modules/core-js/modules/es.symbol.iterator.js");
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _utils_createElementFactory_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../utils/createElementFactory.js */ "./src/js/utils/createElementFactory.js");
+/* harmony import */ var _handleTags__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../handleTags */ "./src/js/handleTags.js");
+/* harmony import */ var _utils_normalize__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../utils/normalize */ "./src/js/utils/normalize.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // import { recipes } from "../data";
+
+/**
+ * DOM Elements
+ */
+
+var allTagsList = document.querySelectorAll(".select__tags-list");
+var searchInput = document.querySelector("#ingredients-research");
+var ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
+var ingredientsDataCat = "ingredients";
+/**
+ * Remove duplicates from the ingredients list
+ * @param {*} recipes
+ * @returns {Array} ingredients list
+ */
+
+var createUniqueTagsIngredientsArr = function createUniqueTagsIngredientsArr(recipes) {
+  var tagsIngredients = new Set();
+
+  var _iterator = _createForOfIteratorHelper(recipes),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var recipe = _step.value;
+
+      var _iterator2 = _createForOfIteratorHelper(recipe.ingredients),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var elt = _step2.value;
+          elt.ingredient = elt.ingredient.toLowerCase();
+          tagsIngredients.add(elt.ingredient);
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+
+      ;
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  ; // console.log(tagsIngredients.has("banane"));
+  // return tagsIngredients;
+
+  return _toConsumableArray(tagsIngredients);
+};
+/**
+ * Sort ingredients
+ * @param {*} recipes
+ * @returns {Array} ingredients list
+ */
+
+
+var collectSortedTagsIngredients = function collectSortedTagsIngredients(recipes) {
+  var tagsIngredients = createUniqueTagsIngredientsArr(recipes);
+  return tagsIngredients.sort();
+};
+/**
+ * Creation ingredients list in select
+ * @param {object} recipes
+ * @returns {HTMLElement}
+ */
+
+
+var createIngredientsTagsList = function createIngredientsTagsList(recipes) {
+  allTagsList.forEach(function (tagsList) {
+    if (tagsList.dataset.cat === "ingredients") {
+      collectSortedTagsIngredients(recipes).forEach(function (ingredient) {
+        var liElt = (0,_utils_createElementFactory_js__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("li", {
+          class: "tag",
+          "data-cat": "ingredients"
+        }, "".concat(ingredient));
+        tagsList.appendChild(liElt);
+      });
+    }
+  });
+};
+/**
+ * Update ingredients list input search
+ * @param {object} recipes
+ */
+
+
+var updateIngredientsList = function updateIngredientsList(recipes) {
+  searchInput.addEventListener("keyup", function (e) {
+    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(e.target.value);
+    var filteredIngredients = recipes.filter(function (recipe) {
+      return recipe.ingredients.some(function (i) {
+        return (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(i.ingredient).includes(userInputValue);
+      });
+    });
+    ingredientsTagsList.innerHTML = "";
+    createIngredientsTagsList(filteredIngredients);
+    (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.createCategorieSelectedTags)(ingredientsDataCat);
+  });
+}; // /**
+//  * Update ingredients list input search
+//  * @param {object} recipes
+//  */
+// const updateIngredientsList = (recipes) => {
+//   searchInput.addEventListener("keyup", (e) => {
+//     const userInputValue = normalize(e.target.value);
+//     const filteredIngredients = collectSortedTagsIngredients(recipes).filter((ingr) => {
+//       console.log(normalize(ingr).includes(userInputValue));
+//       return (normalize(ingr).includes(userInputValue));
+//     });
+//     ingredientsTagsList.innerHTML = "";
+//     createIngredientsTagsList(filteredIngredients);
+//     createCategorieSelectedTags(ingredientsDataCat);
+//   });
+// };
+
+
+
+
+/***/ }),
+
+/***/ "./src/js/categoriesList/ustensilsList.js":
+/*!************************************************!*\
+  !*** ./src/js/categoriesList/ustensilsList.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createUstensilsTagsList": () => (/* binding */ createUstensilsTagsList),
+/* harmony export */   "updateUstensilsList": () => (/* binding */ updateUstensilsList)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.set.js */ "./node_modules/core-js/modules/es.set.js");
+/* harmony import */ var core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules/core-js/modules/es.string.iterator.js");
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.iterator.js */ "./node_modules/core-js/modules/es.array.iterator.js");
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/es.array.from.js */ "./node_modules/core-js/modules/es.array.from.js");
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! core-js/modules/es.symbol.js */ "./node_modules/core-js/modules/es.symbol.js");
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! core-js/modules/es.symbol.iterator.js */ "./node_modules/core-js/modules/es.symbol.iterator.js");
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _utils_createElementFactory__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../utils/createElementFactory */ "./src/js/utils/createElementFactory.js");
+/* harmony import */ var _handleTags__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../handleTags */ "./src/js/handleTags.js");
+/* harmony import */ var _utils_normalize__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../utils/normalize */ "./src/js/utils/normalize.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * DOM Elements
+ */
+
+var allTagsList = document.querySelectorAll(".select__tags-list");
+var searchInput = document.querySelector("#ustensils-research");
+var ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+var ustensilsDataCat = "ustensils";
+/**
+ * Remove duplicates from the ustensils list
+ * @param {*} recipes
+ * @returns {Array} ustensils list
+ */
+
+var createUniqueTagsUstensilsArr = function createUniqueTagsUstensilsArr(recipes) {
+  var tagsUstensils = new Set();
+
+  var _iterator = _createForOfIteratorHelper(recipes),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var recipe = _step.value;
+
+      var _iterator2 = _createForOfIteratorHelper(recipe.ustensils),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var ustensil = _step2.value;
+          ustensil = ustensil.toLowerCase();
+          tagsUstensils.add(ustensil);
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+
+      ;
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  ;
+  return _toConsumableArray(tagsUstensils);
+};
+/**
+ * Sort ustensils
+ * @param {*} recipes
+ * @returns {Array} ustensils list
+ */
+
+
+var collectSortedTagsUstensils = function collectSortedTagsUstensils(recipes) {
+  var tagsUstensils = createUniqueTagsUstensilsArr(recipes);
+  return tagsUstensils.sort();
+};
+/**
+ * Creation ustensils list in select
+ * @param {object} recipes
+ * @returns {HTMLElement}
+ */
+
+
+var createUstensilsTagsList = function createUstensilsTagsList(recipes) {
+  allTagsList.forEach(function (tagsList) {
+    if (tagsList.dataset.cat === "ustensils") {
+      collectSortedTagsUstensils(recipes).forEach(function (ustensil) {
+        var liElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("li", {
+          class: "tag",
+          "data-cat": "ustensils"
+        }, "".concat(ustensil));
+        tagsList.appendChild(liElt);
+      });
+    }
+  });
+};
+/**
+ * Update ustensils list input search
+ * @param {object} recipes
+ */
+
+
+var updateUstensilsList = function updateUstensilsList(recipes) {
+  searchInput.addEventListener("keyup", function (e) {
+    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(e.target.value);
+    var filteredUstensils = recipes.filter(function (recipe) {
+      return recipe.ustensils.some(function (ustensil) {
+        return (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(ustensil).includes(userInputValue);
+      });
+    });
+    ustensilsTagsList.innerHTML = "";
+    createUstensilsTagsList(filteredUstensils);
+    (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.createCategorieSelectedTags)(ustensilsDataCat);
+  });
 };
 
 
@@ -1541,18 +1944,14 @@ var recipes = [{
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handleAllSelects": () => (/* binding */ handleAllSelects),
-/* harmony export */   "listeningToDocument": () => (/* binding */ listeningToDocument)
+/* harmony export */   "handleAllSelects": () => (/* binding */ handleAllSelects)
 /* harmony export */ });
 /**
  * DOM Elements
  */
 var ingredientsSelect = document.querySelector(".select--ingredients");
 var appliancesSelect = document.querySelector(".select--appliances");
-var ustensilsSelect = document.querySelector(".select--ustensils"); // const ingredientsElt = document.querySelector(".select--ingredients--open");
-// const appliancesElt = document.querySelector(".select--appliances--open");
-// const ustensilsElt = document.querySelector(".select--ustensils--open");
-
+var ustensilsSelect = document.querySelector(".select--ustensils");
 var ingredientsBtn = document.querySelector(".select__btn--ingredients");
 var appliancesBtn = document.querySelector(".select__btn--appliances");
 var ustensilsBtn = document.querySelector(".select__btn--ustensils");
@@ -1570,12 +1969,12 @@ var ustensilsPlaceholderElt = document.getElementsByName("ustensils")[0];
 
 var handleCategoriesBtnClick = function handleCategoriesBtnClick(btnElt, tagsListElt) {
   btnElt.addEventListener("click", function () {
-    tagsListElt.classList.toggle("show-grid");
+    tagsListElt.classList.toggle("display-grid");
     btnElt.classList.toggle("select__btn--selected");
     handlerForCurrentBtn(btnElt);
   });
   btnElt.previousElementSibling.addEventListener("click", function () {
-    tagsListElt.classList.toggle("show-grid");
+    tagsListElt.classList.toggle("display-grid");
     btnElt.classList.toggle("select__btn--selected");
     handlerForCurrentBtn(btnElt);
   });
@@ -1586,23 +1985,26 @@ var handlerForCurrentBtn = function handlerForCurrentBtn(btnElt) {
     ingredientsSelect.classList.toggle("select--ingredients--open");
     appliancesSelect.classList.remove("select--appliances--open");
     ustensilsSelect.classList.remove("select--ustensils--open");
-    appliancesTagsList.classList.remove("show-grid");
-    ustensilsTagsList.classList.remove("show-grid");
+    appliancesTagsList.classList.remove("display-grid");
+    ustensilsTagsList.classList.remove("display-grid");
     ingredientsPlaceholderElt.placeholder = "Recherchez des ingredients";
+    ingredientsPlaceholderElt.classList.toggle("opacity-50");
   } else if (btnElt === appliancesBtn) {
     appliancesSelect.classList.toggle("select--appliances--open");
     ingredientsSelect.classList.remove("select--ingredients--open");
     ustensilsSelect.classList.remove("select--ustensils--open");
-    ingredientsTagsList.classList.remove("show-grid");
-    ustensilsTagsList.classList.remove("show-grid");
+    ingredientsTagsList.classList.remove("display-grid");
+    ustensilsTagsList.classList.remove("display-grid");
     appliancesPlaceholderElt.placeholder = "Recherchez des appareils";
+    appliancesPlaceholderElt.classList.toggle("opacity-50");
   } else {
     ustensilsSelect.classList.toggle("select--ustensils--open");
     ingredientsSelect.classList.remove("select--ingredients--open");
     appliancesSelect.classList.remove("select--appliances--open");
-    ingredientsTagsList.classList.remove("show-grid");
-    appliancesTagsList.classList.remove("show-grid");
+    ingredientsTagsList.classList.remove("display-grid");
+    appliancesTagsList.classList.remove("display-grid");
     ustensilsPlaceholderElt.placeholder = "Recherchez des ustensiles";
+    ustensilsPlaceholderElt.classList.toggle("opacity-50");
   }
 };
 
@@ -1622,10 +2024,11 @@ var listeningDocumentForIngredients = function listeningDocumentForIngredients()
     } while (targetElt); // Click outside
 
 
-    ingredientsTagsList.classList.remove("show-grid");
+    ingredientsTagsList.classList.remove("display-grid");
     ingredientsSelect.classList.remove("select--ingredients--open");
     ingredientsBtn.classList.remove("select__btn--selected");
     ingredientsPlaceholderElt.placeholder = "Ingredients";
+    ingredientsPlaceholderElt.classList.remove("opacity-50");
   });
 };
 
@@ -1645,10 +2048,11 @@ var listeningDocumentForAppliances = function listeningDocumentForAppliances() {
     } while (targetElt); // Click outside
 
 
-    appliancesTagsList.classList.remove("show-grid");
+    appliancesTagsList.classList.remove("display-grid");
     appliancesSelect.classList.remove("select--appliances--open");
     appliancesBtn.classList.remove("select__btn--selected");
     appliancesPlaceholderElt.placeholder = "Appareils";
+    appliancesPlaceholderElt.classList.remove("opacity-50");
   });
 };
 
@@ -1668,23 +2072,25 @@ var listeningDocumentForUstensils = function listeningDocumentForUstensils() {
     } while (targetElt); // Click outside
 
 
-    ustensilsTagsList.classList.remove("show-grid");
+    ustensilsTagsList.classList.remove("display-grid");
     ustensilsSelect.classList.remove("select--ustensils--open");
     ustensilsBtn.classList.remove("select__btn--selected");
     ustensilsPlaceholderElt.placeholder = "Ustensiles";
+    ustensilsPlaceholderElt.classList.remove("opacity-50");
   });
-};
-
-var handleAllSelects = function handleAllSelects() {
-  handleCategoriesBtnClick(ingredientsBtn, ingredientsTagsList);
-  handleCategoriesBtnClick(appliancesBtn, appliancesTagsList);
-  handleCategoriesBtnClick(ustensilsBtn, ustensilsTagsList);
 };
 
 var listeningToDocument = function listeningToDocument() {
   listeningDocumentForIngredients();
   listeningDocumentForAppliances();
   listeningDocumentForUstensils();
+};
+
+var handleAllSelects = function handleAllSelects() {
+  handleCategoriesBtnClick(ingredientsBtn, ingredientsTagsList);
+  handleCategoriesBtnClick(appliancesBtn, appliancesTagsList);
+  handleCategoriesBtnClick(ustensilsBtn, ustensilsTagsList);
+  listeningToDocument();
 };
 
 
@@ -1700,123 +2106,257 @@ var listeningToDocument = function listeningToDocument() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handleAllTags": () => (/* binding */ handleAllTags)
+/* harmony export */   "createCategorieSelectedTags": () => (/* binding */ createCategorieSelectedTags),
+/* harmony export */   "removeCategorieSelectedTags": () => (/* binding */ removeCategorieSelectedTags)
 /* harmony export */ });
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_createElementFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/createElementFactory */ "./src/js/utils/createElementFactory.js");
+/* harmony import */ var _recipesList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./recipesList */ "./src/js/recipesList.js");
+/* harmony import */ var _categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./categoriesList/ingredientsList */ "./src/js/categoriesList/ingredientsList.js");
+/* harmony import */ var _categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./categoriesList/appliancesList */ "./src/js/categoriesList/appliancesList.js");
+/* harmony import */ var _categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./categoriesList/ustensilsList */ "./src/js/categoriesList/ustensilsList.js");
 
-// import { createElementFactory } from "./createElementFactory.js";
+
+
+
+
+ // import { normalize } from "./utils/normalize";
 
 /**
  * DOM Elements
  */
-// const tagsListSelected = document.querySelector(".tags-selected-container");
-var allBtnsTag = document.getElementsByClassName("btn-tag-selected");
-var allTagsElt = document.getElementsByClassName("tag");
+
+var btnsTagSelected = document.querySelector(".tags-selected-container");
+var allTags = document.getElementsByClassName("tag");
+var recipesDOMList = document.querySelector(".recipes-list");
+var ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
+var appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+var ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+
+var removeDataDOMRecipes = function removeDataDOMRecipes() {
+  recipesDOMList.innerHTML = "";
+  ingredientsTagsList.innerHTML = "";
+  appliancesTagsList.innerHTML = "";
+  ustensilsTagsList.innerHTML = "";
+};
+
+var ingredientsDataCat = "ingredients";
+var appliancesDataCat = "appliances";
+var ustensilsDataCat = "ustensils";
+
+var createDataDOMRecipes = function createDataDOMRecipes(elt) {
+  (0,_recipesList__WEBPACK_IMPORTED_MODULE_2__.createRecipesList)(elt);
+  (0,_categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_3__.createIngredientsTagsList)(elt);
+  (0,_categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_4__.createAppliancesTagsList)(elt);
+  (0,_categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_5__.createUstensilsTagsList)(elt);
+};
+
+var createAllCategoriesSelectedTags = function createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat) {
+  createCategorieSelectedTags(recipes, ingredientsDataCat);
+  createCategorieSelectedTags(recipes, appliancesDataCat);
+  createCategorieSelectedTags(recipes, ustensilsDataCat);
+};
 /**
- * show a btn tag on click in a tags list
+ * Create a selected btn tag and update list of recipes each time tag is clicked
+ * @param {object} recipes
+ * @param {string} categorieElt
  */
 
-var handleSelectedTags = function handleSelectedTags() {
-  allTagsElt.forEach(function (tagElt) {
-    tagElt.addEventListener("click", function () {
-      for (var i = 0; i < allBtnsTag.length; i++) {
-        if (tagElt.dataset.cat === "ingredients" && allBtnsTag[i].dataset.cat === "ingredients" && tagElt.textContent === allBtnsTag[i].textContent) {
-          allBtnsTag[i].classList.add("show-flex");
-          allBtnsTag[i].classList.remove("hide");
-        }
 
-        if (tagElt.dataset.cat === "appliances" && allBtnsTag[i].dataset.cat === "appliances" && tagElt.textContent === allBtnsTag[i].textContent) {
-          allBtnsTag[i].classList.add("show-flex");
-          allBtnsTag[i].classList.remove("hide");
-        }
-
-        if (tagElt.dataset.cat === "ustensils" && allBtnsTag[i].dataset.cat === "ustensils" && tagElt.textContent === allBtnsTag[i].textContent) {
-          allBtnsTag[i].classList.add("show-flex");
-          allBtnsTag[i].classList.remove("hide");
-        }
-      }
+var createCategorieSelectedTags = function createCategorieSelectedTags(recipes, categorieElt) {
+  allTags.forEach(function (tag) {
+    tag.addEventListener("click", function () {
+      tag.classList.add("display-none");
+      console.log(tag);
+      createBtnSelectedTag(tag, categorieElt); // filteredRecipesByTags(recipes);
     });
   });
 };
 /**
- * hide a btn tag on click
+ * Create DOM btn selected tag
+ * @param {HTMLElement} tag
+ * @param {string} categorieElt
  */
 
 
-var closeCurrentTag = function closeCurrentTag() {
-  var allBtnsTag = document.getElementsByClassName("btn-tag-selected");
-  allBtnsTag.forEach(function (btnTag) {
-    btnTag.addEventListener("click", function () {
-      if (btnTag.classList.contains("show-flex")) {
-        btnTag.classList.add("hide");
-        btnTag.classList.remove("show-flex");
-      }
+var createBtnSelectedTag = function createBtnSelectedTag(tag, categorieElt) {
+  if (tag.dataset.cat === "".concat(categorieElt)) {
+    var btnElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_1__.createElementFactory)("button", {
+      class: "btn-tag-selected display-flex",
+      "data-cat": "".concat(categorieElt)
+    }, "".concat(tag.textContent));
+    var iconCloseElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_1__.createElementFactory)("span", {
+      class: "icon-close"
     });
-  });
-}; // TEST  create btns tag when click list
-// const createIngredientsBtnTags = () => {
-//   allTagsElt.forEach(tagElt => {
-//     tagElt.addEventListener("click", () => {
-//       if (tagElt.dataset.cat === "ingredients") {
-//         const btnElt = createElementFactory("button", {
-//           class: "btn-tag-selected show-flex",
-//           "data-cat": "ingredients"
-//         }, `${tagElt.textContent}`);
-//         const iconCloseElt = createElementFactory("span", { class: "icon-close" });
-//         btnElt.appendChild(iconCloseElt);
-//         tagsListSelected.appendChild(btnElt);
-//       }
+    btnElt.appendChild(iconCloseElt);
+    btnsTagSelected.appendChild(btnElt);
+  }
+
+  ;
+}; // /**CREATE BUG IN TAGS LIST
+//  * Detects if a tag is selected, if so, update recipes
+//  * @param {object} recipes
+//  */
+// const filteredRecipesByTags = (recipes) => {
+//   if (btnsTagSelected.hasChildNodes()) {
+//     const btnChildren = btnsTagSelected.childNodes;
+//     btnChildren.forEach(btnChild => {
+//       const btnValue = btnChild.textContent;
+//       const btnNormalizeValue = normalize(btnValue);
+//       const filteredRecipes = recipes.filter((recipe) => {
+//         const name = normalize(recipe.name);
+//         const appliance = normalize(recipe.appliance);
+//         const description = normalize(recipe.description);
+//         return (
+//           name.includes(btnNormalizeValue) ||
+//           appliance.includes(btnNormalizeValue) ||
+//           description.includes(btnNormalizeValue) ||
+//           recipe.ingredients.some(i => normalize(i.ingredient).includes(btnNormalizeValue)) ||
+//           recipe.ustensils.some(u => normalize(u).includes(btnNormalizeValue))
+//         );
+//       });
+//       removeDataDOMRecipes();
+//       createDataDOMRecipes(filteredRecipes);
+//       createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
 //     });
-//   });
-// };
-// const createAppliancesBtnTags = () => {
-//   allTagsElt.forEach(tagElt => {
-//     tagElt.addEventListener("click", () => {
-//       if (tagElt.dataset.cat === "appliances") {
-//         const btnElt = createElementFactory("button", {
-//           class: "btn-tag-selected show-flex",
-//           "data-cat": "appliances"
-//         }, `${tagElt.textContent}`);
-//         const iconCloseElt = createElementFactory("span", { class: "icon-close" });
-//         btnElt.appendChild(iconCloseElt);
-//         tagsListSelected.appendChild(btnElt);
-//         console.log(btnElt);
-//       }
-//     });
-//   });
-// };
-// const createUstensilsBtnTags = () => {
-//   allTagsElt.forEach(tagElt => {
-//     tagElt.addEventListener("click", () => {
-//       if (tagElt.dataset.cat === "ustensils") {
-//         const btnElt = createElementFactory("button", {
-//           class: "btn-tag-selected show-flex",
-//           "data-cat": "ustensils"
-//         }, `${tagElt.textContent}`);
-//         const iconCloseElt = createElementFactory("span", { class: "icon-close" });
-//         btnElt.appendChild(iconCloseElt);
-//         tagsListSelected.appendChild(btnElt);
-//       }
-//     });
-//   });
+//   } else {
+//     removeDataDOMRecipes();
+//     createDataDOMRecipes(recipes);
+//     createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
+//   };
 // };
 
 /**
- * Remove a btn tag on click  elt.remove();
+ * Remove selected tag on click
+ * @param {object} recipes
  */
-// const closeCurrentTag = () => {
-//   allBtnsTag.forEach(btnTag => {
-//     btnTag.addEventListener("click", () => {
-//       btnTag.remove();
-//     });
-//   });
-// };
 
 
-var handleAllTags = function handleAllTags() {
-  handleSelectedTags();
-  closeCurrentTag();
+var removeCategorieSelectedTags = function removeCategorieSelectedTags(recipes) {
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("icon-close") || e.target.classList.contains("btn-tag-selected")) {
+      removeDataDOMRecipes();
+      createDataDOMRecipes(recipes);
+      createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
+
+      if (e.target.classList.contains("icon-close")) {
+        e.target.parentNode.remove();
+        e.target.remove();
+      } else if (e.target.classList.contains("btn-tag-selected")) {
+        e.target.parentNode.removeChild(e.target);
+      }
+    }
+  });
+};
+
+
+
+/***/ }),
+
+/***/ "./src/js/mainSearch.js":
+/*!******************************!*\
+  !*** ./src/js/mainSearch.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "updateRecipesList": () => (/* binding */ updateRecipesList)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.symbol.js */ "./node_modules/core-js/modules/es.symbol.js");
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _recipesList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./recipesList */ "./src/js/recipesList.js");
+/* harmony import */ var _categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./categoriesList/ingredientsList */ "./src/js/categoriesList/ingredientsList.js");
+/* harmony import */ var _categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./categoriesList/appliancesList */ "./src/js/categoriesList/appliancesList.js");
+/* harmony import */ var _categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./categoriesList/ustensilsList */ "./src/js/categoriesList/ustensilsList.js");
+/* harmony import */ var _handleTags__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./handleTags */ "./src/js/handleTags.js");
+/* harmony import */ var _utils_normalize__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./utils/normalize */ "./src/js/utils/normalize.js");
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * DOM Elements
+ */
+
+var searchInput = document.querySelector("#search-bar");
+var recipesDOMList = document.querySelector(".recipes-list");
+var ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
+var appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+var ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+var ingredientsDataCat = "ingredients";
+var appliancesDataCat = "appliances";
+var ustensilsDataCat = "ustensils";
+
+var removeDataDOMRecipes = function removeDataDOMRecipes() {
+  recipesDOMList.innerHTML = "";
+  ingredientsTagsList.innerHTML = "";
+  appliancesTagsList.innerHTML = "";
+  ustensilsTagsList.innerHTML = "";
+};
+
+var createDataDOMRecipes = function createDataDOMRecipes(filteredelt) {
+  (0,_recipesList__WEBPACK_IMPORTED_MODULE_6__.createRecipesList)(filteredelt);
+  (0,_categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_7__.createIngredientsTagsList)(filteredelt);
+  (0,_categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_8__.createAppliancesTagsList)(filteredelt);
+  (0,_categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_9__.createUstensilsTagsList)(filteredelt);
+};
+
+var createAllCategoriesSelectedTags = function createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat) {
+  (0,_handleTags__WEBPACK_IMPORTED_MODULE_10__.createCategorieSelectedTags)(recipes, ingredientsDataCat);
+  (0,_handleTags__WEBPACK_IMPORTED_MODULE_10__.createCategorieSelectedTags)(recipes, appliancesDataCat);
+  (0,_handleTags__WEBPACK_IMPORTED_MODULE_10__.createCategorieSelectedTags)(recipes, ustensilsDataCat);
+};
+/**
+ * Main search
+ * Listen and update recipes DOM elts
+ * @param {object} data recipes
+ * @returns {HTMLElement}
+ */
+
+
+var updateRecipesList = function updateRecipesList(recipes) {
+  searchInput.addEventListener("keyup", function (e) {
+    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normalize)(e.target.value);
+
+    if (userInputValue.length > 2) {
+      var filteredRecipes = recipes.filter(function (recipe) {
+        var name = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normalize)(recipe.name);
+        var description = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normalize)(recipe.description);
+        return name.includes(userInputValue) || description.includes(userInputValue) || recipe.ingredients.some(function (i) {
+          return (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normalize)(i.ingredient).includes(userInputValue);
+        });
+      }); // Filtered recipes and update tags list
+
+      removeDataDOMRecipes();
+      createDataDOMRecipes(filteredRecipes);
+      createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat); // Create full recipes and all tags
+    } else {
+      removeDataDOMRecipes();
+      createDataDOMRecipes(recipes);
+      createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
+    }
+  });
 };
 
 
@@ -1842,17 +2382,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
 /* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Recipe__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Recipe */ "./src/js/Recipe.js");
+/* harmony import */ var _utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/createElementFactory */ "./src/js/utils/createElementFactory.js");
 
 
 
 
 
+/**
+ * Creation DOM list of recipes
+ * @param {object} data recipes
+ * @returns {HTMLElement} recipes list
+ */
 
 var createRecipesList = function createRecipesList(recipes) {
-  var recipesList = [];
   recipes.forEach(function (recipe) {
-    recipesList.push(new _Recipe__WEBPACK_IMPORTED_MODULE_4__.Recipe(recipe.id, recipe.name, recipe.servings, recipe.ingredients, recipe.time, recipe.description, recipe.appliance, recipe.ustensils).createRecipeDOMElt());
+    var recipesListDOMElt = document.querySelector(".recipes-list");
+    var articleElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("article", {
+      class: "recipe-card"
+    });
+    var imgElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("div", {
+      class: "recipe-card__img"
+    });
+    var cardContentElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("div", {
+      class: "recipe-card__content"
+    });
+    var h2Elt = document.createElement("h2");
+    var titleElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("span", {
+      class: "recipe-card__content__title"
+    }, "".concat(recipe.name));
+    var timeContainerElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("span", {}, " ".concat(recipe.time, " min"));
+    var timeIconElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("i", {
+      class: "far fa-clock"
+    });
+    var descriptionElts = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("div", {
+      class: "recipe-card__content__description"
+    });
+    var ingredientsElt = document.createElement("ul");
+    recipe.ingredients.forEach(function (elt) {
+      var quantity = elt.quantity ? ": ".concat(elt.quantity) : "";
+      var unit = elt.unit ? " ".concat(elt.unit) : "";
+      var liElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("li", {}, "".concat(quantity) + "".concat(unit));
+      var strongElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("strong", {}, "".concat(elt.ingredient));
+      liElt.insertAdjacentElement("afterbegin", strongElt);
+      ingredientsElt.appendChild(liElt);
+    });
+    var descriptionElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("p", {}, "".concat(recipe.description));
+    h2Elt.appendChild(titleElt);
+    timeContainerElt.insertAdjacentElement("afterbegin", timeIconElt);
+    h2Elt.appendChild(timeContainerElt);
+    articleElt.appendChild(imgElt);
+    cardContentElt.appendChild(h2Elt);
+    descriptionElts.appendChild(ingredientsElt);
+    descriptionElts.appendChild(descriptionElt);
+    cardContentElt.appendChild(descriptionElts);
+    articleElt.appendChild(cardContentElt);
+    recipesListDOMElt.appendChild(articleElt);
   });
 };
 
@@ -1860,299 +2444,78 @@ var createRecipesList = function createRecipesList(recipes) {
 
 /***/ }),
 
-/***/ "./src/js/tagsList.js":
-/*!****************************!*\
-  !*** ./src/js/tagsList.js ***!
-  \****************************/
+/***/ "./src/js/utils/createElementFactory.js":
+/*!**********************************************!*\
+  !*** ./src/js/utils/createElementFactory.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createAllTagLists": () => (/* binding */ createAllTagLists),
-/* harmony export */   "createAllBtnTagsSelected": () => (/* binding */ createAllBtnTagsSelected)
+/* harmony export */   "createElementFactory": () => (/* binding */ createElementFactory)
 /* harmony export */ });
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.set.js */ "./node_modules/core-js/modules/es.set.js");
-/* harmony import */ var core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules/core-js/modules/es.string.iterator.js");
-/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.iterator.js */ "./node_modules/core-js/modules/es.array.iterator.js");
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.array.from.js */ "./node_modules/core-js/modules/es.array.from.js");
-/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.symbol.js */ "./node_modules/core-js/modules/es.symbol.js");
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/es.symbol.iterator.js */ "./node_modules/core-js/modules/es.symbol.iterator.js");
-/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _createElementFactory_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./createElementFactory.js */ "./src/js/createElementFactory.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /**
- * DOM Elements
- */
-
-var allTagsList = document.querySelectorAll(".select__tags-list");
-var tagsListSelected = document.querySelector(".tags-selected-container");
-/**
- * Ingredient list creation
- * @param {Array} recipes
+ * Function allowing the creation of DOM elements
+ * @param {*} type
+ * @param {*} attributes
+ * @param  {...any} children
  * @returns {HTMLElement}
  */
+var createElementFactory = function createElementFactory(type, attributes) {
+  var elt = document.createElement(type);
+  var key = "";
 
-var createIngredientsTagsList = function createIngredientsTagsList(recipes) {
-  allTagsList.forEach(function (tagsList) {
-    if (tagsList.dataset.cat === "ingredients") {
-      collectSortedTagsIngredients(recipes).forEach(function (ingredient) {
-        var liElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_12__.createElementFactory)("li", {
-          class: "tag",
-          "data-cat": "ingredients"
-        }, "".concat(ingredient));
-        tagsList.appendChild(liElt);
-      });
-    }
-  });
-};
-
-var createIngredientsBtnTags = function createIngredientsBtnTags(recipes) {
-  collectSortedTagsIngredients(recipes).forEach(function (ingredient) {
-    var btnElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_12__.createElementFactory)("button", {
-      class: "btn-tag-selected hide",
-      "data-cat": "ingredients"
-    }, "".concat(ingredient));
-    var iconCloseElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_12__.createElementFactory)("span", {
-      class: "icon-close"
-    });
-    btnElt.appendChild(iconCloseElt);
-    tagsListSelected.appendChild(btnElt);
-  });
-};
-
-var createUniqueTagsIngredientsArr = function createUniqueTagsIngredientsArr(recipes) {
-  var tagsIngredients = new Set();
-
-  var _iterator = _createForOfIteratorHelper(recipes),
-      _step;
-
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var recipe = _step.value;
-
-      var _iterator2 = _createForOfIteratorHelper(recipe.ingredients),
-          _step2;
-
-      try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var elt = _step2.value;
-          elt.ingredient = elt.ingredient.toLowerCase();
-          tagsIngredients.add(elt.ingredient);
-        }
-      } catch (err) {
-        _iterator2.e(err);
-      } finally {
-        _iterator2.f();
-      }
-
-      ;
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
+  for (key in attributes) {
+    elt.setAttribute(key, attributes[key]);
   }
 
-  ;
-  return _toConsumableArray(tagsIngredients);
-};
-
-var collectSortedTagsIngredients = function collectSortedTagsIngredients(recipes) {
-  var tagsIngredients = createUniqueTagsIngredientsArr(recipes);
-  return tagsIngredients.sort();
-};
-/**
- * Appliance list creation
- * @param {Array} recipes
- * @returns {HTMLElement}
- */
-
-
-var createAppliancesTagsList = function createAppliancesTagsList(recipes) {
-  allTagsList.forEach(function (tagsList) {
-    if (tagsList.dataset.cat === "appliances") {
-      collectSortedTagsAppliances(recipes).forEach(function (appliance) {
-        var liElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_12__.createElementFactory)("li", {
-          class: "tag",
-          "data-cat": "appliances"
-        }, "".concat(appliance));
-        tagsList.appendChild(liElt);
-      });
-    }
-  });
-};
-
-var createAppliancesBtnTags = function createAppliancesBtnTags(recipes) {
-  collectSortedTagsAppliances(recipes).forEach(function (appliance) {
-    var btnElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_12__.createElementFactory)("button", {
-      class: "btn-tag-selected hide",
-      "data-cat": "appliances"
-    }, "".concat(appliance));
-    var iconCloseElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_12__.createElementFactory)("span", {
-      class: "icon-close"
-    });
-    btnElt.appendChild(iconCloseElt);
-    tagsListSelected.appendChild(btnElt);
-  });
-};
-
-var createUniqueTagsAppliancesArr = function createUniqueTagsAppliancesArr(recipes) {
-  var tagsAppliances = new Set();
-
-  var _iterator3 = _createForOfIteratorHelper(recipes),
-      _step3;
-
-  try {
-    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-      var recipe = _step3.value;
-      recipe.appliance = recipe.appliance.toLowerCase();
-      tagsAppliances.add(recipe.appliance);
-    }
-  } catch (err) {
-    _iterator3.e(err);
-  } finally {
-    _iterator3.f();
+  for (var _len = arguments.length, children = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    children[_key - 2] = arguments[_key];
   }
 
-  ;
-  return _toConsumableArray(tagsAppliances);
-};
-
-var collectSortedTagsAppliances = function collectSortedTagsAppliances(recipes) {
-  var tagsAppliances = createUniqueTagsAppliancesArr(recipes);
-  return tagsAppliances.sort();
-};
-/**
- * Ustensil list creation
- * @param {Array} recipes
- * @returns {HTMLElement}
- */
-
-
-var createUstensilsTagsList = function createUstensilsTagsList(recipes) {
-  allTagsList.forEach(function (tagsList) {
-    if (tagsList.dataset.cat === "ustensils") {
-      collectSortedTagsUstensils(recipes).forEach(function (ustensil) {
-        var liElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_12__.createElementFactory)("li", {
-          class: "tag",
-          "data-cat": "ustensils"
-        }, "".concat(ustensil));
-        tagsList.appendChild(liElt);
-      });
+  children.forEach(function (child) {
+    if (typeof child === "string") {
+      elt.appendChild(document.createTextNode(child));
+    } else {
+      elt.appendChild(child);
     }
   });
+  return elt;
 };
 
-var createUstensilsBtnTags = function createUstensilsBtnTags(recipes) {
-  collectSortedTagsUstensils(recipes).forEach(function (ustensil) {
-    var btnElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_12__.createElementFactory)("button", {
-      class: "btn-tag-selected hide",
-      "data-cat": "ustensils"
-    }, "".concat(ustensil));
-    var iconCloseElt = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_12__.createElementFactory)("span", {
-      class: "icon-close"
-    });
-    btnElt.appendChild(iconCloseElt);
-    tagsListSelected.appendChild(btnElt);
-  });
-};
 
-var createUniqueTagsUstensilsArr = function createUniqueTagsUstensilsArr(recipes) {
-  var tagsUstensils = new Set();
 
-  var _iterator4 = _createForOfIteratorHelper(recipes),
-      _step4;
+/***/ }),
 
-  try {
-    for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-      var recipe = _step4.value;
+/***/ "./src/js/utils/normalize.js":
+/*!***********************************!*\
+  !*** ./src/js/utils/normalize.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-      var _iterator5 = _createForOfIteratorHelper(recipe.ustensils),
-          _step5;
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "normalize": () => (/* binding */ normalize)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__);
 
-      try {
-        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-          var ustensil = _step5.value;
-          ustensil = ustensil.toLowerCase();
-          tagsUstensils.add(ustensil);
-        }
-      } catch (err) {
-        _iterator5.e(err);
-      } finally {
-        _iterator5.f();
-      }
 
-      ;
-    }
-  } catch (err) {
-    _iterator4.e(err);
-  } finally {
-    _iterator4.f();
-  }
 
-  ;
-  return _toConsumableArray(tagsUstensils);
-};
-
-var collectSortedTagsUstensils = function collectSortedTagsUstensils(recipes) {
-  var tagsUstensils = createUniqueTagsUstensilsArr(recipes);
-  return tagsUstensils.sort();
-};
-
-var createAllTagLists = function createAllTagLists(recipes) {
-  createAppliancesTagsList(recipes);
-  createUstensilsTagsList(recipes);
-  createIngredientsTagsList(recipes);
-};
-
-var createAllBtnTagsSelected = function createAllBtnTagsSelected(recipes) {
-  createIngredientsBtnTags(recipes);
-  createAppliancesBtnTags(recipes);
-  createUstensilsBtnTags(recipes);
+// STRING Normalize
+var normalize = function normalize(string) {
+  string = string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  string = string.toLowerCase();
+  string = string.replace(/œ/g, "oe").replace(/æ/g, "ae").replace(/[']/g, " ");
+  return string;
 };
 
 
@@ -2216,6 +2579,25 @@ if (ArrayPrototype[UNSCOPABLES] == undefined) {
 // add a key to Array.prototype[@@unscopables]
 module.exports = function (key) {
   ArrayPrototype[UNSCOPABLES][key] = true;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/advance-string-index.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/core-js/internals/advance-string-index.js ***!
+  \****************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var charAt = __webpack_require__(/*! ../internals/string-multibyte */ "./node_modules/core-js/internals/string-multibyte.js").charAt;
+
+// `AdvanceStringIndex` abstract operation
+// https://tc39.es/ecma262/#sec-advancestringindex
+module.exports = function (S, index, unicode) {
+  return index + (unicode ? charAt(S, index).length : 1);
 };
 
 
@@ -2988,6 +3370,31 @@ module.exports = function (target, source) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/correct-is-regexp-logic.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/core-js/internals/correct-is-regexp-logic.js ***!
+  \*******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+
+var MATCH = wellKnownSymbol('match');
+
+module.exports = function (METHOD_NAME) {
+  var regexp = /./;
+  try {
+    '/./'[METHOD_NAME](regexp);
+  } catch (error1) {
+    try {
+      regexp[MATCH] = false;
+      return '/./'[METHOD_NAME](regexp);
+    } catch (error2) { /* empty */ }
+  } return false;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/correct-prototype-getter.js":
 /*!********************************************************************!*\
   !*** ./node_modules/core-js/internals/correct-prototype-getter.js ***!
@@ -3452,6 +3859,143 @@ module.exports = function (exec) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/fix-regexp-well-known-symbol-logic.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/core-js/internals/fix-regexp-well-known-symbol-logic.js ***!
+  \******************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+// TODO: Remove from `core-js@4` since it's moved to entry points
+__webpack_require__(/*! ../modules/es.regexp.exec */ "./node_modules/core-js/modules/es.regexp.exec.js");
+var redefine = __webpack_require__(/*! ../internals/redefine */ "./node_modules/core-js/internals/redefine.js");
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+var regexpExec = __webpack_require__(/*! ../internals/regexp-exec */ "./node_modules/core-js/internals/regexp-exec.js");
+var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "./node_modules/core-js/internals/create-non-enumerable-property.js");
+
+var SPECIES = wellKnownSymbol('species');
+
+var REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function () {
+  // #replace needs built-in support for named groups.
+  // #match works fine because it just return the exec results, even if it has
+  // a "grops" property.
+  var re = /./;
+  re.exec = function () {
+    var result = [];
+    result.groups = { a: '7' };
+    return result;
+  };
+  return ''.replace(re, '$<a>') !== '7';
+});
+
+// IE <= 11 replaces $0 with the whole match, as if it was $&
+// https://stackoverflow.com/questions/6024666/getting-ie-to-replace-a-regex-with-the-literal-string-0
+var REPLACE_KEEPS_$0 = (function () {
+  return 'a'.replace(/./, '$0') === '$0';
+})();
+
+var REPLACE = wellKnownSymbol('replace');
+// Safari <= 13.0.3(?) substitutes nth capture where n>m with an empty string
+var REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE = (function () {
+  if (/./[REPLACE]) {
+    return /./[REPLACE]('a', '$0') === '';
+  }
+  return false;
+})();
+
+// Chrome 51 has a buggy "split" implementation when RegExp#exec !== nativeExec
+// Weex JS has frozen built-in prototypes, so use try / catch wrapper
+var SPLIT_WORKS_WITH_OVERWRITTEN_EXEC = !fails(function () {
+  // eslint-disable-next-line regexp/no-empty-group -- required for testing
+  var re = /(?:)/;
+  var originalExec = re.exec;
+  re.exec = function () { return originalExec.apply(this, arguments); };
+  var result = 'ab'.split(re);
+  return result.length !== 2 || result[0] !== 'a' || result[1] !== 'b';
+});
+
+module.exports = function (KEY, length, exec, sham) {
+  var SYMBOL = wellKnownSymbol(KEY);
+
+  var DELEGATES_TO_SYMBOL = !fails(function () {
+    // String methods call symbol-named RegEp methods
+    var O = {};
+    O[SYMBOL] = function () { return 7; };
+    return ''[KEY](O) != 7;
+  });
+
+  var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL && !fails(function () {
+    // Symbol-named RegExp methods call .exec
+    var execCalled = false;
+    var re = /a/;
+
+    if (KEY === 'split') {
+      // We can't use real regex here since it causes deoptimization
+      // and serious performance degradation in V8
+      // https://github.com/zloirock/core-js/issues/306
+      re = {};
+      // RegExp[@@split] doesn't call the regex's exec method, but first creates
+      // a new one. We need to return the patched regex when creating the new one.
+      re.constructor = {};
+      re.constructor[SPECIES] = function () { return re; };
+      re.flags = '';
+      re[SYMBOL] = /./[SYMBOL];
+    }
+
+    re.exec = function () { execCalled = true; return null; };
+
+    re[SYMBOL]('');
+    return !execCalled;
+  });
+
+  if (
+    !DELEGATES_TO_SYMBOL ||
+    !DELEGATES_TO_EXEC ||
+    (KEY === 'replace' && !(
+      REPLACE_SUPPORTS_NAMED_GROUPS &&
+      REPLACE_KEEPS_$0 &&
+      !REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE
+    )) ||
+    (KEY === 'split' && !SPLIT_WORKS_WITH_OVERWRITTEN_EXEC)
+  ) {
+    var nativeRegExpMethod = /./[SYMBOL];
+    var methods = exec(SYMBOL, ''[KEY], function (nativeMethod, regexp, str, arg2, forceStringMethod) {
+      if (regexp.exec === regexpExec) {
+        if (DELEGATES_TO_SYMBOL && !forceStringMethod) {
+          // The native String method already delegates to @@method (this
+          // polyfilled function), leasing to infinite recursion.
+          // We avoid it by directly calling the native @@method method.
+          return { done: true, value: nativeRegExpMethod.call(regexp, str, arg2) };
+        }
+        return { done: true, value: nativeMethod.call(str, regexp, arg2) };
+      }
+      return { done: false };
+    }, {
+      REPLACE_KEEPS_$0: REPLACE_KEEPS_$0,
+      REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE: REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE
+    });
+    var stringMethod = methods[0];
+    var regexMethod = methods[1];
+
+    redefine(String.prototype, KEY, stringMethod);
+    redefine(RegExp.prototype, SYMBOL, length == 2
+      // 21.2.5.8 RegExp.prototype[@@replace](string, replaceValue)
+      // 21.2.5.11 RegExp.prototype[@@split](string, limit)
+      ? function (string, arg) { return regexMethod.call(string, this, arg); }
+      // 21.2.5.6 RegExp.prototype[@@match](string)
+      // 21.2.5.9 RegExp.prototype[@@search](string)
+      : function (string) { return regexMethod.call(string, this); }
+    );
+  }
+
+  if (sham) createNonEnumerableProperty(RegExp.prototype[SYMBOL], 'sham', true);
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/freezing.js":
 /*!****************************************************!*\
   !*** ./node_modules/core-js/internals/freezing.js ***!
@@ -3538,6 +4082,56 @@ module.exports = function (it) {
   if (it != undefined) return it[ITERATOR]
     || it['@@iterator']
     || Iterators[classof(it)];
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/get-substitution.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/internals/get-substitution.js ***!
+  \************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
+
+var floor = Math.floor;
+var replace = ''.replace;
+var SUBSTITUTION_SYMBOLS = /\$([$&'`]|\d{1,2}|<[^>]*>)/g;
+var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&'`]|\d{1,2})/g;
+
+// https://tc39.es/ecma262/#sec-getsubstitution
+module.exports = function (matched, str, position, captures, namedCaptures, replacement) {
+  var tailPos = position + matched.length;
+  var m = captures.length;
+  var symbols = SUBSTITUTION_SYMBOLS_NO_NAMED;
+  if (namedCaptures !== undefined) {
+    namedCaptures = toObject(namedCaptures);
+    symbols = SUBSTITUTION_SYMBOLS;
+  }
+  return replace.call(replacement, symbols, function (match, ch) {
+    var capture;
+    switch (ch.charAt(0)) {
+      case '$': return '$';
+      case '&': return matched;
+      case '`': return str.slice(0, position);
+      case "'": return str.slice(tailPos);
+      case '<':
+        capture = namedCaptures[ch.slice(1, -1)];
+        break;
+      default: // \d\d?
+        var n = +ch;
+        if (n === 0) return match;
+        if (n > m) {
+          var f = floor(n / 10);
+          if (f === 0) return match;
+          if (f <= m) return captures[f - 1] === undefined ? ch.charAt(1) : captures[f - 1] + ch.charAt(1);
+          return match;
+        }
+        capture = captures[n - 1];
+    }
+    return capture === undefined ? '' : capture;
+  });
 };
 
 
@@ -3934,6 +4528,28 @@ module.exports = false;
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/is-regexp.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js/internals/is-regexp.js ***!
+  \*****************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
+var classof = __webpack_require__(/*! ../internals/classof-raw */ "./node_modules/core-js/internals/classof-raw.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+
+var MATCH = wellKnownSymbol('match');
+
+// `IsRegExp` abstract operation
+// https://tc39.es/ecma262/#sec-isregexp
+module.exports = function (it) {
+  var isRegExp;
+  return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : classof(it) == 'RegExp');
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/iterate.js":
 /*!***************************************************!*\
   !*** ./node_modules/core-js/internals/iterate.js ***!
@@ -4119,6 +4735,23 @@ var inspectSource = __webpack_require__(/*! ../internals/inspect-source */ "./no
 var WeakMap = global.WeakMap;
 
 module.exports = typeof WeakMap === 'function' && /native code/.test(inspectSource(WeakMap));
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/not-a-regexp.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/internals/not-a-regexp.js ***!
+  \********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var isRegExp = __webpack_require__(/*! ../internals/is-regexp */ "./node_modules/core-js/internals/is-regexp.js");
+
+module.exports = function (it) {
+  if (isRegExp(it)) {
+    throw TypeError("The method doesn't accept regular expressions");
+  } return it;
+};
 
 
 /***/ }),
@@ -4610,6 +5243,198 @@ var TEMPLATE = String(String).split('String');
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/regexp-exec-abstract.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/core-js/internals/regexp-exec-abstract.js ***!
+  \****************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var classof = __webpack_require__(/*! ./classof-raw */ "./node_modules/core-js/internals/classof-raw.js");
+var regexpExec = __webpack_require__(/*! ./regexp-exec */ "./node_modules/core-js/internals/regexp-exec.js");
+
+// `RegExpExec` abstract operation
+// https://tc39.es/ecma262/#sec-regexpexec
+module.exports = function (R, S) {
+  var exec = R.exec;
+  if (typeof exec === 'function') {
+    var result = exec.call(R, S);
+    if (typeof result !== 'object') {
+      throw TypeError('RegExp exec method returned something other than an Object or null');
+    }
+    return result;
+  }
+
+  if (classof(R) !== 'RegExp') {
+    throw TypeError('RegExp#exec called on incompatible receiver');
+  }
+
+  return regexpExec.call(R, S);
+};
+
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/regexp-exec.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/internals/regexp-exec.js ***!
+  \*******************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var regexpFlags = __webpack_require__(/*! ./regexp-flags */ "./node_modules/core-js/internals/regexp-flags.js");
+var stickyHelpers = __webpack_require__(/*! ./regexp-sticky-helpers */ "./node_modules/core-js/internals/regexp-sticky-helpers.js");
+
+var nativeExec = RegExp.prototype.exec;
+// This always refers to the native implementation, because the
+// String#replace polyfill uses ./fix-regexp-well-known-symbol-logic.js,
+// which loads this file before patching the method.
+var nativeReplace = String.prototype.replace;
+
+var patchedExec = nativeExec;
+
+var UPDATES_LAST_INDEX_WRONG = (function () {
+  var re1 = /a/;
+  var re2 = /b*/g;
+  nativeExec.call(re1, 'a');
+  nativeExec.call(re2, 'a');
+  return re1.lastIndex !== 0 || re2.lastIndex !== 0;
+})();
+
+var UNSUPPORTED_Y = stickyHelpers.UNSUPPORTED_Y || stickyHelpers.BROKEN_CARET;
+
+// nonparticipating capturing group, copied from es5-shim's String#split patch.
+// eslint-disable-next-line regexp/no-assertion-capturing-group, regexp/no-empty-group -- required for testing
+var NPCG_INCLUDED = /()??/.exec('')[1] !== undefined;
+
+var PATCH = UPDATES_LAST_INDEX_WRONG || NPCG_INCLUDED || UNSUPPORTED_Y;
+
+if (PATCH) {
+  patchedExec = function exec(str) {
+    var re = this;
+    var lastIndex, reCopy, match, i;
+    var sticky = UNSUPPORTED_Y && re.sticky;
+    var flags = regexpFlags.call(re);
+    var source = re.source;
+    var charsAdded = 0;
+    var strCopy = str;
+
+    if (sticky) {
+      flags = flags.replace('y', '');
+      if (flags.indexOf('g') === -1) {
+        flags += 'g';
+      }
+
+      strCopy = String(str).slice(re.lastIndex);
+      // Support anchored sticky behavior.
+      if (re.lastIndex > 0 && (!re.multiline || re.multiline && str[re.lastIndex - 1] !== '\n')) {
+        source = '(?: ' + source + ')';
+        strCopy = ' ' + strCopy;
+        charsAdded++;
+      }
+      // ^(? + rx + ) is needed, in combination with some str slicing, to
+      // simulate the 'y' flag.
+      reCopy = new RegExp('^(?:' + source + ')', flags);
+    }
+
+    if (NPCG_INCLUDED) {
+      reCopy = new RegExp('^' + source + '$(?!\\s)', flags);
+    }
+    if (UPDATES_LAST_INDEX_WRONG) lastIndex = re.lastIndex;
+
+    match = nativeExec.call(sticky ? reCopy : re, strCopy);
+
+    if (sticky) {
+      if (match) {
+        match.input = match.input.slice(charsAdded);
+        match[0] = match[0].slice(charsAdded);
+        match.index = re.lastIndex;
+        re.lastIndex += match[0].length;
+      } else re.lastIndex = 0;
+    } else if (UPDATES_LAST_INDEX_WRONG && match) {
+      re.lastIndex = re.global ? match.index + match[0].length : lastIndex;
+    }
+    if (NPCG_INCLUDED && match && match.length > 1) {
+      // Fix browsers whose `exec` methods don't consistently return `undefined`
+      // for NPCG, like IE8. NOTE: This doesn' work for /(.?)?/
+      nativeReplace.call(match[0], reCopy, function () {
+        for (i = 1; i < arguments.length - 2; i++) {
+          if (arguments[i] === undefined) match[i] = undefined;
+        }
+      });
+    }
+
+    return match;
+  };
+}
+
+module.exports = patchedExec;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/regexp-flags.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/internals/regexp-flags.js ***!
+  \********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
+
+// `RegExp.prototype.flags` getter implementation
+// https://tc39.es/ecma262/#sec-get-regexp.prototype.flags
+module.exports = function () {
+  var that = anObject(this);
+  var result = '';
+  if (that.global) result += 'g';
+  if (that.ignoreCase) result += 'i';
+  if (that.multiline) result += 'm';
+  if (that.dotAll) result += 's';
+  if (that.unicode) result += 'u';
+  if (that.sticky) result += 'y';
+  return result;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/regexp-sticky-helpers.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/core-js/internals/regexp-sticky-helpers.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var fails = __webpack_require__(/*! ./fails */ "./node_modules/core-js/internals/fails.js");
+
+// babel-minify transpiles RegExp('a', 'y') -> /a/y and it causes SyntaxError,
+// so we use an intermediate function.
+function RE(s, f) {
+  return RegExp(s, f);
+}
+
+exports.UNSUPPORTED_Y = fails(function () {
+  // babel-minify transpiles RegExp('a', 'y') -> /a/y and it causes SyntaxError
+  var re = RE('a', 'y');
+  re.lastIndex = 2;
+  return re.exec('abcd') != null;
+});
+
+exports.BROKEN_CARET = fails(function () {
+  // https://bugzilla.mozilla.org/show_bug.cgi?id=773687
+  var re = RE('^r', 'gy');
+  re.lastIndex = 2;
+  return re.exec('str') != null;
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/require-object-coercible.js":
 /*!********************************************************************!*\
   !*** ./node_modules/core-js/internals/require-object-coercible.js ***!
@@ -4999,6 +5824,32 @@ module.exports = function (name) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/modules/es.array.filter.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.filter.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var $filter = __webpack_require__(/*! ../internals/array-iteration */ "./node_modules/core-js/internals/array-iteration.js").filter;
+var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js/internals/array-method-has-species-support.js");
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('filter');
+
+// `Array.prototype.filter` method
+// https://tc39.es/ecma262/#sec-array.prototype.filter
+// with adding support of @@species
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+  filter: function filter(callbackfn /* , thisArg */) {
+    return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/modules/es.array.from.js":
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es.array.from.js ***!
@@ -5018,6 +5869,32 @@ var INCORRECT_ITERATION = !checkCorrectnessOfIteration(function (iterable) {
 $({ target: 'Array', stat: true, forced: INCORRECT_ITERATION }, {
   from: from
 });
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.array.includes.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.includes.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var $includes = __webpack_require__(/*! ../internals/array-includes */ "./node_modules/core-js/internals/array-includes.js").includes;
+var addToUnscopables = __webpack_require__(/*! ../internals/add-to-unscopables */ "./node_modules/core-js/internals/add-to-unscopables.js");
+
+// `Array.prototype.includes` method
+// https://tc39.es/ecma262/#sec-array.prototype.includes
+$({ target: 'Array', proto: true }, {
+  includes: function includes(el /* , fromIndex = 0 */) {
+    return $includes(this, el, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+addToUnscopables('includes');
 
 
 /***/ }),
@@ -5195,6 +6072,26 @@ if (!TO_STRING_TAG_SUPPORT) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/modules/es.regexp.exec.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.regexp.exec.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var exec = __webpack_require__(/*! ../internals/regexp-exec */ "./node_modules/core-js/internals/regexp-exec.js");
+
+// `RegExp.prototype.exec` method
+// https://tc39.es/ecma262/#sec-regexp.prototype.exec
+$({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
+  exec: exec
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/modules/es.set.js":
 /*!************************************************!*\
   !*** ./node_modules/core-js/modules/es.set.js ***!
@@ -5211,6 +6108,31 @@ var collectionStrong = __webpack_require__(/*! ../internals/collection-strong */
 module.exports = collection('Set', function (init) {
   return function Set() { return init(this, arguments.length ? arguments[0] : undefined); };
 }, collectionStrong);
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.string.includes.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/modules/es.string.includes.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var notARegExp = __webpack_require__(/*! ../internals/not-a-regexp */ "./node_modules/core-js/internals/not-a-regexp.js");
+var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
+var correctIsRegExpLogic = __webpack_require__(/*! ../internals/correct-is-regexp-logic */ "./node_modules/core-js/internals/correct-is-regexp-logic.js");
+
+// `String.prototype.includes` method
+// https://tc39.es/ecma262/#sec-string.prototype.includes
+$({ target: 'String', proto: true, forced: !correctIsRegExpLogic('includes') }, {
+  includes: function includes(searchString /* , position = 0 */) {
+    return !!~String(requireObjectCoercible(this))
+      .indexOf(notARegExp(searchString), arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
 
 
 /***/ }),
@@ -5250,6 +6172,115 @@ defineIterator(String, 'String', function (iterated) {
   point = charAt(string, index);
   state.index += point.length;
   return { value: point, done: false };
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.string.replace.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.string.replace.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var fixRegExpWellKnownSymbolLogic = __webpack_require__(/*! ../internals/fix-regexp-well-known-symbol-logic */ "./node_modules/core-js/internals/fix-regexp-well-known-symbol-logic.js");
+var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
+var toLength = __webpack_require__(/*! ../internals/to-length */ "./node_modules/core-js/internals/to-length.js");
+var toInteger = __webpack_require__(/*! ../internals/to-integer */ "./node_modules/core-js/internals/to-integer.js");
+var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
+var advanceStringIndex = __webpack_require__(/*! ../internals/advance-string-index */ "./node_modules/core-js/internals/advance-string-index.js");
+var getSubstitution = __webpack_require__(/*! ../internals/get-substitution */ "./node_modules/core-js/internals/get-substitution.js");
+var regExpExec = __webpack_require__(/*! ../internals/regexp-exec-abstract */ "./node_modules/core-js/internals/regexp-exec-abstract.js");
+
+var max = Math.max;
+var min = Math.min;
+
+var maybeToString = function (it) {
+  return it === undefined ? it : String(it);
+};
+
+// @@replace logic
+fixRegExpWellKnownSymbolLogic('replace', 2, function (REPLACE, nativeReplace, maybeCallNative, reason) {
+  var REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE = reason.REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE;
+  var REPLACE_KEEPS_$0 = reason.REPLACE_KEEPS_$0;
+  var UNSAFE_SUBSTITUTE = REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE ? '$' : '$0';
+
+  return [
+    // `String.prototype.replace` method
+    // https://tc39.es/ecma262/#sec-string.prototype.replace
+    function replace(searchValue, replaceValue) {
+      var O = requireObjectCoercible(this);
+      var replacer = searchValue == undefined ? undefined : searchValue[REPLACE];
+      return replacer !== undefined
+        ? replacer.call(searchValue, O, replaceValue)
+        : nativeReplace.call(String(O), searchValue, replaceValue);
+    },
+    // `RegExp.prototype[@@replace]` method
+    // https://tc39.es/ecma262/#sec-regexp.prototype-@@replace
+    function (regexp, replaceValue) {
+      if (
+        (!REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE && REPLACE_KEEPS_$0) ||
+        (typeof replaceValue === 'string' && replaceValue.indexOf(UNSAFE_SUBSTITUTE) === -1)
+      ) {
+        var res = maybeCallNative(nativeReplace, regexp, this, replaceValue);
+        if (res.done) return res.value;
+      }
+
+      var rx = anObject(regexp);
+      var S = String(this);
+
+      var functionalReplace = typeof replaceValue === 'function';
+      if (!functionalReplace) replaceValue = String(replaceValue);
+
+      var global = rx.global;
+      if (global) {
+        var fullUnicode = rx.unicode;
+        rx.lastIndex = 0;
+      }
+      var results = [];
+      while (true) {
+        var result = regExpExec(rx, S);
+        if (result === null) break;
+
+        results.push(result);
+        if (!global) break;
+
+        var matchStr = String(result[0]);
+        if (matchStr === '') rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
+      }
+
+      var accumulatedResult = '';
+      var nextSourcePosition = 0;
+      for (var i = 0; i < results.length; i++) {
+        result = results[i];
+
+        var matched = String(result[0]);
+        var position = max(min(toInteger(result.index), S.length), 0);
+        var captures = [];
+        // NOTE: This is equivalent to
+        //   captures = result.slice(1).map(maybeToString)
+        // but for some reason `nativeSlice.call(result, 1, result.length)` (called in
+        // the slice polyfill when slicing native arrays) "doesn't work" in safari 9 and
+        // causes a crash (https://pastebin.com/N21QzeQA) when trying to debug it.
+        for (var j = 1; j < result.length; j++) captures.push(maybeToString(result[j]));
+        var namedCaptures = result.groups;
+        if (functionalReplace) {
+          var replacerArgs = [matched].concat(captures, position, S);
+          if (namedCaptures !== undefined) replacerArgs.push(namedCaptures);
+          var replacement = String(replaceValue.apply(undefined, replacerArgs));
+        } else {
+          replacement = getSubstitution(matched, S, position, captures, namedCaptures, replaceValue);
+        }
+        if (position >= nextSourcePosition) {
+          accumulatedResult += S.slice(nextSourcePosition, position) + replacement;
+          nextSourcePosition = position + matched.length;
+        }
+      }
+      return accumulatedResult + S.slice(nextSourcePosition);
+    }
+  ];
 });
 
 
@@ -5741,7 +6772,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */\n/* Document\r\n   ========================================================================== */\n/**\r\n * 1. Correct the line height in all browsers.\r\n * 2. Prevent adjustments of font size after orientation changes in iOS.\r\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\r\n   ========================================================================== */\n/**\r\n * Remove the margin in all browsers.\r\n */\nbody {\n  margin: 0; }\n\n/**\r\n * Render the `main` element consistently in IE.\r\n */\nmain {\n  display: block; }\n\n/**\r\n * Correct the font size and margin on `h1` elements within `section` and\r\n * `article` contexts in Chrome, Firefox, and Safari.\r\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\r\n   ========================================================================== */\n/**\r\n * 1. Add the correct box sizing in Firefox.\r\n * 2. Show the overflow in Edge and IE.\r\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\r\n   ========================================================================== */\n/**\r\n * Remove the gray background on active links in IE 10.\r\n */\na {\n  background-color: transparent; }\n\n/**\r\n * 1. Remove the bottom border in Chrome 57-\r\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\r\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\r\n * Add the correct font weight in Chrome, Edge, and Safari.\r\n */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\r\n * Add the correct font size in all browsers.\r\n */\nsmall {\n  font-size: 80%; }\n\n/**\r\n * Prevent `sub` and `sup` elements from affecting the line height in\r\n * all browsers.\r\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\r\n   ========================================================================== */\n/**\r\n * Remove the border on images inside links in IE 10.\r\n */\nimg {\n  border-style: none; }\n\n/* Forms\r\n   ========================================================================== */\n/**\r\n * 1. Change the font styles in all browsers.\r\n * 2. Remove the margin in Firefox and Safari.\r\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: inherit;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\r\n * Show the overflow in IE.\r\n * 1. Show the overflow in Edge.\r\n */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\r\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\r\n * 1. Remove the inheritance of text transform in Firefox.\r\n */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\r\n * Correct the inability to style clickable types in iOS and Safari.\r\n */\nbutton,\n[type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; }\n\n/**\r\n * Remove the inner border and padding in Firefox.\r\n */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\r\n * Restore the focus styles unset by the previous rule.\r\n */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\r\n * Correct the padding in Firefox.\r\n */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\r\n * 1. Correct the text wrapping in Edge and IE.\r\n * 2. Correct the color inheritance from `fieldset` elements in IE.\r\n * 3. Remove the padding so developers are not caught out when they zero out\r\n *    `fieldset` elements in all browsers.\r\n */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\r\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\r\n */\nprogress {\n  vertical-align: baseline; }\n\n/**\r\n * Remove the default vertical scrollbar in IE 10+.\r\n */\ntextarea {\n  overflow: auto; }\n\n/**\r\n * 1. Add the correct box sizing in IE 10.\r\n * 2. Remove the padding in IE 10.\r\n */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\r\n * Correct the cursor style of increment and decrement buttons in Chrome.\r\n */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\r\n * 1. Correct the odd appearance in Chrome and Safari.\r\n * 2. Correct the outline style in Safari.\r\n */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\r\n * Remove the inner padding in Chrome and Safari on macOS.\r\n */\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\r\n * 1. Correct the inability to style clickable types in iOS and Safari.\r\n * 2. Change font properties to `inherit` in Safari.\r\n */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\r\n   ========================================================================== */\n/*\r\n * Add the correct display in Edge, IE 10+, and Firefox.\r\n */\ndetails {\n  display: block; }\n\n/*\r\n * Add the correct display in all browsers.\r\n */\nsummary {\n  display: list-item; }\n\n/* Misc\r\n   ========================================================================== */\n/**\r\n * Add the correct display in IE 10+.\r\n */\ntemplate {\n  display: none; }\n\n/**\r\n * Add the correct display in IE 10.\r\n */\n[hidden] {\n  display: none; }\n\n/**************************************/\n/************* Custom css *************/\n/**************************************/\nhtml {\n  box-sizing: border-box;\n  font-size: 62.5%; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  line-height: 1.6rem;\n  font-family: 'Lato', sans-serif;\n  font-size: 1.6rem;\n  color: black;\n  scroll-behavior: smooth; }\n\nh1,\nh2,\nh3 {\n  font-weight: 400;\n  line-height: 4.6rem; }\n\nul {\n  padding: 0;\n  list-style: none; }\n\na {\n  text-decoration: none; }\n\nimg,\nvideo {\n  max-width: 100%;\n  height: auto;\n  object-fit: cover; }\n\nbutton {\n  cursor: pointer; }\n\n[data-cat=ingredients] {\n  background-color: #3180f6;\n  color: white; }\n\n[data-cat=appliances] {\n  background-color: #68d9a4;\n  color: white; }\n\n[data-cat=ustensils] {\n  background-color: #ed6454;\n  color: white; }\n\n.hide {\n  display: none !important; }\n\n.show {\n  display: block !important; }\n\n.show-flex {\n  display: flex !important; }\n\n.show-grid {\n  display: grid !important; }\n\n.wrapper {\n  width: 100%;\n  margin: 0 auto; }\n\n@media (min-width: 576px) {\n  .wrapper {\n    max-width: 540px; } }\n\n@media (min-width: 768px) {\n  .wrapper {\n    max-width: 740px; } }\n\n@media (min-width: 991px) {\n  .wrapper {\n    max-width: 960px; } }\n\n@media (min-width: 1200px) {\n  .wrapper {\n    max-width: 1140px; } }\n\n@media (min-width: 1440px) {\n  .wrapper {\n    max-width: 1400px; } }\n\n.btn-search {\n  position: absolute;\n  height: 69%;\n  top: 12px;\n  right: 25px;\n  border: none;\n  background-color: #e8e8e8; }\n  .btn-search i {\n    font-size: 2.2rem;\n    opacity: 0.7; }\n    .btn-search i:hover {\n      opacity: 1; }\n\n.btn-tag-selected {\n  align-items: center;\n  margin: 0 15px 0 0;\n  padding: 0 10px;\n  min-width: fit-content;\n  height: 35px;\n  border-radius: 0.5rem;\n  border: none; }\n  .btn-tag-selected .icon-close {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    position: relative;\n    margin: 0 0 0 15px;\n    padding: 0 10px 0 0;\n    transition: all .15s ease-in; }\n    .btn-tag-selected .icon-close::before {\n      position: absolute;\n      content: \"\";\n      width: 12px;\n      height: 12px;\n      border-radius: 35px;\n      background-color: transparent;\n      border: solid 2px white; }\n      @media (min-width: 991px) {\n        .btn-tag-selected .icon-close::before {\n          border: solid 3px white; } }\n    .btn-tag-selected .icon-close::after {\n      position: absolute;\n      content: \"\\002716\";\n      font-size: 9px;\n      color: white; }\n      @media (min-width: 991px) {\n        .btn-tag-selected .icon-close::after {\n          font-weight: 700; } }\n  .btn-tag-selected:hover .icon-close:before {\n    background-color: white; }\n  .btn-tag-selected:hover .icon-close:after {\n    color: black; }\n  .btn-tag-selected[data-cat=ingredients]:hover {\n    background-color: #2459a8; }\n  .btn-tag-selected[data-cat=appliances]:hover {\n    background-color: #2eb877; }\n  .btn-tag-selected[data-cat=ustensils]:hover {\n    background-color: #d02816; }\n\n.recipe-card {\n  margin: 1.5rem;\n  border-radius: 0.5rem;\n  background-color: #e8e8e8; }\n  .recipe-card__img {\n    height: 15rem;\n    border-radius: 0.5rem 0.5rem 0 0;\n    background-color: #c6bebe; }\n  .recipe-card__content {\n    display: flex;\n    flex-direction: column;\n    padding: 15px; }\n    .recipe-card__content h2 {\n      display: flex;\n      flex-direction: column;\n      margin: 0;\n      font-size: 2.2rem;\n      font-weight: 700; }\n      @media (min-width: 400px) {\n        .recipe-card__content h2 {\n          flex-direction: row;\n          justify-content: space-between; } }\n      .recipe-card__content h2 .recipe-card__content__title {\n        max-width: 255px;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: nowrap; }\n    .recipe-card__content__description {\n      display: flex;\n      flex-direction: column; }\n      @media (min-width: 400px) {\n        .recipe-card__content__description {\n          flex-direction: row;\n          justify-content: space-between;\n          gap: 25px; } }\n    .recipe-card__content ul {\n      width: 50%;\n      line-height: 2.2rem; }\n    .recipe-card__content p {\n      display: -webkit-box;\n      -webkit-box-orient: vertical;\n      -webkit-line-clamp: 10;\n      overflow: hidden;\n      width: 100%;\n      line-height: 2rem; }\n      @media (min-width: 400px) {\n        .recipe-card__content p {\n          width: 50%; } }\n\n.form-search-bar {\n  position: relative;\n  margin: 15px 0 0 0;\n  padding: 0 15px; }\n  .form-search-bar input[type=text] {\n    width: 100%;\n    padding: 20px;\n    margin: 8px 0;\n    display: inline-block;\n    font-size: 1.2rem;\n    border: 1px solid #e8e8e8;\n    background-color: #e8e8e8;\n    border-radius: 0.5rem;\n    box-sizing: border-box; }\n    @media (min-width: 991px) {\n      .form-search-bar input[type=text] {\n        font-size: 1.4rem; } }\n    @media (min-width: 1200px) {\n      .form-search-bar input[type=text] {\n        font-size: 1.6rem; } }\n    .form-search-bar input[type=text]::placeholder {\n      opacity: .6; }\n\n.select {\n  position: relative;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  width: 100%;\n  margin: 20px 0 0 0;\n  border-radius: 0.5rem;\n  cursor: pointer; }\n  .select:first-child {\n    margin: 0; }\n    @media (min-width: 576px) {\n      .select:first-child {\n        margin: 0 20px 0 0; } }\n  @media (min-width: 576px) {\n    .select:last-child {\n      margin: 0; } }\n  @media (min-width: 576px) {\n    .select {\n      margin: 0 20px 0 0;\n      width: 170px; } }\n  .select input[type=text] {\n    padding: 18px 10px 18px 18px;\n    width: 85%;\n    font-size: 12px;\n    font-weight: 700;\n    color: white;\n    outline: none;\n    border-radius: 0.5rem;\n    cursor: pointer; }\n    @media (min-width: 576px) {\n      .select input[type=text] {\n        width: 60%; } }\n    @media (min-width: 991px) {\n      .select input[type=text] {\n        font-size: 14px; } }\n    @media (min-width: 1200px) {\n      .select input[type=text] {\n        font-size: 16px; } }\n    .select input[type=text]::placeholder {\n      font-weight: 700;\n      color: white; }\n  .select__btn {\n    position: relative;\n    margin: 0 4px 0 0;\n    height: 50px;\n    width: 30px;\n    border: none;\n    background-color: transparent; }\n    @media (min-width: 576px) {\n      .select__btn {\n        height: 100%; } }\n    .select__btn:before {\n      position: absolute;\n      content: \"\";\n      right: 14px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(-130deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n    .select__btn:after {\n      position: absolute;\n      content: \"\";\n      right: 7px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(130deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in-out; }\n    .select__btn--selected:before {\n      position: absolute;\n      content: \"\";\n      right: 14px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(-45deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n    .select__btn--selected:after {\n      position: absolute;\n      content: \"\";\n      right: 7px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(45deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n  .select .fas {\n    color: white; }\n  .select--ingredients {\n    background-color: #3180f6; }\n    .select--ingredients input[type=text] {\n      border: 1px solid #3180f6;\n      background-color: #3180f6;\n      color: white; }\n      .select--ingredients input[type=text]:hover {\n        background-color: #2459a8; }\n    .select--ingredients--open {\n      flex: 1; }\n      @media (min-width: 576px) {\n        .select--ingredients--open {\n          flex: auto; } }\n      .select--ingredients--open:hover {\n        background-color: #3180f6 !important; }\n        .select--ingredients--open:hover input[type=text] {\n          background-color: #3180f6 !important;\n          border-color: #3180f6 !important; }\n    .select--ingredients:hover {\n      background-color: #2459a8; }\n      .select--ingredients:hover input[type=text] {\n        background-color: #2459a8;\n        border-color: #2459a8; }\n  .select--appliances {\n    background-color: #68d9a4; }\n    .select--appliances input[type=text] {\n      border: 1px solid #68d9a4;\n      background-color: #68d9a4;\n      color: white; }\n      .select--appliances input[type=text]:hover {\n        background-color: #2eb877; }\n    .select--appliances--open {\n      flex: 0.5; }\n      @media (min-width: 576px) {\n        .select--appliances--open {\n          flex: auto; } }\n      @media (min-width: 991px) {\n        .select--appliances--open {\n          flex: 0.5; } }\n      .select--appliances--open:hover {\n        background-color: #68d9a4 !important; }\n        .select--appliances--open:hover input[type=text] {\n          background-color: #68d9a4 !important;\n          border-color: #68d9a4 !important; }\n    .select--appliances:hover {\n      background-color: #2eb877; }\n      .select--appliances:hover input[type=text] {\n        background-color: #2eb877;\n        border-color: #2eb877; }\n  .select--ustensils {\n    background-color: #ed6454; }\n    .select--ustensils input[type=text] {\n      border: 1px solid #ed6454;\n      background-color: #ed6454;\n      color: white; }\n      .select--ustensils input[type=text]:hover {\n        background-color: #d02816; }\n    .select--ustensils--open {\n      flex: 1; }\n      @media (min-width: 576px) {\n        .select--ustensils--open {\n          flex: auto; } }\n      .select--ustensils--open:hover {\n        background-color: #ed6454 !important; }\n        .select--ustensils--open:hover input[type=text] {\n          background-color: #ed6454 !important;\n          border-color: #ed6454 !important; }\n    .select--ustensils:hover {\n      background-color: #d02816; }\n      .select--ustensils:hover input[type=text] {\n        background-color: #d02816;\n        border-color: #d02816; }\n\nheader {\n  text-align: center;\n  padding: 15px; }\n  header .lpp_logo {\n    width: 200px; }\n    @media (min-width: 1200px) {\n      header .lpp_logo {\n        width: 320px; } }\n\n.tags-selection {\n  display: flex;\n  flex-direction: column;\n  padding: 12px 15px 0 15px; }\n  @media (min-width: 576px) {\n    .tags-selection {\n      flex-direction: row; } }\n\n.select__tags-list {\n  position: absolute;\n  display: none;\n  z-index: 10;\n  padding: 20px 10px;\n  top: 27px;\n  max-height: 277px;\n  width: -webkit-fill-available;\n  overflow: hidden;\n  border-radius: 0.5rem; }\n  @media (min-width: 768px) {\n    .select__tags-list {\n      grid-template-rows: repeat(6, auto);\n      grid-auto-flow: column;\n      column-gap: 7px;\n      max-height: none; } }\n  .select__tags-list li {\n    width: 115px;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    padding: 8px;\n    font-weight: 700;\n    cursor: pointer; }\n    @media (min-width: 576px) {\n      .select__tags-list li {\n        width: 95px; } }\n    @media (min-width: 768px) {\n      .select__tags-list li {\n        width: 135px; } }\n    @media (min-width: 991px) {\n      .select__tags-list li {\n        width: 113px; } }\n    @media (min-width: 1200px) {\n      .select__tags-list li {\n        width: 120px; } }\n    @media (min-width: 1440px) {\n      .select__tags-list li {\n        width: 140px; } }\n\n.select__tags-list--ingredients li:hover {\n  background-color: #2459a8;\n  color: white;\n  border-radius: 0.5rem; }\n\n.select__tags-list--appliances li:hover {\n  background-color: #2eb877;\n  color: white;\n  border-radius: 0.5rem; }\n\n.select__tags-list--ustensils li:hover {\n  background-color: #d02816;\n  color: white;\n  border-radius: 0.5rem; }\n\n.tags-selected-container {\n  display: flex;\n  flex-wrap: wrap;\n  row-gap: 15px;\n  padding: 15px; }\n\n.recipes-list {\n  display: flex;\n  flex-direction: column; }\n  @media (min-width: 991px) {\n    .recipes-list {\n      display: grid;\n      grid-template-columns: repeat(2, 1fr);\n      grid-template-rows: auto; } }\n  @media (min-width: 1200px) {\n    .recipes-list {\n      grid-template-columns: repeat(3, 1fr); } }\n", "",{"version":3,"sources":["webpack://./src/styles/_base/_base.scss","webpack://./src/styles/main.scss","webpack://./src/styles/_utils/_variables.scss","webpack://./src/styles/_utils/_classes.scss","webpack://./src/styles/_utils/_mixins.scss","webpack://./src/styles/_components/_btn-search.scss","webpack://./src/styles/_components/_btn-tag-selected.scss","webpack://./src/styles/_components/_recipe-card.scss","webpack://./src/styles/_components/_search-bar.scss","webpack://./src/styles/_components/_select.scss","webpack://./src/styles/_layout/_header.scss","webpack://./src/styles/_layout/_tags-selection.scss","webpack://./src/styles/_layout/_tags-selected.scss","webpack://./src/styles/_pages/_index.scss"],"names":[],"mappings":"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","sourcesContent":["/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */\r\n\r\n/* Document\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Correct the line height in all browsers.\r\n * 2. Prevent adjustments of font size after orientation changes in iOS.\r\n */\r\n\r\n html {\r\n  line-height: 1.15; /* 1 */\r\n  -webkit-text-size-adjust: 100%; /* 2 */\r\n}\r\n\r\n/* Sections\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the margin in all browsers.\r\n */\r\n\r\nbody {\r\n  margin: 0;\r\n}\r\n\r\n/**\r\n * Render the `main` element consistently in IE.\r\n */\r\n\r\nmain {\r\n  display: block;\r\n}\r\n\r\n/**\r\n * Correct the font size and margin on `h1` elements within `section` and\r\n * `article` contexts in Chrome, Firefox, and Safari.\r\n */\r\n\r\nh1 {\r\n  font-size: 2em;\r\n  margin: 0.67em 0;\r\n}\r\n\r\n/* Grouping content\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Add the correct box sizing in Firefox.\r\n * 2. Show the overflow in Edge and IE.\r\n */\r\n\r\nhr {\r\n  box-sizing: content-box; /* 1 */\r\n  height: 0; /* 1 */\r\n  overflow: visible; /* 2 */\r\n}\r\n\r\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\r\n\r\npre {\r\n  font-family: monospace, monospace; /* 1 */\r\n  font-size: 1em; /* 2 */\r\n}\r\n\r\n/* Text-level semantics\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the gray background on active links in IE 10.\r\n */\r\n\r\na {\r\n  background-color: transparent;\r\n}\r\n\r\n/**\r\n * 1. Remove the bottom border in Chrome 57-\r\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\r\n */\r\n\r\nabbr[title] {\r\n  border-bottom: none; /* 1 */\r\n  text-decoration: underline; /* 2 */\r\n  text-decoration: underline dotted; /* 2 */\r\n}\r\n\r\n/**\r\n * Add the correct font weight in Chrome, Edge, and Safari.\r\n */\r\n\r\nb,\r\nstrong {\r\n  font-weight: bolder;\r\n}\r\n\r\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\r\n\r\ncode,\r\nkbd,\r\nsamp {\r\n  font-family: monospace, monospace; /* 1 */\r\n  font-size: 1em; /* 2 */\r\n}\r\n\r\n/**\r\n * Add the correct font size in all browsers.\r\n */\r\n\r\nsmall {\r\n  font-size: 80%;\r\n}\r\n\r\n/**\r\n * Prevent `sub` and `sup` elements from affecting the line height in\r\n * all browsers.\r\n */\r\n\r\nsub,\r\nsup {\r\n  font-size: 75%;\r\n  line-height: 0;\r\n  position: relative;\r\n  vertical-align: baseline;\r\n}\r\n\r\nsub {\r\n  bottom: -0.25em;\r\n}\r\n\r\nsup {\r\n  top: -0.5em;\r\n}\r\n\r\n/* Embedded content\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the border on images inside links in IE 10.\r\n */\r\n\r\nimg {\r\n  border-style: none;\r\n}\r\n\r\n/* Forms\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Change the font styles in all browsers.\r\n * 2. Remove the margin in Firefox and Safari.\r\n */\r\n\r\nbutton,\r\ninput,\r\noptgroup,\r\nselect,\r\ntextarea {\r\n  font-family: inherit; /* 1 */\r\n  font-size: 100%; /* 1 */\r\n  line-height: 1.15; /* 1 */\r\n  margin: 0; /* 2 */\r\n}\r\n\r\n/**\r\n * Show the overflow in IE.\r\n * 1. Show the overflow in Edge.\r\n */\r\n\r\nbutton,\r\ninput { /* 1 */\r\n  overflow: visible;\r\n}\r\n\r\n/**\r\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\r\n * 1. Remove the inheritance of text transform in Firefox.\r\n */\r\n\r\nbutton,\r\nselect { /* 1 */\r\n  text-transform: none;\r\n}\r\n\r\n/**\r\n * Correct the inability to style clickable types in iOS and Safari.\r\n */\r\n\r\nbutton,\r\n[type=\"button\"],\r\n[type=\"reset\"],\r\n[type=\"submit\"] {\r\n  -webkit-appearance: button;\r\n}\r\n\r\n/**\r\n * Remove the inner border and padding in Firefox.\r\n */\r\n\r\nbutton::-moz-focus-inner,\r\n[type=\"button\"]::-moz-focus-inner,\r\n[type=\"reset\"]::-moz-focus-inner,\r\n[type=\"submit\"]::-moz-focus-inner {\r\n  border-style: none;\r\n  padding: 0;\r\n}\r\n\r\n/**\r\n * Restore the focus styles unset by the previous rule.\r\n */\r\n\r\nbutton:-moz-focusring,\r\n[type=\"button\"]:-moz-focusring,\r\n[type=\"reset\"]:-moz-focusring,\r\n[type=\"submit\"]:-moz-focusring {\r\n  outline: 1px dotted ButtonText;\r\n}\r\n\r\n/**\r\n * Correct the padding in Firefox.\r\n */\r\n\r\nfieldset {\r\n  padding: 0.35em 0.75em 0.625em;\r\n}\r\n\r\n/**\r\n * 1. Correct the text wrapping in Edge and IE.\r\n * 2. Correct the color inheritance from `fieldset` elements in IE.\r\n * 3. Remove the padding so developers are not caught out when they zero out\r\n *    `fieldset` elements in all browsers.\r\n */\r\n\r\nlegend {\r\n  box-sizing: border-box; /* 1 */\r\n  color: inherit; /* 2 */\r\n  display: table; /* 1 */\r\n  max-width: 100%; /* 1 */\r\n  padding: 0; /* 3 */\r\n  white-space: normal; /* 1 */\r\n}\r\n\r\n/**\r\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\r\n */\r\n\r\nprogress {\r\n  vertical-align: baseline;\r\n}\r\n\r\n/**\r\n * Remove the default vertical scrollbar in IE 10+.\r\n */\r\n\r\ntextarea {\r\n  overflow: auto;\r\n}\r\n\r\n/**\r\n * 1. Add the correct box sizing in IE 10.\r\n * 2. Remove the padding in IE 10.\r\n */\r\n\r\n[type=\"checkbox\"],\r\n[type=\"radio\"] {\r\n  box-sizing: border-box; /* 1 */\r\n  padding: 0; /* 2 */\r\n}\r\n\r\n/**\r\n * Correct the cursor style of increment and decrement buttons in Chrome.\r\n */\r\n\r\n[type=\"number\"]::-webkit-inner-spin-button,\r\n[type=\"number\"]::-webkit-outer-spin-button {\r\n  height: auto;\r\n}\r\n\r\n/**\r\n * 1. Correct the odd appearance in Chrome and Safari.\r\n * 2. Correct the outline style in Safari.\r\n */\r\n\r\n[type=\"search\"] {\r\n  -webkit-appearance: textfield; /* 1 */\r\n  outline-offset: -2px; /* 2 */\r\n}\r\n\r\n/**\r\n * Remove the inner padding in Chrome and Safari on macOS.\r\n */\r\n\r\n[type=\"search\"]::-webkit-search-decoration {\r\n  -webkit-appearance: none;\r\n}\r\n\r\n/**\r\n * 1. Correct the inability to style clickable types in iOS and Safari.\r\n * 2. Change font properties to `inherit` in Safari.\r\n */\r\n\r\n::-webkit-file-upload-button {\r\n  -webkit-appearance: button; /* 1 */\r\n  font: inherit; /* 2 */\r\n}\r\n\r\n/* Interactive\r\n   ========================================================================== */\r\n\r\n/*\r\n * Add the correct display in Edge, IE 10+, and Firefox.\r\n */\r\n\r\ndetails {\r\n  display: block;\r\n}\r\n\r\n/*\r\n * Add the correct display in all browsers.\r\n */\r\n\r\nsummary {\r\n  display: list-item;\r\n}\r\n\r\n/* Misc\r\n   ========================================================================== */\r\n\r\n/**\r\n * Add the correct display in IE 10+.\r\n */\r\n\r\ntemplate {\r\n  display: none;\r\n}\r\n\r\n/**\r\n * Add the correct display in IE 10.\r\n */\r\n\r\n[hidden] {\r\n  display: none;\r\n}\r\n\r\n/**************************************/\r\n/************* Custom css *************/\r\n/**************************************/\r\n\r\nhtml {\r\n  box-sizing: border-box;\r\n  font-size: 62.5%;\r\n}\r\n\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n  line-height: 1.6rem;\r\n  font-family: 'Lato', sans-serif;\r\n  font-size: 1.6rem;\r\n  color: $primary-color-text;\r\n  scroll-behavior: smooth;\r\n}\r\n\r\nh1,\r\nh2,\r\nh3 {\r\n  font-weight: 400;\r\n  line-height: 4.6rem;\r\n}\r\n\r\nul {\r\n  padding: 0;\r\n  list-style: none;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n}\r\n\r\nimg,\r\nvideo {\r\n  max-width: 100%;\r\n  height: auto;\r\n  object-fit: cover;\r\n}\r\n\r\nbutton {\r\n  cursor: pointer;\r\n}\r\n\r\n// Data attribute for different categories\r\n[data-cat=ingredients] {\r\n  background-color: $primary-color;\r\n  color: white;\r\n}\r\n\r\n[data-cat=appliances] {\r\n  background-color: $secondary-color;\r\n  color: white;\r\n}\r\n\r\n[data-cat=ustensils] {\r\n  background-color: $tertiary-color;\r\n  color: white;\r\n}\r\n","@import \"./_utils/variables\";\r\n@import \"./_base/base\";\r\n@import \"./_utils/mixins\";\r\n@import \"./_utils/classes\";\r\n@import \"./_components/btn-search\";\r\n@import \"./_components/btn-tag-selected\";\r\n@import \"./_components/recipe-card\";\r\n@import \"./_components/search-bar\";\r\n@import \"./_components/select\";\r\n@import \"./_layout/header\";\r\n@import \"./_layout/tags-selection\";\r\n@import \"./_layout/tags-selected\";\r\n@import \"./_pages/index\";","// Color variables\r\n\r\n$primary-color: hsl(216, 92%, 58%);\r\n$secondary-color: hsl(152, 60%, 63%);\r\n$tertiary-color: hsl(6, 81%, 63%);\r\n$primary-dark-color: hsl(216, 65%, 40%);\r\n$secondary-dark-color: hsl(152, 60%, 45%);\r\n$tertiary-dark-color: hsl(6, 81%, 45%);\r\n$grey-color: hsl(0, 7%, 76%);\r\n$grey-light-color: hsl(0, 0%, 91%);\r\n$body-color: hsl(0, 0%, 100%);\r\n$primary-color-text: hsl(0, 0%, 0%);\r\n$radius: .5rem;",".hide {\r\n  display: none!important;\r\n}\r\n\r\n.show {\r\n  display: block!important;\r\n}\r\n\r\n.show-flex {\r\n  display: flex!important;\r\n}\r\n\r\n.show-grid {\r\n  display: grid!important;\r\n}\r\n\r\n// Custom wrapper for control data in selects\r\n.wrapper {\r\n  width: 100%;\r\n  margin: 0 auto;\r\n}\r\n\r\n@include breakpoint(sm) {\r\n  .wrapper {\r\n    max-width: 540px;\r\n  }\r\n}\r\n\r\n@include breakpoint(md) {\r\n  .wrapper {\r\n    max-width: 740px;\r\n  }\r\n}\r\n\r\n@include breakpoint(lg) {\r\n  .wrapper {\r\n    max-width: 960px;\r\n  }\r\n}\r\n\r\n@include breakpoint(xl) {\r\n  .wrapper {\r\n    max-width: 1140px;\r\n  }\r\n}\r\n\r\n@include breakpoint(xxl) {\r\n  .wrapper {\r\n    max-width: 1400px;\r\n  }\r\n}\r\n\r\n\r\n","// Breakpoints\r\n\r\n$breakpoints: (\r\n  'xs': 400px,\r\n  'sm': 576px,\r\n  'md': 768px,\r\n  'lg': 991px,\r\n  'xl': 1200px,\r\n  'xxl': 1440px\r\n);\r\n\r\n// Use ex: @include breakpoint(md) { ... }\r\n@mixin breakpoint($breakpoint) {\r\n  @media (min-width: map-get($breakpoints, $breakpoint)) {\r\n    @content;\r\n  }\r\n}\r\n\r\n@mixin hide-text {\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n}",".btn-search {\r\n  position: absolute;\r\n  height: 69%;\r\n  top: 12px;\r\n  right: 25px;\r\n  border: none;\r\n  background-color: $grey-light-color;\r\n\r\n  i {\r\n    font-size: 2.2rem;\r\n    opacity: 0.7;\r\n\r\n    &:hover {\r\n      opacity: 1;\r\n    }\r\n  }\r\n}",".btn-tag-selected {\r\n  align-items: center;\r\n  margin: 0 15px 0 0;\r\n  padding: 0 10px;\r\n  min-width: fit-content;\r\n  height: 35px;\r\n  border-radius: $radius;\r\n  border: none;\r\n\r\n  .icon-close {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    position: relative;\r\n    margin: 0 0 0 15px;\r\n    padding: 0 10px 0 0;\r\n    transition: all .15s ease-in;\r\n  \r\n    &::before {\r\n      position: absolute;\r\n      content: \"\";\r\n      width: 12px;\r\n      height: 12px;\r\n      border-radius: 35px;\r\n      background-color: transparent;\r\n      border: solid 2px white;\r\n  \r\n      @include breakpoint(lg) {\r\n        border: solid 3px white;\r\n      }\r\n    }\r\n  \r\n    &::after {\r\n      position: absolute;\r\n      content: \"\\002716\";\r\n      font-size: 9px;\r\n      color: $body-color;\r\n  \r\n      @include breakpoint(lg) {\r\n        font-weight: 700;\r\n      }\r\n    }\r\n  }\r\n\r\n  &:hover {\r\n    .icon-close {\r\n      &:before {\r\n        background-color: $body-color;\r\n      }\r\n\r\n      &:after {\r\n        color: $primary-color-text;\r\n      }\r\n    }\r\n  }\r\n\r\n  &[data-cat=ingredients]:hover {\r\n    background-color: $primary-dark-color;\r\n  }\r\n  \r\n  &[data-cat=appliances]:hover {\r\n    background-color: $secondary-dark-color;\r\n  }\r\n  \r\n  &[data-cat=ustensils]:hover {\r\n    background-color: $tertiary-dark-color;\r\n  }\r\n}",".recipe-card {\r\n  margin: 1.5rem;\r\n  border-radius: $radius;\r\n  background-color: $grey-light-color;\r\n\r\n  &__img {\r\n    height: 15rem;\r\n    border-radius: $radius $radius 0 0;\r\n    background-color: $grey-color;\r\n  }\r\n\r\n  &__content {\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding: 15px;\r\n  \r\n    h2 {\r\n      display: flex;\r\n      flex-direction: column;\r\n      margin: 0;\r\n      font-size: 2.2rem;\r\n      font-weight: 700;\r\n\r\n      @include breakpoint(xs) {\r\n        flex-direction: row;\r\n        justify-content: space-between;\r\n      }\r\n\r\n      .recipe-card__content__title {\r\n        max-width: 255px;\r\n        @include hide-text;\r\n      }\r\n    }\r\n  \r\n    &__description {\r\n      display: flex;\r\n      flex-direction: column;\r\n\r\n      @include breakpoint(xs) {\r\n        flex-direction: row;\r\n        justify-content: space-between;\r\n        gap: 25px;\r\n      }\r\n    }\r\n  \r\n    ul {\r\n      width: 50%;\r\n      line-height: 2.2rem;\r\n    }\r\n  \r\n    p {\r\n      display: -webkit-box;\r\n      -webkit-box-orient: vertical;\r\n      -webkit-line-clamp: 10;\r\n      overflow: hidden;\r\n      width: 100%;\r\n      line-height: 2rem;\r\n\r\n      @include breakpoint(xs) {\r\n        width: 50%;\r\n      }\r\n    }\r\n  }\r\n}\r\n",".form-search-bar {\r\n  position: relative;\r\n  margin: 15px 0 0 0;\r\n  padding: 0 15px;\r\n\r\n  input[type=text] {\r\n    width: 100%;\r\n    padding: 20px;\r\n    margin: 8px 0;\r\n    display: inline-block;\r\n    font-size: 1.2rem;\r\n    border: 1px solid $grey-light-color;\r\n    background-color: $grey-light-color;\r\n    border-radius: $radius;\r\n    box-sizing: border-box;\r\n\r\n    @include breakpoint(lg) {\r\n      font-size: 1.4rem;\r\n    }\r\n\r\n    @include breakpoint(xl) {\r\n      font-size: 1.6rem;\r\n    }\r\n\r\n    &::placeholder {\r\n      opacity: .6;\r\n    }\r\n  }\r\n}",".select {\r\n  position: relative;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  width: 100%;\r\n  margin: 20px 0 0 0;\r\n  border-radius: $radius;\r\n  cursor: pointer;\r\n\r\n  &:first-child {\r\n    margin: 0;\r\n\r\n    @include breakpoint(sm) {\r\n      margin: 0 20px 0 0;\r\n    }\r\n  }\r\n\r\n  &:last-child {\r\n\r\n    @include breakpoint(sm) {\r\n      margin: 0;\r\n    }\r\n  }\r\n\r\n  @include breakpoint(sm) {\r\n    margin: 0 20px 0 0;\r\n    width: 170px;\r\n  }\r\n\r\n  input[type=text] {\r\n    padding: 18px 10px 18px 18px;\r\n    width: 85%;\r\n    font-size: 12px;\r\n    font-weight: 700;\r\n    color: $body-color;\r\n    outline: none;\r\n    border-radius: $radius;\r\n    cursor: pointer;\r\n\r\n    @include breakpoint(sm) {\r\n      width: 60%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      font-size: 14px;\r\n    }\r\n\r\n    @include breakpoint(xl) {\r\n      font-size: 16px;\r\n    }\r\n\r\n    &::placeholder {\r\n      font-weight: 700;\r\n      color: $body-color;\r\n    }\r\n  }\r\n\r\n  &__btn {\r\n    position: relative;\r\n    margin: 0 4px 0 0;\r\n    height: 50px;\r\n    width: 30px;\r\n    border: none;\r\n    background-color: transparent;\r\n\r\n    @include breakpoint(sm) {\r\n      height: 100%;\r\n    }\r\n\r\n    &:before {\r\n      position: absolute;\r\n      content: \"\";\r\n      right: 14px;\r\n      width: 12px;\r\n      height: 3px;\r\n      transform: rotate(-130deg);\r\n      border-radius: $radius;\r\n      background-color: $body-color;\r\n      transition: transform .2s ease-in;\r\n    }\r\n\r\n    &:after {\r\n      position: absolute;\r\n      content: \"\";\r\n      right: 7px;\r\n      width: 12px;\r\n      height: 3px;\r\n      transform: rotate(130deg);\r\n      border-radius: $radius;\r\n      background-color: $body-color;\r\n      transition: transform .2s ease-in-out;\r\n    }\r\n\r\n    &--selected {\r\n      &:before {\r\n        position: absolute;\r\n        content: \"\";\r\n        right: 14px;\r\n        width: 12px;\r\n        height: 3px;\r\n        transform: rotate(-45deg);\r\n        border-radius: $radius;\r\n        background-color: $body-color;\r\n        transition: transform .2s ease-in;\r\n      }\r\n  \r\n      &:after {\r\n        position: absolute;\r\n        content: \"\";\r\n        right: 7px;\r\n        width: 12px;\r\n        height: 3px;\r\n        transform: rotate(45deg);\r\n        border-radius: $radius;\r\n        background-color: $body-color;\r\n        transition: transform .2s ease-in;\r\n      }\r\n    }\r\n  }\r\n\r\n  .fas {\r\n    color: $body-color;\r\n  }\r\n\r\n  &--ingredients {\r\n    background-color: $primary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $primary-color;\r\n      background-color: $primary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $primary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 1;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $primary-color!important;\r\n\r\n        input[type=text] {\r\n          background-color: $primary-color!important;\r\n          border-color: $primary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $primary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $primary-dark-color;\r\n        border-color: $primary-dark-color;\r\n      }\r\n    }\r\n  }\r\n\r\n  &--appliances {\r\n    background-color: $secondary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $secondary-color;\r\n      background-color: $secondary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $secondary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 0.5;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      @include breakpoint(lg) {\r\n        flex: 0.5;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $secondary-color!important;\r\n\r\n        input[type=text] {\r\n          background-color: $secondary-color!important;\r\n          border-color: $secondary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $secondary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $secondary-dark-color;\r\n        border-color: $secondary-dark-color;\r\n      }\r\n    }\r\n  }\r\n\r\n  &--ustensils {\r\n    background-color: $tertiary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $tertiary-color;\r\n      background-color: $tertiary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $tertiary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 1;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $tertiary-color!important;\r\n        \r\n        input[type=text] {\r\n          background-color: $tertiary-color!important;\r\n          border-color: $tertiary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $tertiary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $tertiary-dark-color;\r\n        border-color: $tertiary-dark-color;\r\n      }\r\n    }\r\n  }\r\n}","header {\r\n  text-align: center;\r\n  padding: 15px;\r\n\r\n  .lpp_logo {\r\n    width: 200px;\r\n\r\n    @include breakpoint(xl) {\r\n      width: 320px;\r\n    }\r\n  }\r\n}",".tags-selection {\r\n  display: flex;\r\n  flex-direction: column;\r\n  padding: 12px 15px 0 15px;\r\n\r\n  @include breakpoint(sm) {\r\n    flex-direction: row;\r\n  }\r\n}\r\n\r\n.select__tags-list {\r\n  position: absolute;\r\n  display: none;\r\n  z-index: 10;\r\n  padding: 20px 10px;\r\n  top: 27px;\r\n  max-height: 277px;\r\n  width: -webkit-fill-available;\r\n  overflow: hidden;\r\n  border-radius: $radius;\r\n\r\n  @include breakpoint(md) {\r\n    grid-template-rows: repeat(6, auto);\r\n    grid-auto-flow: column;\r\n    column-gap: 7px;\r\n    max-height: none;\r\n  }\r\n\r\n  li {\r\n    width: 115px;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    white-space: nowrap;\r\n    padding: 8px;\r\n    font-weight: 700;\r\n    cursor: pointer;\r\n\r\n    @include breakpoint(sm) {\r\n      width: 95px;\r\n    }\r\n\r\n    @include breakpoint(md) {\r\n      width: 135px;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      width: 113px;\r\n    }\r\n\r\n    @include breakpoint(xl) {\r\n      width: 120px;\r\n    }\r\n\r\n    @include breakpoint(xxl) {\r\n      width: 140px;\r\n    }\r\n  }\r\n}\r\n\r\n.select__tags-list--ingredients {\r\n  li:hover {\r\n    background-color: $primary-dark-color;\r\n    color: $body-color;\r\n    border-radius: $radius;\r\n  }\r\n}\r\n\r\n.select__tags-list--appliances {\r\n  li:hover {\r\n    background-color: $secondary-dark-color;\r\n    color: $body-color;\r\n    border-radius: $radius;\r\n  }\r\n}\r\n\r\n.select__tags-list--ustensils {\r\n  li:hover {\r\n    background-color: $tertiary-dark-color;\r\n    color: $body-color;\r\n    border-radius: $radius;\r\n  }\r\n}",".tags-selected-container {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  row-gap: 15px;\r\n  padding: 15px;\r\n}",".recipes-list {\r\n  display: flex;\r\n  flex-direction: column;\r\n\r\n  @include breakpoint(lg) {\r\n    display: grid;\r\n    grid-template-columns: repeat(2, 1fr);\r\n    grid-template-rows: auto;\r\n  }\r\n\r\n  @include breakpoint(xl) {\r\n    grid-template-columns: repeat(3, 1fr);\r\n  }\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */\n/* Document\r\n   ========================================================================== */\n/**\r\n * 1. Correct the line height in all browsers.\r\n * 2. Prevent adjustments of font size after orientation changes in iOS.\r\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\r\n   ========================================================================== */\n/**\r\n * Remove the margin in all browsers.\r\n */\nbody {\n  margin: 0; }\n\n/**\r\n * Render the `main` element consistently in IE.\r\n */\nmain {\n  display: block; }\n\n/**\r\n * Correct the font size and margin on `h1` elements within `section` and\r\n * `article` contexts in Chrome, Firefox, and Safari.\r\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\r\n   ========================================================================== */\n/**\r\n * 1. Add the correct box sizing in Firefox.\r\n * 2. Show the overflow in Edge and IE.\r\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\r\n   ========================================================================== */\n/**\r\n * Remove the gray background on active links in IE 10.\r\n */\na {\n  background-color: transparent; }\n\n/**\r\n * 1. Remove the bottom border in Chrome 57-\r\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\r\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\r\n * Add the correct font weight in Chrome, Edge, and Safari.\r\n */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\r\n * Add the correct font size in all browsers.\r\n */\nsmall {\n  font-size: 80%; }\n\n/**\r\n * Prevent `sub` and `sup` elements from affecting the line height in\r\n * all browsers.\r\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\r\n   ========================================================================== */\n/**\r\n * Remove the border on images inside links in IE 10.\r\n */\nimg {\n  border-style: none; }\n\n/* Forms\r\n   ========================================================================== */\n/**\r\n * 1. Change the font styles in all browsers.\r\n * 2. Remove the margin in Firefox and Safari.\r\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: inherit;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\r\n * Show the overflow in IE.\r\n * 1. Show the overflow in Edge.\r\n */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\r\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\r\n * 1. Remove the inheritance of text transform in Firefox.\r\n */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\r\n * Correct the inability to style clickable types in iOS and Safari.\r\n */\nbutton,\n[type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; }\n\n/**\r\n * Remove the inner border and padding in Firefox.\r\n */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\r\n * Restore the focus styles unset by the previous rule.\r\n */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\r\n * Correct the padding in Firefox.\r\n */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\r\n * 1. Correct the text wrapping in Edge and IE.\r\n * 2. Correct the color inheritance from `fieldset` elements in IE.\r\n * 3. Remove the padding so developers are not caught out when they zero out\r\n *    `fieldset` elements in all browsers.\r\n */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\r\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\r\n */\nprogress {\n  vertical-align: baseline; }\n\n/**\r\n * Remove the default vertical scrollbar in IE 10+.\r\n */\ntextarea {\n  overflow: auto; }\n\n/**\r\n * 1. Add the correct box sizing in IE 10.\r\n * 2. Remove the padding in IE 10.\r\n */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\r\n * Correct the cursor style of increment and decrement buttons in Chrome.\r\n */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\r\n * 1. Correct the odd appearance in Chrome and Safari.\r\n * 2. Correct the outline style in Safari.\r\n */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\r\n * Remove the inner padding in Chrome and Safari on macOS.\r\n */\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\r\n * 1. Correct the inability to style clickable types in iOS and Safari.\r\n * 2. Change font properties to `inherit` in Safari.\r\n */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\r\n   ========================================================================== */\n/*\r\n * Add the correct display in Edge, IE 10+, and Firefox.\r\n */\ndetails {\n  display: block; }\n\n/*\r\n * Add the correct display in all browsers.\r\n */\nsummary {\n  display: list-item; }\n\n/* Misc\r\n   ========================================================================== */\n/**\r\n * Add the correct display in IE 10+.\r\n */\ntemplate {\n  display: none; }\n\n/**\r\n * Add the correct display in IE 10.\r\n */\n[hidden] {\n  display: none; }\n\n/**************************************/\n/************* Custom css *************/\n/**************************************/\nhtml {\n  box-sizing: border-box;\n  font-size: 62.5%; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  line-height: 1.6rem;\n  font-family: 'Lato', sans-serif;\n  font-size: 1.6rem;\n  color: black;\n  scroll-behavior: smooth; }\n\nh1,\nh2,\nh3 {\n  font-weight: 400;\n  line-height: 4.6rem; }\n\nul {\n  padding: 0;\n  list-style: none; }\n\na {\n  text-decoration: none; }\n\nimg,\nvideo {\n  max-width: 100%;\n  height: auto;\n  object-fit: cover; }\n\nbutton {\n  cursor: pointer; }\n\n[data-cat=ingredients] {\n  background-color: #3180f6;\n  color: white; }\n\n[data-cat=appliances] {\n  background-color: #68d9a4;\n  color: white; }\n\n[data-cat=ustensils] {\n  background-color: #ed6454;\n  color: white; }\n\n.display-none {\n  display: none !important; }\n\n.display-block {\n  display: block !important; }\n\n.display-flex {\n  display: flex !important; }\n\n.display-grid {\n  display: grid !important; }\n\n.opacity-50 {\n  opacity: .5; }\n\n.wrapper {\n  width: 100%;\n  margin: 0 auto; }\n\n@media (min-width: 576px) {\n  .wrapper {\n    max-width: 540px; } }\n\n@media (min-width: 768px) {\n  .wrapper {\n    max-width: 740px; } }\n\n@media (min-width: 991px) {\n  .wrapper {\n    max-width: 960px; } }\n\n@media (min-width: 1200px) {\n  .wrapper {\n    max-width: 1140px; } }\n\n@media (min-width: 1440px) {\n  .wrapper {\n    max-width: 1400px; } }\n\n.btn-search {\n  position: absolute;\n  height: 69%;\n  top: 6px;\n  right: 25px;\n  border: none;\n  background-color: transparent; }\n  .btn-search i {\n    font-size: 2.2rem;\n    opacity: 0.7; }\n    .btn-search i:hover {\n      opacity: 1; }\n\n.btn-tag-selected {\n  align-items: center;\n  margin: 0 15px 0 0;\n  padding: 0 10px;\n  min-width: fit-content;\n  height: 35px;\n  border-radius: 0.5rem;\n  border: none; }\n  .btn-tag-selected .icon-close {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    position: relative;\n    margin: 0 0 0 15px;\n    padding: 0 10px 0 0;\n    transition: all .15s ease-in; }\n    .btn-tag-selected .icon-close::before {\n      position: absolute;\n      content: \"\";\n      width: 12px;\n      height: 12px;\n      border-radius: 35px;\n      background-color: transparent;\n      border: solid 2px white; }\n      @media (min-width: 991px) {\n        .btn-tag-selected .icon-close::before {\n          border: solid 3px white; } }\n    .btn-tag-selected .icon-close::after {\n      position: absolute;\n      content: \"\\002716\";\n      font-size: 9px;\n      color: white; }\n      @media (min-width: 991px) {\n        .btn-tag-selected .icon-close::after {\n          font-weight: 700; } }\n  .btn-tag-selected:hover .icon-close:before {\n    background-color: white; }\n  .btn-tag-selected:hover .icon-close:after {\n    color: black; }\n  .btn-tag-selected[data-cat=ingredients]:hover {\n    background-color: #2459a8; }\n  .btn-tag-selected[data-cat=appliances]:hover {\n    background-color: #2eb877; }\n  .btn-tag-selected[data-cat=ustensils]:hover {\n    background-color: #d02816; }\n\n.recipe-card {\n  margin: 1.5rem;\n  border-radius: 0.5rem;\n  background-color: #e8e8e8; }\n  .recipe-card__img {\n    height: 15rem;\n    border-radius: 0.5rem 0.5rem 0 0;\n    background-color: #c6bebe; }\n  .recipe-card__content {\n    display: flex;\n    flex-direction: column;\n    padding: 15px; }\n    .recipe-card__content h2 {\n      display: flex;\n      flex-direction: column;\n      margin: 0;\n      font-size: 2.2rem;\n      font-weight: 700; }\n      @media (min-width: 400px) {\n        .recipe-card__content h2 {\n          flex-direction: row;\n          justify-content: space-between; } }\n      .recipe-card__content h2 .recipe-card__content__title {\n        max-width: 255px;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: nowrap; }\n    .recipe-card__content__description {\n      display: flex;\n      flex-direction: column; }\n      @media (min-width: 400px) {\n        .recipe-card__content__description {\n          flex-direction: row;\n          justify-content: space-between;\n          gap: 25px; } }\n    .recipe-card__content ul {\n      width: 50%;\n      line-height: 2.2rem; }\n    .recipe-card__content p {\n      display: -webkit-box;\n      -webkit-box-orient: vertical;\n      -webkit-line-clamp: 10;\n      overflow: hidden;\n      width: 100%;\n      line-height: 2rem; }\n      @media (min-width: 400px) {\n        .recipe-card__content p {\n          width: 50%; } }\n\n.form-search-bar {\n  position: relative;\n  margin: 15px 0 0 0;\n  padding: 0 15px; }\n  .form-search-bar input[type=text] {\n    width: 100%;\n    padding: 20px;\n    margin: 0 0 15px 0;\n    display: inline-block;\n    font-size: 1.2rem;\n    border: 1px solid #e8e8e8;\n    background-color: #e8e8e8;\n    border-radius: 0.5rem;\n    box-sizing: border-box; }\n    @media (min-width: 991px) {\n      .form-search-bar input[type=text] {\n        font-size: 1.4rem; } }\n    @media (min-width: 1200px) {\n      .form-search-bar input[type=text] {\n        font-size: 1.6rem; } }\n    .form-search-bar input[type=text]::placeholder {\n      opacity: .6; }\n\n.select {\n  position: relative;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  width: 100%;\n  margin: 20px 0 0 0;\n  border-radius: 0.5rem;\n  cursor: pointer;\n  transition: width .1s ease-in; }\n  .select:first-child {\n    margin: 0; }\n    @media (min-width: 576px) {\n      .select:first-child {\n        margin: 0 20px 0 0; } }\n  @media (min-width: 576px) {\n    .select:last-child {\n      margin: 0; } }\n  @media (min-width: 576px) {\n    .select {\n      margin: 0 20px 0 0;\n      width: 170px; } }\n  .select input[type=text] {\n    padding: 18px 10px 18px 15px;\n    width: 85%;\n    font-size: 12px;\n    font-weight: 700;\n    color: white;\n    outline: none;\n    border-radius: 0.5rem;\n    cursor: pointer; }\n    @media (min-width: 576px) {\n      .select input[type=text] {\n        width: 60%; } }\n    @media (min-width: 991px) {\n      .select input[type=text] {\n        font-size: 14px; } }\n    @media (min-width: 1200px) {\n      .select input[type=text] {\n        font-size: 16px; } }\n    .select input[type=text]::placeholder {\n      font-weight: 700;\n      color: white; }\n      .select input[type=text]::placeholder:focus, .select input[type=text]::placeholder:active {\n        opacity: 0.5; }\n  .select__btn {\n    position: relative;\n    margin: 0 4px 0 0;\n    height: 50px;\n    width: 30px;\n    border: none;\n    background-color: transparent; }\n    @media (min-width: 576px) {\n      .select__btn {\n        height: 100%; } }\n    .select__btn:before {\n      position: absolute;\n      content: \"\";\n      right: 14px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(-130deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n    .select__btn:after {\n      position: absolute;\n      content: \"\";\n      right: 7px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(130deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in-out; }\n    .select__btn--selected:before {\n      position: absolute;\n      content: \"\";\n      right: 14px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(-45deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n    .select__btn--selected:after {\n      position: absolute;\n      content: \"\";\n      right: 7px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(45deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n  .select .fas {\n    color: white; }\n  .select--ingredients {\n    background-color: #3180f6; }\n    .select--ingredients input[type=text] {\n      border: 1px solid #3180f6;\n      background-color: #3180f6;\n      color: white; }\n      .select--ingredients input[type=text]:hover {\n        background-color: #2459a8; }\n    .select--ingredients--open {\n      flex: 1;\n      transition: flex .06s ease-in-out; }\n      @media (min-width: 576px) {\n        .select--ingredients--open {\n          flex: auto; } }\n      .select--ingredients--open:hover {\n        background-color: #3180f6 !important; }\n        .select--ingredients--open:hover input[type=text] {\n          background-color: #3180f6 !important;\n          border-color: #3180f6 !important; }\n    .select--ingredients:hover {\n      background-color: #2459a8; }\n      .select--ingredients:hover input[type=text] {\n        background-color: #2459a8;\n        border-color: #2459a8; }\n  .select--appliances {\n    background-color: #68d9a4; }\n    .select--appliances input[type=text] {\n      border: 1px solid #68d9a4;\n      background-color: #68d9a4;\n      color: white; }\n      .select--appliances input[type=text]:hover {\n        background-color: #2eb877; }\n    .select--appliances--open {\n      flex: 0.5;\n      transition: flex .06s ease-in-out; }\n      @media (min-width: 576px) {\n        .select--appliances--open {\n          flex: auto; } }\n      @media (min-width: 991px) {\n        .select--appliances--open {\n          flex: 0.5; } }\n      .select--appliances--open:hover {\n        background-color: #68d9a4 !important; }\n        .select--appliances--open:hover input[type=text] {\n          background-color: #68d9a4 !important;\n          border-color: #68d9a4 !important; }\n    .select--appliances:hover {\n      background-color: #2eb877; }\n      .select--appliances:hover input[type=text] {\n        background-color: #2eb877;\n        border-color: #2eb877; }\n  .select--ustensils {\n    background-color: #ed6454; }\n    .select--ustensils input[type=text] {\n      border: 1px solid #ed6454;\n      background-color: #ed6454;\n      color: white; }\n      .select--ustensils input[type=text]:hover {\n        background-color: #d02816; }\n    .select--ustensils--open {\n      flex: 1;\n      transition: flex .06s ease-in-out; }\n      @media (min-width: 576px) {\n        .select--ustensils--open {\n          flex: auto; } }\n      .select--ustensils--open:hover {\n        background-color: #ed6454 !important; }\n        .select--ustensils--open:hover input[type=text] {\n          background-color: #ed6454 !important;\n          border-color: #ed6454 !important; }\n    .select--ustensils:hover {\n      background-color: #d02816; }\n      .select--ustensils:hover input[type=text] {\n        background-color: #d02816;\n        border-color: #d02816; }\n\nheader {\n  text-align: center;\n  padding: 15px; }\n  header .lpp_logo {\n    width: 200px; }\n    @media (min-width: 1200px) {\n      header .lpp_logo {\n        width: 320px; } }\n\n.tags-selection {\n  display: flex;\n  flex-direction: column;\n  padding: 15px; }\n  @media (min-width: 576px) {\n    .tags-selection {\n      flex-direction: row; } }\n\n.select__tags-list {\n  position: absolute;\n  display: none;\n  z-index: 10;\n  padding: 5px 0;\n  top: 27px;\n  max-height: 348px;\n  width: -webkit-fill-available;\n  overflow: hidden;\n  border-radius: 0.5rem; }\n  @media (min-width: 768px) {\n    .select__tags-list {\n      grid-template-columns: repeat(2, 1fr); } }\n  @media (min-width: 991px) {\n    .select__tags-list {\n      column-gap: 10px;\n      max-height: 284px; } }\n  .select__tags-list li {\n    width: 100%;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    padding: 8px 8px 8px 15px;\n    font-weight: 700;\n    cursor: pointer; }\n\n@media (min-width: 991px) {\n  .select__tags-list--ingredients {\n    grid-template-columns: repeat(3, 1fr); } }\n\n@media (min-width: 1200px) {\n  .select__tags-list--ingredients {\n    grid-template-columns: repeat(5, 1fr);\n    max-height: 187px; } }\n\n@media (min-width: 768px) {\n  .select__tags-list--ingredients li {\n    max-width: 86%; } }\n\n@media (min-width: 991px) {\n  .select__tags-list--ingredients li {\n    max-width: 87%; } }\n\n.select__tags-list--ingredients li:hover {\n  background-color: #2459a8;\n  color: white; }\n\n@media (min-width: 768px) {\n  .select__tags-list--appliances {\n    max-height: 188px; } }\n\n.select__tags-list--appliances li:hover {\n  background-color: #2eb877;\n  color: white; }\n\n@media (min-width: 991px) {\n  .select__tags-list--ustensils {\n    grid-template-columns: repeat(3, 1fr); } }\n\n@media (min-width: 1200px) {\n  .select__tags-list--ustensils {\n    grid-template-columns: repeat(4, 1fr);\n    max-height: 187px; } }\n\n@media (min-width: 768px) {\n  .select__tags-list--ustensils li {\n    max-width: 86%; } }\n\n@media (min-width: 991px) {\n  .select__tags-list--ustensils li {\n    max-width: 87%; } }\n\n@media (min-width: 991px) {\n  .select__tags-list--ustensils li {\n    max-width: 90%; } }\n\n.select__tags-list--ustensils li:hover {\n  background-color: #d02816;\n  color: white; }\n\n.tags-selected-container {\n  display: flex;\n  flex-wrap: wrap;\n  row-gap: 15px;\n  padding: 0 15px; }\n\n.recipes-list {\n  display: flex;\n  flex-direction: column; }\n  @media (min-width: 991px) {\n    .recipes-list {\n      display: grid;\n      grid-template-columns: repeat(2, 1fr);\n      grid-template-rows: auto; } }\n  @media (min-width: 1200px) {\n    .recipes-list {\n      grid-template-columns: repeat(3, 1fr); } }\n", "",{"version":3,"sources":["webpack://./src/styles/_base/_base.scss","webpack://./src/styles/main.scss","webpack://./src/styles/_utils/_variables.scss","webpack://./src/styles/_utils/_classes.scss","webpack://./src/styles/_utils/_mixins.scss","webpack://./src/styles/_components/_btn-search.scss","webpack://./src/styles/_components/_btn-tag-selected.scss","webpack://./src/styles/_components/_recipe-card.scss","webpack://./src/styles/_components/_search-bar.scss","webpack://./src/styles/_components/_select.scss","webpack://./src/styles/_layout/_header.scss","webpack://./src/styles/_layout/_tags-selection.scss","webpack://./src/styles/_layout/_tags-selected.scss","webpack://./src/styles/_pages/_index.scss"],"names":[],"mappings":"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","sourcesContent":["/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */\r\n\r\n/* Document\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Correct the line height in all browsers.\r\n * 2. Prevent adjustments of font size after orientation changes in iOS.\r\n */\r\n\r\n html {\r\n  line-height: 1.15; /* 1 */\r\n  -webkit-text-size-adjust: 100%; /* 2 */\r\n}\r\n\r\n/* Sections\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the margin in all browsers.\r\n */\r\n\r\nbody {\r\n  margin: 0;\r\n}\r\n\r\n/**\r\n * Render the `main` element consistently in IE.\r\n */\r\n\r\nmain {\r\n  display: block;\r\n}\r\n\r\n/**\r\n * Correct the font size and margin on `h1` elements within `section` and\r\n * `article` contexts in Chrome, Firefox, and Safari.\r\n */\r\n\r\nh1 {\r\n  font-size: 2em;\r\n  margin: 0.67em 0;\r\n}\r\n\r\n/* Grouping content\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Add the correct box sizing in Firefox.\r\n * 2. Show the overflow in Edge and IE.\r\n */\r\n\r\nhr {\r\n  box-sizing: content-box; /* 1 */\r\n  height: 0; /* 1 */\r\n  overflow: visible; /* 2 */\r\n}\r\n\r\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\r\n\r\npre {\r\n  font-family: monospace, monospace; /* 1 */\r\n  font-size: 1em; /* 2 */\r\n}\r\n\r\n/* Text-level semantics\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the gray background on active links in IE 10.\r\n */\r\n\r\na {\r\n  background-color: transparent;\r\n}\r\n\r\n/**\r\n * 1. Remove the bottom border in Chrome 57-\r\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\r\n */\r\n\r\nabbr[title] {\r\n  border-bottom: none; /* 1 */\r\n  text-decoration: underline; /* 2 */\r\n  text-decoration: underline dotted; /* 2 */\r\n}\r\n\r\n/**\r\n * Add the correct font weight in Chrome, Edge, and Safari.\r\n */\r\n\r\nb,\r\nstrong {\r\n  font-weight: bolder;\r\n}\r\n\r\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\r\n\r\ncode,\r\nkbd,\r\nsamp {\r\n  font-family: monospace, monospace; /* 1 */\r\n  font-size: 1em; /* 2 */\r\n}\r\n\r\n/**\r\n * Add the correct font size in all browsers.\r\n */\r\n\r\nsmall {\r\n  font-size: 80%;\r\n}\r\n\r\n/**\r\n * Prevent `sub` and `sup` elements from affecting the line height in\r\n * all browsers.\r\n */\r\n\r\nsub,\r\nsup {\r\n  font-size: 75%;\r\n  line-height: 0;\r\n  position: relative;\r\n  vertical-align: baseline;\r\n}\r\n\r\nsub {\r\n  bottom: -0.25em;\r\n}\r\n\r\nsup {\r\n  top: -0.5em;\r\n}\r\n\r\n/* Embedded content\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the border on images inside links in IE 10.\r\n */\r\n\r\nimg {\r\n  border-style: none;\r\n}\r\n\r\n/* Forms\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Change the font styles in all browsers.\r\n * 2. Remove the margin in Firefox and Safari.\r\n */\r\n\r\nbutton,\r\ninput,\r\noptgroup,\r\nselect,\r\ntextarea {\r\n  font-family: inherit; /* 1 */\r\n  font-size: 100%; /* 1 */\r\n  line-height: 1.15; /* 1 */\r\n  margin: 0; /* 2 */\r\n}\r\n\r\n/**\r\n * Show the overflow in IE.\r\n * 1. Show the overflow in Edge.\r\n */\r\n\r\nbutton,\r\ninput { /* 1 */\r\n  overflow: visible;\r\n}\r\n\r\n/**\r\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\r\n * 1. Remove the inheritance of text transform in Firefox.\r\n */\r\n\r\nbutton,\r\nselect { /* 1 */\r\n  text-transform: none;\r\n}\r\n\r\n/**\r\n * Correct the inability to style clickable types in iOS and Safari.\r\n */\r\n\r\nbutton,\r\n[type=\"button\"],\r\n[type=\"reset\"],\r\n[type=\"submit\"] {\r\n  -webkit-appearance: button;\r\n}\r\n\r\n/**\r\n * Remove the inner border and padding in Firefox.\r\n */\r\n\r\nbutton::-moz-focus-inner,\r\n[type=\"button\"]::-moz-focus-inner,\r\n[type=\"reset\"]::-moz-focus-inner,\r\n[type=\"submit\"]::-moz-focus-inner {\r\n  border-style: none;\r\n  padding: 0;\r\n}\r\n\r\n/**\r\n * Restore the focus styles unset by the previous rule.\r\n */\r\n\r\nbutton:-moz-focusring,\r\n[type=\"button\"]:-moz-focusring,\r\n[type=\"reset\"]:-moz-focusring,\r\n[type=\"submit\"]:-moz-focusring {\r\n  outline: 1px dotted ButtonText;\r\n}\r\n\r\n/**\r\n * Correct the padding in Firefox.\r\n */\r\n\r\nfieldset {\r\n  padding: 0.35em 0.75em 0.625em;\r\n}\r\n\r\n/**\r\n * 1. Correct the text wrapping in Edge and IE.\r\n * 2. Correct the color inheritance from `fieldset` elements in IE.\r\n * 3. Remove the padding so developers are not caught out when they zero out\r\n *    `fieldset` elements in all browsers.\r\n */\r\n\r\nlegend {\r\n  box-sizing: border-box; /* 1 */\r\n  color: inherit; /* 2 */\r\n  display: table; /* 1 */\r\n  max-width: 100%; /* 1 */\r\n  padding: 0; /* 3 */\r\n  white-space: normal; /* 1 */\r\n}\r\n\r\n/**\r\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\r\n */\r\n\r\nprogress {\r\n  vertical-align: baseline;\r\n}\r\n\r\n/**\r\n * Remove the default vertical scrollbar in IE 10+.\r\n */\r\n\r\ntextarea {\r\n  overflow: auto;\r\n}\r\n\r\n/**\r\n * 1. Add the correct box sizing in IE 10.\r\n * 2. Remove the padding in IE 10.\r\n */\r\n\r\n[type=\"checkbox\"],\r\n[type=\"radio\"] {\r\n  box-sizing: border-box; /* 1 */\r\n  padding: 0; /* 2 */\r\n}\r\n\r\n/**\r\n * Correct the cursor style of increment and decrement buttons in Chrome.\r\n */\r\n\r\n[type=\"number\"]::-webkit-inner-spin-button,\r\n[type=\"number\"]::-webkit-outer-spin-button {\r\n  height: auto;\r\n}\r\n\r\n/**\r\n * 1. Correct the odd appearance in Chrome and Safari.\r\n * 2. Correct the outline style in Safari.\r\n */\r\n\r\n[type=\"search\"] {\r\n  -webkit-appearance: textfield; /* 1 */\r\n  outline-offset: -2px; /* 2 */\r\n}\r\n\r\n/**\r\n * Remove the inner padding in Chrome and Safari on macOS.\r\n */\r\n\r\n[type=\"search\"]::-webkit-search-decoration {\r\n  -webkit-appearance: none;\r\n}\r\n\r\n/**\r\n * 1. Correct the inability to style clickable types in iOS and Safari.\r\n * 2. Change font properties to `inherit` in Safari.\r\n */\r\n\r\n::-webkit-file-upload-button {\r\n  -webkit-appearance: button; /* 1 */\r\n  font: inherit; /* 2 */\r\n}\r\n\r\n/* Interactive\r\n   ========================================================================== */\r\n\r\n/*\r\n * Add the correct display in Edge, IE 10+, and Firefox.\r\n */\r\n\r\ndetails {\r\n  display: block;\r\n}\r\n\r\n/*\r\n * Add the correct display in all browsers.\r\n */\r\n\r\nsummary {\r\n  display: list-item;\r\n}\r\n\r\n/* Misc\r\n   ========================================================================== */\r\n\r\n/**\r\n * Add the correct display in IE 10+.\r\n */\r\n\r\ntemplate {\r\n  display: none;\r\n}\r\n\r\n/**\r\n * Add the correct display in IE 10.\r\n */\r\n\r\n[hidden] {\r\n  display: none;\r\n}\r\n\r\n/**************************************/\r\n/************* Custom css *************/\r\n/**************************************/\r\n\r\nhtml {\r\n  box-sizing: border-box;\r\n  font-size: 62.5%;\r\n}\r\n\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n  line-height: 1.6rem;\r\n  font-family: 'Lato', sans-serif;\r\n  font-size: 1.6rem;\r\n  color: $primary-color-text;\r\n  scroll-behavior: smooth;\r\n}\r\n\r\nh1,\r\nh2,\r\nh3 {\r\n  font-weight: 400;\r\n  line-height: 4.6rem;\r\n}\r\n\r\nul {\r\n  padding: 0;\r\n  list-style: none;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n}\r\n\r\nimg,\r\nvideo {\r\n  max-width: 100%;\r\n  height: auto;\r\n  object-fit: cover;\r\n}\r\n\r\nbutton {\r\n  cursor: pointer;\r\n}\r\n\r\n// Data attribute for different categories\r\n[data-cat=ingredients] {\r\n  background-color: $primary-color;\r\n  color: white;\r\n}\r\n\r\n[data-cat=appliances] {\r\n  background-color: $secondary-color;\r\n  color: white;\r\n}\r\n\r\n[data-cat=ustensils] {\r\n  background-color: $tertiary-color;\r\n  color: white;\r\n}\r\n","@import \"./_utils/variables\";\r\n@import \"./_base/base\";\r\n@import \"./_utils/mixins\";\r\n@import \"./_utils/classes\";\r\n@import \"./_components/btn-search\";\r\n@import \"./_components/btn-tag-selected\";\r\n@import \"./_components/recipe-card\";\r\n@import \"./_components/search-bar\";\r\n@import \"./_components/select\";\r\n@import \"./_layout/header\";\r\n@import \"./_layout/tags-selection\";\r\n@import \"./_layout/tags-selected\";\r\n@import \"./_pages/index\";","// Color variables\r\n\r\n$primary-color: hsl(216, 92%, 58%);\r\n$secondary-color: hsl(152, 60%, 63%);\r\n$tertiary-color: hsl(6, 81%, 63%);\r\n$primary-dark-color: hsl(216, 65%, 40%);\r\n$secondary-dark-color: hsl(152, 60%, 45%);\r\n$tertiary-dark-color: hsl(6, 81%, 45%);\r\n$grey-color: hsl(0, 7%, 76%);\r\n$grey-light-color: hsl(0, 0%, 91%);\r\n$body-color: hsl(0, 0%, 100%);\r\n$primary-color-text: hsl(0, 0%, 0%);\r\n$radius: .5rem;",".display-none {\r\n  display: none!important;\r\n}\r\n\r\n.display-block {\r\n  display: block!important;\r\n}\r\n\r\n.display-flex {\r\n  display: flex!important;\r\n}\r\n\r\n.display-grid {\r\n  display: grid!important;\r\n}\r\n\r\n.opacity-50 {\r\n  opacity: .5;\r\n}\r\n\r\n// Custom wrapper for control data in selects\r\n.wrapper {\r\n  width: 100%;\r\n  margin: 0 auto;\r\n}\r\n\r\n@include breakpoint(sm) {\r\n  .wrapper {\r\n    max-width: 540px;\r\n  }\r\n}\r\n\r\n@include breakpoint(md) {\r\n  .wrapper {\r\n    max-width: 740px;\r\n  }\r\n}\r\n\r\n@include breakpoint(lg) {\r\n  .wrapper {\r\n    max-width: 960px;\r\n  }\r\n}\r\n\r\n@include breakpoint(xl) {\r\n  .wrapper {\r\n    max-width: 1140px;\r\n  }\r\n}\r\n\r\n@include breakpoint(xxl) {\r\n  .wrapper {\r\n    max-width: 1400px;\r\n  }\r\n}\r\n\r\n\r\n","// Breakpoints\r\n\r\n$breakpoints: (\r\n  'xs': 400px,\r\n  'sm': 576px,\r\n  'md': 768px,\r\n  'lg': 991px,\r\n  'xl': 1200px,\r\n  'xxl': 1440px\r\n);\r\n\r\n// Use ex: @include breakpoint(md) { ... }\r\n@mixin breakpoint($breakpoint) {\r\n  @media (min-width: map-get($breakpoints, $breakpoint)) {\r\n    @content;\r\n  }\r\n}\r\n\r\n@mixin hide-text {\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n}",".btn-search {\r\n  position: absolute;\r\n  height: 69%;\r\n  top: 6px;\r\n  right: 25px;\r\n  border: none;\r\n  background-color: transparent;\r\n\r\n  i {\r\n    font-size: 2.2rem;\r\n    opacity: 0.7;\r\n\r\n    &:hover {\r\n      opacity: 1;\r\n    }\r\n  }\r\n}",".btn-tag-selected {\r\n  align-items: center;\r\n  margin: 0 15px 0 0;\r\n  padding: 0 10px;\r\n  min-width: fit-content;\r\n  height: 35px;\r\n  border-radius: $radius;\r\n  border: none;\r\n\r\n  .icon-close {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    position: relative;\r\n    margin: 0 0 0 15px;\r\n    padding: 0 10px 0 0;\r\n    transition: all .15s ease-in;\r\n\r\n    &::before {\r\n      position: absolute;\r\n      content: \"\";\r\n      width: 12px;\r\n      height: 12px;\r\n      border-radius: 35px;\r\n      background-color: transparent;\r\n      border: solid 2px white;\r\n  \r\n      @include breakpoint(lg) {\r\n        border: solid 3px white;\r\n      }\r\n    }\r\n  \r\n    &::after {\r\n      position: absolute;\r\n      content: \"\\002716\";\r\n      font-size: 9px;\r\n      color: $body-color;\r\n  \r\n      @include breakpoint(lg) {\r\n        font-weight: 700;\r\n      }\r\n    }\r\n  }\r\n\r\n  &:hover {\r\n    .icon-close {\r\n      &:before {\r\n        background-color: $body-color;\r\n      }\r\n\r\n      &:after {\r\n        color: $primary-color-text;\r\n      }\r\n    }\r\n  }\r\n\r\n  &[data-cat=ingredients]:hover {\r\n    background-color: $primary-dark-color;\r\n  }\r\n  \r\n  &[data-cat=appliances]:hover {\r\n    background-color: $secondary-dark-color;\r\n  }\r\n  \r\n  &[data-cat=ustensils]:hover {\r\n    background-color: $tertiary-dark-color;\r\n  }\r\n}",".recipe-card {\r\n  margin: 1.5rem;\r\n  border-radius: $radius;\r\n  background-color: $grey-light-color;\r\n\r\n  &__img {\r\n    height: 15rem;\r\n    border-radius: $radius $radius 0 0;\r\n    background-color: $grey-color;\r\n  }\r\n\r\n  &__content {\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding: 15px;\r\n  \r\n    h2 {\r\n      display: flex;\r\n      flex-direction: column;\r\n      margin: 0;\r\n      font-size: 2.2rem;\r\n      font-weight: 700;\r\n\r\n      @include breakpoint(xs) {\r\n        flex-direction: row;\r\n        justify-content: space-between;\r\n      }\r\n\r\n      .recipe-card__content__title {\r\n        max-width: 255px;\r\n        @include hide-text;\r\n      }\r\n    }\r\n  \r\n    &__description {\r\n      display: flex;\r\n      flex-direction: column;\r\n\r\n      @include breakpoint(xs) {\r\n        flex-direction: row;\r\n        justify-content: space-between;\r\n        gap: 25px;\r\n      }\r\n    }\r\n  \r\n    ul {\r\n      width: 50%;\r\n      line-height: 2.2rem;\r\n    }\r\n  \r\n    p {\r\n      display: -webkit-box;\r\n      -webkit-box-orient: vertical;\r\n      -webkit-line-clamp: 10;\r\n      overflow: hidden;\r\n      width: 100%;\r\n      line-height: 2rem;\r\n\r\n      @include breakpoint(xs) {\r\n        width: 50%;\r\n      }\r\n    }\r\n  }\r\n}\r\n",".form-search-bar {\r\n  position: relative;\r\n  margin: 15px 0 0 0;\r\n  padding: 0 15px;\r\n\r\n  input[type=text] {\r\n    width: 100%;\r\n    padding: 20px;\r\n    margin: 0 0 15px 0;\r\n    display: inline-block;\r\n    font-size: 1.2rem;\r\n    border: 1px solid $grey-light-color;\r\n    background-color: $grey-light-color;\r\n    border-radius: $radius;\r\n    box-sizing: border-box;\r\n\r\n    @include breakpoint(lg) {\r\n      font-size: 1.4rem;\r\n    }\r\n\r\n    @include breakpoint(xl) {\r\n      font-size: 1.6rem;\r\n    }\r\n\r\n    &::placeholder {\r\n      opacity: .6;\r\n    }\r\n  }\r\n}",".select {\r\n  position: relative;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  width: 100%;\r\n  margin: 20px 0 0 0;\r\n  border-radius: $radius;\r\n  cursor: pointer;\r\n  transition: width .1s ease-in;\r\n\r\n  &:first-child {\r\n    margin: 0;\r\n\r\n    @include breakpoint(sm) {\r\n      margin: 0 20px 0 0;\r\n    }\r\n  }\r\n\r\n  &:last-child {\r\n\r\n    @include breakpoint(sm) {\r\n      margin: 0;\r\n    }\r\n  }\r\n\r\n  @include breakpoint(sm) {\r\n    margin: 0 20px 0 0;\r\n    width: 170px;\r\n  }\r\n\r\n  input[type=text] {\r\n    padding: 18px 10px 18px 15px;\r\n    width: 85%;\r\n    font-size: 12px;\r\n    font-weight: 700;\r\n    color: $body-color;\r\n    outline: none;\r\n    border-radius: $radius;\r\n    cursor: pointer;\r\n\r\n    @include breakpoint(sm) {\r\n      width: 60%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      font-size: 14px;\r\n    }\r\n\r\n    @include breakpoint(xl) {\r\n      font-size: 16px;\r\n    }\r\n\r\n    &::placeholder {\r\n      font-weight: 700;\r\n      color: $body-color;\r\n      \r\n      &:focus,\r\n      &:active {\r\n        opacity: 0.5;\r\n      }\r\n    }\r\n  }\r\n\r\n  &__btn {\r\n    position: relative;\r\n    margin: 0 4px 0 0;\r\n    height: 50px;\r\n    width: 30px;\r\n    border: none;\r\n    background-color: transparent;\r\n\r\n    @include breakpoint(sm) {\r\n      height: 100%;\r\n    }\r\n\r\n    &:before {\r\n      position: absolute;\r\n      content: \"\";\r\n      right: 14px;\r\n      width: 12px;\r\n      height: 3px;\r\n      transform: rotate(-130deg);\r\n      border-radius: $radius;\r\n      background-color: $body-color;\r\n      transition: transform .2s ease-in;\r\n    }\r\n\r\n    &:after {\r\n      position: absolute;\r\n      content: \"\";\r\n      right: 7px;\r\n      width: 12px;\r\n      height: 3px;\r\n      transform: rotate(130deg);\r\n      border-radius: $radius;\r\n      background-color: $body-color;\r\n      transition: transform .2s ease-in-out;\r\n    }\r\n\r\n    &--selected {\r\n      &:before {\r\n        position: absolute;\r\n        content: \"\";\r\n        right: 14px;\r\n        width: 12px;\r\n        height: 3px;\r\n        transform: rotate(-45deg);\r\n        border-radius: $radius;\r\n        background-color: $body-color;\r\n        transition: transform .2s ease-in;\r\n      }\r\n  \r\n      &:after {\r\n        position: absolute;\r\n        content: \"\";\r\n        right: 7px;\r\n        width: 12px;\r\n        height: 3px;\r\n        transform: rotate(45deg);\r\n        border-radius: $radius;\r\n        background-color: $body-color;\r\n        transition: transform .2s ease-in;\r\n      }\r\n    }\r\n  }\r\n\r\n  .fas {\r\n    color: $body-color;\r\n  }\r\n\r\n  &--ingredients {\r\n    background-color: $primary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $primary-color;\r\n      background-color: $primary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $primary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 1;\r\n      transition: flex .06s ease-in-out;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $primary-color!important;\r\n\r\n        input[type=text] {\r\n          background-color: $primary-color!important;\r\n          border-color: $primary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $primary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $primary-dark-color;\r\n        border-color: $primary-dark-color;\r\n      }\r\n    }\r\n  }\r\n\r\n  &--appliances {\r\n    background-color: $secondary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $secondary-color;\r\n      background-color: $secondary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $secondary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 0.5;\r\n      transition: flex .06s ease-in-out;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      @include breakpoint(lg) {\r\n        flex: 0.5;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $secondary-color!important;\r\n\r\n        input[type=text] {\r\n          background-color: $secondary-color!important;\r\n          border-color: $secondary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $secondary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $secondary-dark-color;\r\n        border-color: $secondary-dark-color;\r\n      }\r\n    }\r\n  }\r\n\r\n  &--ustensils {\r\n    background-color: $tertiary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $tertiary-color;\r\n      background-color: $tertiary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $tertiary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 1;\r\n      transition: flex .06s ease-in-out;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $tertiary-color!important;\r\n        \r\n        input[type=text] {\r\n          background-color: $tertiary-color!important;\r\n          border-color: $tertiary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $tertiary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $tertiary-dark-color;\r\n        border-color: $tertiary-dark-color;\r\n      }\r\n    }\r\n  }\r\n}","header {\r\n  text-align: center;\r\n  padding: 15px;\r\n\r\n  .lpp_logo {\r\n    width: 200px;\r\n\r\n    @include breakpoint(xl) {\r\n      width: 320px;\r\n    }\r\n  }\r\n}",".tags-selection {\r\n  display: flex;\r\n  flex-direction: column;\r\n  padding: 15px;\r\n\r\n  @include breakpoint(sm) {\r\n    flex-direction: row;\r\n  }\r\n}\r\n\r\n.select__tags-list {\r\n  position: absolute;\r\n  display: none;\r\n  z-index: 10;\r\n  padding: 5px 0;\r\n  top: 27px;\r\n  max-height: 348px;\r\n  width: -webkit-fill-available;\r\n  overflow: hidden;\r\n  border-radius: $radius;\r\n\r\n  @include breakpoint(md) {\r\n    grid-template-columns: repeat(2, 1fr);\r\n  }\r\n\r\n  @include breakpoint(lg) {\r\n    column-gap: 10px;\r\n    max-height: 284px;\r\n  }\r\n\r\n  li {\r\n    width: 100%;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    white-space: nowrap;\r\n    padding: 8px 8px 8px 15px;\r\n    font-weight: 700;\r\n    cursor: pointer;\r\n  }\r\n}\r\n\r\n.select__tags-list--ingredients {\r\n\r\n  @include breakpoint(lg) {\r\n    grid-template-columns: repeat(3, 1fr);\r\n  }\r\n\r\n  @include breakpoint(xl) {\r\n    grid-template-columns: repeat(5, 1fr);\r\n    max-height: 187px;\r\n  }\r\n\r\n  li {\r\n\r\n    @include breakpoint(md) {\r\n      max-width: 86%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      max-width: 87%;\r\n    }\r\n  }\r\n\r\n  li:hover {\r\n    background-color: $primary-dark-color;\r\n    color: $body-color;\r\n  }\r\n}\r\n\r\n.select__tags-list--appliances {\r\n\r\n  @include breakpoint(md) {\r\n    max-height: 188px;\r\n  }\r\n\r\n  li:hover {\r\n    background-color: $secondary-dark-color;\r\n    color: $body-color;\r\n  }\r\n}\r\n\r\n.select__tags-list--ustensils {\r\n\r\n  @include breakpoint(lg) {\r\n    grid-template-columns: repeat(3, 1fr);\r\n  }\r\n\r\n  @include breakpoint(xl) {\r\n    grid-template-columns: repeat(4, 1fr);\r\n    max-height: 187px;\r\n  }\r\n\r\n  li {\r\n\r\n    @include breakpoint(md) {\r\n      max-width: 86%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      max-width: 87%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      max-width: 90%;\r\n    }\r\n  }\r\n\r\n  li:hover {\r\n    background-color: $tertiary-dark-color;\r\n    color: $body-color;\r\n  }\r\n}",".tags-selected-container {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  row-gap: 15px;\r\n  padding: 0 15px;\r\n}",".recipes-list {\r\n  display: flex;\r\n  flex-direction: column;\r\n\r\n  @include breakpoint(lg) {\r\n    display: grid;\r\n    grid-template-columns: repeat(2, 1fr);\r\n    grid-template-rows: auto;\r\n  }\r\n\r\n  @include breakpoint(xl) {\r\n    grid-template-columns: repeat(3, 1fr);\r\n  }\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6265,21 +7296,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/main.scss */ "./src/styles/main.scss");
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data */ "./src/js/data.js");
 /* harmony import */ var _recipesList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./recipesList */ "./src/js/recipesList.js");
-/* harmony import */ var _tagsList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tagsList */ "./src/js/tagsList.js");
+/* harmony import */ var _mainSearch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mainSearch */ "./src/js/mainSearch.js");
 /* harmony import */ var _handleSelects__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./handleSelects */ "./src/js/handleSelects.js");
-/* harmony import */ var _handleTags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./handleTags */ "./src/js/handleTags.js");
+/* harmony import */ var _categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./categoriesList/ingredientsList */ "./src/js/categoriesList/ingredientsList.js");
+/* harmony import */ var _categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./categoriesList/appliancesList */ "./src/js/categoriesList/appliancesList.js");
+/* harmony import */ var _categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./categoriesList/ustensilsList */ "./src/js/categoriesList/ustensilsList.js");
+/* harmony import */ var _handleTags__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./handleTags */ "./src/js/handleTags.js");
 
 
 
 
 
 
+
+
+
+var ingredientsDataCat = "ingredients";
+var appliancesDataCat = "appliances";
+var ustensilsDataCat = "ustensils";
 (0,_recipesList__WEBPACK_IMPORTED_MODULE_2__.createRecipesList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
-(0,_tagsList__WEBPACK_IMPORTED_MODULE_3__.createAllTagLists)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
-(0,_tagsList__WEBPACK_IMPORTED_MODULE_3__.createAllBtnTagsSelected)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_mainSearch__WEBPACK_IMPORTED_MODULE_3__.updateRecipesList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_5__.createIngredientsTagsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_6__.createAppliancesTagsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_7__.createUstensilsTagsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_handleTags__WEBPACK_IMPORTED_MODULE_8__.createCategorieSelectedTags)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes, ingredientsDataCat);
+(0,_handleTags__WEBPACK_IMPORTED_MODULE_8__.createCategorieSelectedTags)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes, appliancesDataCat);
+(0,_handleTags__WEBPACK_IMPORTED_MODULE_8__.createCategorieSelectedTags)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes, ustensilsDataCat);
+(0,_categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_5__.updateIngredientsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_6__.updateAppliancesList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_7__.updateUstensilsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes); // filteredRecipesByTags(recipes);
+
+(0,_handleTags__WEBPACK_IMPORTED_MODULE_8__.removeCategorieSelectedTags)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
 (0,_handleSelects__WEBPACK_IMPORTED_MODULE_4__.handleAllSelects)();
-(0,_handleTags__WEBPACK_IMPORTED_MODULE_5__.handleAllTags)();
-(0,_handleSelects__WEBPACK_IMPORTED_MODULE_4__.listeningToDocument)();
 })();
 
 /******/ })()
