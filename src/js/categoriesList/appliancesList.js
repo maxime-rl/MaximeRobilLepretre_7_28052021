@@ -1,13 +1,6 @@
 import { createElementFactory } from "../utils/createElementFactory";
-import { createCategorieSelectedTags } from "../handleTags";
+import { filteredRecipesByTags } from "../handleTags";
 import { normalize } from "../utils/normalize";
-
-/**
- * DOM Elements
- */
-const searchInput = document.querySelector("#appliances-research");
-const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
-const appliancesDataCat = "appliances";
 
 /**
  * Remove duplicates from the appliances list
@@ -35,14 +28,32 @@ const collectSortedTagsAppliances = (recipes) => {
 };
 
 /**
- * Creation appliance list in select
+ * Creation appliance list in select and appliance selected tags
  * @param {object} recipes
  * @returns {HTMLElement}
  */
-const createAppliancesTagsList = (recipes) => {
+const createDOMApplianceTagsList = (recipes) => {
+  const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+  const btnsTagSelected = document.querySelector(".tags-selected-container");
+
   collectSortedTagsAppliances(recipes).forEach((appliance) => {
     const liElt = createElementFactory("li", { class: "tag block", "data-cat": "appliances" }, `${appliance}`);
     appliancesTagsList.appendChild(liElt);
+
+    liElt.addEventListener("click", () => {
+      liElt.classList.replace("block", "none");
+
+      const btnElt = createElementFactory("button", {
+        class: "btn-tag-selected flex",
+        "data-cat": "appliances"
+      }, `${appliance}`);
+      const iconCloseElt = createElementFactory("span", { class: "icon-close" });
+
+      btnElt.appendChild(iconCloseElt);
+      btnsTagSelected.appendChild(btnElt);
+
+      filteredRecipesByTags(recipes);
+    });
   });
 };
 
@@ -51,6 +62,9 @@ const createAppliancesTagsList = (recipes) => {
  * @param {object} recipes
  */
 const updateAppliancesList = (recipes) => {
+  const searchInput = document.querySelector("#appliances-research");
+  const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+
   searchInput.addEventListener("keyup", (e) => {
     const userInputValue = normalize(e.target.value);
 
@@ -60,9 +74,8 @@ const updateAppliancesList = (recipes) => {
       return appliance.includes(userInputValue);
     });
     appliancesTagsList.innerHTML = "";
-    createAppliancesTagsList(filteredAppliances);
-    createCategorieSelectedTags(appliancesDataCat);
+    createDOMApplianceTagsList(filteredAppliances);
   });
 };
 
-export { createAppliancesTagsList, updateAppliancesList };
+export { createDOMApplianceTagsList, updateAppliancesList };

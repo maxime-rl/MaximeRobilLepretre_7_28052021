@@ -1,13 +1,6 @@
 import { createElementFactory } from "../utils/createElementFactory";
-import { createCategorieSelectedTags } from "../handleTags";
+import { filteredRecipesByTags } from "../handleTags";
 import { normalize } from "../utils/normalize";
-
-/**
- * DOM Elements
- */
-const searchInput = document.querySelector("#ustensils-research");
-const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
-const ustensilsDataCat = "ustensils";
 
 /**
  * Remove duplicates from the ustensils list
@@ -37,14 +30,32 @@ const collectSortedTagsUstensils = (recipes) => {
 };
 
 /**
- * Creation ustensils list in select
+ * Creation ustensils list and ustensil selected tags
  * @param {object} recipes
  * @returns {HTMLElement}
  */
-const createUstensilsTagsList = (recipes) => {
+const createDOMUstensilTagsList = (recipes) => {
+  const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+  const btnsTagSelected = document.querySelector(".tags-selected-container");
+
   collectSortedTagsUstensils(recipes).forEach((ustensil) => {
     const liElt = createElementFactory("li", { class: "tag block", "data-cat": "ustensils" }, `${ustensil}`);
     ustensilsTagsList.appendChild(liElt);
+
+    liElt.addEventListener("click", () => {
+      liElt.classList.replace("block", "none");
+
+      const btnElt = createElementFactory("button", {
+        class: "btn-tag-selected flex",
+        "data-cat": "ustensils"
+      }, `${ustensil}`);
+      const iconCloseElt = createElementFactory("span", { class: "icon-close" });
+
+      btnElt.appendChild(iconCloseElt);
+      btnsTagSelected.appendChild(btnElt);
+
+      filteredRecipesByTags(recipes);
+    });
   });
 };
 
@@ -53,6 +64,9 @@ const createUstensilsTagsList = (recipes) => {
  * @param {object} recipes
  */
 const updateUstensilsList = (recipes) => {
+  const searchInput = document.querySelector("#ustensils-research");
+  const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+
   searchInput.addEventListener("keyup", (e) => {
     const userInputValue = normalize(e.target.value);
 
@@ -61,9 +75,8 @@ const updateUstensilsList = (recipes) => {
     });
 
     ustensilsTagsList.innerHTML = "";
-    createUstensilsTagsList(filteredUstensils);
-    createCategorieSelectedTags(ustensilsDataCat);
+    createDOMUstensilTagsList(filteredUstensils);
   });
 };
 
-export { createUstensilsTagsList, updateUstensilsList };
+export { createDOMUstensilTagsList, updateUstensilsList };

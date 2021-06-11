@@ -1,14 +1,6 @@
 import { createElementFactory } from "../utils/createElementFactory.js";
-import { createCategorieSelectedTags } from "../handleTags";
+import { filteredRecipesByTags } from "../handleTags";
 import { normalize } from "../utils/normalize";
-// import { recipes } from "../data";
-
-/**
- * DOM Elements
- */
-const searchInput = document.querySelector("#ingredients-research");
-const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
-const ingredientsDataCat = "ingredients";
 
 /**
  * Remove duplicates from the ingredients list
@@ -23,8 +15,6 @@ const createUniqueTagsIngredientsArr = (recipes) => {
       tagsIngredients.add(elt.ingredient);
     };
   };
-  // console.log(tagsIngredients.has("banane"));
-  // return tagsIngredients;
   return [...tagsIngredients];
 };
 
@@ -40,14 +30,32 @@ const collectSortedTagsIngredients = (recipes) => {
 };
 
 /**
- * Creation ingredients list in select
+ * Creation ingredients list in select and ingredient selected tags
  * @param {object} recipes
  * @returns {HTMLElement}
  */
-const createIngredientsTagsList = (recipes) => {
+const createDOMIngredientTagsList = (recipes) => {
+  const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
+  const btnsTagSelected = document.querySelector(".tags-selected-container");
+
   collectSortedTagsIngredients(recipes).forEach((ingredient) => {
     const liElt = createElementFactory("li", { class: "tag block", "data-cat": "ingredients" }, `${ingredient}`);
     ingredientsTagsList.appendChild(liElt);
+
+    liElt.addEventListener("click", () => {
+      liElt.classList.replace("block", "none");
+
+      const btnElt = createElementFactory("button", {
+        class: "btn-tag-selected flex",
+        "data-cat": "ingredients"
+      }, `${ingredient}`);
+      const iconCloseElt = createElementFactory("span", { class: "icon-close" });
+
+      btnElt.appendChild(iconCloseElt);
+      btnsTagSelected.appendChild(btnElt);
+
+      filteredRecipesByTags(recipes);
+    });
   });
 };
 
@@ -56,6 +64,9 @@ const createIngredientsTagsList = (recipes) => {
  * @param {object} recipes
  */
 const updateIngredientsList = (recipes) => {
+  const searchInput = document.querySelector("#ingredients-research");
+  const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
+
   searchInput.addEventListener("keyup", (e) => {
     const userInputValue = normalize(e.target.value);
 
@@ -63,27 +74,8 @@ const updateIngredientsList = (recipes) => {
       return recipe.ingredients.some(i => normalize(i.ingredient).includes(userInputValue));
     });
     ingredientsTagsList.innerHTML = "";
-    createIngredientsTagsList(filteredIngredients);
-    createCategorieSelectedTags(ingredientsDataCat);
+    createDOMIngredientTagsList(filteredIngredients);
   });
 };
 
-// /**
-//  * Update ingredients list input search
-//  * @param {object} recipes
-//  */
-// const updateIngredientsList = (recipes) => {
-//   searchInput.addEventListener("keyup", (e) => {
-//     const userInputValue = normalize(e.target.value);
-
-//     const filteredIngredients = collectSortedTagsIngredients(recipes).filter((ingr) => {
-//       console.log(normalize(ingr).includes(userInputValue));
-//       return (normalize(ingr).includes(userInputValue));
-//     });
-//     ingredientsTagsList.innerHTML = "";
-//     createIngredientsTagsList(filteredIngredients);
-//     createCategorieSelectedTags(ingredientsDataCat);
-//   });
-// };
-
-export { createIngredientsTagsList, updateIngredientsList };
+export { createDOMIngredientTagsList, updateIngredientsList };

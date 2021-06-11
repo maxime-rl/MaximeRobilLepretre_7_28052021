@@ -5,7 +5,7 @@ import { createElementFactory } from "./utils/createElementFactory";
  * @param {object} data recipes
  * @returns {HTMLElement} recipes list
  */
-const createRecipesList = (recipes) => {
+const createDOMRecipesList = (recipes) => {
   recipes.forEach(recipe => {
     const recipesListDOMElt = document.querySelector(".recipes-list");
     const articleElt = createElementFactory("article", { class: "recipe-card" });
@@ -50,4 +50,4 @@ const createRecipesList = (recipes) => {
   });
 };
 
-export { createRecipesList };
+export { createDOMRecipesList };

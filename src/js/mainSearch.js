@@ -1,8 +1,7 @@
-import { createRecipesList } from "./recipesList";
-import { createIngredientsTagsList } from "./categoriesList/ingredientsList";
-import { createAppliancesTagsList } from "./categoriesList/appliancesList";
-import { createUstensilsTagsList } from "./categoriesList/ustensilsList";
-import { createCategorieSelectedTags } from "./handleTags";
+import { createDOMRecipesList } from "./recipesList";
+import { createDOMIngredientTagsList } from "./categoriesList/ingredientsList";
+import { createDOMApplianceTagsList } from "./categoriesList/appliancesList";
+import { createDOMUstensilTagsList } from "./categoriesList/ustensilsList";
 import { normalize } from "./utils/normalize";
 
 /**
@@ -13,9 +12,6 @@ const recipesDOMList = document.querySelector(".recipes-list");
 const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
-const ingredientsDataCat = "ingredients";
-const appliancesDataCat = "appliances";
-const ustensilsDataCat = "ustensils";
 
 const removeDataDOMRecipes = () => {
   recipesDOMList.innerHTML = "";
@@ -25,16 +21,10 @@ const removeDataDOMRecipes = () => {
 };
 
 const createDataDOMRecipes = (filteredelt) => {
-  createRecipesList(filteredelt);
-  createIngredientsTagsList(filteredelt);
-  createAppliancesTagsList(filteredelt);
-  createUstensilsTagsList(filteredelt);
-};
-
-const createAllCategoriesSelectedTags = (recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat) => {
-  createCategorieSelectedTags(recipes, ingredientsDataCat);
-  createCategorieSelectedTags(recipes, appliancesDataCat);
-  createCategorieSelectedTags(recipes, ustensilsDataCat);
+  createDOMRecipesList(filteredelt);
+  createDOMIngredientTagsList(filteredelt);
+  createDOMApplianceTagsList(filteredelt);
+  createDOMUstensilTagsList(filteredelt);
 };
 
 /**
@@ -61,12 +51,10 @@ const updateRecipesList = (recipes) => {
       // Filtered recipes and update tags list
       removeDataDOMRecipes();
       createDataDOMRecipes(filteredRecipes);
-      createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
       // Create full recipes and all tags
     } else {
       removeDataDOMRecipes();
       createDataDOMRecipes(recipes);
-      createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
     }
   });
 };
