@@ -24,12 +24,12 @@ const ustensilsPlaceholderElt = document.getElementsByName("ustensils")[0];
  */
 const handleCategoriesBtnClick = (btnElt, tagsListElt) => {
   btnElt.addEventListener("click", () => {
-    tagsListElt.classList.toggle("display-grid");
+    tagsListElt.classList.toggle("grid");
     btnElt.classList.toggle("select__btn--selected");
     handlerForCurrentBtn(btnElt);
   });
   btnElt.previousElementSibling.addEventListener("click", () => {
-    tagsListElt.classList.toggle("display-grid");
+    tagsListElt.classList.toggle("grid");
     btnElt.classList.toggle("select__btn--selected");
     handlerForCurrentBtn(btnElt);
   });
@@ -40,24 +40,24 @@ const handlerForCurrentBtn = (btnElt) => {
     ingredientsSelect.classList.toggle("select--ingredients--open");
     appliancesSelect.classList.remove("select--appliances--open");
     ustensilsSelect.classList.remove("select--ustensils--open");
-    appliancesTagsList.classList.remove("display-grid");
-    ustensilsTagsList.classList.remove("display-grid");
+    appliancesTagsList.classList.remove("grid");
+    ustensilsTagsList.classList.remove("grid");
     ingredientsPlaceholderElt.placeholder = "Recherchez des ingredients";
     ingredientsPlaceholderElt.classList.toggle("opacity-50");
   } else if (btnElt === appliancesBtn) {
     appliancesSelect.classList.toggle("select--appliances--open");
     ingredientsSelect.classList.remove("select--ingredients--open");
     ustensilsSelect.classList.remove("select--ustensils--open");
-    ingredientsTagsList.classList.remove("display-grid");
-    ustensilsTagsList.classList.remove("display-grid");
+    ingredientsTagsList.classList.remove("grid");
+    ustensilsTagsList.classList.remove("grid");
     appliancesPlaceholderElt.placeholder = "Recherchez des appareils";
     appliancesPlaceholderElt.classList.toggle("opacity-50");
   } else {
     ustensilsSelect.classList.toggle("select--ustensils--open");
     ingredientsSelect.classList.remove("select--ingredients--open");
     appliancesSelect.classList.remove("select--appliances--open");
-    ingredientsTagsList.classList.remove("display-grid");
-    appliancesTagsList.classList.remove("display-grid");
+    ingredientsTagsList.classList.remove("grid");
+    appliancesTagsList.classList.remove("grid");
     ustensilsPlaceholderElt.placeholder = "Recherchez des ustensiles";
     ustensilsPlaceholderElt.classList.toggle("opacity-50");
   }
@@ -77,7 +77,7 @@ const listeningDocumentForIngredients = () => {
       targetElt = targetElt.parentNode;
     } while (targetElt);
     // Click outside
-    ingredientsTagsList.classList.remove("display-grid");
+    ingredientsTagsList.classList.remove("grid");
     ingredientsSelect.classList.remove("select--ingredients--open");
     ingredientsBtn.classList.remove("select__btn--selected");
     ingredientsPlaceholderElt.placeholder = "Ingredients";
@@ -98,7 +98,7 @@ const listeningDocumentForAppliances = () => {
       targetElt = targetElt.parentNode;
     } while (targetElt);
     // Click outside
-    appliancesTagsList.classList.remove("display-grid");
+    appliancesTagsList.classList.remove("grid");
     appliancesSelect.classList.remove("select--appliances--open");
     appliancesBtn.classList.remove("select__btn--selected");
     appliancesPlaceholderElt.placeholder = "Appareils";
@@ -119,7 +119,7 @@ const listeningDocumentForUstensils = () => {
       targetElt = targetElt.parentNode;
     } while (targetElt);
     // Click outside
-    ustensilsTagsList.classList.remove("display-grid");
+    ustensilsTagsList.classList.remove("grid");
     ustensilsSelect.classList.remove("select--ustensils--open");
     ustensilsBtn.classList.remove("select__btn--selected");
     ustensilsPlaceholderElt.placeholder = "Ustensiles";
