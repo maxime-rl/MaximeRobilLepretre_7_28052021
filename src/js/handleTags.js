@@ -1,8 +1,8 @@
 import { createElementFactory } from "./utils/createElementFactory";
-import { createRecipesList } from "./recipesList";
-import { createIngredientsTagsList } from "./categoriesList/ingredientsList";
-import { createAppliancesTagsList } from "./categoriesList/appliancesList";
-import { createUstensilsTagsList } from "./categoriesList/ustensilsList";
+// import { createRecipesList } from "./recipesList";
+// import { createIngredientsTagsList } from "./categoriesList/ingredientsList";
+// import { createAppliancesTagsList } from "./categoriesList/appliancesList";
+// import { createUstensilsTagsList } from "./categoriesList/ustensilsList";
 // import { normalize } from "./utils/normalize";
 
 /**
@@ -10,45 +10,47 @@ import { createUstensilsTagsList } from "./categoriesList/ustensilsList";
  */
 const btnsTagSelected = document.querySelector(".tags-selected-container");
 const allTags = document.getElementsByClassName("tag");
-const recipesDOMList = document.querySelector(".recipes-list");
-const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
-const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
-const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+// const recipesDOMList = document.querySelector(".recipes-list");
+// const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
+// const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+// const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
 
-const removeDataDOMRecipes = () => {
-  recipesDOMList.innerHTML = "";
-  ingredientsTagsList.innerHTML = "";
-  appliancesTagsList.innerHTML = "";
-  ustensilsTagsList.innerHTML = "";
-};
+// const removeDataDOMRecipes = () => {
+//   recipesDOMList.innerHTML = "";
+//   ingredientsTagsList.innerHTML = "";
+//   appliancesTagsList.innerHTML = "";
+//   ustensilsTagsList.innerHTML = "";
+// };
 
-const ingredientsDataCat = "ingredients";
-const appliancesDataCat = "appliances";
-const ustensilsDataCat = "ustensils";
+// const ingredientsDataCat = "ingredients";
+// const appliancesDataCat = "appliances";
+// const ustensilsDataCat = "ustensils";
 
-const createDataDOMRecipes = (elt) => {
-  createRecipesList(elt);
-  createIngredientsTagsList(elt);
-  createAppliancesTagsList(elt);
-  createUstensilsTagsList(elt);
-};
+// const createDataDOMRecipes = (elt) => {
+//   createRecipesList(elt);
+//   createIngredientsTagsList(elt);
+//   createAppliancesTagsList(elt);
+//   createUstensilsTagsList(elt);
+// };
 
-const createAllCategoriesSelectedTags = (recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat) => {
-  createCategorieSelectedTags(recipes, ingredientsDataCat);
-  createCategorieSelectedTags(recipes, appliancesDataCat);
-  createCategorieSelectedTags(recipes, ustensilsDataCat);
-};
+// const createAllCategoriesSelectedTags = (recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat) => {
+//   createCategorieSelectedTags(recipes, ingredientsDataCat);
+//   createCategorieSelectedTags(recipes, appliancesDataCat);
+//   createCategorieSelectedTags(recipes, ustensilsDataCat);
+// };
 
 /**
  * Create a selected btn tag and update list of recipes each time tag is clicked
- * @param {object} recipes
+ * @param {object} _recipes
  * @param {string} categorieElt
  */
-const createCategorieSelectedTags = (recipes, categorieElt) => {
+const createCategorieSelectedTags = (_recipes, categorieElt) => {
   allTags.forEach(tag => {
     tag.addEventListener("click", () => {
-      tag.classList.add("display-none");
+      tag.classList.replace("block", "none");
+      // console.log(tag);
       console.log(tag);
+
       createBtnSelectedTag(tag, categorieElt);
       // filteredRecipesByTags(recipes);
     });
@@ -63,7 +65,7 @@ const createCategorieSelectedTags = (recipes, categorieElt) => {
 const createBtnSelectedTag = (tag, categorieElt) => {
   if (tag.dataset.cat === `${categorieElt}`) {
     const btnElt = createElementFactory("button", {
-      class: "btn-tag-selected display-flex",
+      class: "btn-tag-selected flex",
       "data-cat": `${categorieElt}`
     }, `${tag.textContent}`);
     const iconCloseElt = createElementFactory("span", { class: "icon-close" });
@@ -111,14 +113,15 @@ const createBtnSelectedTag = (tag, categorieElt) => {
 
 /**
  * Remove selected tag on click
- * @param {object} recipes
  */
-const removeCategorieSelectedTags = (recipes) => {
+const removeCategorieSelectedTags = () => {
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("icon-close") || e.target.classList.contains("btn-tag-selected")) {
-      removeDataDOMRecipes();
-      createDataDOMRecipes(recipes);
-      createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
+      allTags.forEach(tag => {
+        if ((e.target.textContent === tag.textContent) || (e.target.parentNode.textContent === tag.textContent)) {
+          tag.classList.replace("none", "block");
+        }
+      });
       if (e.target.classList.contains("icon-close")) {
         e.target.parentNode.remove();
         e.target.remove();

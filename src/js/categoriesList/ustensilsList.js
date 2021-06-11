@@ -5,7 +5,6 @@ import { normalize } from "../utils/normalize";
 /**
  * DOM Elements
  */
-const allTagsList = document.querySelectorAll(".select__tags-list");
 const searchInput = document.querySelector("#ustensils-research");
 const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
 const ustensilsDataCat = "ustensils";
@@ -43,13 +42,9 @@ const collectSortedTagsUstensils = (recipes) => {
  * @returns {HTMLElement}
  */
 const createUstensilsTagsList = (recipes) => {
-  allTagsList.forEach(tagsList => {
-    if (tagsList.dataset.cat === "ustensils") {
-      collectSortedTagsUstensils(recipes).forEach((ustensil) => {
-        const liElt = createElementFactory("li", { class: "tag", "data-cat": "ustensils" }, `${ustensil}`);
-        tagsList.appendChild(liElt);
-      });
-    }
+  collectSortedTagsUstensils(recipes).forEach((ustensil) => {
+    const liElt = createElementFactory("li", { class: "tag block", "data-cat": "ustensils" }, `${ustensil}`);
+    ustensilsTagsList.appendChild(liElt);
   });
 };
 

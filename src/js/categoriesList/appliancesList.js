@@ -5,7 +5,6 @@ import { normalize } from "../utils/normalize";
 /**
  * DOM Elements
  */
-const allTagsList = document.querySelectorAll(".select__tags-list");
 const searchInput = document.querySelector("#appliances-research");
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 const appliancesDataCat = "appliances";
@@ -41,13 +40,9 @@ const collectSortedTagsAppliances = (recipes) => {
  * @returns {HTMLElement}
  */
 const createAppliancesTagsList = (recipes) => {
-  allTagsList.forEach(tagsList => {
-    if (tagsList.dataset.cat === "appliances") {
-      collectSortedTagsAppliances(recipes).forEach((appliance) => {
-        const liElt = createElementFactory("li", { class: "tag", "data-cat": "appliances" }, `${appliance}`);
-        tagsList.appendChild(liElt);
-      });
-    }
+  collectSortedTagsAppliances(recipes).forEach((appliance) => {
+    const liElt = createElementFactory("li", { class: "tag block", "data-cat": "appliances" }, `${appliance}`);
+    appliancesTagsList.appendChild(liElt);
   });
 };
 

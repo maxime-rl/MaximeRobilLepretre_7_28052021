@@ -6,7 +6,6 @@ import { normalize } from "../utils/normalize";
 /**
  * DOM Elements
  */
-const allTagsList = document.querySelectorAll(".select__tags-list");
 const searchInput = document.querySelector("#ingredients-research");
 const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 const ingredientsDataCat = "ingredients";
@@ -46,13 +45,9 @@ const collectSortedTagsIngredients = (recipes) => {
  * @returns {HTMLElement}
  */
 const createIngredientsTagsList = (recipes) => {
-  allTagsList.forEach(tagsList => {
-    if (tagsList.dataset.cat === "ingredients") {
-      collectSortedTagsIngredients(recipes).forEach((ingredient) => {
-        const liElt = createElementFactory("li", { class: "tag", "data-cat": "ingredients" }, `${ingredient}`);
-        tagsList.appendChild(liElt);
-      });
-    }
+  collectSortedTagsIngredients(recipes).forEach((ingredient) => {
+    const liElt = createElementFactory("li", { class: "tag block", "data-cat": "ingredients" }, `${ingredient}`);
+    ingredientsTagsList.appendChild(liElt);
   });
 };
 
