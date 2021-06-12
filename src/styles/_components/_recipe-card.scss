@@ -26,9 +26,26 @@
         justify-content: space-between;
       }
 
+      @include breakpoint(xl) {
+        font-size: 1.8rem;
+      }
+
+      @include breakpoint(xxl) {
+        font-size: 2.2rem;
+      }
+
       .recipe-card__content__title {
         max-width: 255px;
+        font-weight: 400;
         @include hide-text;
+
+        @include breakpoint(xl) {
+          max-width: 230px;
+        }
+  
+        @include breakpoint(xxl) {
+          max-width: 255px;
+        }
       }
     }
   

@@ -1,5 +1,5 @@
 import { createElementFactory } from "../utils/createElementFactory.js";
-import { filteredRecipesByTags } from "../handleTags";
+import { filteredRecipesByTags, hideTagClickedInList } from "../handleTags";
 import { normalize } from "../utils/normalize";
 
 /**
@@ -34,7 +34,7 @@ const collectSortedTagsIngredients = (recipes) => {
  * @param {object} recipes
  * @returns {HTMLElement}
  */
-const createDOMIngredientTagsList = (recipes) => {
+const handleIngredientTagsList = (recipes) => {
   const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
   const btnsTagSelected = document.querySelector(".tags-selected-container");
 
@@ -42,11 +42,11 @@ const createDOMIngredientTagsList = (recipes) => {
     const liElt = createElementFactory("li", { class: "tag block", "data-cat": "ingredients" }, `${ingredient}`);
     ingredientsTagsList.appendChild(liElt);
 
-    liElt.addEventListener("click", () => {
-      liElt.classList.replace("block", "none");
+    hideTagClickedInList(liElt);
 
+    liElt.addEventListener("click", () => {
       const btnElt = createElementFactory("button", {
-        class: "btn-tag-selected flex",
+        class: "tag-selected flex",
         "data-cat": "ingredients"
       }, `${ingredient}`);
       const iconCloseElt = createElementFactory("span", { class: "icon-close" });
@@ -70,12 +70,17 @@ const updateIngredientsList = (recipes) => {
   searchInput.addEventListener("keyup", (e) => {
     const userInputValue = normalize(e.target.value);
 
-    const filteredIngredients = recipes.filter((recipe) => {
-      return recipe.ingredients.some(i => normalize(i.ingredient).includes(userInputValue));
-    });
-    ingredientsTagsList.innerHTML = "";
-    createDOMIngredientTagsList(filteredIngredients);
+    if (userInputValue.length) {
+      const filteredIngredients = recipes.filter((recipe) => {
+        return recipe.ingredients.some(i => normalize(i.ingredient).includes(userInputValue));
+      });
+      ingredientsTagsList.innerHTML = "";
+      handleIngredientTagsList(filteredIngredients);
+    } else {
+      ingredientsTagsList.innerHTML = "";
+      handleIngredientTagsList(recipes);
+    }
   });
 };
 
-export { createDOMIngredientTagsList, updateIngredientsList };
+export { handleIngredientTagsList, updateIngredientsList };

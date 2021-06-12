@@ -1,5 +1,5 @@
 import { createElementFactory } from "../utils/createElementFactory";
-import { filteredRecipesByTags } from "../handleTags";
+import { filteredRecipesByTags, hideTagClickedInList } from "../handleTags";
 import { normalize } from "../utils/normalize";
 
 /**
@@ -34,7 +34,7 @@ const collectSortedTagsUstensils = (recipes) => {
  * @param {object} recipes
  * @returns {HTMLElement}
  */
-const createDOMUstensilTagsList = (recipes) => {
+const handleUstensilTagsList = (recipes) => {
   const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
   const btnsTagSelected = document.querySelector(".tags-selected-container");
 
@@ -42,11 +42,11 @@ const createDOMUstensilTagsList = (recipes) => {
     const liElt = createElementFactory("li", { class: "tag block", "data-cat": "ustensils" }, `${ustensil}`);
     ustensilsTagsList.appendChild(liElt);
 
-    liElt.addEventListener("click", () => {
-      liElt.classList.replace("block", "none");
+    hideTagClickedInList(liElt);
 
+    liElt.addEventListener("click", () => {
       const btnElt = createElementFactory("button", {
-        class: "btn-tag-selected flex",
+        class: "tag-selected flex",
         "data-cat": "ustensils"
       }, `${ustensil}`);
       const iconCloseElt = createElementFactory("span", { class: "icon-close" });
@@ -70,13 +70,17 @@ const updateUstensilsList = (recipes) => {
   searchInput.addEventListener("keyup", (e) => {
     const userInputValue = normalize(e.target.value);
 
-    const filteredUstensils = recipes.filter((recipe) => {
-      return recipe.ustensils.some(ustensil => normalize(ustensil).includes(userInputValue));
-    });
-
-    ustensilsTagsList.innerHTML = "";
-    createDOMUstensilTagsList(filteredUstensils);
+    if (userInputValue.length) {
+      const filteredUstensils = recipes.filter((recipe) => {
+        return recipe.ustensils.some(i => normalize(i).includes(userInputValue));
+      });
+      ustensilsTagsList.innerHTML = "";
+      handleUstensilTagsList(filteredUstensils);
+    } else {
+      ustensilsTagsList.innerHTML = "";
+      handleUstensilTagsList(recipes);
+    }
   });
 };
 
-export { createDOMUstensilTagsList, updateUstensilsList };
+export { handleUstensilTagsList, updateUstensilsList };

@@ -6,28 +6,29 @@ import { updateRecipesList } from "./mainSearch";
 import { handleAllSelects } from "./handleSelects";
 
 import {
-  updateIngredientsList,
-  createDOMIngredientTagsList
+  handleIngredientTagsList,
+  updateIngredientsList
 } from "./categoriesList/ingredientsList";
 
 import {
-  createDOMApplianceTagsList,
+  handleApplianceTagsList,
   updateAppliancesList
 } from "./categoriesList/appliancesList";
 
 import {
-  createDOMUstensilTagsList,
+  handleUstensilTagsList,
   updateUstensilsList
 } from "./categoriesList/ustensilsList";
 
 import { removeSelectedTags } from "./handleTags";
 
 createDOMRecipesList(recipes);
+
 updateRecipesList(recipes);
 
-createDOMIngredientTagsList(recipes);
-createDOMApplianceTagsList(recipes);
-createDOMUstensilTagsList(recipes);
+handleIngredientTagsList(recipes);
+handleApplianceTagsList(recipes);
+handleUstensilTagsList(recipes);
 
 updateIngredientsList(recipes);
 updateAppliancesList(recipes);

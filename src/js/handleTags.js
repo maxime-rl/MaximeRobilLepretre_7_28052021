@@ -1,20 +1,22 @@
-// import { createElementFactory } from "./utils/createElementFactory";
 import { createDOMRecipesList } from "./recipesList";
-import { createDOMIngredientTagsList } from "./categoriesList/ingredientsList";
-import { createDOMApplianceTagsList } from "./categoriesList/appliancesList";
-import { createDOMUstensilTagsList } from "./categoriesList/ustensilsList";
+import { handleIngredientTagsList } from "./categoriesList/ingredientsList";
+import { handleApplianceTagsList } from "./categoriesList/appliancesList";
+import { handleUstensilTagsList } from "./categoriesList/ustensilsList";
 import { normalize } from "./utils/normalize";
 
 /**
  * DOM Elements
  */
-const btnsTagSelected = document.querySelector(".tags-selected-container");
+const tagsSelectedContainer = document.querySelector(".tags-selected-container");
 const allTags = document.getElementsByClassName("tag");
 const recipesDOMList = document.querySelector(".recipes-list");
 const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
 
+/**
+ * Remove DOM recipes elements
+ */
 const removeDataDOMRecipes = () => {
   recipesDOMList.innerHTML = "";
   ingredientsTagsList.innerHTML = "";
@@ -22,11 +24,15 @@ const removeDataDOMRecipes = () => {
   ustensilsTagsList.innerHTML = "";
 };
 
+/**
+ * Creation all DOM recipes elements
+ * @param {object}
+ */
 const createDataDOMRecipes = (elt) => {
   createDOMRecipesList(elt);
-  createDOMIngredientTagsList(elt);
-  createDOMApplianceTagsList(elt);
-  createDOMUstensilTagsList(elt);
+  handleIngredientTagsList(elt);
+  handleApplianceTagsList(elt);
+  handleUstensilTagsList(elt);
 };
 
 /**
@@ -34,28 +40,38 @@ const createDataDOMRecipes = (elt) => {
  * @param {object} recipes
  */
 const filteredRecipesByTags = (recipes) => {
-  if (btnsTagSelected.hasChildNodes()) {
-    const btnChildren = btnsTagSelected.childNodes;
+  if (tagsSelectedContainer.hasChildNodes()) {
+    const tagsChildren = tagsSelectedContainer.childNodes;
 
-    btnChildren.forEach(btnChild => {
-      const btnValue = btnChild.textContent;
-      const btnNormalizeValue = normalize(btnValue);
+    tagsChildren.forEach(tagChild => {
+      const tagSelectedValue = tagChild.textContent;
+      const tagSelectedNormalizeValue = normalize(tagSelectedValue);
 
-      const filteredRecipes = recipes.filter((recipe) => {
-        const name = normalize(recipe.name);
-        const appliance = normalize(recipe.appliance);
-        const description = normalize(recipe.description);
-
-        return (
-          name.includes(btnNormalizeValue) ||
-          appliance.includes(btnNormalizeValue) ||
-          description.includes(btnNormalizeValue) ||
-          recipe.ingredients.some(i => normalize(i.ingredient).includes(btnNormalizeValue)) ||
-          recipe.ustensils.some(u => normalize(u).includes(btnNormalizeValue))
-        );
-      });
-      removeDataDOMRecipes();
-      createDataDOMRecipes(filteredRecipes);
+      // Filtered ricipes by selected ingredient
+      if (tagChild.dataset.cat === "ingredients") {
+        const filteredRecipesByIngredients = recipes.filter((recipe) => {
+          return recipe.ingredients.some(i => normalize(i.ingredient).includes(tagSelectedNormalizeValue));
+        });
+        removeDataDOMRecipes();
+        createDataDOMRecipes(filteredRecipesByIngredients);
+      }
+      // Filtered ricipes by selected appliances
+      if (tagChild.dataset.cat === "appliances") {
+        const filteredRecipesByAppliance = recipes.filter((recipe) => {
+          const appliance = normalize(recipe.appliance);
+          return appliance.includes(tagSelectedNormalizeValue);
+        });
+        removeDataDOMRecipes();
+        createDataDOMRecipes(filteredRecipesByAppliance);
+      }
+      // Filtered ricipes by selected ustensil
+      if (tagChild.dataset.cat === "ustensils") {
+        const filteredRecipesByUstensils = recipes.filter((recipe) => {
+          return recipe.ustensils.some(u => normalize(u).includes(tagSelectedNormalizeValue));
+        });
+        removeDataDOMRecipes();
+        createDataDOMRecipes(filteredRecipesByUstensils);
+      }
     });
   } else {
     removeDataDOMRecipes();
@@ -64,11 +80,31 @@ const filteredRecipesByTags = (recipes) => {
 };
 
 /**
- * Remove selected tag on click
+ * Hide tag clicked in a category list
+ * @param {object} tagClicked
+ */
+const hideTagClickedInList = (tagClicked) => {
+  const tagsSelectedContainer = document.querySelector(".tags-selected-container");
+  const tagsChildren = tagsSelectedContainer.childNodes;
+
+  for (let i = 0; i < tagsChildren.length; i++) {
+    const tagSelectedValue = tagsChildren[i].textContent;
+    const tagSelectedNormalizeValue = normalize(tagSelectedValue);
+    const currentLiElt = normalize(tagClicked.textContent);
+
+    if (tagSelectedNormalizeValue === currentLiElt) {
+      tagClicked.classList.replace("block", "none");
+    }
+  };
+};
+
+/**
+ * Remove selected tag on click and update recipes
+ * @param {object} recipes
  */
 const removeSelectedTags = (recipes) => {
   document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("icon-close") || e.target.classList.contains("btn-tag-selected")) {
+    if (e.target.classList.contains("icon-close") || e.target.classList.contains("tag-selected")) {
       allTags.forEach(tag => {
         if ((e.target.textContent === tag.textContent) || (e.target.parentNode.textContent === tag.textContent)) {
           tag.classList.replace("none", "block");
@@ -77,7 +113,7 @@ const removeSelectedTags = (recipes) => {
       if (e.target.classList.contains("icon-close")) {
         e.target.parentNode.remove();
         e.target.remove();
-      } else if (e.target.classList.contains("btn-tag-selected")) {
+      } else if (e.target.classList.contains("tag-selected")) {
         e.target.parentNode.removeChild(e.target);
       }
       filteredRecipesByTags(recipes);
@@ -85,4 +121,4 @@ const removeSelectedTags = (recipes) => {
   });
 };
 
-export { removeSelectedTags, filteredRecipesByTags };
+export { removeSelectedTags, filteredRecipesByTags, hideTagClickedInList };

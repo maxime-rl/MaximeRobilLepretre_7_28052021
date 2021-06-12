@@ -1,5 +1,5 @@
 import { createElementFactory } from "../utils/createElementFactory";
-import { filteredRecipesByTags } from "../handleTags";
+import { filteredRecipesByTags, hideTagClickedInList } from "../handleTags";
 import { normalize } from "../utils/normalize";
 
 /**
@@ -32,25 +32,25 @@ const collectSortedTagsAppliances = (recipes) => {
  * @param {object} recipes
  * @returns {HTMLElement}
  */
-const createDOMApplianceTagsList = (recipes) => {
+const handleApplianceTagsList = (recipes) => {
   const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
-  const btnsTagSelected = document.querySelector(".tags-selected-container");
+  const tagsSelectedContainer = document.querySelector(".tags-selected-container");
 
   collectSortedTagsAppliances(recipes).forEach((appliance) => {
     const liElt = createElementFactory("li", { class: "tag block", "data-cat": "appliances" }, `${appliance}`);
     appliancesTagsList.appendChild(liElt);
 
-    liElt.addEventListener("click", () => {
-      liElt.classList.replace("block", "none");
+    hideTagClickedInList(liElt);
 
-      const btnElt = createElementFactory("button", {
-        class: "btn-tag-selected flex",
+    liElt.addEventListener("click", () => {
+      const tagElt = createElementFactory("button", {
+        class: "tag-selected flex",
         "data-cat": "appliances"
       }, `${appliance}`);
       const iconCloseElt = createElementFactory("span", { class: "icon-close" });
 
-      btnElt.appendChild(iconCloseElt);
-      btnsTagSelected.appendChild(btnElt);
+      tagElt.appendChild(iconCloseElt);
+      tagsSelectedContainer.appendChild(tagElt);
 
       filteredRecipesByTags(recipes);
     });
@@ -68,14 +68,19 @@ const updateAppliancesList = (recipes) => {
   searchInput.addEventListener("keyup", (e) => {
     const userInputValue = normalize(e.target.value);
 
-    const filteredAppliances = recipes.filter((recipe) => {
-      const appliance = normalize(recipe.appliance);
+    if (userInputValue.length) {
+      const filteredAppliances = recipes.filter((recipe) => {
+        const appliance = normalize(recipe.appliance);
 
-      return appliance.includes(userInputValue);
-    });
-    appliancesTagsList.innerHTML = "";
-    createDOMApplianceTagsList(filteredAppliances);
+        return appliance.includes(userInputValue);
+      });
+      appliancesTagsList.innerHTML = "";
+      handleApplianceTagsList(filteredAppliances);
+    } else {
+      appliancesTagsList.innerHTML = "";
+      handleApplianceTagsList(recipes);
+    }
   });
 };
 
-export { createDOMApplianceTagsList, updateAppliancesList };
+export { handleApplianceTagsList, updateAppliancesList };
