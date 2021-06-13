@@ -4,13 +4,14 @@ import { handleApplianceTagsList } from "./categoriesList/appliancesList";
 import { handleUstensilTagsList } from "./categoriesList/ustensilsList";
 import { createElementFactory } from "./utils/createElementFactory";
 // import { filteredRecipesByTags } from "./handleTags";
-import { normalize } from "./utils/normalize";
+import { normString } from "./utils/normalize";
 
 /**
  * DOM Elements
  */
 const searchInput = document.querySelector("#search-bar");
 const recipesDOMList = document.querySelector(".recipes-list");
+const tagsSelectedContainer = document.querySelector(".tags-selected-container");
 const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
@@ -44,34 +45,34 @@ const createDataDOMRecipes = (elt) => {
  */
 const updateRecipesList = (recipes) => {
   searchInput.addEventListener("keyup", (e) => {
-    const userInputValue = normalize(e.target.value);
+    const userInputValue = normString(e.target.value);
 
     if (userInputValue.length > 2) {
       const filteredRecipes = recipes.filter((recipe) => {
-        const name = normalize(recipe.name);
-        const description = normalize(recipe.description);
+        const name = normString(recipe.name);
+        const description = normString(recipe.description);
 
         return (
           name.includes(userInputValue) ||
           description.includes(userInputValue) ||
-          recipe.ingredients.some(i => normalize(i.ingredient).includes(userInputValue))
+          recipe.ingredients.some(i => normString(i.ingredient).includes(userInputValue))
         );
       });
-      // Filtered recipes and update tags list
+        // Filtered recipes and update tags list
       removeDataDOMRecipes();
       createDataDOMRecipes(filteredRecipes);
-      // filteredRecipesByTags(recipes);
-
-      // Message if no results
       displayInfoMessage(filteredRecipes);
-
-      // Create full recipes and all tags
     } else {
+      // Create full recipes and all tags
       removeDataDOMRecipes();
       createDataDOMRecipes(recipes);
-      // filteredRecipesByTags(recipes);
-
       displayInfoMessage(recipes);
+
+      // Delete selected tags if user restart a research
+      const tagsChildren = tagsSelectedContainer.childNodes;
+      tagsChildren.forEach(tagChild => {
+        tagChild.remove();
+      });
     }
   });
 };

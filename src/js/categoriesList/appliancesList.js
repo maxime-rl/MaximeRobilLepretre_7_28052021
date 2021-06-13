@@ -1,6 +1,6 @@
 import { createElementFactory } from "../utils/createElementFactory";
 import { filteredRecipesByTags, hideTagClickedInList } from "../handleTags";
-import { normalize } from "../utils/normalize";
+import { normString } from "../utils/normalize";
 
 /**
  * Remove duplicates from the appliances list
@@ -66,11 +66,11 @@ const updateAppliancesList = (recipes) => {
   const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 
   searchInput.addEventListener("keyup", (e) => {
-    const userInputValue = normalize(e.target.value);
+    const userInputValue = normString(e.target.value);
 
     if (userInputValue.length) {
       const filteredAppliances = recipes.filter((recipe) => {
-        const appliance = normalize(recipe.appliance);
+        const appliance = normString(recipe.appliance);
 
         return appliance.includes(userInputValue);
       });

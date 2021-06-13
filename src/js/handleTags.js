@@ -1,8 +1,9 @@
 import { createDOMRecipesList } from "./recipesList";
+// import { updateRecipesList } from "./mainSearch";
 import { handleIngredientTagsList } from "./categoriesList/ingredientsList";
 import { handleApplianceTagsList } from "./categoriesList/appliancesList";
 import { handleUstensilTagsList } from "./categoriesList/ustensilsList";
-import { normalize } from "./utils/normalize";
+import { normString } from "./utils/normalize";
 
 /**
  * DOM Elements
@@ -40,17 +41,20 @@ const createDataDOMRecipes = (elt) => {
  * @param {object} recipes
  */
 const filteredRecipesByTags = (recipes) => {
+  // const searchInput = document.querySelector("#search-bar");
+  // const userInputValue = normalize(searchInput.value);
+
   if (tagsSelectedContainer.hasChildNodes()) {
     const tagsChildren = tagsSelectedContainer.childNodes;
 
     tagsChildren.forEach(tagChild => {
       const tagSelectedValue = tagChild.textContent;
-      const tagSelectedNormalizeValue = normalize(tagSelectedValue);
+      const tagSelectedNormalizeValue = normString(tagSelectedValue);
 
       // Filtered ricipes by selected ingredient
       if (tagChild.dataset.cat === "ingredients") {
         const filteredRecipesByIngredients = recipes.filter((recipe) => {
-          return recipe.ingredients.some(i => normalize(i.ingredient).includes(tagSelectedNormalizeValue));
+          return recipe.ingredients.some(i => normString(i.ingredient).includes(tagSelectedNormalizeValue));
         });
         removeDataDOMRecipes();
         createDataDOMRecipes(filteredRecipesByIngredients);
@@ -58,7 +62,7 @@ const filteredRecipesByTags = (recipes) => {
       // Filtered ricipes by selected appliances
       if (tagChild.dataset.cat === "appliances") {
         const filteredRecipesByAppliance = recipes.filter((recipe) => {
-          const appliance = normalize(recipe.appliance);
+          const appliance = normString(recipe.appliance);
           return appliance.includes(tagSelectedNormalizeValue);
         });
         removeDataDOMRecipes();
@@ -67,7 +71,7 @@ const filteredRecipesByTags = (recipes) => {
       // Filtered ricipes by selected ustensil
       if (tagChild.dataset.cat === "ustensils") {
         const filteredRecipesByUstensils = recipes.filter((recipe) => {
-          return recipe.ustensils.some(u => normalize(u).includes(tagSelectedNormalizeValue));
+          return recipe.ustensils.some(u => normString(u).includes(tagSelectedNormalizeValue));
         });
         removeDataDOMRecipes();
         createDataDOMRecipes(filteredRecipesByUstensils);
@@ -89,8 +93,8 @@ const hideTagClickedInList = (tagClicked) => {
 
   for (let i = 0; i < tagsChildren.length; i++) {
     const tagSelectedValue = tagsChildren[i].textContent;
-    const tagSelectedNormalizeValue = normalize(tagSelectedValue);
-    const currentLiElt = normalize(tagClicked.textContent);
+    const tagSelectedNormalizeValue = normString(tagSelectedValue);
+    const currentLiElt = normString(tagClicked.textContent);
 
     if (tagSelectedNormalizeValue === currentLiElt) {
       tagClicked.classList.replace("block", "none");
@@ -104,9 +108,11 @@ const hideTagClickedInList = (tagClicked) => {
  */
 const removeSelectedTags = (recipes) => {
   document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("icon-close") || e.target.classList.contains("tag-selected")) {
+    if (e.target.classList.contains("icon-close") ||
+        e.target.classList.contains("tag-selected")) {
       allTags.forEach(tag => {
-        if ((e.target.textContent === tag.textContent) || (e.target.parentNode.textContent === tag.textContent)) {
+        if (e.target.textContent === tag.textContent ||
+            e.target.parentNode.textContent === tag.textContent) {
           tag.classList.replace("none", "block");
         }
       });
@@ -116,6 +122,7 @@ const removeSelectedTags = (recipes) => {
       } else if (e.target.classList.contains("tag-selected")) {
         e.target.parentNode.removeChild(e.target);
       }
+      // updateRecipesList(recipes);
       filteredRecipesByTags(recipes);
     }
   });

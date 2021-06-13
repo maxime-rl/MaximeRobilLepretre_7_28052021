@@ -1,6 +1,6 @@
 import { createElementFactory } from "../utils/createElementFactory.js";
 import { filteredRecipesByTags, hideTagClickedInList } from "../handleTags";
-import { normalize } from "../utils/normalize";
+import { normString } from "../utils/normalize";
 
 /**
  * Remove duplicates from the ingredients list
@@ -68,11 +68,11 @@ const updateIngredientsList = (recipes) => {
   const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 
   searchInput.addEventListener("keyup", (e) => {
-    const userInputValue = normalize(e.target.value);
+    const userInputValue = normString(e.target.value);
 
     if (userInputValue.length) {
       const filteredIngredients = recipes.filter((recipe) => {
-        return recipe.ingredients.some(i => normalize(i.ingredient).includes(userInputValue));
+        return recipe.ingredients.some(i => normString(i.ingredient).includes(userInputValue));
       });
       ingredientsTagsList.innerHTML = "";
       handleIngredientTagsList(filteredIngredients);

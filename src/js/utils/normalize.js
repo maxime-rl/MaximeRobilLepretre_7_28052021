@@ -1,5 +1,5 @@
 // STRING Normalize
-const normalize = (string) => {
+const normString = (string) => {
   string = string
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
@@ -14,4 +14,4 @@ const normalize = (string) => {
   return string;
 };
 
-export { normalize };
+export { normString };
