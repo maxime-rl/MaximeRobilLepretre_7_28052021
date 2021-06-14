@@ -28,7 +28,7 @@
     max-height: 284px;
   }
 
-  li {
+  .tag {
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -36,6 +36,21 @@
     padding: 8px 8px 8px 15px;
     font-weight: 700;
     cursor: pointer;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+
+    &--message-empty {
+      font-style: italic;
+      font-weight: 400;
+      opacity: .5;
+      cursor: default;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
   }
 }
 
@@ -52,7 +67,7 @@
 
   li {
 
-    @include breakpoint(md) {
+    @include breakpoint(sm) {
       max-width: 86%;
     }
 
@@ -71,6 +86,17 @@
 
   @include breakpoint(md) {
     max-height: 188px;
+  }
+
+  li {
+
+    @include breakpoint(sm) {
+      max-width: 86%;
+    }
+
+    @include breakpoint(lg) {
+      max-width: 100%;
+    }
   }
 
   li:hover {
@@ -92,7 +118,7 @@
 
   li {
 
-    @include breakpoint(md) {
+    @include breakpoint(sm) {
       max-width: 86%;
     }
 

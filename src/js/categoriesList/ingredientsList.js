@@ -1,5 +1,9 @@
 import { createElementFactory } from "../utils/createElementFactory.js";
-import { filteredRecipesByTags, hideTagClickedInList, addMessageIfTagsListIsEmpty } from "../handleTags";
+import {
+  filteredRecipesByTags,
+  hideTagClickedInList,
+  addMessageIfTagsListIsEmpty
+} from "../handleTags";
 import { normString } from "../utils/normalize";
 
 /**
@@ -84,4 +88,7 @@ const updateIngredientsList = (recipes) => {
   });
 };
 
-export { handleIngredientTagsList, updateIngredientsList };
+export {
+  handleIngredientTagsList,
+  updateIngredientsList
+};

@@ -3,7 +3,6 @@ import { handleIngredientTagsList } from "./categoriesList/ingredientsList";
 import { handleApplianceTagsList } from "./categoriesList/appliancesList";
 import { handleUstensilTagsList } from "./categoriesList/ustensilsList";
 import { createElementFactory } from "./utils/createElementFactory";
-// import { filteredRecipesByTags } from "./handleTags";
 import { normString } from "./utils/normalize";
 
 /**

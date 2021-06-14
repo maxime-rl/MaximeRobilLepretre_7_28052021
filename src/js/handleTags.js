@@ -41,9 +41,6 @@ const createDataDOMRecipes = (elt) => {
  * @param {object} recipes
  */
 const filteredRecipesByTags = (recipes) => {
-  // const searchInput = document.querySelector("#search-bar");
-  // const userInputValue = normalize(searchInput.value);
-
   if (tagsSelectedContainer.hasChildNodes()) {
     const tagsChildren = tagsSelectedContainer.childNodes;
 
@@ -59,6 +56,7 @@ const filteredRecipesByTags = (recipes) => {
         removeDataDOMRecipes();
         createDataDOMRecipes(filteredRecipesByIngredients);
       }
+
       // Filtered ricipes by selected appliances
       if (tagChild.dataset.cat === "appliances") {
         const filteredRecipesByAppliance = recipes.filter((recipe) => {
@@ -68,6 +66,7 @@ const filteredRecipesByTags = (recipes) => {
         removeDataDOMRecipes();
         createDataDOMRecipes(filteredRecipesByAppliance);
       }
+
       // Filtered ricipes by selected ustensil
       if (tagChild.dataset.cat === "ustensils") {
         const filteredRecipesByUstensils = recipes.filter((recipe) => {
@@ -78,6 +77,7 @@ const filteredRecipesByTags = (recipes) => {
       }
     });
   } else {
+    // Create full recipes and all tags
     removeDataDOMRecipes();
     createDataDOMRecipes(recipes);
   };
@@ -102,6 +102,10 @@ const hideTagClickedInList = (tagClicked) => {
   };
 };
 
+/**
+ * Creation and add message when tags list is empty
+ * @param {HTMLElement}
+ */
 const addMessageIfTagsListIsEmpty = (tagsList) => {
   if (tagsList.querySelectorAll(".block").length < 1) {
     const liElt = createElementFactory("li", { class: "tag tag--message-empty block" }, "Aucune correspondance");
@@ -136,4 +140,9 @@ const removeSelectedTags = (recipes) => {
   });
 };
 
-export { removeSelectedTags, filteredRecipesByTags, hideTagClickedInList, addMessageIfTagsListIsEmpty };
+export {
+  removeSelectedTags,
+  filteredRecipesByTags,
+  hideTagClickedInList,
+  addMessageIfTagsListIsEmpty
+};
