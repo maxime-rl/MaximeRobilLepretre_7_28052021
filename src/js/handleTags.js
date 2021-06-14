@@ -1,5 +1,5 @@
 import { createDOMRecipesList } from "./recipesList";
-// import { updateRecipesList } from "./mainSearch";
+import { createElementFactory } from "./utils/createElementFactory";
 import { handleIngredientTagsList } from "./categoriesList/ingredientsList";
 import { handleApplianceTagsList } from "./categoriesList/appliancesList";
 import { handleUstensilTagsList } from "./categoriesList/ustensilsList";
@@ -102,6 +102,14 @@ const hideTagClickedInList = (tagClicked) => {
   };
 };
 
+const addMessageIfTagsListIsEmpty = (tagsList) => {
+  if (tagsList.querySelectorAll(".block").length < 1) {
+    const liElt = createElementFactory("li", { class: "tag tag--message-empty block" }, "Aucune correspondance");
+
+    tagsList.appendChild(liElt);
+  }
+};
+
 /**
  * Remove selected tag on click and update recipes
  * @param {object} recipes
@@ -128,4 +136,4 @@ const removeSelectedTags = (recipes) => {
   });
 };
 
-export { removeSelectedTags, filteredRecipesByTags, hideTagClickedInList };
+export { removeSelectedTags, filteredRecipesByTags, hideTagClickedInList, addMessageIfTagsListIsEmpty };

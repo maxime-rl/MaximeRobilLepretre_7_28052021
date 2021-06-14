@@ -1,5 +1,5 @@
 import { createElementFactory } from "../utils/createElementFactory";
-import { filteredRecipesByTags, hideTagClickedInList } from "../handleTags";
+import { filteredRecipesByTags, hideTagClickedInList, addMessageIfTagsListIsEmpty } from "../handleTags";
 import { normString } from "../utils/normalize";
 
 /**
@@ -57,6 +57,7 @@ const handleUstensilTagsList = (recipes) => {
       filteredRecipesByTags(recipes);
     });
   });
+  addMessageIfTagsListIsEmpty(ustensilsTagsList);
 };
 
 /**
