@@ -1,48 +1,39 @@
 import "../styles/main.scss";
 
 import { recipes } from "./data";
-import { createRecipesList } from "./recipesList";
+import { createDOMRecipesList } from "./recipesList";
 import { updateRecipesList } from "./mainSearch";
 import { handleAllSelects } from "./handleSelects";
 
 import {
-  updateIngredientsList,
-  createIngredientsTagsList
+  handleIngredientTagsList,
+  updateIngredientsList
 } from "./categoriesList/ingredientsList";
 
 import {
-  createAppliancesTagsList,
+  handleApplianceTagsList,
   updateAppliancesList
 } from "./categoriesList/appliancesList";
 
 import {
-  createUstensilsTagsList,
+  handleUstensilTagsList,
   updateUstensilsList
 } from "./categoriesList/ustensilsList";
 
-import { createCategorieSelectedTags, removeCategorieSelectedTags } from "./handleTags";
+import { removeSelectedTags } from "./handleTags";
 
-const ingredientsDataCat = "ingredients";
-const appliancesDataCat = "appliances";
-const ustensilsDataCat = "ustensils";
+createDOMRecipesList(recipes);
 
-createRecipesList(recipes);
 updateRecipesList(recipes);
 
-createIngredientsTagsList(recipes);
-createAppliancesTagsList(recipes);
-createUstensilsTagsList(recipes);
-
-createCategorieSelectedTags(recipes, ingredientsDataCat);
-createCategorieSelectedTags(recipes, appliancesDataCat);
-createCategorieSelectedTags(recipes, ustensilsDataCat);
+handleIngredientTagsList(recipes);
+handleApplianceTagsList(recipes);
+handleUstensilTagsList(recipes);
 
 updateIngredientsList(recipes);
 updateAppliancesList(recipes);
 updateUstensilsList(recipes);
 
-// filteredRecipesByTags(recipes);
-
-removeCategorieSelectedTags(recipes);
+removeSelectedTags(recipes);
 
 handleAllSelects();

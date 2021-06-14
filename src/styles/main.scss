@@ -3,11 +3,11 @@
 @import "./_utils/mixins";
 @import "./_utils/classes";
 @import "./_components/btn-search";
-@import "./_components/btn-tag-selected";
+@import "./_components/tag-selected";
 @import "./_components/recipe-card";
 @import "./_components/search-bar";
 @import "./_components/select";
 @import "./_layout/header";
-@import "./_layout/tags-selection";
-@import "./_layout/tags-selected";
+@import "./_layout/tags-selection-container";
+@import "./_layout/tags-selected-container";
 @import "./_pages/index";

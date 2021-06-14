@@ -1,40 +1,45 @@
 /**
  * DOM Elements
  */
+// All custom selects
 const ingredientsSelect = document.querySelector(".select--ingredients");
 const appliancesSelect = document.querySelector(".select--appliances");
 const ustensilsSelect = document.querySelector(".select--ustensils");
-
-const ingredientsBtn = document.querySelector(".select__btn--ingredients");
-const appliancesBtn = document.querySelector(".select__btn--appliances");
-const ustensilsBtn = document.querySelector(".select__btn--ustensils");
-
+// All btns select
+const ingredientsBtn = document.querySelector(".select__tag--ingredients");
+const appliancesBtn = document.querySelector(".select__tag--appliances");
+const ustensilsBtn = document.querySelector(".select__tag--ustensils");
+// All tag lists
 const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
-
+// All placeholder inputs
 const ingredientsPlaceholderElt = document.getElementsByName("ingredients")[0];
 const appliancesPlaceholderElt = document.getElementsByName("appliances")[0];
 const ustensilsPlaceholderElt = document.getElementsByName("ustensils")[0];
 
 /**
- * Management of custom select categories
+ * Handle of custom DOM select categories
  * @param {HTMLElement} btnElt
  * @param {HTMLElement} tagsListElt
  */
 const handleCategoriesBtnClick = (btnElt, tagsListElt) => {
   btnElt.addEventListener("click", () => {
     tagsListElt.classList.toggle("grid");
-    btnElt.classList.toggle("select__btn--selected");
+    btnElt.classList.toggle("select__tag--selected");
     handlerForCurrentBtn(btnElt);
   });
   btnElt.previousElementSibling.addEventListener("click", () => {
     tagsListElt.classList.toggle("grid");
-    btnElt.classList.toggle("select__btn--selected");
+    btnElt.classList.toggle("select__tag--selected");
     handlerForCurrentBtn(btnElt);
   });
 };
 
+/**
+ * Handle all DOM btns select
+ * @param {HTMLElement} btnElt
+ */
 const handlerForCurrentBtn = (btnElt) => {
   if (btnElt === ingredientsBtn) {
     ingredientsSelect.classList.toggle("select--ingredients--open");
@@ -63,6 +68,9 @@ const handlerForCurrentBtn = (btnElt) => {
   }
 };
 
+/**
+ * Closing the list of ingredients when we click outside
+ */
 const listeningDocumentForIngredients = () => {
   document.addEventListener("click", (e) => {
     const ingredientsElt = document.querySelector(".select--ingredients--open");
@@ -79,49 +87,53 @@ const listeningDocumentForIngredients = () => {
     // Click outside
     ingredientsTagsList.classList.remove("grid");
     ingredientsSelect.classList.remove("select--ingredients--open");
-    ingredientsBtn.classList.remove("select__btn--selected");
+    ingredientsBtn.classList.remove("select__tag--selected");
     ingredientsPlaceholderElt.placeholder = "Ingredients";
     ingredientsPlaceholderElt.classList.remove("opacity-50");
   });
 };
 
+/**
+ * Closing the list of appliances when we click outside
+ */
 const listeningDocumentForAppliances = () => {
   document.addEventListener("click", (e) => {
     const appliancesElt = document.querySelector(".select--appliances--open");
     let targetElt = e.target; // clicked elt
     do {
       if (targetElt === appliancesElt) {
-        // Click inside
         return;
       }
-      // Go up the DOM
+
       targetElt = targetElt.parentNode;
     } while (targetElt);
-    // Click outside
+
     appliancesTagsList.classList.remove("grid");
     appliancesSelect.classList.remove("select--appliances--open");
-    appliancesBtn.classList.remove("select__btn--selected");
+    appliancesBtn.classList.remove("select__tag--selected");
     appliancesPlaceholderElt.placeholder = "Appareils";
     appliancesPlaceholderElt.classList.remove("opacity-50");
   });
 };
 
+/**
+ * Closing the list of ustensils when we click outside
+ */
 const listeningDocumentForUstensils = () => {
   document.addEventListener("click", (e) => {
     const ustensilsElt = document.querySelector(".select--ustensils--open");
     let targetElt = e.target; // clicked elt
     do {
       if (targetElt === ustensilsElt) {
-        // Click inside
         return;
       }
-      // Go up the DOM
+
       targetElt = targetElt.parentNode;
     } while (targetElt);
-    // Click outside
+
     ustensilsTagsList.classList.remove("grid");
     ustensilsSelect.classList.remove("select--ustensils--open");
-    ustensilsBtn.classList.remove("select__btn--selected");
+    ustensilsBtn.classList.remove("select__tag--selected");
     ustensilsPlaceholderElt.placeholder = "Ustensiles";
     ustensilsPlaceholderElt.classList.remove("opacity-50");
   });
@@ -133,6 +145,9 @@ const listeningToDocument = () => {
   listeningDocumentForUstensils();
 };
 
+/**
+ * Handle all selects and lists
+ */
 const handleAllSelects = () => {
   handleCategoriesBtnClick(ingredientsBtn, ingredientsTagsList);
   handleCategoriesBtnClick(appliancesBtn, appliancesTagsList);

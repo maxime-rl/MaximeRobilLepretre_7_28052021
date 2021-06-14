@@ -1,13 +1,10 @@
 import { createElementFactory } from "../utils/createElementFactory";
-import { createCategorieSelectedTags } from "../handleTags";
-import { normalize } from "../utils/normalize";
-
-/**
- * DOM Elements
- */
-const searchInput = document.querySelector("#appliances-research");
-const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
-const appliancesDataCat = "appliances";
+import {
+  filteredRecipesByTags,
+  hideTagClickedInList,
+  addMessageIfTagsListIsEmpty
+} from "../handleTags";
+import { normString } from "../utils/normalize";
 
 /**
  * Remove duplicates from the appliances list
@@ -35,15 +32,34 @@ const collectSortedTagsAppliances = (recipes) => {
 };
 
 /**
- * Creation appliance list in select
+ * Creation appliance list in select and appliance selected tags
  * @param {object} recipes
  * @returns {HTMLElement}
  */
-const createAppliancesTagsList = (recipes) => {
+const handleApplianceTagsList = (recipes) => {
+  const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+  const tagsSelectedContainer = document.querySelector(".tags-selected-container");
+
   collectSortedTagsAppliances(recipes).forEach((appliance) => {
     const liElt = createElementFactory("li", { class: "tag block", "data-cat": "appliances" }, `${appliance}`);
     appliancesTagsList.appendChild(liElt);
+
+    hideTagClickedInList(liElt);
+
+    liElt.addEventListener("click", () => {
+      const tagElt = createElementFactory("button", {
+        class: "tag-selected flex",
+        "data-cat": "appliances"
+      }, `${appliance}`);
+      const iconCloseElt = createElementFactory("span", { class: "icon-close" });
+
+      tagElt.appendChild(iconCloseElt);
+      tagsSelectedContainer.appendChild(tagElt);
+
+      filteredRecipesByTags(recipes);
+    });
   });
+  addMessageIfTagsListIsEmpty(appliancesTagsList);
 };
 
 /**
@@ -51,18 +67,28 @@ const createAppliancesTagsList = (recipes) => {
  * @param {object} recipes
  */
 const updateAppliancesList = (recipes) => {
+  const searchInput = document.querySelector("#appliances-research");
+  const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+
   searchInput.addEventListener("keyup", (e) => {
-    const userInputValue = normalize(e.target.value);
+    const userInputValue = normString(e.target.value);
 
-    const filteredAppliances = recipes.filter((recipe) => {
-      const appliance = normalize(recipe.appliance);
+    if (userInputValue.length) {
+      const filteredAppliances = recipes.filter((recipe) => {
+        const appliance = normString(recipe.appliance);
 
-      return appliance.includes(userInputValue);
-    });
-    appliancesTagsList.innerHTML = "";
-    createAppliancesTagsList(filteredAppliances);
-    createCategorieSelectedTags(appliancesDataCat);
+        return appliance.includes(userInputValue);
+      });
+      appliancesTagsList.innerHTML = "";
+      handleApplianceTagsList(filteredAppliances);
+    } else {
+      appliancesTagsList.innerHTML = "";
+      handleApplianceTagsList(recipes);
+    }
   });
 };
 
-export { createAppliancesTagsList, updateAppliancesList };
+export {
+  handleApplianceTagsList,
+  updateAppliancesList
+};

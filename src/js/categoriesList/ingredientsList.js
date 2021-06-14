@@ -1,14 +1,10 @@
 import { createElementFactory } from "../utils/createElementFactory.js";
-import { createCategorieSelectedTags } from "../handleTags";
-import { normalize } from "../utils/normalize";
-// import { recipes } from "../data";
-
-/**
- * DOM Elements
- */
-const searchInput = document.querySelector("#ingredients-research");
-const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
-const ingredientsDataCat = "ingredients";
+import {
+  filteredRecipesByTags,
+  hideTagClickedInList,
+  addMessageIfTagsListIsEmpty
+} from "../handleTags";
+import { normString } from "../utils/normalize";
 
 /**
  * Remove duplicates from the ingredients list
@@ -23,8 +19,6 @@ const createUniqueTagsIngredientsArr = (recipes) => {
       tagsIngredients.add(elt.ingredient);
     };
   };
-  // console.log(tagsIngredients.has("banane"));
-  // return tagsIngredients;
   return [...tagsIngredients];
 };
 
@@ -40,15 +34,34 @@ const collectSortedTagsIngredients = (recipes) => {
 };
 
 /**
- * Creation ingredients list in select
+ * Creation ingredients list in select and ingredient selected tags
  * @param {object} recipes
  * @returns {HTMLElement}
  */
-const createIngredientsTagsList = (recipes) => {
+const handleIngredientTagsList = (recipes) => {
+  const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
+  const btnsTagSelected = document.querySelector(".tags-selected-container");
+
   collectSortedTagsIngredients(recipes).forEach((ingredient) => {
     const liElt = createElementFactory("li", { class: "tag block", "data-cat": "ingredients" }, `${ingredient}`);
     ingredientsTagsList.appendChild(liElt);
+
+    hideTagClickedInList(liElt);
+
+    liElt.addEventListener("click", () => {
+      const btnElt = createElementFactory("button", {
+        class: "tag-selected flex",
+        "data-cat": "ingredients"
+      }, `${ingredient}`);
+      const iconCloseElt = createElementFactory("span", { class: "icon-close" });
+
+      btnElt.appendChild(iconCloseElt);
+      btnsTagSelected.appendChild(btnElt);
+
+      filteredRecipesByTags(recipes);
+    });
   });
+  addMessageIfTagsListIsEmpty(ingredientsTagsList);
 };
 
 /**
@@ -56,34 +69,26 @@ const createIngredientsTagsList = (recipes) => {
  * @param {object} recipes
  */
 const updateIngredientsList = (recipes) => {
-  searchInput.addEventListener("keyup", (e) => {
-    const userInputValue = normalize(e.target.value);
+  const searchInput = document.querySelector("#ingredients-research");
+  const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 
-    const filteredIngredients = recipes.filter((recipe) => {
-      return recipe.ingredients.some(i => normalize(i.ingredient).includes(userInputValue));
-    });
-    ingredientsTagsList.innerHTML = "";
-    createIngredientsTagsList(filteredIngredients);
-    createCategorieSelectedTags(ingredientsDataCat);
+  searchInput.addEventListener("keyup", (e) => {
+    const userInputValue = normString(e.target.value);
+
+    if (userInputValue.length) {
+      const filteredIngredients = recipes.filter((recipe) => {
+        return recipe.ingredients.some(i => normString(i.ingredient).includes(userInputValue));
+      });
+      ingredientsTagsList.innerHTML = "";
+      handleIngredientTagsList(filteredIngredients);
+    } else {
+      ingredientsTagsList.innerHTML = "";
+      handleIngredientTagsList(recipes);
+    }
   });
 };
 
-// /**
-//  * Update ingredients list input search
-//  * @param {object} recipes
-//  */
-// const updateIngredientsList = (recipes) => {
-//   searchInput.addEventListener("keyup", (e) => {
-//     const userInputValue = normalize(e.target.value);
-
-//     const filteredIngredients = collectSortedTagsIngredients(recipes).filter((ingr) => {
-//       console.log(normalize(ingr).includes(userInputValue));
-//       return (normalize(ingr).includes(userInputValue));
-//     });
-//     ingredientsTagsList.innerHTML = "";
-//     createIngredientsTagsList(filteredIngredients);
-//     createCategorieSelectedTags(ingredientsDataCat);
-//   });
-// };
-
-export { createIngredientsTagsList, updateIngredientsList };
+export {
+  handleIngredientTagsList,
+  updateIngredientsList
+};
