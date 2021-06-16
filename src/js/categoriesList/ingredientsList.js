@@ -43,7 +43,11 @@ const handleIngredientTagsList = (recipes) => {
   const btnsTagSelected = document.querySelector(".tags-selected-container");
 
   collectSortedTagsIngredients(recipes).forEach((ingredient) => {
-    const liElt = createElementFactory("li", { class: "tag block", "data-cat": "ingredients" }, `${ingredient}`);
+    const liElt = createElementFactory("li", {
+      class: "tag block",
+      "data-cat": "ingredients",
+      "tab-index": "0"
+    }, `${ingredient}`);
     ingredientsTagsList.appendChild(liElt);
 
     hideTagClickedInList(liElt);

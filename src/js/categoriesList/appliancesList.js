@@ -41,7 +41,11 @@ const handleApplianceTagsList = (recipes) => {
   const tagsSelectedContainer = document.querySelector(".tags-selected-container");
 
   collectSortedTagsAppliances(recipes).forEach((appliance) => {
-    const liElt = createElementFactory("li", { class: "tag block", "data-cat": "appliances" }, `${appliance}`);
+    const liElt = createElementFactory("li", {
+      class: "tag block",
+      "data-cat": "appliances",
+      "tab-index": "0"
+    }, `${appliance}`);
     appliancesTagsList.appendChild(liElt);
 
     hideTagClickedInList(liElt);

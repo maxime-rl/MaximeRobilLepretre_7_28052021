@@ -9,11 +9,17 @@ const createDOMRecipesList = (recipes) => {
   recipes.forEach(recipe => {
     const recipesListDOMElt = document.querySelector(".recipes-list");
     const articleElt = createElementFactory("article", { class: "recipe-card" });
+    const articleLink = createElementFactory("a", {
+      href: "#",
+      "aria-label": `Lien vers la recette ${recipe.name}`
+    });
     const imgElt = createElementFactory("div", { class: "recipe-card__img" });
     const cardContentElt = createElementFactory("div", { class: "recipe-card__content" });
 
     const h2Elt = document.createElement("h2");
-    const titleElt = createElementFactory("span", { class: "recipe-card__content__title" }, `${recipe.name}`);
+    const titleElt = createElementFactory("span", {
+      class: "recipe-card__content__title"
+    }, `${recipe.name}`);
     const timeContainerElt = createElementFactory("span", {}, ` ${recipe.time} min`);
     const timeIconElt = createElementFactory("i", { class: "far fa-clock" });
 
@@ -37,14 +43,16 @@ const createDOMRecipesList = (recipes) => {
     timeContainerElt.insertAdjacentElement("afterbegin", timeIconElt);
     h2Elt.appendChild(timeContainerElt);
 
-    articleElt.appendChild(imgElt);
+    articleLink.appendChild(imgElt);
+
     cardContentElt.appendChild(h2Elt);
 
     descriptionElts.appendChild(ingredientsElt);
     descriptionElts.appendChild(descriptionElt);
 
     cardContentElt.appendChild(descriptionElts);
-    articleElt.appendChild(cardContentElt);
+    articleLink.appendChild(cardContentElt);
+    articleElt.appendChild(articleLink);
 
     recipesListDOMElt.appendChild(articleElt);
   });

@@ -43,7 +43,11 @@ const handleUstensilTagsList = (recipes) => {
   const btnsTagSelected = document.querySelector(".tags-selected-container");
 
   collectSortedTagsUstensils(recipes).forEach((ustensil) => {
-    const liElt = createElementFactory("li", { class: "tag block", "data-cat": "ustensils" }, `${ustensil}`);
+    const liElt = createElementFactory("li", {
+      class: "tag block",
+      "data-cat": "ustensils",
+      "tab-index": "0"
+    }, `${ustensil}`);
     ustensilsTagsList.appendChild(liElt);
 
     hideTagClickedInList(liElt);

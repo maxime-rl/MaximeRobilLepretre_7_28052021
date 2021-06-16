@@ -108,7 +108,7 @@ const hideTagClickedInList = (tagClicked) => {
  */
 const addMessageIfTagsListIsEmpty = (tagsList) => {
   if (tagsList.querySelectorAll(".block").length < 1) {
-    const liElt = createElementFactory("li", { class: "tag tag--message-empty block" }, "Aucune correspondance");
+    const liElt = createElementFactory("li", { class: "tag tag--message-empty block" }, "Aucun tag disponible");
 
     tagsList.appendChild(liElt);
   }

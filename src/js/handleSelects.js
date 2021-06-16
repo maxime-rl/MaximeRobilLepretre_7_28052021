@@ -5,14 +5,17 @@
 const ingredientsSelect = document.querySelector(".select--ingredients");
 const appliancesSelect = document.querySelector(".select--appliances");
 const ustensilsSelect = document.querySelector(".select--ustensils");
+
 // All btns select
 const ingredientsBtn = document.querySelector(".select__tag--ingredients");
 const appliancesBtn = document.querySelector(".select__tag--appliances");
 const ustensilsBtn = document.querySelector(".select__tag--ustensils");
+
 // All tag lists
 const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+
 // All placeholder inputs
 const ingredientsPlaceholderElt = document.getElementsByName("ingredients")[0];
 const appliancesPlaceholderElt = document.getElementsByName("appliances")[0];
@@ -26,11 +29,13 @@ const ustensilsPlaceholderElt = document.getElementsByName("ustensils")[0];
 const handleCategoriesBtnClick = (btnElt, tagsListElt) => {
   btnElt.addEventListener("click", () => {
     tagsListElt.classList.toggle("grid");
+    tagsListElt.setAttribute("aria-expanded", true);
     btnElt.classList.toggle("select__tag--selected");
     handlerForCurrentBtn(btnElt);
   });
   btnElt.previousElementSibling.addEventListener("click", () => {
     tagsListElt.classList.toggle("grid");
+    tagsListElt.setAttribute("aria-expanded", true);
     btnElt.classList.toggle("select__tag--selected");
     handlerForCurrentBtn(btnElt);
   });
