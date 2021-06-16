@@ -3,6 +3,10 @@
   border-radius: $radius;
   background-color: $grey-light-color;
 
+  a {
+    color: $primary-color-text;
+  }
+
   &__img {
     height: 15rem;
     border-radius: $radius $radius 0 0;
