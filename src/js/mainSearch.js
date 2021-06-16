@@ -15,6 +15,10 @@ const ingredientsTagsList = document.querySelector(".select__tags-list--ingredie
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
 
+const allKeywords = [];
+const currentKeywords = [];
+const filterdRecipes = [];
+
 /**
  * Remove DOM recipes elements
  */
@@ -37,7 +41,7 @@ const createDataDOMRecipes = (elt) => {
 };
 
 /**
- * Main search
+ * Main search algo v2
  * Listen and update recipes
  * @param {object} data recipes
  * @returns {HTMLElement}
@@ -47,20 +51,23 @@ const updateRecipesList = (recipes) => {
     const userInputValue = normString(e.target.value);
 
     if (userInputValue.length > 2) {
-      const filteredRecipes = recipes.filter((recipe) => {
-        const name = normString(recipe.name);
-        const description = normString(recipe.description);
-
-        return (
-          name.includes(userInputValue) ||
-          description.includes(userInputValue) ||
-          recipe.ingredients.some(i => normString(i.ingredient).includes(userInputValue))
-        );
+      allKeywords.forEach(keyword => {
+        if (keyword.includes(userInputValue)) {
+          currentKeywords.push(keyword);
+        }
       });
-        // Filtered recipes and update tags list
-      removeDataDOMRecipes();
-      createDataDOMRecipes(filteredRecipes);
-      displayInfoMessage(filteredRecipes);
+      recipes.forEach(recipe => {
+        currentKeywords.forEach(currentKeyword => {
+          if (currentKeyword === normString(recipe.name) ||
+            currentKeyword.includes(normString(recipe.description))) {
+            filterdRecipes.push(recipe);
+            // Display recipes and update tags list with keywords
+            removeDataDOMRecipes();
+            createDataDOMRecipes(filterdRecipes);
+            displayInfoMessage(filterdRecipes);
+          }
+        });
+      });
     } else {
       // Create full recipes and all tags
       removeDataDOMRecipes();
@@ -73,6 +80,19 @@ const updateRecipesList = (recipes) => {
         tagChild.remove();
       });
     }
+  });
+};
+
+const createAllKeywords = (recipes) => {
+  recipes.forEach(recipe => {
+    const name = normString(recipe.name);
+    const description = normString(recipe.description);
+    allKeywords.push(name);
+    allKeywords.push(description);
+
+    recipe.ingredients.forEach(elt => {
+      allKeywords.push(normString(elt.ingredient));
+    });
   });
 };
 
@@ -92,4 +112,4 @@ const displayInfoMessage = (filteredElt) => {
   }
 };
 
-export { updateRecipesList };
+export { updateRecipesList, createAllKeywords };
