@@ -15,9 +15,9 @@ const ingredientsTagsList = document.querySelector(".select__tags-list--ingredie
 const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
 
-const allKeywords = [];
-const currentKeywords = [];
-const filterdRecipes = [];
+const allKeywords = new Set();
+let currentKeywords = [];
+let filterdRecipesWithKeywords = new Set();
 
 /**
  * Remove DOM recipes elements
@@ -57,19 +57,21 @@ const updateRecipesList = (recipes) => {
         }
       });
       recipes.forEach(recipe => {
-        currentKeywords.forEach(currentKeyword => {
-          if (currentKeyword === normString(recipe.name) ||
-            currentKeyword.includes(normString(recipe.description))) {
-            filterdRecipes.push(recipe);
-            // Display recipes and update tags list with keywords
-            removeDataDOMRecipes();
-            createDataDOMRecipes(filterdRecipes);
-            displayInfoMessage(filterdRecipes);
+        currentKeywords.forEach(keyword => {
+          if (keyword.includes(normString(recipe.name)) ||
+            keyword.includes(normString(recipe.description))) {
+            filterdRecipesWithKeywords.add(recipe);
           }
         });
       });
+      // Display recipes and update tags list with keywords
+      removeDataDOMRecipes();
+      createDataDOMRecipes(filterdRecipesWithKeywords);
+      displayInfoMessage(filterdRecipesWithKeywords);
     } else {
       // Create full recipes and all tags
+      currentKeywords = [];
+      filterdRecipesWithKeywords = new Set();
       removeDataDOMRecipes();
       createDataDOMRecipes(recipes);
       displayInfoMessage(recipes);
@@ -83,20 +85,31 @@ const updateRecipesList = (recipes) => {
   });
 };
 
-const createAllKeywords = (recipes) => {
+/**
+ * For main search algo v2
+ * Creation of keywords in array with all name, description and ingredients recipes
+ * @param {object} data recipes
+ * @returns {Array}
+ */
+const createAllKeywordsForMainSearch = (recipes) => {
   recipes.forEach(recipe => {
     const name = normString(recipe.name);
     const description = normString(recipe.description);
-    allKeywords.push(name);
-    allKeywords.push(description);
+    allKeywords.add(name);
+    allKeywords.add(description);
 
     recipe.ingredients.forEach(elt => {
-      allKeywords.push(normString(elt.ingredient));
+      allKeywords.add(normString(elt.ingredient));
     });
   });
 };
 
+/**
+ * Display a message if the search does not return any recipe
+ * @param {object} filteredElt
+ */
 const displayInfoMessage = (filteredElt) => {
+  // const recipesListDOMElt = document.querySelector(".recipes-list");
   const infoMessageContainer = document.querySelector(".info-message-container");
   if (!filteredElt.length) {
     const messageElt = createElementFactory("p", { class: "info-message" });
@@ -112,4 +125,4 @@ const displayInfoMessage = (filteredElt) => {
   }
 };
 
-export { updateRecipesList, createAllKeywords };
+export { updateRecipesList, createAllKeywordsForMainSearch };
