@@ -9,6 +9,7 @@ import { normString } from "./utils/normalize";
  * DOM Elements
  */
 const tagsSelectedContainer = document.querySelector(".tags-selected-container");
+const searchInput = document.querySelector("#search-bar");
 const allTags = document.getElementsByClassName("tag");
 const recipesDOMList = document.querySelector(".recipes-list");
 const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
@@ -76,11 +77,27 @@ const filteredRecipesByTags = (recipes) => {
         createDataDOMRecipes(filteredRecipesByUstensils);
       }
     });
+  } else if ((!tagsSelectedContainer.hasChildNodes()) && (searchInput.value.length)) {
+    const userInputValue = normString(searchInput.value);
+
+    const filteredRecipes = recipes.filter((recipe) => {
+      const name = normString(recipe.name);
+      const description = normString(recipe.description);
+
+      return (
+        name.includes(userInputValue) ||
+          description.includes(userInputValue) ||
+          recipe.ingredients.some(i => normString(i.ingredient).includes(userInputValue))
+      );
+    });
+      // Filtered recipes and update tags list
+    removeDataDOMRecipes();
+    createDataDOMRecipes(filteredRecipes);
   } else {
-    // Create full recipes and all tags
+    // Filtered recipes and update tags list
     removeDataDOMRecipes();
     createDataDOMRecipes(recipes);
-  };
+  }
 };
 
 /**
