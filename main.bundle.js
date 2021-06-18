@@ -10,7 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createAppliancesTagsList": () => (/* binding */ createAppliancesTagsList),
+/* harmony export */   "handleApplianceTagsList": () => (/* binding */ handleApplianceTagsList),
 /* harmony export */   "updateAppliancesList": () => (/* binding */ updateAppliancesList)
 /* harmony export */ });
 /* harmony import */ var core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.set.js */ "./node_modules/core-js/modules/es.set.js");
@@ -79,13 +79,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 /**
- * DOM Elements
- */
-
-var searchInput = document.querySelector("#appliances-research");
-var appliancesTagsList = document.querySelector(".select__tags-list--appliances");
-var appliancesDataCat = "appliances";
-/**
  * Remove duplicates from the appliances list
  * @param {object} recipes
  * @returns {Array} appliances list
@@ -124,20 +117,37 @@ var collectSortedTagsAppliances = function collectSortedTagsAppliances(recipes) 
   return tagsAppliances.sort();
 };
 /**
- * Creation appliance list in select
+ * Creation appliance list in select and appliance selected tags
  * @param {object} recipes
  * @returns {HTMLElement}
  */
 
 
-var createAppliancesTagsList = function createAppliancesTagsList(recipes) {
+var handleApplianceTagsList = function handleApplianceTagsList(recipes) {
+  var appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+  var tagsSelectedContainer = document.querySelector(".tags-selected-container");
   collectSortedTagsAppliances(recipes).forEach(function (appliance) {
     var liElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("li", {
       class: "tag block",
-      "data-cat": "appliances"
+      "data-cat": "appliances",
+      "tab-index": "0"
     }, "".concat(appliance));
     appliancesTagsList.appendChild(liElt);
+    (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.hideTagClickedInList)(liElt);
+    liElt.addEventListener("click", function () {
+      var tagElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("button", {
+        class: "tag-selected flex",
+        "data-cat": "appliances"
+      }, "".concat(appliance));
+      var iconCloseElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("span", {
+        class: "icon-close"
+      });
+      tagElt.appendChild(iconCloseElt);
+      tagsSelectedContainer.appendChild(tagElt);
+      (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.filteredRecipesByTags)(recipes);
+    });
   });
+  (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.addMessageIfTagsListIsEmpty)(appliancesTagsList);
 };
 /**
  * Update appliances list input search
@@ -146,15 +156,22 @@ var createAppliancesTagsList = function createAppliancesTagsList(recipes) {
 
 
 var updateAppliancesList = function updateAppliancesList(recipes) {
+  var searchInput = document.querySelector("#appliances-research");
+  var appliancesTagsList = document.querySelector(".select__tags-list--appliances");
   searchInput.addEventListener("keyup", function (e) {
-    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(e.target.value);
-    var filteredAppliances = recipes.filter(function (recipe) {
-      var appliance = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(recipe.appliance);
-      return appliance.includes(userInputValue);
-    });
-    appliancesTagsList.innerHTML = "";
-    createAppliancesTagsList(filteredAppliances);
-    (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.createCategorieSelectedTags)(appliancesDataCat);
+    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normString)(e.target.value);
+
+    if (userInputValue.length) {
+      var filteredAppliances = recipes.filter(function (recipe) {
+        var appliance = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normString)(recipe.appliance);
+        return appliance.includes(userInputValue);
+      });
+      appliancesTagsList.innerHTML = "";
+      handleApplianceTagsList(filteredAppliances);
+    } else {
+      appliancesTagsList.innerHTML = "";
+      handleApplianceTagsList(recipes);
+    }
   });
 };
 
@@ -171,7 +188,7 @@ var updateAppliancesList = function updateAppliancesList(recipes) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createIngredientsTagsList": () => (/* binding */ createIngredientsTagsList),
+/* harmony export */   "handleIngredientTagsList": () => (/* binding */ handleIngredientTagsList),
 /* harmony export */   "updateIngredientsList": () => (/* binding */ updateIngredientsList)
 /* harmony export */ });
 /* harmony import */ var core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.set.js */ "./node_modules/core-js/modules/es.set.js");
@@ -238,15 +255,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
- // import { recipes } from "../data";
 
-/**
- * DOM Elements
- */
-
-var searchInput = document.querySelector("#ingredients-research");
-var ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
-var ingredientsDataCat = "ingredients";
 /**
  * Remove duplicates from the ingredients list
  * @param {*} recipes
@@ -286,9 +295,7 @@ var createUniqueTagsIngredientsArr = function createUniqueTagsIngredientsArr(rec
     _iterator.f();
   }
 
-  ; // console.log(tagsIngredients.has("banane"));
-  // return tagsIngredients;
-
+  ;
   return _toConsumableArray(tagsIngredients);
 };
 /**
@@ -303,20 +310,37 @@ var collectSortedTagsIngredients = function collectSortedTagsIngredients(recipes
   return tagsIngredients.sort();
 };
 /**
- * Creation ingredients list in select
+ * Creation ingredients list in select and ingredient selected tags
  * @param {object} recipes
  * @returns {HTMLElement}
  */
 
 
-var createIngredientsTagsList = function createIngredientsTagsList(recipes) {
+var handleIngredientTagsList = function handleIngredientTagsList(recipes) {
+  var ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
+  var btnsTagSelected = document.querySelector(".tags-selected-container");
   collectSortedTagsIngredients(recipes).forEach(function (ingredient) {
     var liElt = (0,_utils_createElementFactory_js__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("li", {
       class: "tag block",
-      "data-cat": "ingredients"
+      "data-cat": "ingredients",
+      "tab-index": "0"
     }, "".concat(ingredient));
     ingredientsTagsList.appendChild(liElt);
+    (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.hideTagClickedInList)(liElt);
+    liElt.addEventListener("click", function () {
+      var btnElt = (0,_utils_createElementFactory_js__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("button", {
+        class: "tag-selected flex",
+        "data-cat": "ingredients"
+      }, "".concat(ingredient));
+      var iconCloseElt = (0,_utils_createElementFactory_js__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("span", {
+        class: "icon-close"
+      });
+      btnElt.appendChild(iconCloseElt);
+      btnsTagSelected.appendChild(btnElt);
+      (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.filteredRecipesByTags)(recipes);
+    });
   });
+  (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.addMessageIfTagsListIsEmpty)(ingredientsTagsList);
 };
 /**
  * Update ingredients list input search
@@ -325,34 +349,25 @@ var createIngredientsTagsList = function createIngredientsTagsList(recipes) {
 
 
 var updateIngredientsList = function updateIngredientsList(recipes) {
+  var searchInput = document.querySelector("#ingredients-research");
+  var ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
   searchInput.addEventListener("keyup", function (e) {
-    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(e.target.value);
-    var filteredIngredients = recipes.filter(function (recipe) {
-      return recipe.ingredients.some(function (i) {
-        return (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(i.ingredient).includes(userInputValue);
-      });
-    });
-    ingredientsTagsList.innerHTML = "";
-    createIngredientsTagsList(filteredIngredients);
-    (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.createCategorieSelectedTags)(ingredientsDataCat);
-  });
-}; // /**
-//  * Update ingredients list input search
-//  * @param {object} recipes
-//  */
-// const updateIngredientsList = (recipes) => {
-//   searchInput.addEventListener("keyup", (e) => {
-//     const userInputValue = normalize(e.target.value);
-//     const filteredIngredients = collectSortedTagsIngredients(recipes).filter((ingr) => {
-//       console.log(normalize(ingr).includes(userInputValue));
-//       return (normalize(ingr).includes(userInputValue));
-//     });
-//     ingredientsTagsList.innerHTML = "";
-//     createIngredientsTagsList(filteredIngredients);
-//     createCategorieSelectedTags(ingredientsDataCat);
-//   });
-// };
+    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normString)(e.target.value);
 
+    if (userInputValue.length) {
+      var filteredIngredients = recipes.filter(function (recipe) {
+        return recipe.ingredients.some(function (i) {
+          return (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normString)(i.ingredient).includes(userInputValue);
+        });
+      });
+      ingredientsTagsList.innerHTML = "";
+      handleIngredientTagsList(filteredIngredients);
+    } else {
+      ingredientsTagsList.innerHTML = "";
+      handleIngredientTagsList(recipes);
+    }
+  });
+};
 
 
 
@@ -367,7 +382,7 @@ var updateIngredientsList = function updateIngredientsList(recipes) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createUstensilsTagsList": () => (/* binding */ createUstensilsTagsList),
+/* harmony export */   "handleUstensilTagsList": () => (/* binding */ handleUstensilTagsList),
 /* harmony export */   "updateUstensilsList": () => (/* binding */ updateUstensilsList)
 /* harmony export */ });
 /* harmony import */ var core_js_modules_es_set_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.set.js */ "./node_modules/core-js/modules/es.set.js");
@@ -436,13 +451,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 /**
- * DOM Elements
- */
-
-var searchInput = document.querySelector("#ustensils-research");
-var ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
-var ustensilsDataCat = "ustensils";
-/**
  * Remove duplicates from the ustensils list
  * @param {*} recipes
  * @returns {Array} ustensils list
@@ -496,20 +504,37 @@ var collectSortedTagsUstensils = function collectSortedTagsUstensils(recipes) {
   return tagsUstensils.sort();
 };
 /**
- * Creation ustensils list in select
+ * Creation ustensils list and ustensil selected tags
  * @param {object} recipes
  * @returns {HTMLElement}
  */
 
 
-var createUstensilsTagsList = function createUstensilsTagsList(recipes) {
+var handleUstensilTagsList = function handleUstensilTagsList(recipes) {
+  var ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+  var btnsTagSelected = document.querySelector(".tags-selected-container");
   collectSortedTagsUstensils(recipes).forEach(function (ustensil) {
     var liElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("li", {
       class: "tag block",
-      "data-cat": "ustensils"
+      "data-cat": "ustensils",
+      "tab-index": "0"
     }, "".concat(ustensil));
     ustensilsTagsList.appendChild(liElt);
+    (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.hideTagClickedInList)(liElt);
+    liElt.addEventListener("click", function () {
+      var btnElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("button", {
+        class: "tag-selected flex",
+        "data-cat": "ustensils"
+      }, "".concat(ustensil));
+      var iconCloseElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_15__.createElementFactory)("span", {
+        class: "icon-close"
+      });
+      btnElt.appendChild(iconCloseElt);
+      btnsTagSelected.appendChild(btnElt);
+      (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.filteredRecipesByTags)(recipes);
+    });
   });
+  (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.addMessageIfTagsListIsEmpty)(ustensilsTagsList);
 };
 /**
  * Update ustensils list input search
@@ -518,16 +543,23 @@ var createUstensilsTagsList = function createUstensilsTagsList(recipes) {
 
 
 var updateUstensilsList = function updateUstensilsList(recipes) {
+  var searchInput = document.querySelector("#ustensils-research");
+  var ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
   searchInput.addEventListener("keyup", function (e) {
-    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(e.target.value);
-    var filteredUstensils = recipes.filter(function (recipe) {
-      return recipe.ustensils.some(function (ustensil) {
-        return (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normalize)(ustensil).includes(userInputValue);
+    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normString)(e.target.value);
+
+    if (userInputValue.length) {
+      var filteredUstensils = recipes.filter(function (recipe) {
+        return recipe.ustensils.some(function (i) {
+          return (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_17__.normString)(i).includes(userInputValue);
+        });
       });
-    });
-    ustensilsTagsList.innerHTML = "";
-    createUstensilsTagsList(filteredUstensils);
-    (0,_handleTags__WEBPACK_IMPORTED_MODULE_16__.createCategorieSelectedTags)(ustensilsDataCat);
+      ustensilsTagsList.innerHTML = "";
+      handleUstensilTagsList(filteredUstensils);
+    } else {
+      ustensilsTagsList.innerHTML = "";
+      handleUstensilTagsList(recipes);
+    }
   });
 };
 
@@ -1934,20 +1966,24 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * DOM Elements
  */
+// All custom selects
 var ingredientsSelect = document.querySelector(".select--ingredients");
 var appliancesSelect = document.querySelector(".select--appliances");
-var ustensilsSelect = document.querySelector(".select--ustensils");
-var ingredientsBtn = document.querySelector(".select__btn--ingredients");
-var appliancesBtn = document.querySelector(".select__btn--appliances");
-var ustensilsBtn = document.querySelector(".select__btn--ustensils");
+var ustensilsSelect = document.querySelector(".select--ustensils"); // All btns select
+
+var ingredientsBtn = document.querySelector(".select__tag--ingredients");
+var appliancesBtn = document.querySelector(".select__tag--appliances");
+var ustensilsBtn = document.querySelector(".select__tag--ustensils"); // All tag lists
+
 var ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 var appliancesTagsList = document.querySelector(".select__tags-list--appliances");
-var ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
+var ustensilsTagsList = document.querySelector(".select__tags-list--ustensils"); // All placeholder inputs
+
 var ingredientsPlaceholderElt = document.getElementsByName("ingredients")[0];
 var appliancesPlaceholderElt = document.getElementsByName("appliances")[0];
 var ustensilsPlaceholderElt = document.getElementsByName("ustensils")[0];
 /**
- * Management of custom select categories
+ * Handle of custom DOM select categories
  * @param {HTMLElement} btnElt
  * @param {HTMLElement} tagsListElt
  */
@@ -1955,15 +1991,22 @@ var ustensilsPlaceholderElt = document.getElementsByName("ustensils")[0];
 var handleCategoriesBtnClick = function handleCategoriesBtnClick(btnElt, tagsListElt) {
   btnElt.addEventListener("click", function () {
     tagsListElt.classList.toggle("grid");
-    btnElt.classList.toggle("select__btn--selected");
+    tagsListElt.setAttribute("aria-expanded", true);
+    btnElt.classList.toggle("select__tag--selected");
     handlerForCurrentBtn(btnElt);
   });
   btnElt.previousElementSibling.addEventListener("click", function () {
     tagsListElt.classList.toggle("grid");
-    btnElt.classList.toggle("select__btn--selected");
+    tagsListElt.setAttribute("aria-expanded", true);
+    btnElt.classList.toggle("select__tag--selected");
     handlerForCurrentBtn(btnElt);
   });
 };
+/**
+ * Handle all DOM btns select
+ * @param {HTMLElement} btnElt
+ */
+
 
 var handlerForCurrentBtn = function handlerForCurrentBtn(btnElt) {
   if (btnElt === ingredientsBtn) {
@@ -1992,6 +2035,10 @@ var handlerForCurrentBtn = function handlerForCurrentBtn(btnElt) {
     ustensilsPlaceholderElt.classList.toggle("opacity-50");
   }
 };
+/**
+ * Closing the list of ingredients when we click outside
+ */
+
 
 var listeningDocumentForIngredients = function listeningDocumentForIngredients() {
   document.addEventListener("click", function (e) {
@@ -2011,11 +2058,15 @@ var listeningDocumentForIngredients = function listeningDocumentForIngredients()
 
     ingredientsTagsList.classList.remove("grid");
     ingredientsSelect.classList.remove("select--ingredients--open");
-    ingredientsBtn.classList.remove("select__btn--selected");
+    ingredientsBtn.classList.remove("select__tag--selected");
     ingredientsPlaceholderElt.placeholder = "Ingredients";
     ingredientsPlaceholderElt.classList.remove("opacity-50");
   });
 };
+/**
+ * Closing the list of appliances when we click outside
+ */
+
 
 var listeningDocumentForAppliances = function listeningDocumentForAppliances() {
   document.addEventListener("click", function (e) {
@@ -2024,22 +2075,23 @@ var listeningDocumentForAppliances = function listeningDocumentForAppliances() {
 
     do {
       if (targetElt === appliancesElt) {
-        // Click inside
         return;
-      } // Go up the DOM
-
+      }
 
       targetElt = targetElt.parentNode;
-    } while (targetElt); // Click outside
-
+    } while (targetElt);
 
     appliancesTagsList.classList.remove("grid");
     appliancesSelect.classList.remove("select--appliances--open");
-    appliancesBtn.classList.remove("select__btn--selected");
+    appliancesBtn.classList.remove("select__tag--selected");
     appliancesPlaceholderElt.placeholder = "Appareils";
     appliancesPlaceholderElt.classList.remove("opacity-50");
   });
 };
+/**
+ * Closing the list of ustensils when we click outside
+ */
+
 
 var listeningDocumentForUstensils = function listeningDocumentForUstensils() {
   document.addEventListener("click", function (e) {
@@ -2048,18 +2100,15 @@ var listeningDocumentForUstensils = function listeningDocumentForUstensils() {
 
     do {
       if (targetElt === ustensilsElt) {
-        // Click inside
         return;
-      } // Go up the DOM
-
+      }
 
       targetElt = targetElt.parentNode;
-    } while (targetElt); // Click outside
-
+    } while (targetElt);
 
     ustensilsTagsList.classList.remove("grid");
     ustensilsSelect.classList.remove("select--ustensils--open");
-    ustensilsBtn.classList.remove("select__btn--selected");
+    ustensilsBtn.classList.remove("select__tag--selected");
     ustensilsPlaceholderElt.placeholder = "Ustensiles";
     ustensilsPlaceholderElt.classList.remove("opacity-50");
   });
@@ -2070,6 +2119,10 @@ var listeningToDocument = function listeningToDocument() {
   listeningDocumentForAppliances();
   listeningDocumentForUstensils();
 };
+/**
+ * Handle all selects and lists
+ */
+
 
 var handleAllSelects = function handleAllSelects() {
   handleCategoriesBtnClick(ingredientsBtn, ingredientsTagsList);
@@ -2091,133 +2144,170 @@ var handleAllSelects = function handleAllSelects() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createCategorieSelectedTags": () => (/* binding */ createCategorieSelectedTags),
-/* harmony export */   "removeCategorieSelectedTags": () => (/* binding */ removeCategorieSelectedTags)
+/* harmony export */   "removeSelectedTags": () => (/* binding */ removeSelectedTags),
+/* harmony export */   "filteredRecipesByTags": () => (/* binding */ filteredRecipesByTags),
+/* harmony export */   "hideTagClickedInList": () => (/* binding */ hideTagClickedInList),
+/* harmony export */   "addMessageIfTagsListIsEmpty": () => (/* binding */ addMessageIfTagsListIsEmpty)
 /* harmony export */ });
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
-/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils_createElementFactory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/createElementFactory */ "./src/js/utils/createElementFactory.js");
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _recipesList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./recipesList */ "./src/js/recipesList.js");
+/* harmony import */ var _utils_createElementFactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./utils/createElementFactory */ "./src/js/utils/createElementFactory.js");
+/* harmony import */ var _categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./categoriesList/ingredientsList */ "./src/js/categoriesList/ingredientsList.js");
+/* harmony import */ var _categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./categoriesList/appliancesList */ "./src/js/categoriesList/appliancesList.js");
+/* harmony import */ var _categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./categoriesList/ustensilsList */ "./src/js/categoriesList/ustensilsList.js");
+/* harmony import */ var _utils_normalize__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./utils/normalize */ "./src/js/utils/normalize.js");
 
 
 
- // import { createRecipesList } from "./recipesList";
-// import { createIngredientsTagsList } from "./categoriesList/ingredientsList";
-// import { createAppliancesTagsList } from "./categoriesList/appliancesList";
-// import { createUstensilsTagsList } from "./categoriesList/ustensilsList";
-// import { normalize } from "./utils/normalize";
+
+
+
+
+
+
+
+
 
 /**
  * DOM Elements
  */
 
-var btnsTagSelected = document.querySelector(".tags-selected-container");
-var allTags = document.getElementsByClassName("tag"); // const recipesDOMList = document.querySelector(".recipes-list");
-// const ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
-// const appliancesTagsList = document.querySelector(".select__tags-list--appliances");
-// const ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
-// const removeDataDOMRecipes = () => {
-//   recipesDOMList.innerHTML = "";
-//   ingredientsTagsList.innerHTML = "";
-//   appliancesTagsList.innerHTML = "";
-//   ustensilsTagsList.innerHTML = "";
-// };
-// const ingredientsDataCat = "ingredients";
-// const appliancesDataCat = "appliances";
-// const ustensilsDataCat = "ustensils";
-// const createDataDOMRecipes = (elt) => {
-//   createRecipesList(elt);
-//   createIngredientsTagsList(elt);
-//   createAppliancesTagsList(elt);
-//   createUstensilsTagsList(elt);
-// };
-// const createAllCategoriesSelectedTags = (recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat) => {
-//   createCategorieSelectedTags(recipes, ingredientsDataCat);
-//   createCategorieSelectedTags(recipes, appliancesDataCat);
-//   createCategorieSelectedTags(recipes, ustensilsDataCat);
-// };
-
+var tagsSelectedContainer = document.querySelector(".tags-selected-container");
+var allTags = document.getElementsByClassName("tag");
+var recipesDOMList = document.querySelector(".recipes-list");
+var ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
+var appliancesTagsList = document.querySelector(".select__tags-list--appliances");
+var ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
 /**
- * Create a selected btn tag and update list of recipes each time tag is clicked
- * @param {object} _recipes
- * @param {string} categorieElt
+ * Remove DOM recipes elements
  */
 
-var createCategorieSelectedTags = function createCategorieSelectedTags(_recipes, categorieElt) {
-  allTags.forEach(function (tag) {
-    tag.addEventListener("click", function () {
-      tag.classList.replace("block", "none"); // console.log(tag);
-
-      console.log(tag);
-      createBtnSelectedTag(tag, categorieElt); // filteredRecipesByTags(recipes);
-    });
-  });
+var removeDataDOMRecipes = function removeDataDOMRecipes() {
+  recipesDOMList.innerHTML = "";
+  ingredientsTagsList.innerHTML = "";
+  appliancesTagsList.innerHTML = "";
+  ustensilsTagsList.innerHTML = "";
 };
 /**
- * Create DOM btn selected tag
- * @param {HTMLElement} tag
- * @param {string} categorieElt
+ * Creation all DOM recipes elements
+ * @param {object}
  */
 
 
-var createBtnSelectedTag = function createBtnSelectedTag(tag, categorieElt) {
-  if (tag.dataset.cat === "".concat(categorieElt)) {
-    var btnElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_3__.createElementFactory)("button", {
-      class: "btn-tag-selected flex",
-      "data-cat": "".concat(categorieElt)
-    }, "".concat(tag.textContent));
-    var iconCloseElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_3__.createElementFactory)("span", {
-      class: "icon-close"
+var createDataDOMRecipes = function createDataDOMRecipes(elt) {
+  (0,_recipesList__WEBPACK_IMPORTED_MODULE_6__.createDOMRecipesList)(elt);
+  (0,_categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_8__.handleIngredientTagsList)(elt);
+  (0,_categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_9__.handleApplianceTagsList)(elt);
+  (0,_categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_10__.handleUstensilTagsList)(elt);
+};
+/**
+ * Detects if a tag is selected, if so, update recipes
+ * @param {object} recipes
+ */
+
+
+var filteredRecipesByTags = function filteredRecipesByTags(recipes) {
+  if (tagsSelectedContainer.hasChildNodes()) {
+    var tagsChildren = tagsSelectedContainer.childNodes;
+    tagsChildren.forEach(function (tagChild) {
+      var tagSelectedValue = tagChild.textContent;
+      var tagSelectedNormalizeValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normString)(tagSelectedValue); // Filtered ricipes by selected ingredient
+
+      if (tagChild.dataset.cat === "ingredients") {
+        var filteredRecipesByIngredients = recipes.filter(function (recipe) {
+          return recipe.ingredients.some(function (i) {
+            return (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normString)(i.ingredient).includes(tagSelectedNormalizeValue);
+          });
+        });
+        removeDataDOMRecipes();
+        createDataDOMRecipes(filteredRecipesByIngredients);
+      } // Filtered ricipes by selected appliances
+
+
+      if (tagChild.dataset.cat === "appliances") {
+        var filteredRecipesByAppliance = recipes.filter(function (recipe) {
+          var appliance = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normString)(recipe.appliance);
+          return appliance.includes(tagSelectedNormalizeValue);
+        });
+        removeDataDOMRecipes();
+        createDataDOMRecipes(filteredRecipesByAppliance);
+      } // Filtered ricipes by selected ustensil
+
+
+      if (tagChild.dataset.cat === "ustensils") {
+        var filteredRecipesByUstensils = recipes.filter(function (recipe) {
+          return recipe.ustensils.some(function (u) {
+            return (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normString)(u).includes(tagSelectedNormalizeValue);
+          });
+        });
+        removeDataDOMRecipes();
+        createDataDOMRecipes(filteredRecipesByUstensils);
+      }
     });
-    btnElt.appendChild(iconCloseElt);
-    btnsTagSelected.appendChild(btnElt);
+  } else {
+    // Create full recipes and all tags
+    removeDataDOMRecipes();
+    createDataDOMRecipes(recipes);
   }
 
   ;
-}; // /**CREATE BUG IN TAGS LIST
-//  * Detects if a tag is selected, if so, update recipes
-//  * @param {object} recipes
-//  */
-// const filteredRecipesByTags = (recipes) => {
-//   if (btnsTagSelected.hasChildNodes()) {
-//     const btnChildren = btnsTagSelected.childNodes;
-//     btnChildren.forEach(btnChild => {
-//       const btnValue = btnChild.textContent;
-//       const btnNormalizeValue = normalize(btnValue);
-//       const filteredRecipes = recipes.filter((recipe) => {
-//         const name = normalize(recipe.name);
-//         const appliance = normalize(recipe.appliance);
-//         const description = normalize(recipe.description);
-//         return (
-//           name.includes(btnNormalizeValue) ||
-//           appliance.includes(btnNormalizeValue) ||
-//           description.includes(btnNormalizeValue) ||
-//           recipe.ingredients.some(i => normalize(i.ingredient).includes(btnNormalizeValue)) ||
-//           recipe.ustensils.some(u => normalize(u).includes(btnNormalizeValue))
-//         );
-//       });
-//       removeDataDOMRecipes();
-//       createDataDOMRecipes(filteredRecipes);
-//       createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
-//     });
-//   } else {
-//     removeDataDOMRecipes();
-//     createDataDOMRecipes(recipes);
-//     createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
-//   };
-// };
-
+};
 /**
- * Remove selected tag on click
+ * Hide tag clicked in a category list
+ * @param {object} tagClicked
  */
 
 
-var removeCategorieSelectedTags = function removeCategorieSelectedTags() {
+var hideTagClickedInList = function hideTagClickedInList(tagClicked) {
+  var tagsSelectedContainer = document.querySelector(".tags-selected-container");
+  var tagsChildren = tagsSelectedContainer.childNodes;
+
+  for (var i = 0; i < tagsChildren.length; i++) {
+    var tagSelectedValue = tagsChildren[i].textContent;
+    var tagSelectedNormalizeValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normString)(tagSelectedValue);
+    var currentLiElt = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normString)(tagClicked.textContent);
+
+    if (tagSelectedNormalizeValue === currentLiElt) {
+      tagClicked.classList.replace("block", "none");
+    }
+  }
+
+  ;
+};
+/**
+ * Creation and add message when tags list is empty
+ * @param {HTMLElement}
+ */
+
+
+var addMessageIfTagsListIsEmpty = function addMessageIfTagsListIsEmpty(tagsList) {
+  if (tagsList.querySelectorAll(".block").length < 1) {
+    var liElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_7__.createElementFactory)("li", {
+      class: "tag tag--message-empty block"
+    }, "Aucun tag disponible");
+    tagsList.appendChild(liElt);
+  }
+};
+/**
+ * Remove selected tag on click and update recipes
+ * @param {object} recipes
+ */
+
+
+var removeSelectedTags = function removeSelectedTags(recipes) {
   document.addEventListener("click", function (e) {
-    if (e.target.classList.contains("icon-close") || e.target.classList.contains("btn-tag-selected")) {
+    if (e.target.classList.contains("icon-close") || e.target.classList.contains("tag-selected")) {
       allTags.forEach(function (tag) {
         if (e.target.textContent === tag.textContent || e.target.parentNode.textContent === tag.textContent) {
           tag.classList.replace("none", "block");
@@ -2227,9 +2317,12 @@ var removeCategorieSelectedTags = function removeCategorieSelectedTags() {
       if (e.target.classList.contains("icon-close")) {
         e.target.parentNode.remove();
         e.target.remove();
-      } else if (e.target.classList.contains("btn-tag-selected")) {
+      } else if (e.target.classList.contains("tag-selected")) {
         e.target.parentNode.removeChild(e.target);
-      }
+      } // updateRecipesList(recipes);
+
+
+      filteredRecipesByTags(recipes);
     }
   });
 };
@@ -2261,12 +2354,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
 /* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _recipesList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./recipesList */ "./src/js/recipesList.js");
-/* harmony import */ var _categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./categoriesList/ingredientsList */ "./src/js/categoriesList/ingredientsList.js");
-/* harmony import */ var _categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./categoriesList/appliancesList */ "./src/js/categoriesList/appliancesList.js");
-/* harmony import */ var _categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./categoriesList/ustensilsList */ "./src/js/categoriesList/ustensilsList.js");
-/* harmony import */ var _handleTags__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./handleTags */ "./src/js/handleTags.js");
-/* harmony import */ var _utils_normalize__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./utils/normalize */ "./src/js/utils/normalize.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _recipesList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./recipesList */ "./src/js/recipesList.js");
+/* harmony import */ var _categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./categoriesList/ingredientsList */ "./src/js/categoriesList/ingredientsList.js");
+/* harmony import */ var _categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./categoriesList/appliancesList */ "./src/js/categoriesList/appliancesList.js");
+/* harmony import */ var _categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./categoriesList/ustensilsList */ "./src/js/categoriesList/ustensilsList.js");
+/* harmony import */ var _utils_createElementFactory__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./utils/createElementFactory */ "./src/js/utils/createElementFactory.js");
+/* harmony import */ var _utils_normalize__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./utils/normalize */ "./src/js/utils/normalize.js");
+
+
+
 
 
 
@@ -2285,12 +2387,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var searchInput = document.querySelector("#search-bar");
 var recipesDOMList = document.querySelector(".recipes-list");
+var tagsSelectedContainer = document.querySelector(".tags-selected-container");
 var ingredientsTagsList = document.querySelector(".select__tags-list--ingredients");
 var appliancesTagsList = document.querySelector(".select__tags-list--appliances");
 var ustensilsTagsList = document.querySelector(".select__tags-list--ustensils");
-var ingredientsDataCat = "ingredients";
-var appliancesDataCat = "appliances";
-var ustensilsDataCat = "ustensils";
+/**
+ * Remove DOM recipes elements
+ */
 
 var removeDataDOMRecipes = function removeDataDOMRecipes() {
   recipesDOMList.innerHTML = "";
@@ -2298,22 +2401,21 @@ var removeDataDOMRecipes = function removeDataDOMRecipes() {
   appliancesTagsList.innerHTML = "";
   ustensilsTagsList.innerHTML = "";
 };
+/**
+ * Creation all DOM recipes elements
+ * @param {object}
+ */
 
-var createDataDOMRecipes = function createDataDOMRecipes(filteredelt) {
-  (0,_recipesList__WEBPACK_IMPORTED_MODULE_6__.createRecipesList)(filteredelt);
-  (0,_categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_7__.createIngredientsTagsList)(filteredelt);
-  (0,_categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_8__.createAppliancesTagsList)(filteredelt);
-  (0,_categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_9__.createUstensilsTagsList)(filteredelt);
-};
 
-var createAllCategoriesSelectedTags = function createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat) {
-  (0,_handleTags__WEBPACK_IMPORTED_MODULE_10__.createCategorieSelectedTags)(recipes, ingredientsDataCat);
-  (0,_handleTags__WEBPACK_IMPORTED_MODULE_10__.createCategorieSelectedTags)(recipes, appliancesDataCat);
-  (0,_handleTags__WEBPACK_IMPORTED_MODULE_10__.createCategorieSelectedTags)(recipes, ustensilsDataCat);
+var createDataDOMRecipes = function createDataDOMRecipes(elt) {
+  (0,_recipesList__WEBPACK_IMPORTED_MODULE_9__.createDOMRecipesList)(elt);
+  (0,_categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_10__.handleIngredientTagsList)(elt);
+  (0,_categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_11__.handleApplianceTagsList)(elt);
+  (0,_categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_12__.handleUstensilTagsList)(elt);
 };
 /**
  * Main search
- * Listen and update recipes DOM elts
+ * Listen and update recipes
  * @param {object} data recipes
  * @returns {HTMLElement}
  */
@@ -2321,26 +2423,51 @@ var createAllCategoriesSelectedTags = function createAllCategoriesSelectedTags(r
 
 var updateRecipesList = function updateRecipesList(recipes) {
   searchInput.addEventListener("keyup", function (e) {
-    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normalize)(e.target.value);
+    var userInputValue = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_14__.normString)(e.target.value);
 
     if (userInputValue.length > 2) {
       var filteredRecipes = recipes.filter(function (recipe) {
-        var name = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normalize)(recipe.name);
-        var description = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normalize)(recipe.description);
+        var name = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_14__.normString)(recipe.name);
+        var description = (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_14__.normString)(recipe.description);
         return name.includes(userInputValue) || description.includes(userInputValue) || recipe.ingredients.some(function (i) {
-          return (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_11__.normalize)(i.ingredient).includes(userInputValue);
+          return (0,_utils_normalize__WEBPACK_IMPORTED_MODULE_14__.normString)(i.ingredient).includes(userInputValue);
         });
       }); // Filtered recipes and update tags list
 
       removeDataDOMRecipes();
       createDataDOMRecipes(filteredRecipes);
-      createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat); // Create full recipes and all tags
+      displayInfoMessage(filteredRecipes);
     } else {
+      // Create full recipes and all tags
       removeDataDOMRecipes();
       createDataDOMRecipes(recipes);
-      createAllCategoriesSelectedTags(recipes, ingredientsDataCat, appliancesDataCat, ustensilsDataCat);
+      displayInfoMessage(recipes); // Delete selected tags if user restart a research
+
+      var tagsChildren = tagsSelectedContainer.childNodes;
+      tagsChildren.forEach(function (tagChild) {
+        tagChild.remove();
+      });
     }
   });
+};
+
+var displayInfoMessage = function displayInfoMessage(filteredElt) {
+  var infoMessageContainer = document.querySelector(".info-message-container");
+
+  if (!filteredElt.length) {
+    var messageElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_13__.createElementFactory)("p", {
+      class: "info-message"
+    });
+    infoMessageContainer.innerHTML = "";
+    infoMessageContainer.classList.replace("none", "block");
+    messageElt.innerHTML = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.";
+    infoMessageContainer.append(messageElt);
+  } else {
+    infoMessageContainer.innerHTML = "";
+    infoMessageContainer.classList.replace("block", "none");
+    recipesDOMList.innerHTML = "";
+    (0,_recipesList__WEBPACK_IMPORTED_MODULE_9__.createDOMRecipesList)(filteredElt);
+  }
 };
 
 
@@ -2356,7 +2483,7 @@ var updateRecipesList = function updateRecipesList(recipes) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createRecipesList": () => (/* binding */ createRecipesList)
+/* harmony export */   "createDOMRecipesList": () => (/* binding */ createDOMRecipesList)
 /* harmony export */ });
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -2378,11 +2505,15 @@ __webpack_require__.r(__webpack_exports__);
  * @returns {HTMLElement} recipes list
  */
 
-var createRecipesList = function createRecipesList(recipes) {
+var createDOMRecipesList = function createDOMRecipesList(recipes) {
   recipes.forEach(function (recipe) {
     var recipesListDOMElt = document.querySelector(".recipes-list");
     var articleElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("article", {
       class: "recipe-card"
+    });
+    var articleLink = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("a", {
+      href: "#",
+      "aria-label": "Lien vers la recette ".concat(recipe.name)
     });
     var imgElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("div", {
       class: "recipe-card__img"
@@ -2414,12 +2545,13 @@ var createRecipesList = function createRecipesList(recipes) {
     h2Elt.appendChild(titleElt);
     timeContainerElt.insertAdjacentElement("afterbegin", timeIconElt);
     h2Elt.appendChild(timeContainerElt);
-    articleElt.appendChild(imgElt);
+    articleLink.appendChild(imgElt);
     cardContentElt.appendChild(h2Elt);
     descriptionElts.appendChild(ingredientsElt);
     descriptionElts.appendChild(descriptionElt);
     cardContentElt.appendChild(descriptionElts);
-    articleElt.appendChild(cardContentElt);
+    articleLink.appendChild(cardContentElt);
+    articleElt.appendChild(articleLink);
     recipesListDOMElt.appendChild(articleElt);
   });
 };
@@ -2485,7 +2617,7 @@ var createElementFactory = function createElementFactory(type, attributes) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "normalize": () => (/* binding */ normalize)
+/* harmony export */   "normString": () => (/* binding */ normString)
 /* harmony export */ });
 /* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
 /* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -2495,7 +2627,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // STRING Normalize
-var normalize = function normalize(string) {
+var normString = function normString(string) {
   string = string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   string = string.toLowerCase();
   string = string.replace(/œ/g, "oe").replace(/æ/g, "ae").replace(/[']/g, " ");
@@ -6756,7 +6888,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */\n/* Document\r\n   ========================================================================== */\n/**\r\n * 1. Correct the line height in all browsers.\r\n * 2. Prevent adjustments of font size after orientation changes in iOS.\r\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\r\n   ========================================================================== */\n/**\r\n * Remove the margin in all browsers.\r\n */\nbody {\n  margin: 0; }\n\n/**\r\n * Render the `main` element consistently in IE.\r\n */\nmain {\n  display: block; }\n\n/**\r\n * Correct the font size and margin on `h1` elements within `section` and\r\n * `article` contexts in Chrome, Firefox, and Safari.\r\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\r\n   ========================================================================== */\n/**\r\n * 1. Add the correct box sizing in Firefox.\r\n * 2. Show the overflow in Edge and IE.\r\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\r\n   ========================================================================== */\n/**\r\n * Remove the gray background on active links in IE 10.\r\n */\na {\n  background-color: transparent; }\n\n/**\r\n * 1. Remove the bottom border in Chrome 57-\r\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\r\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\r\n * Add the correct font weight in Chrome, Edge, and Safari.\r\n */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\r\n * Add the correct font size in all browsers.\r\n */\nsmall {\n  font-size: 80%; }\n\n/**\r\n * Prevent `sub` and `sup` elements from affecting the line height in\r\n * all browsers.\r\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\r\n   ========================================================================== */\n/**\r\n * Remove the border on images inside links in IE 10.\r\n */\nimg {\n  border-style: none; }\n\n/* Forms\r\n   ========================================================================== */\n/**\r\n * 1. Change the font styles in all browsers.\r\n * 2. Remove the margin in Firefox and Safari.\r\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: inherit;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\r\n * Show the overflow in IE.\r\n * 1. Show the overflow in Edge.\r\n */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\r\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\r\n * 1. Remove the inheritance of text transform in Firefox.\r\n */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\r\n * Correct the inability to style clickable types in iOS and Safari.\r\n */\nbutton,\n[type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; }\n\n/**\r\n * Remove the inner border and padding in Firefox.\r\n */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\r\n * Restore the focus styles unset by the previous rule.\r\n */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\r\n * Correct the padding in Firefox.\r\n */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\r\n * 1. Correct the text wrapping in Edge and IE.\r\n * 2. Correct the color inheritance from `fieldset` elements in IE.\r\n * 3. Remove the padding so developers are not caught out when they zero out\r\n *    `fieldset` elements in all browsers.\r\n */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\r\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\r\n */\nprogress {\n  vertical-align: baseline; }\n\n/**\r\n * Remove the default vertical scrollbar in IE 10+.\r\n */\ntextarea {\n  overflow: auto; }\n\n/**\r\n * 1. Add the correct box sizing in IE 10.\r\n * 2. Remove the padding in IE 10.\r\n */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\r\n * Correct the cursor style of increment and decrement buttons in Chrome.\r\n */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\r\n * 1. Correct the odd appearance in Chrome and Safari.\r\n * 2. Correct the outline style in Safari.\r\n */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\r\n * Remove the inner padding in Chrome and Safari on macOS.\r\n */\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\r\n * 1. Correct the inability to style clickable types in iOS and Safari.\r\n * 2. Change font properties to `inherit` in Safari.\r\n */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\r\n   ========================================================================== */\n/*\r\n * Add the correct display in Edge, IE 10+, and Firefox.\r\n */\ndetails {\n  display: block; }\n\n/*\r\n * Add the correct display in all browsers.\r\n */\nsummary {\n  display: list-item; }\n\n/* Misc\r\n   ========================================================================== */\n/**\r\n * Add the correct display in IE 10+.\r\n */\ntemplate {\n  display: none; }\n\n/**\r\n * Add the correct display in IE 10.\r\n */\n[hidden] {\n  display: none; }\n\n/**************************************/\n/************* Custom css *************/\n/**************************************/\nhtml {\n  box-sizing: border-box;\n  font-size: 62.5%; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  line-height: 1.6rem;\n  font-family: 'Lato', sans-serif;\n  font-size: 1.6rem;\n  color: black;\n  scroll-behavior: smooth; }\n\nh1,\nh2,\nh3 {\n  font-weight: 400;\n  line-height: 4.6rem; }\n\nul {\n  padding: 0;\n  list-style: none; }\n\na {\n  text-decoration: none; }\n\nimg,\nvideo {\n  max-width: 100%;\n  height: auto;\n  object-fit: cover; }\n\nbutton {\n  cursor: pointer; }\n\n[data-cat=ingredients] {\n  background-color: #3180f6;\n  color: white; }\n\n[data-cat=appliances] {\n  background-color: #68d9a4;\n  color: white; }\n\n[data-cat=ustensils] {\n  background-color: #ed6454;\n  color: white; }\n\n.none {\n  display: none; }\n\n.block {\n  display: block; }\n\n.flex {\n  display: flex !important; }\n\n.grid {\n  display: grid !important; }\n\n.opacity-50 {\n  opacity: .5; }\n\n.wrapper {\n  width: 100%;\n  margin: 0 auto; }\n\n@media (min-width: 576px) {\n  .wrapper {\n    max-width: 540px; } }\n\n@media (min-width: 768px) {\n  .wrapper {\n    max-width: 740px; } }\n\n@media (min-width: 991px) {\n  .wrapper {\n    max-width: 960px; } }\n\n@media (min-width: 1200px) {\n  .wrapper {\n    max-width: 1140px; } }\n\n@media (min-width: 1440px) {\n  .wrapper {\n    max-width: 1400px; } }\n\n.btn-search {\n  position: absolute;\n  height: 69%;\n  top: 6px;\n  right: 25px;\n  border: none;\n  background-color: transparent; }\n  .btn-search i {\n    font-size: 2.2rem;\n    opacity: 0.7; }\n    .btn-search i:hover {\n      opacity: 1; }\n\n.btn-tag-selected {\n  align-items: center;\n  margin: 0 15px 0 0;\n  padding: 0 10px;\n  min-width: fit-content;\n  height: 35px;\n  border-radius: 0.5rem;\n  border: none; }\n  .btn-tag-selected .icon-close {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    position: relative;\n    margin: 0 0 0 15px;\n    padding: 0 10px 0 0;\n    transition: all .15s ease-in; }\n    .btn-tag-selected .icon-close::before {\n      position: absolute;\n      content: \"\";\n      width: 12px;\n      height: 12px;\n      border-radius: 35px;\n      background-color: transparent;\n      border: solid 2px white; }\n      @media (min-width: 991px) {\n        .btn-tag-selected .icon-close::before {\n          border: solid 3px white; } }\n    .btn-tag-selected .icon-close::after {\n      position: absolute;\n      content: \"\\002716\";\n      font-size: 9px;\n      color: white; }\n      @media (min-width: 991px) {\n        .btn-tag-selected .icon-close::after {\n          font-weight: 700; } }\n  .btn-tag-selected:hover .icon-close:before {\n    background-color: white; }\n  .btn-tag-selected:hover .icon-close:after {\n    color: black; }\n  .btn-tag-selected[data-cat=ingredients]:hover {\n    background-color: #2459a8; }\n  .btn-tag-selected[data-cat=appliances]:hover {\n    background-color: #2eb877; }\n  .btn-tag-selected[data-cat=ustensils]:hover {\n    background-color: #d02816; }\n\n.recipe-card {\n  margin: 1.5rem;\n  border-radius: 0.5rem;\n  background-color: #e8e8e8; }\n  .recipe-card__img {\n    height: 15rem;\n    border-radius: 0.5rem 0.5rem 0 0;\n    background-color: #c6bebe; }\n  .recipe-card__content {\n    display: flex;\n    flex-direction: column;\n    padding: 15px; }\n    .recipe-card__content h2 {\n      display: flex;\n      flex-direction: column;\n      margin: 0;\n      font-size: 2.2rem;\n      font-weight: 700; }\n      @media (min-width: 400px) {\n        .recipe-card__content h2 {\n          flex-direction: row;\n          justify-content: space-between; } }\n      .recipe-card__content h2 .recipe-card__content__title {\n        max-width: 255px;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: nowrap; }\n    .recipe-card__content__description {\n      display: flex;\n      flex-direction: column; }\n      @media (min-width: 400px) {\n        .recipe-card__content__description {\n          flex-direction: row;\n          justify-content: space-between;\n          gap: 25px; } }\n    .recipe-card__content ul {\n      width: 50%;\n      line-height: 2.2rem; }\n    .recipe-card__content p {\n      display: -webkit-box;\n      -webkit-box-orient: vertical;\n      -webkit-line-clamp: 10;\n      overflow: hidden;\n      width: 100%;\n      line-height: 2rem; }\n      @media (min-width: 400px) {\n        .recipe-card__content p {\n          width: 50%; } }\n\n.form-search-bar {\n  position: relative;\n  margin: 15px 0 0 0;\n  padding: 0 15px; }\n  .form-search-bar input[type=text] {\n    width: 100%;\n    padding: 20px;\n    margin: 0 0 15px 0;\n    display: inline-block;\n    font-size: 1.2rem;\n    border: 1px solid #e8e8e8;\n    background-color: #e8e8e8;\n    border-radius: 0.5rem;\n    box-sizing: border-box; }\n    @media (min-width: 991px) {\n      .form-search-bar input[type=text] {\n        font-size: 1.4rem; } }\n    @media (min-width: 1200px) {\n      .form-search-bar input[type=text] {\n        font-size: 1.6rem; } }\n    .form-search-bar input[type=text]::placeholder {\n      opacity: .6; }\n\n.select {\n  position: relative;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  width: 100%;\n  margin: 20px 0 0 0;\n  border-radius: 0.5rem;\n  cursor: pointer;\n  transition: width .1s ease-in; }\n  .select:first-child {\n    margin: 0; }\n    @media (min-width: 576px) {\n      .select:first-child {\n        margin: 0 20px 0 0; } }\n  @media (min-width: 576px) {\n    .select:last-child {\n      margin: 0; } }\n  @media (min-width: 576px) {\n    .select {\n      margin: 0 20px 0 0;\n      width: 170px; } }\n  .select input[type=text] {\n    padding: 18px 10px 18px 15px;\n    width: 85%;\n    font-size: 12px;\n    font-weight: 700;\n    color: white;\n    outline: none;\n    border-radius: 0.5rem;\n    cursor: pointer; }\n    @media (min-width: 576px) {\n      .select input[type=text] {\n        width: 60%; } }\n    @media (min-width: 991px) {\n      .select input[type=text] {\n        font-size: 14px; } }\n    @media (min-width: 1200px) {\n      .select input[type=text] {\n        font-size: 16px; } }\n    .select input[type=text]::placeholder {\n      font-weight: 700;\n      color: white; }\n      .select input[type=text]::placeholder:focus, .select input[type=text]::placeholder:active {\n        opacity: 0.5; }\n  .select__btn {\n    position: relative;\n    margin: 0 4px 0 0;\n    height: 50px;\n    width: 30px;\n    border: none;\n    background-color: transparent; }\n    @media (min-width: 576px) {\n      .select__btn {\n        height: 100%; } }\n    .select__btn:before {\n      position: absolute;\n      content: \"\";\n      right: 14px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(-130deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n    .select__btn:after {\n      position: absolute;\n      content: \"\";\n      right: 7px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(130deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in-out; }\n    .select__btn--selected:before {\n      position: absolute;\n      content: \"\";\n      right: 14px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(-45deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n    .select__btn--selected:after {\n      position: absolute;\n      content: \"\";\n      right: 7px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(45deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n  .select .fas {\n    color: white; }\n  .select--ingredients {\n    background-color: #3180f6; }\n    .select--ingredients input[type=text] {\n      border: 1px solid #3180f6;\n      background-color: #3180f6;\n      color: white; }\n      .select--ingredients input[type=text]:hover {\n        background-color: #2459a8; }\n    .select--ingredients--open {\n      flex: 1;\n      transition: flex .06s ease-in-out; }\n      @media (min-width: 576px) {\n        .select--ingredients--open {\n          flex: auto; } }\n      .select--ingredients--open:hover {\n        background-color: #3180f6 !important; }\n        .select--ingredients--open:hover input[type=text] {\n          background-color: #3180f6 !important;\n          border-color: #3180f6 !important; }\n    .select--ingredients:hover {\n      background-color: #2459a8; }\n      .select--ingredients:hover input[type=text] {\n        background-color: #2459a8;\n        border-color: #2459a8; }\n  .select--appliances {\n    background-color: #68d9a4; }\n    .select--appliances input[type=text] {\n      border: 1px solid #68d9a4;\n      background-color: #68d9a4;\n      color: white; }\n      .select--appliances input[type=text]:hover {\n        background-color: #2eb877; }\n    .select--appliances--open {\n      flex: 0.5;\n      transition: flex .06s ease-in-out; }\n      @media (min-width: 576px) {\n        .select--appliances--open {\n          flex: auto; } }\n      @media (min-width: 991px) {\n        .select--appliances--open {\n          flex: 0.5; } }\n      .select--appliances--open:hover {\n        background-color: #68d9a4 !important; }\n        .select--appliances--open:hover input[type=text] {\n          background-color: #68d9a4 !important;\n          border-color: #68d9a4 !important; }\n    .select--appliances:hover {\n      background-color: #2eb877; }\n      .select--appliances:hover input[type=text] {\n        background-color: #2eb877;\n        border-color: #2eb877; }\n  .select--ustensils {\n    background-color: #ed6454; }\n    .select--ustensils input[type=text] {\n      border: 1px solid #ed6454;\n      background-color: #ed6454;\n      color: white; }\n      .select--ustensils input[type=text]:hover {\n        background-color: #d02816; }\n    .select--ustensils--open {\n      flex: 1;\n      transition: flex .06s ease-in-out; }\n      @media (min-width: 576px) {\n        .select--ustensils--open {\n          flex: auto; } }\n      .select--ustensils--open:hover {\n        background-color: #ed6454 !important; }\n        .select--ustensils--open:hover input[type=text] {\n          background-color: #ed6454 !important;\n          border-color: #ed6454 !important; }\n    .select--ustensils:hover {\n      background-color: #d02816; }\n      .select--ustensils:hover input[type=text] {\n        background-color: #d02816;\n        border-color: #d02816; }\n\nheader {\n  text-align: center;\n  padding: 15px; }\n  header .lpp_logo {\n    width: 200px; }\n    @media (min-width: 1200px) {\n      header .lpp_logo {\n        width: 320px; } }\n\n.tags-selection {\n  display: flex;\n  flex-direction: column;\n  padding: 15px; }\n  @media (min-width: 576px) {\n    .tags-selection {\n      flex-direction: row; } }\n\n.select__tags-list {\n  position: absolute;\n  display: none;\n  z-index: 10;\n  padding: 5px 0;\n  top: 27px;\n  max-height: 348px;\n  width: -webkit-fill-available;\n  overflow: hidden;\n  border-radius: 0.5rem; }\n  @media (min-width: 768px) {\n    .select__tags-list {\n      grid-template-columns: repeat(2, 1fr); } }\n  @media (min-width: 991px) {\n    .select__tags-list {\n      column-gap: 10px;\n      max-height: 284px; } }\n  .select__tags-list li {\n    width: 100%;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    padding: 8px 8px 8px 15px;\n    font-weight: 700;\n    cursor: pointer; }\n\n@media (min-width: 991px) {\n  .select__tags-list--ingredients {\n    grid-template-columns: repeat(3, 1fr); } }\n\n@media (min-width: 1200px) {\n  .select__tags-list--ingredients {\n    grid-template-columns: repeat(5, 1fr);\n    max-height: 187px; } }\n\n@media (min-width: 768px) {\n  .select__tags-list--ingredients li {\n    max-width: 86%; } }\n\n@media (min-width: 991px) {\n  .select__tags-list--ingredients li {\n    max-width: 87%; } }\n\n.select__tags-list--ingredients li:hover {\n  background-color: #2459a8;\n  color: white; }\n\n@media (min-width: 768px) {\n  .select__tags-list--appliances {\n    max-height: 188px; } }\n\n.select__tags-list--appliances li:hover {\n  background-color: #2eb877;\n  color: white; }\n\n@media (min-width: 991px) {\n  .select__tags-list--ustensils {\n    grid-template-columns: repeat(3, 1fr); } }\n\n@media (min-width: 1200px) {\n  .select__tags-list--ustensils {\n    grid-template-columns: repeat(4, 1fr);\n    max-height: 187px; } }\n\n@media (min-width: 768px) {\n  .select__tags-list--ustensils li {\n    max-width: 86%; } }\n\n@media (min-width: 991px) {\n  .select__tags-list--ustensils li {\n    max-width: 87%; } }\n\n@media (min-width: 991px) {\n  .select__tags-list--ustensils li {\n    max-width: 90%; } }\n\n.select__tags-list--ustensils li:hover {\n  background-color: #d02816;\n  color: white; }\n\n.tags-selected-container {\n  display: flex;\n  flex-wrap: wrap;\n  row-gap: 15px;\n  padding: 0 15px; }\n\n.recipes-list {\n  display: flex;\n  flex-direction: column; }\n  @media (min-width: 991px) {\n    .recipes-list {\n      display: grid;\n      grid-template-columns: repeat(2, 1fr);\n      grid-template-rows: auto; } }\n  @media (min-width: 1200px) {\n    .recipes-list {\n      grid-template-columns: repeat(3, 1fr); } }\n", "",{"version":3,"sources":["webpack://./src/styles/_base/_base.scss","webpack://./src/styles/main.scss","webpack://./src/styles/_utils/_variables.scss","webpack://./src/styles/_utils/_classes.scss","webpack://./src/styles/_utils/_mixins.scss","webpack://./src/styles/_components/_btn-search.scss","webpack://./src/styles/_components/_btn-tag-selected.scss","webpack://./src/styles/_components/_recipe-card.scss","webpack://./src/styles/_components/_search-bar.scss","webpack://./src/styles/_components/_select.scss","webpack://./src/styles/_layout/_header.scss","webpack://./src/styles/_layout/_tags-selection.scss","webpack://./src/styles/_layout/_tags-selected.scss","webpack://./src/styles/_pages/_index.scss"],"names":[],"mappings":"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","sourcesContent":["/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */\r\n\r\n/* Document\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Correct the line height in all browsers.\r\n * 2. Prevent adjustments of font size after orientation changes in iOS.\r\n */\r\n\r\n html {\r\n  line-height: 1.15; /* 1 */\r\n  -webkit-text-size-adjust: 100%; /* 2 */\r\n}\r\n\r\n/* Sections\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the margin in all browsers.\r\n */\r\n\r\nbody {\r\n  margin: 0;\r\n}\r\n\r\n/**\r\n * Render the `main` element consistently in IE.\r\n */\r\n\r\nmain {\r\n  display: block;\r\n}\r\n\r\n/**\r\n * Correct the font size and margin on `h1` elements within `section` and\r\n * `article` contexts in Chrome, Firefox, and Safari.\r\n */\r\n\r\nh1 {\r\n  font-size: 2em;\r\n  margin: 0.67em 0;\r\n}\r\n\r\n/* Grouping content\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Add the correct box sizing in Firefox.\r\n * 2. Show the overflow in Edge and IE.\r\n */\r\n\r\nhr {\r\n  box-sizing: content-box; /* 1 */\r\n  height: 0; /* 1 */\r\n  overflow: visible; /* 2 */\r\n}\r\n\r\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\r\n\r\npre {\r\n  font-family: monospace, monospace; /* 1 */\r\n  font-size: 1em; /* 2 */\r\n}\r\n\r\n/* Text-level semantics\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the gray background on active links in IE 10.\r\n */\r\n\r\na {\r\n  background-color: transparent;\r\n}\r\n\r\n/**\r\n * 1. Remove the bottom border in Chrome 57-\r\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\r\n */\r\n\r\nabbr[title] {\r\n  border-bottom: none; /* 1 */\r\n  text-decoration: underline; /* 2 */\r\n  text-decoration: underline dotted; /* 2 */\r\n}\r\n\r\n/**\r\n * Add the correct font weight in Chrome, Edge, and Safari.\r\n */\r\n\r\nb,\r\nstrong {\r\n  font-weight: bolder;\r\n}\r\n\r\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\r\n\r\ncode,\r\nkbd,\r\nsamp {\r\n  font-family: monospace, monospace; /* 1 */\r\n  font-size: 1em; /* 2 */\r\n}\r\n\r\n/**\r\n * Add the correct font size in all browsers.\r\n */\r\n\r\nsmall {\r\n  font-size: 80%;\r\n}\r\n\r\n/**\r\n * Prevent `sub` and `sup` elements from affecting the line height in\r\n * all browsers.\r\n */\r\n\r\nsub,\r\nsup {\r\n  font-size: 75%;\r\n  line-height: 0;\r\n  position: relative;\r\n  vertical-align: baseline;\r\n}\r\n\r\nsub {\r\n  bottom: -0.25em;\r\n}\r\n\r\nsup {\r\n  top: -0.5em;\r\n}\r\n\r\n/* Embedded content\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the border on images inside links in IE 10.\r\n */\r\n\r\nimg {\r\n  border-style: none;\r\n}\r\n\r\n/* Forms\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Change the font styles in all browsers.\r\n * 2. Remove the margin in Firefox and Safari.\r\n */\r\n\r\nbutton,\r\ninput,\r\noptgroup,\r\nselect,\r\ntextarea {\r\n  font-family: inherit; /* 1 */\r\n  font-size: 100%; /* 1 */\r\n  line-height: 1.15; /* 1 */\r\n  margin: 0; /* 2 */\r\n}\r\n\r\n/**\r\n * Show the overflow in IE.\r\n * 1. Show the overflow in Edge.\r\n */\r\n\r\nbutton,\r\ninput { /* 1 */\r\n  overflow: visible;\r\n}\r\n\r\n/**\r\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\r\n * 1. Remove the inheritance of text transform in Firefox.\r\n */\r\n\r\nbutton,\r\nselect { /* 1 */\r\n  text-transform: none;\r\n}\r\n\r\n/**\r\n * Correct the inability to style clickable types in iOS and Safari.\r\n */\r\n\r\nbutton,\r\n[type=\"button\"],\r\n[type=\"reset\"],\r\n[type=\"submit\"] {\r\n  -webkit-appearance: button;\r\n}\r\n\r\n/**\r\n * Remove the inner border and padding in Firefox.\r\n */\r\n\r\nbutton::-moz-focus-inner,\r\n[type=\"button\"]::-moz-focus-inner,\r\n[type=\"reset\"]::-moz-focus-inner,\r\n[type=\"submit\"]::-moz-focus-inner {\r\n  border-style: none;\r\n  padding: 0;\r\n}\r\n\r\n/**\r\n * Restore the focus styles unset by the previous rule.\r\n */\r\n\r\nbutton:-moz-focusring,\r\n[type=\"button\"]:-moz-focusring,\r\n[type=\"reset\"]:-moz-focusring,\r\n[type=\"submit\"]:-moz-focusring {\r\n  outline: 1px dotted ButtonText;\r\n}\r\n\r\n/**\r\n * Correct the padding in Firefox.\r\n */\r\n\r\nfieldset {\r\n  padding: 0.35em 0.75em 0.625em;\r\n}\r\n\r\n/**\r\n * 1. Correct the text wrapping in Edge and IE.\r\n * 2. Correct the color inheritance from `fieldset` elements in IE.\r\n * 3. Remove the padding so developers are not caught out when they zero out\r\n *    `fieldset` elements in all browsers.\r\n */\r\n\r\nlegend {\r\n  box-sizing: border-box; /* 1 */\r\n  color: inherit; /* 2 */\r\n  display: table; /* 1 */\r\n  max-width: 100%; /* 1 */\r\n  padding: 0; /* 3 */\r\n  white-space: normal; /* 1 */\r\n}\r\n\r\n/**\r\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\r\n */\r\n\r\nprogress {\r\n  vertical-align: baseline;\r\n}\r\n\r\n/**\r\n * Remove the default vertical scrollbar in IE 10+.\r\n */\r\n\r\ntextarea {\r\n  overflow: auto;\r\n}\r\n\r\n/**\r\n * 1. Add the correct box sizing in IE 10.\r\n * 2. Remove the padding in IE 10.\r\n */\r\n\r\n[type=\"checkbox\"],\r\n[type=\"radio\"] {\r\n  box-sizing: border-box; /* 1 */\r\n  padding: 0; /* 2 */\r\n}\r\n\r\n/**\r\n * Correct the cursor style of increment and decrement buttons in Chrome.\r\n */\r\n\r\n[type=\"number\"]::-webkit-inner-spin-button,\r\n[type=\"number\"]::-webkit-outer-spin-button {\r\n  height: auto;\r\n}\r\n\r\n/**\r\n * 1. Correct the odd appearance in Chrome and Safari.\r\n * 2. Correct the outline style in Safari.\r\n */\r\n\r\n[type=\"search\"] {\r\n  -webkit-appearance: textfield; /* 1 */\r\n  outline-offset: -2px; /* 2 */\r\n}\r\n\r\n/**\r\n * Remove the inner padding in Chrome and Safari on macOS.\r\n */\r\n\r\n[type=\"search\"]::-webkit-search-decoration {\r\n  -webkit-appearance: none;\r\n}\r\n\r\n/**\r\n * 1. Correct the inability to style clickable types in iOS and Safari.\r\n * 2. Change font properties to `inherit` in Safari.\r\n */\r\n\r\n::-webkit-file-upload-button {\r\n  -webkit-appearance: button; /* 1 */\r\n  font: inherit; /* 2 */\r\n}\r\n\r\n/* Interactive\r\n   ========================================================================== */\r\n\r\n/*\r\n * Add the correct display in Edge, IE 10+, and Firefox.\r\n */\r\n\r\ndetails {\r\n  display: block;\r\n}\r\n\r\n/*\r\n * Add the correct display in all browsers.\r\n */\r\n\r\nsummary {\r\n  display: list-item;\r\n}\r\n\r\n/* Misc\r\n   ========================================================================== */\r\n\r\n/**\r\n * Add the correct display in IE 10+.\r\n */\r\n\r\ntemplate {\r\n  display: none;\r\n}\r\n\r\n/**\r\n * Add the correct display in IE 10.\r\n */\r\n\r\n[hidden] {\r\n  display: none;\r\n}\r\n\r\n/**************************************/\r\n/************* Custom css *************/\r\n/**************************************/\r\n\r\nhtml {\r\n  box-sizing: border-box;\r\n  font-size: 62.5%;\r\n}\r\n\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n  line-height: 1.6rem;\r\n  font-family: 'Lato', sans-serif;\r\n  font-size: 1.6rem;\r\n  color: $primary-color-text;\r\n  scroll-behavior: smooth;\r\n}\r\n\r\nh1,\r\nh2,\r\nh3 {\r\n  font-weight: 400;\r\n  line-height: 4.6rem;\r\n}\r\n\r\nul {\r\n  padding: 0;\r\n  list-style: none;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n}\r\n\r\nimg,\r\nvideo {\r\n  max-width: 100%;\r\n  height: auto;\r\n  object-fit: cover;\r\n}\r\n\r\nbutton {\r\n  cursor: pointer;\r\n}\r\n\r\n// Data attribute for different categories\r\n[data-cat=ingredients] {\r\n  background-color: $primary-color;\r\n  color: white;\r\n}\r\n\r\n[data-cat=appliances] {\r\n  background-color: $secondary-color;\r\n  color: white;\r\n}\r\n\r\n[data-cat=ustensils] {\r\n  background-color: $tertiary-color;\r\n  color: white;\r\n}\r\n","@import \"./_utils/variables\";\r\n@import \"./_base/base\";\r\n@import \"./_utils/mixins\";\r\n@import \"./_utils/classes\";\r\n@import \"./_components/btn-search\";\r\n@import \"./_components/btn-tag-selected\";\r\n@import \"./_components/recipe-card\";\r\n@import \"./_components/search-bar\";\r\n@import \"./_components/select\";\r\n@import \"./_layout/header\";\r\n@import \"./_layout/tags-selection\";\r\n@import \"./_layout/tags-selected\";\r\n@import \"./_pages/index\";","// Color variables\r\n\r\n$primary-color: hsl(216, 92%, 58%);\r\n$secondary-color: hsl(152, 60%, 63%);\r\n$tertiary-color: hsl(6, 81%, 63%);\r\n$primary-dark-color: hsl(216, 65%, 40%);\r\n$secondary-dark-color: hsl(152, 60%, 45%);\r\n$tertiary-dark-color: hsl(6, 81%, 45%);\r\n$grey-color: hsl(0, 7%, 76%);\r\n$grey-light-color: hsl(0, 0%, 91%);\r\n$body-color: hsl(0, 0%, 100%);\r\n$primary-color-text: hsl(0, 0%, 0%);\r\n$radius: .5rem;",".none {\r\n  display: none;\r\n}\r\n\r\n.block {\r\n  display: block;\r\n}\r\n\r\n.flex {\r\n  display: flex!important;\r\n}\r\n\r\n.grid {\r\n  display: grid!important;\r\n}\r\n\r\n.opacity-50 {\r\n  opacity: .5;\r\n}\r\n\r\n// Custom wrapper for control data in selects\r\n.wrapper {\r\n  width: 100%;\r\n  margin: 0 auto;\r\n}\r\n\r\n@include breakpoint(sm) {\r\n  .wrapper {\r\n    max-width: 540px;\r\n  }\r\n}\r\n\r\n@include breakpoint(md) {\r\n  .wrapper {\r\n    max-width: 740px;\r\n  }\r\n}\r\n\r\n@include breakpoint(lg) {\r\n  .wrapper {\r\n    max-width: 960px;\r\n  }\r\n}\r\n\r\n@include breakpoint(xl) {\r\n  .wrapper {\r\n    max-width: 1140px;\r\n  }\r\n}\r\n\r\n@include breakpoint(xxl) {\r\n  .wrapper {\r\n    max-width: 1400px;\r\n  }\r\n}\r\n\r\n\r\n","// Breakpoints\r\n\r\n$breakpoints: (\r\n  'xs': 400px,\r\n  'sm': 576px,\r\n  'md': 768px,\r\n  'lg': 991px,\r\n  'xl': 1200px,\r\n  'xxl': 1440px\r\n);\r\n\r\n// Use ex: @include breakpoint(md) { ... }\r\n@mixin breakpoint($breakpoint) {\r\n  @media (min-width: map-get($breakpoints, $breakpoint)) {\r\n    @content;\r\n  }\r\n}\r\n\r\n@mixin hide-text {\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n}",".btn-search {\r\n  position: absolute;\r\n  height: 69%;\r\n  top: 6px;\r\n  right: 25px;\r\n  border: none;\r\n  background-color: transparent;\r\n\r\n  i {\r\n    font-size: 2.2rem;\r\n    opacity: 0.7;\r\n\r\n    &:hover {\r\n      opacity: 1;\r\n    }\r\n  }\r\n}",".btn-tag-selected {\r\n  align-items: center;\r\n  margin: 0 15px 0 0;\r\n  padding: 0 10px;\r\n  min-width: fit-content;\r\n  height: 35px;\r\n  border-radius: $radius;\r\n  border: none;\r\n\r\n  .icon-close {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    position: relative;\r\n    margin: 0 0 0 15px;\r\n    padding: 0 10px 0 0;\r\n    transition: all .15s ease-in;\r\n\r\n    &::before {\r\n      position: absolute;\r\n      content: \"\";\r\n      width: 12px;\r\n      height: 12px;\r\n      border-radius: 35px;\r\n      background-color: transparent;\r\n      border: solid 2px white;\r\n  \r\n      @include breakpoint(lg) {\r\n        border: solid 3px white;\r\n      }\r\n    }\r\n  \r\n    &::after {\r\n      position: absolute;\r\n      content: \"\\002716\";\r\n      font-size: 9px;\r\n      color: $body-color;\r\n  \r\n      @include breakpoint(lg) {\r\n        font-weight: 700;\r\n      }\r\n    }\r\n  }\r\n\r\n  &:hover {\r\n    .icon-close {\r\n      &:before {\r\n        background-color: $body-color;\r\n      }\r\n\r\n      &:after {\r\n        color: $primary-color-text;\r\n      }\r\n    }\r\n  }\r\n\r\n  &[data-cat=ingredients]:hover {\r\n    background-color: $primary-dark-color;\r\n  }\r\n  \r\n  &[data-cat=appliances]:hover {\r\n    background-color: $secondary-dark-color;\r\n  }\r\n  \r\n  &[data-cat=ustensils]:hover {\r\n    background-color: $tertiary-dark-color;\r\n  }\r\n}",".recipe-card {\r\n  margin: 1.5rem;\r\n  border-radius: $radius;\r\n  background-color: $grey-light-color;\r\n\r\n  &__img {\r\n    height: 15rem;\r\n    border-radius: $radius $radius 0 0;\r\n    background-color: $grey-color;\r\n  }\r\n\r\n  &__content {\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding: 15px;\r\n  \r\n    h2 {\r\n      display: flex;\r\n      flex-direction: column;\r\n      margin: 0;\r\n      font-size: 2.2rem;\r\n      font-weight: 700;\r\n\r\n      @include breakpoint(xs) {\r\n        flex-direction: row;\r\n        justify-content: space-between;\r\n      }\r\n\r\n      .recipe-card__content__title {\r\n        max-width: 255px;\r\n        @include hide-text;\r\n      }\r\n    }\r\n  \r\n    &__description {\r\n      display: flex;\r\n      flex-direction: column;\r\n\r\n      @include breakpoint(xs) {\r\n        flex-direction: row;\r\n        justify-content: space-between;\r\n        gap: 25px;\r\n      }\r\n    }\r\n  \r\n    ul {\r\n      width: 50%;\r\n      line-height: 2.2rem;\r\n    }\r\n  \r\n    p {\r\n      display: -webkit-box;\r\n      -webkit-box-orient: vertical;\r\n      -webkit-line-clamp: 10;\r\n      overflow: hidden;\r\n      width: 100%;\r\n      line-height: 2rem;\r\n\r\n      @include breakpoint(xs) {\r\n        width: 50%;\r\n      }\r\n    }\r\n  }\r\n}\r\n",".form-search-bar {\r\n  position: relative;\r\n  margin: 15px 0 0 0;\r\n  padding: 0 15px;\r\n\r\n  input[type=text] {\r\n    width: 100%;\r\n    padding: 20px;\r\n    margin: 0 0 15px 0;\r\n    display: inline-block;\r\n    font-size: 1.2rem;\r\n    border: 1px solid $grey-light-color;\r\n    background-color: $grey-light-color;\r\n    border-radius: $radius;\r\n    box-sizing: border-box;\r\n\r\n    @include breakpoint(lg) {\r\n      font-size: 1.4rem;\r\n    }\r\n\r\n    @include breakpoint(xl) {\r\n      font-size: 1.6rem;\r\n    }\r\n\r\n    &::placeholder {\r\n      opacity: .6;\r\n    }\r\n  }\r\n}",".select {\r\n  position: relative;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  width: 100%;\r\n  margin: 20px 0 0 0;\r\n  border-radius: $radius;\r\n  cursor: pointer;\r\n  transition: width .1s ease-in;\r\n\r\n  &:first-child {\r\n    margin: 0;\r\n\r\n    @include breakpoint(sm) {\r\n      margin: 0 20px 0 0;\r\n    }\r\n  }\r\n\r\n  &:last-child {\r\n\r\n    @include breakpoint(sm) {\r\n      margin: 0;\r\n    }\r\n  }\r\n\r\n  @include breakpoint(sm) {\r\n    margin: 0 20px 0 0;\r\n    width: 170px;\r\n  }\r\n\r\n  input[type=text] {\r\n    padding: 18px 10px 18px 15px;\r\n    width: 85%;\r\n    font-size: 12px;\r\n    font-weight: 700;\r\n    color: $body-color;\r\n    outline: none;\r\n    border-radius: $radius;\r\n    cursor: pointer;\r\n\r\n    @include breakpoint(sm) {\r\n      width: 60%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      font-size: 14px;\r\n    }\r\n\r\n    @include breakpoint(xl) {\r\n      font-size: 16px;\r\n    }\r\n\r\n    &::placeholder {\r\n      font-weight: 700;\r\n      color: $body-color;\r\n      \r\n      &:focus,\r\n      &:active {\r\n        opacity: 0.5;\r\n      }\r\n    }\r\n  }\r\n\r\n  &__btn {\r\n    position: relative;\r\n    margin: 0 4px 0 0;\r\n    height: 50px;\r\n    width: 30px;\r\n    border: none;\r\n    background-color: transparent;\r\n\r\n    @include breakpoint(sm) {\r\n      height: 100%;\r\n    }\r\n\r\n    &:before {\r\n      position: absolute;\r\n      content: \"\";\r\n      right: 14px;\r\n      width: 12px;\r\n      height: 3px;\r\n      transform: rotate(-130deg);\r\n      border-radius: $radius;\r\n      background-color: $body-color;\r\n      transition: transform .2s ease-in;\r\n    }\r\n\r\n    &:after {\r\n      position: absolute;\r\n      content: \"\";\r\n      right: 7px;\r\n      width: 12px;\r\n      height: 3px;\r\n      transform: rotate(130deg);\r\n      border-radius: $radius;\r\n      background-color: $body-color;\r\n      transition: transform .2s ease-in-out;\r\n    }\r\n\r\n    &--selected {\r\n      &:before {\r\n        position: absolute;\r\n        content: \"\";\r\n        right: 14px;\r\n        width: 12px;\r\n        height: 3px;\r\n        transform: rotate(-45deg);\r\n        border-radius: $radius;\r\n        background-color: $body-color;\r\n        transition: transform .2s ease-in;\r\n      }\r\n  \r\n      &:after {\r\n        position: absolute;\r\n        content: \"\";\r\n        right: 7px;\r\n        width: 12px;\r\n        height: 3px;\r\n        transform: rotate(45deg);\r\n        border-radius: $radius;\r\n        background-color: $body-color;\r\n        transition: transform .2s ease-in;\r\n      }\r\n    }\r\n  }\r\n\r\n  .fas {\r\n    color: $body-color;\r\n  }\r\n\r\n  &--ingredients {\r\n    background-color: $primary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $primary-color;\r\n      background-color: $primary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $primary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 1;\r\n      transition: flex .06s ease-in-out;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $primary-color!important;\r\n\r\n        input[type=text] {\r\n          background-color: $primary-color!important;\r\n          border-color: $primary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $primary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $primary-dark-color;\r\n        border-color: $primary-dark-color;\r\n      }\r\n    }\r\n  }\r\n\r\n  &--appliances {\r\n    background-color: $secondary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $secondary-color;\r\n      background-color: $secondary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $secondary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 0.5;\r\n      transition: flex .06s ease-in-out;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      @include breakpoint(lg) {\r\n        flex: 0.5;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $secondary-color!important;\r\n\r\n        input[type=text] {\r\n          background-color: $secondary-color!important;\r\n          border-color: $secondary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $secondary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $secondary-dark-color;\r\n        border-color: $secondary-dark-color;\r\n      }\r\n    }\r\n  }\r\n\r\n  &--ustensils {\r\n    background-color: $tertiary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $tertiary-color;\r\n      background-color: $tertiary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $tertiary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 1;\r\n      transition: flex .06s ease-in-out;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $tertiary-color!important;\r\n        \r\n        input[type=text] {\r\n          background-color: $tertiary-color!important;\r\n          border-color: $tertiary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $tertiary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $tertiary-dark-color;\r\n        border-color: $tertiary-dark-color;\r\n      }\r\n    }\r\n  }\r\n}","header {\r\n  text-align: center;\r\n  padding: 15px;\r\n\r\n  .lpp_logo {\r\n    width: 200px;\r\n\r\n    @include breakpoint(xl) {\r\n      width: 320px;\r\n    }\r\n  }\r\n}",".tags-selection {\r\n  display: flex;\r\n  flex-direction: column;\r\n  padding: 15px;\r\n\r\n  @include breakpoint(sm) {\r\n    flex-direction: row;\r\n  }\r\n}\r\n\r\n.select__tags-list {\r\n  position: absolute;\r\n  display: none;\r\n  z-index: 10;\r\n  padding: 5px 0;\r\n  top: 27px;\r\n  max-height: 348px;\r\n  width: -webkit-fill-available;\r\n  overflow: hidden;\r\n  border-radius: $radius;\r\n\r\n  @include breakpoint(md) {\r\n    grid-template-columns: repeat(2, 1fr);\r\n  }\r\n\r\n  @include breakpoint(lg) {\r\n    column-gap: 10px;\r\n    max-height: 284px;\r\n  }\r\n\r\n  li {\r\n    width: 100%;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    white-space: nowrap;\r\n    padding: 8px 8px 8px 15px;\r\n    font-weight: 700;\r\n    cursor: pointer;\r\n  }\r\n}\r\n\r\n.select__tags-list--ingredients {\r\n\r\n  @include breakpoint(lg) {\r\n    grid-template-columns: repeat(3, 1fr);\r\n  }\r\n\r\n  @include breakpoint(xl) {\r\n    grid-template-columns: repeat(5, 1fr);\r\n    max-height: 187px;\r\n  }\r\n\r\n  li {\r\n\r\n    @include breakpoint(md) {\r\n      max-width: 86%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      max-width: 87%;\r\n    }\r\n  }\r\n\r\n  li:hover {\r\n    background-color: $primary-dark-color;\r\n    color: $body-color;\r\n  }\r\n}\r\n\r\n.select__tags-list--appliances {\r\n\r\n  @include breakpoint(md) {\r\n    max-height: 188px;\r\n  }\r\n\r\n  li:hover {\r\n    background-color: $secondary-dark-color;\r\n    color: $body-color;\r\n  }\r\n}\r\n\r\n.select__tags-list--ustensils {\r\n\r\n  @include breakpoint(lg) {\r\n    grid-template-columns: repeat(3, 1fr);\r\n  }\r\n\r\n  @include breakpoint(xl) {\r\n    grid-template-columns: repeat(4, 1fr);\r\n    max-height: 187px;\r\n  }\r\n\r\n  li {\r\n\r\n    @include breakpoint(md) {\r\n      max-width: 86%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      max-width: 87%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      max-width: 90%;\r\n    }\r\n  }\r\n\r\n  li:hover {\r\n    background-color: $tertiary-dark-color;\r\n    color: $body-color;\r\n  }\r\n}",".tags-selected-container {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  row-gap: 15px;\r\n  padding: 0 15px;\r\n}",".recipes-list {\r\n  display: flex;\r\n  flex-direction: column;\r\n\r\n  @include breakpoint(lg) {\r\n    display: grid;\r\n    grid-template-columns: repeat(2, 1fr);\r\n    grid-template-rows: auto;\r\n  }\r\n\r\n  @include breakpoint(xl) {\r\n    grid-template-columns: repeat(3, 1fr);\r\n  }\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */\n/* Document\r\n   ========================================================================== */\n/**\r\n * 1. Correct the line height in all browsers.\r\n * 2. Prevent adjustments of font size after orientation changes in iOS.\r\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\r\n   ========================================================================== */\n/**\r\n * Remove the margin in all browsers.\r\n */\nbody {\n  margin: 0; }\n\n/**\r\n * Render the `main` element consistently in IE.\r\n */\nmain {\n  display: block; }\n\n/**\r\n * Correct the font size and margin on `h1` elements within `section` and\r\n * `article` contexts in Chrome, Firefox, and Safari.\r\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\r\n   ========================================================================== */\n/**\r\n * 1. Add the correct box sizing in Firefox.\r\n * 2. Show the overflow in Edge and IE.\r\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\r\n   ========================================================================== */\n/**\r\n * Remove the gray background on active links in IE 10.\r\n */\na {\n  background-color: transparent; }\n\n/**\r\n * 1. Remove the bottom border in Chrome 57-\r\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\r\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\r\n * Add the correct font weight in Chrome, Edge, and Safari.\r\n */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\r\n * Add the correct font size in all browsers.\r\n */\nsmall {\n  font-size: 80%; }\n\n/**\r\n * Prevent `sub` and `sup` elements from affecting the line height in\r\n * all browsers.\r\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\r\n   ========================================================================== */\n/**\r\n * Remove the border on images inside links in IE 10.\r\n */\nimg {\n  border-style: none; }\n\n/* Forms\r\n   ========================================================================== */\n/**\r\n * 1. Change the font styles in all browsers.\r\n * 2. Remove the margin in Firefox and Safari.\r\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: inherit;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\r\n * Show the overflow in IE.\r\n * 1. Show the overflow in Edge.\r\n */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\r\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\r\n * 1. Remove the inheritance of text transform in Firefox.\r\n */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\r\n * Correct the inability to style clickable types in iOS and Safari.\r\n */\nbutton,\n[type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; }\n\n/**\r\n * Remove the inner border and padding in Firefox.\r\n */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\r\n * Restore the focus styles unset by the previous rule.\r\n */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\r\n * Correct the padding in Firefox.\r\n */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\r\n * 1. Correct the text wrapping in Edge and IE.\r\n * 2. Correct the color inheritance from `fieldset` elements in IE.\r\n * 3. Remove the padding so developers are not caught out when they zero out\r\n *    `fieldset` elements in all browsers.\r\n */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\r\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\r\n */\nprogress {\n  vertical-align: baseline; }\n\n/**\r\n * Remove the default vertical scrollbar in IE 10+.\r\n */\ntextarea {\n  overflow: auto; }\n\n/**\r\n * 1. Add the correct box sizing in IE 10.\r\n * 2. Remove the padding in IE 10.\r\n */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\r\n * Correct the cursor style of increment and decrement buttons in Chrome.\r\n */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\r\n * 1. Correct the odd appearance in Chrome and Safari.\r\n * 2. Correct the outline style in Safari.\r\n */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\r\n * Remove the inner padding in Chrome and Safari on macOS.\r\n */\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\r\n * 1. Correct the inability to style clickable types in iOS and Safari.\r\n * 2. Change font properties to `inherit` in Safari.\r\n */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\r\n   ========================================================================== */\n/*\r\n * Add the correct display in Edge, IE 10+, and Firefox.\r\n */\ndetails {\n  display: block; }\n\n/*\r\n * Add the correct display in all browsers.\r\n */\nsummary {\n  display: list-item; }\n\n/* Misc\r\n   ========================================================================== */\n/**\r\n * Add the correct display in IE 10+.\r\n */\ntemplate {\n  display: none; }\n\n/**\r\n * Add the correct display in IE 10.\r\n */\n[hidden] {\n  display: none; }\n\n/**************************************/\n/************* Custom css *************/\n/**************************************/\nhtml {\n  box-sizing: border-box;\n  font-size: 62.5%; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  line-height: 1.6rem;\n  font-family: 'Lato', sans-serif;\n  font-size: 1.6rem;\n  color: black;\n  scroll-behavior: smooth; }\n\nh1,\nh2,\nh3 {\n  font-weight: 400;\n  line-height: 4.6rem; }\n\nul {\n  padding: 0;\n  list-style: none; }\n\na {\n  text-decoration: none; }\n\nimg,\nvideo {\n  max-width: 100%;\n  height: auto;\n  object-fit: cover; }\n\nbutton {\n  cursor: pointer; }\n\n[data-cat=ingredients] {\n  background-color: #3180f6;\n  color: white; }\n\n[data-cat=appliances] {\n  background-color: #68d9a4;\n  color: white; }\n\n[data-cat=ustensils] {\n  background-color: #ed6454;\n  color: white; }\n\n.none {\n  display: none; }\n\n.block {\n  display: block; }\n\n.flex {\n  display: flex !important; }\n\n.grid {\n  display: grid !important; }\n\n.opacity-50 {\n  opacity: .5; }\n\n.sr-only {\n  border: 0 !important;\n  clip: rect(1px, 1px, 1px, 1px) !important;\n  -webkit-clip-path: inset(50%) !important;\n  clip-path: inset(50%) !important;\n  height: 1px !important;\n  margin: -1px !important;\n  overflow: hidden !important;\n  padding: 0 !important;\n  position: absolute !important;\n  width: 1px !important;\n  white-space: nowrap !important; }\n\n.wrapper {\n  width: 100%;\n  margin: 0 auto; }\n\n@media (min-width: 576px) {\n  .wrapper {\n    max-width: 540px; } }\n\n@media (min-width: 768px) {\n  .wrapper {\n    max-width: 740px; } }\n\n@media (min-width: 991px) {\n  .wrapper {\n    max-width: 960px; } }\n\n@media (min-width: 1200px) {\n  .wrapper {\n    max-width: 1140px; } }\n\n@media (min-width: 1440px) {\n  .wrapper {\n    max-width: 1400px; } }\n\n.btn-search {\n  position: absolute;\n  height: 69%;\n  top: 6px;\n  right: 25px;\n  border: none;\n  background-color: transparent; }\n  .btn-search i {\n    font-size: 2.2rem;\n    opacity: 0.7; }\n    .btn-search i:hover {\n      opacity: 1; }\n\n.tag-selected {\n  align-items: center;\n  margin: 0 15px 0 0;\n  padding: 0 10px;\n  min-width: fit-content;\n  height: 35px;\n  border-radius: 0.5rem;\n  border: none; }\n  .tag-selected .icon-close {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    position: relative;\n    margin: 0 0 0 15px;\n    padding: 0 10px 0 0;\n    transition: all .15s ease-in; }\n    .tag-selected .icon-close::before {\n      position: absolute;\n      content: \"\";\n      width: 12px;\n      height: 12px;\n      border-radius: 35px;\n      background-color: transparent;\n      border: solid 2px white; }\n      @media (min-width: 991px) {\n        .tag-selected .icon-close::before {\n          border: solid 3px white; } }\n    .tag-selected .icon-close::after {\n      position: absolute;\n      content: \"\\002716\";\n      font-size: 9px;\n      color: white; }\n      @media (min-width: 991px) {\n        .tag-selected .icon-close::after {\n          font-weight: 700; } }\n  .tag-selected:hover .icon-close:before {\n    background-color: white; }\n  .tag-selected:hover .icon-close:after {\n    color: black; }\n  .tag-selected[data-cat=ingredients]:hover {\n    background-color: #2459a8; }\n  .tag-selected[data-cat=appliances]:hover {\n    background-color: #2eb877; }\n  .tag-selected[data-cat=ustensils]:hover {\n    background-color: #d02816; }\n\n.recipe-card {\n  margin: 1.5rem;\n  border-radius: 0.5rem;\n  background-color: #e8e8e8; }\n  .recipe-card a {\n    color: black; }\n  .recipe-card__img {\n    height: 15rem;\n    border-radius: 0.5rem 0.5rem 0 0;\n    background-color: #c6bebe; }\n  .recipe-card__content {\n    display: flex;\n    flex-direction: column;\n    padding: 15px; }\n    .recipe-card__content h2 {\n      display: flex;\n      flex-direction: column;\n      margin: 0;\n      font-size: 2.2rem;\n      font-weight: 700; }\n      @media (min-width: 400px) {\n        .recipe-card__content h2 {\n          flex-direction: row;\n          justify-content: space-between; } }\n      @media (min-width: 1200px) {\n        .recipe-card__content h2 {\n          font-size: 1.8rem; } }\n      @media (min-width: 1440px) {\n        .recipe-card__content h2 {\n          font-size: 2.2rem; } }\n      .recipe-card__content h2 .recipe-card__content__title {\n        max-width: 255px;\n        font-weight: 400;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: nowrap; }\n        @media (min-width: 1200px) {\n          .recipe-card__content h2 .recipe-card__content__title {\n            max-width: 230px; } }\n        @media (min-width: 1440px) {\n          .recipe-card__content h2 .recipe-card__content__title {\n            max-width: 255px; } }\n    .recipe-card__content__description {\n      display: flex;\n      flex-direction: column; }\n      @media (min-width: 400px) {\n        .recipe-card__content__description {\n          flex-direction: row;\n          justify-content: space-between;\n          gap: 25px; } }\n    .recipe-card__content ul {\n      width: 50%;\n      line-height: 2.2rem; }\n    .recipe-card__content p {\n      display: -webkit-box;\n      -webkit-box-orient: vertical;\n      -webkit-line-clamp: 10;\n      overflow: hidden;\n      width: 100%;\n      line-height: 2rem; }\n      @media (min-width: 400px) {\n        .recipe-card__content p {\n          width: 50%; } }\n\n.form-search-bar {\n  position: relative;\n  margin: 15px 0 0 0;\n  padding: 0 15px; }\n  .form-search-bar input[type=text] {\n    width: 100%;\n    padding: 20px;\n    margin: 0 0 15px 0;\n    display: inline-block;\n    font-size: 1.2rem;\n    border: 1px solid #e8e8e8;\n    background-color: #e8e8e8;\n    border-radius: 0.5rem;\n    box-sizing: border-box; }\n    @media (min-width: 991px) {\n      .form-search-bar input[type=text] {\n        font-size: 1.4rem; } }\n    @media (min-width: 1200px) {\n      .form-search-bar input[type=text] {\n        font-size: 1.6rem; } }\n    .form-search-bar input[type=text]::placeholder {\n      opacity: .6; }\n\n.select {\n  position: relative;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  width: 100%;\n  margin: 20px 0 0 0;\n  border-radius: 0.5rem;\n  cursor: pointer;\n  transition: width .1s ease-in; }\n  .select:first-child {\n    margin: 0; }\n    @media (min-width: 576px) {\n      .select:first-child {\n        margin: 0 20px 0 0; } }\n  @media (min-width: 576px) {\n    .select:last-child {\n      margin: 0; } }\n  @media (min-width: 576px) {\n    .select {\n      margin: 0 20px 0 0;\n      width: 170px; } }\n  .select input[type=text] {\n    padding: 18px 10px 18px 15px;\n    width: 85%;\n    font-size: 12px;\n    font-weight: 700;\n    color: white;\n    outline: none;\n    border-radius: 0.5rem;\n    cursor: pointer; }\n    @media (min-width: 576px) {\n      .select input[type=text] {\n        width: 60%; } }\n    @media (min-width: 991px) {\n      .select input[type=text] {\n        font-size: 14px; } }\n    @media (min-width: 1200px) {\n      .select input[type=text] {\n        font-size: 16px; } }\n    .select input[type=text]::placeholder {\n      font-weight: 700;\n      color: white; }\n      .select input[type=text]::placeholder:focus, .select input[type=text]::placeholder:active {\n        opacity: 0.5; }\n  .select__tag {\n    position: relative;\n    margin: 0 4px 0 0;\n    height: 50px;\n    width: 30px;\n    border: none;\n    background-color: transparent; }\n    @media (min-width: 576px) {\n      .select__tag {\n        height: 100%; } }\n    .select__tag:before {\n      position: absolute;\n      content: \"\";\n      right: 14px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(-130deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n    .select__tag:after {\n      position: absolute;\n      content: \"\";\n      right: 7px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(130deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in-out; }\n    .select__tag--selected:before {\n      position: absolute;\n      content: \"\";\n      right: 14px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(-45deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n    .select__tag--selected:after {\n      position: absolute;\n      content: \"\";\n      right: 7px;\n      width: 12px;\n      height: 3px;\n      transform: rotate(45deg);\n      border-radius: 0.5rem;\n      background-color: white;\n      transition: transform .2s ease-in; }\n  .select .fas {\n    color: white; }\n  .select--ingredients {\n    background-color: #3180f6; }\n    .select--ingredients input[type=text] {\n      border: 1px solid #3180f6;\n      background-color: #3180f6;\n      color: white; }\n      .select--ingredients input[type=text]:hover {\n        background-color: #2459a8; }\n    .select--ingredients--open {\n      flex: 1;\n      transition: flex .06s ease-in-out; }\n      @media (min-width: 576px) {\n        .select--ingredients--open {\n          flex: auto; } }\n      .select--ingredients--open:hover {\n        background-color: #3180f6 !important; }\n        .select--ingredients--open:hover input[type=text] {\n          background-color: #3180f6 !important;\n          border-color: #3180f6 !important; }\n    .select--ingredients:hover {\n      background-color: #2459a8; }\n      .select--ingredients:hover input[type=text] {\n        background-color: #2459a8;\n        border-color: #2459a8; }\n  .select--appliances {\n    background-color: #68d9a4; }\n    .select--appliances input[type=text] {\n      border: 1px solid #68d9a4;\n      background-color: #68d9a4;\n      color: white; }\n      .select--appliances input[type=text]:hover {\n        background-color: #2eb877; }\n    .select--appliances--open {\n      flex: 0.5;\n      transition: flex .06s ease-in-out; }\n      @media (min-width: 576px) {\n        .select--appliances--open {\n          flex: auto; } }\n      @media (min-width: 991px) {\n        .select--appliances--open {\n          flex: 0.5; } }\n      .select--appliances--open:hover {\n        background-color: #68d9a4 !important; }\n        .select--appliances--open:hover input[type=text] {\n          background-color: #68d9a4 !important;\n          border-color: #68d9a4 !important; }\n    .select--appliances:hover {\n      background-color: #2eb877; }\n      .select--appliances:hover input[type=text] {\n        background-color: #2eb877;\n        border-color: #2eb877; }\n  .select--ustensils {\n    background-color: #ed6454; }\n    .select--ustensils input[type=text] {\n      border: 1px solid #ed6454;\n      background-color: #ed6454;\n      color: white; }\n      .select--ustensils input[type=text]:hover {\n        background-color: #d02816; }\n    .select--ustensils--open {\n      flex: 1;\n      transition: flex .06s ease-in-out; }\n      @media (min-width: 576px) {\n        .select--ustensils--open {\n          flex: auto; } }\n      .select--ustensils--open:hover {\n        background-color: #ed6454 !important; }\n        .select--ustensils--open:hover input[type=text] {\n          background-color: #ed6454 !important;\n          border-color: #ed6454 !important; }\n    .select--ustensils:hover {\n      background-color: #d02816; }\n      .select--ustensils:hover input[type=text] {\n        background-color: #d02816;\n        border-color: #d02816; }\n\nheader {\n  text-align: center;\n  padding: 15px; }\n  header .lpp_logo {\n    width: 200px; }\n    @media (min-width: 1200px) {\n      header .lpp_logo {\n        width: 320px; } }\n\n.tags-selection-container {\n  display: flex;\n  flex-direction: column;\n  padding: 15px; }\n  @media (min-width: 576px) {\n    .tags-selection-container {\n      flex-direction: row; } }\n\n.select__tags-list {\n  position: absolute;\n  display: none;\n  z-index: 10;\n  padding: 5px 0;\n  top: 27px;\n  max-height: 348px;\n  width: -webkit-fill-available;\n  overflow: hidden;\n  border-radius: 0.5rem; }\n  @media (min-width: 768px) {\n    .select__tags-list {\n      grid-template-columns: repeat(2, 1fr); } }\n  @media (min-width: 991px) {\n    .select__tags-list {\n      column-gap: 10px;\n      max-height: 284px; } }\n  .select__tags-list .tag {\n    width: 100%;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    padding: 8px 8px 8px 15px;\n    font-weight: 700;\n    cursor: pointer; }\n    .select__tags-list .tag::first-letter {\n      text-transform: uppercase; }\n    .select__tags-list .tag--message-empty {\n      font-weight: 400;\n      opacity: .5;\n      cursor: default; }\n      .select__tags-list .tag--message-empty:hover {\n        background-color: transparent; }\n\n@media (min-width: 991px) {\n  .select__tags-list--ingredients {\n    grid-template-columns: repeat(3, 1fr); } }\n\n@media (min-width: 1200px) {\n  .select__tags-list--ingredients {\n    grid-template-columns: repeat(5, 1fr);\n    max-height: 187px; } }\n\n@media (min-width: 576px) {\n  .select__tags-list--ingredients li {\n    max-width: 86%; } }\n\n@media (min-width: 991px) {\n  .select__tags-list--ingredients li {\n    max-width: 87%; } }\n\n.select__tags-list--ingredients li:hover {\n  background-color: #2459a8;\n  color: white; }\n\n@media (min-width: 768px) {\n  .select__tags-list--appliances {\n    max-height: 188px; } }\n\n@media (min-width: 576px) {\n  .select__tags-list--appliances li {\n    max-width: 86%; } }\n\n@media (min-width: 991px) {\n  .select__tags-list--appliances li {\n    max-width: 100%; } }\n\n.select__tags-list--appliances li:hover {\n  background-color: #2eb877;\n  color: white; }\n\n@media (min-width: 991px) {\n  .select__tags-list--ustensils {\n    grid-template-columns: repeat(3, 1fr); } }\n\n@media (min-width: 1200px) {\n  .select__tags-list--ustensils {\n    grid-template-columns: repeat(4, 1fr);\n    max-height: 187px; } }\n\n@media (min-width: 576px) {\n  .select__tags-list--ustensils li {\n    max-width: 86%; } }\n\n@media (min-width: 991px) {\n  .select__tags-list--ustensils li {\n    max-width: 87%; } }\n\n@media (min-width: 991px) {\n  .select__tags-list--ustensils li {\n    max-width: 90%; } }\n\n.select__tags-list--ustensils li:hover {\n  background-color: #d02816;\n  color: white; }\n\n.tags-selected-container {\n  display: flex;\n  flex-wrap: wrap;\n  row-gap: 15px;\n  padding: 0 15px; }\n\n.info-message-container {\n  padding: 15px; }\n\n.recipes-list {\n  display: flex;\n  flex-direction: column; }\n  @media (min-width: 991px) {\n    .recipes-list {\n      display: grid;\n      grid-template-columns: repeat(2, 1fr);\n      grid-template-rows: auto; } }\n  @media (min-width: 1200px) {\n    .recipes-list {\n      grid-template-columns: repeat(3, 1fr); } }\n", "",{"version":3,"sources":["webpack://./src/styles/_base/_base.scss","webpack://./src/styles/main.scss","webpack://./src/styles/_utils/_variables.scss","webpack://./src/styles/_utils/_classes.scss","webpack://./src/styles/_utils/_mixins.scss","webpack://./src/styles/_components/_btn-search.scss","webpack://./src/styles/_components/_tag-selected.scss","webpack://./src/styles/_components/_recipe-card.scss","webpack://./src/styles/_components/_search-bar.scss","webpack://./src/styles/_components/_select.scss","webpack://./src/styles/_layout/_header.scss","webpack://./src/styles/_layout/_tags-selection-container.scss","webpack://./src/styles/_layout/_tags-selected-container.scss","webpack://./src/styles/_pages/_index.scss"],"names":[],"mappings":"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","sourcesContent":["/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */\r\n\r\n/* Document\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Correct the line height in all browsers.\r\n * 2. Prevent adjustments of font size after orientation changes in iOS.\r\n */\r\n\r\n html {\r\n  line-height: 1.15; /* 1 */\r\n  -webkit-text-size-adjust: 100%; /* 2 */\r\n}\r\n\r\n/* Sections\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the margin in all browsers.\r\n */\r\n\r\nbody {\r\n  margin: 0;\r\n}\r\n\r\n/**\r\n * Render the `main` element consistently in IE.\r\n */\r\n\r\nmain {\r\n  display: block;\r\n}\r\n\r\n/**\r\n * Correct the font size and margin on `h1` elements within `section` and\r\n * `article` contexts in Chrome, Firefox, and Safari.\r\n */\r\n\r\nh1 {\r\n  font-size: 2em;\r\n  margin: 0.67em 0;\r\n}\r\n\r\n/* Grouping content\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Add the correct box sizing in Firefox.\r\n * 2. Show the overflow in Edge and IE.\r\n */\r\n\r\nhr {\r\n  box-sizing: content-box; /* 1 */\r\n  height: 0; /* 1 */\r\n  overflow: visible; /* 2 */\r\n}\r\n\r\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\r\n\r\npre {\r\n  font-family: monospace, monospace; /* 1 */\r\n  font-size: 1em; /* 2 */\r\n}\r\n\r\n/* Text-level semantics\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the gray background on active links in IE 10.\r\n */\r\n\r\na {\r\n  background-color: transparent;\r\n}\r\n\r\n/**\r\n * 1. Remove the bottom border in Chrome 57-\r\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\r\n */\r\n\r\nabbr[title] {\r\n  border-bottom: none; /* 1 */\r\n  text-decoration: underline; /* 2 */\r\n  text-decoration: underline dotted; /* 2 */\r\n}\r\n\r\n/**\r\n * Add the correct font weight in Chrome, Edge, and Safari.\r\n */\r\n\r\nb,\r\nstrong {\r\n  font-weight: bolder;\r\n}\r\n\r\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\r\n\r\ncode,\r\nkbd,\r\nsamp {\r\n  font-family: monospace, monospace; /* 1 */\r\n  font-size: 1em; /* 2 */\r\n}\r\n\r\n/**\r\n * Add the correct font size in all browsers.\r\n */\r\n\r\nsmall {\r\n  font-size: 80%;\r\n}\r\n\r\n/**\r\n * Prevent `sub` and `sup` elements from affecting the line height in\r\n * all browsers.\r\n */\r\n\r\nsub,\r\nsup {\r\n  font-size: 75%;\r\n  line-height: 0;\r\n  position: relative;\r\n  vertical-align: baseline;\r\n}\r\n\r\nsub {\r\n  bottom: -0.25em;\r\n}\r\n\r\nsup {\r\n  top: -0.5em;\r\n}\r\n\r\n/* Embedded content\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the border on images inside links in IE 10.\r\n */\r\n\r\nimg {\r\n  border-style: none;\r\n}\r\n\r\n/* Forms\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Change the font styles in all browsers.\r\n * 2. Remove the margin in Firefox and Safari.\r\n */\r\n\r\nbutton,\r\ninput,\r\noptgroup,\r\nselect,\r\ntextarea {\r\n  font-family: inherit; /* 1 */\r\n  font-size: 100%; /* 1 */\r\n  line-height: 1.15; /* 1 */\r\n  margin: 0; /* 2 */\r\n}\r\n\r\n/**\r\n * Show the overflow in IE.\r\n * 1. Show the overflow in Edge.\r\n */\r\n\r\nbutton,\r\ninput { /* 1 */\r\n  overflow: visible;\r\n}\r\n\r\n/**\r\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\r\n * 1. Remove the inheritance of text transform in Firefox.\r\n */\r\n\r\nbutton,\r\nselect { /* 1 */\r\n  text-transform: none;\r\n}\r\n\r\n/**\r\n * Correct the inability to style clickable types in iOS and Safari.\r\n */\r\n\r\nbutton,\r\n[type=\"button\"],\r\n[type=\"reset\"],\r\n[type=\"submit\"] {\r\n  -webkit-appearance: button;\r\n}\r\n\r\n/**\r\n * Remove the inner border and padding in Firefox.\r\n */\r\n\r\nbutton::-moz-focus-inner,\r\n[type=\"button\"]::-moz-focus-inner,\r\n[type=\"reset\"]::-moz-focus-inner,\r\n[type=\"submit\"]::-moz-focus-inner {\r\n  border-style: none;\r\n  padding: 0;\r\n}\r\n\r\n/**\r\n * Restore the focus styles unset by the previous rule.\r\n */\r\n\r\nbutton:-moz-focusring,\r\n[type=\"button\"]:-moz-focusring,\r\n[type=\"reset\"]:-moz-focusring,\r\n[type=\"submit\"]:-moz-focusring {\r\n  outline: 1px dotted ButtonText;\r\n}\r\n\r\n/**\r\n * Correct the padding in Firefox.\r\n */\r\n\r\nfieldset {\r\n  padding: 0.35em 0.75em 0.625em;\r\n}\r\n\r\n/**\r\n * 1. Correct the text wrapping in Edge and IE.\r\n * 2. Correct the color inheritance from `fieldset` elements in IE.\r\n * 3. Remove the padding so developers are not caught out when they zero out\r\n *    `fieldset` elements in all browsers.\r\n */\r\n\r\nlegend {\r\n  box-sizing: border-box; /* 1 */\r\n  color: inherit; /* 2 */\r\n  display: table; /* 1 */\r\n  max-width: 100%; /* 1 */\r\n  padding: 0; /* 3 */\r\n  white-space: normal; /* 1 */\r\n}\r\n\r\n/**\r\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\r\n */\r\n\r\nprogress {\r\n  vertical-align: baseline;\r\n}\r\n\r\n/**\r\n * Remove the default vertical scrollbar in IE 10+.\r\n */\r\n\r\ntextarea {\r\n  overflow: auto;\r\n}\r\n\r\n/**\r\n * 1. Add the correct box sizing in IE 10.\r\n * 2. Remove the padding in IE 10.\r\n */\r\n\r\n[type=\"checkbox\"],\r\n[type=\"radio\"] {\r\n  box-sizing: border-box; /* 1 */\r\n  padding: 0; /* 2 */\r\n}\r\n\r\n/**\r\n * Correct the cursor style of increment and decrement buttons in Chrome.\r\n */\r\n\r\n[type=\"number\"]::-webkit-inner-spin-button,\r\n[type=\"number\"]::-webkit-outer-spin-button {\r\n  height: auto;\r\n}\r\n\r\n/**\r\n * 1. Correct the odd appearance in Chrome and Safari.\r\n * 2. Correct the outline style in Safari.\r\n */\r\n\r\n[type=\"search\"] {\r\n  -webkit-appearance: textfield; /* 1 */\r\n  outline-offset: -2px; /* 2 */\r\n}\r\n\r\n/**\r\n * Remove the inner padding in Chrome and Safari on macOS.\r\n */\r\n\r\n[type=\"search\"]::-webkit-search-decoration {\r\n  -webkit-appearance: none;\r\n}\r\n\r\n/**\r\n * 1. Correct the inability to style clickable types in iOS and Safari.\r\n * 2. Change font properties to `inherit` in Safari.\r\n */\r\n\r\n::-webkit-file-upload-button {\r\n  -webkit-appearance: button; /* 1 */\r\n  font: inherit; /* 2 */\r\n}\r\n\r\n/* Interactive\r\n   ========================================================================== */\r\n\r\n/*\r\n * Add the correct display in Edge, IE 10+, and Firefox.\r\n */\r\n\r\ndetails {\r\n  display: block;\r\n}\r\n\r\n/*\r\n * Add the correct display in all browsers.\r\n */\r\n\r\nsummary {\r\n  display: list-item;\r\n}\r\n\r\n/* Misc\r\n   ========================================================================== */\r\n\r\n/**\r\n * Add the correct display in IE 10+.\r\n */\r\n\r\ntemplate {\r\n  display: none;\r\n}\r\n\r\n/**\r\n * Add the correct display in IE 10.\r\n */\r\n\r\n[hidden] {\r\n  display: none;\r\n}\r\n\r\n/**************************************/\r\n/************* Custom css *************/\r\n/**************************************/\r\n\r\nhtml {\r\n  box-sizing: border-box;\r\n  font-size: 62.5%;\r\n}\r\n\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n  line-height: 1.6rem;\r\n  font-family: 'Lato', sans-serif;\r\n  font-size: 1.6rem;\r\n  color: $primary-color-text;\r\n  scroll-behavior: smooth;\r\n}\r\n\r\nh1,\r\nh2,\r\nh3 {\r\n  font-weight: 400;\r\n  line-height: 4.6rem;\r\n}\r\n\r\nul {\r\n  padding: 0;\r\n  list-style: none;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n}\r\n\r\nimg,\r\nvideo {\r\n  max-width: 100%;\r\n  height: auto;\r\n  object-fit: cover;\r\n}\r\n\r\nbutton {\r\n  cursor: pointer;\r\n}\r\n\r\n// Data attribute for different categories\r\n[data-cat=ingredients] {\r\n  background-color: $primary-color;\r\n  color: white;\r\n}\r\n\r\n[data-cat=appliances] {\r\n  background-color: $secondary-color;\r\n  color: white;\r\n}\r\n\r\n[data-cat=ustensils] {\r\n  background-color: $tertiary-color;\r\n  color: white;\r\n}\r\n","@import \"./_utils/variables\";\r\n@import \"./_base/base\";\r\n@import \"./_utils/mixins\";\r\n@import \"./_utils/classes\";\r\n@import \"./_components/btn-search\";\r\n@import \"./_components/tag-selected\";\r\n@import \"./_components/recipe-card\";\r\n@import \"./_components/search-bar\";\r\n@import \"./_components/select\";\r\n@import \"./_layout/header\";\r\n@import \"./_layout/tags-selection-container\";\r\n@import \"./_layout/tags-selected-container\";\r\n@import \"./_pages/index\";","// Color variables\r\n\r\n$primary-color: hsl(216, 92%, 58%);\r\n$secondary-color: hsl(152, 60%, 63%);\r\n$tertiary-color: hsl(6, 81%, 63%);\r\n$primary-dark-color: hsl(216, 65%, 40%);\r\n$secondary-dark-color: hsl(152, 60%, 45%);\r\n$tertiary-dark-color: hsl(6, 81%, 45%);\r\n$grey-color: hsl(0, 7%, 76%);\r\n$grey-light-color: hsl(0, 0%, 91%);\r\n$body-color: hsl(0, 0%, 100%);\r\n$primary-color-text: hsl(0, 0%, 0%);\r\n$radius: .5rem;",".none {\r\n  display: none;\r\n}\r\n\r\n.block {\r\n  display: block;\r\n}\r\n\r\n.flex {\r\n  display: flex!important;\r\n}\r\n\r\n.grid {\r\n  display: grid!important;\r\n}\r\n\r\n.opacity-50 {\r\n  opacity: .5;\r\n}\r\n\r\n//Class for text screen readers\r\n.sr-only {\r\n  border: 0 !important;\r\n  clip: rect(1px, 1px, 1px, 1px) !important;\r\n  -webkit-clip-path: inset(50%) !important;\r\n          clip-path: inset(50%) !important;\r\n  height: 1px !important;\r\n  margin: -1px !important;\r\n  overflow: hidden !important;\r\n  padding: 0 !important;\r\n  position: absolute !important;\r\n  width: 1px !important;\r\n  white-space: nowrap !important;\r\n}\r\n\r\n// Custom wrapper for control data in selects\r\n.wrapper {\r\n  width: 100%;\r\n  margin: 0 auto;\r\n}\r\n\r\n@include breakpoint(sm) {\r\n  .wrapper {\r\n    max-width: 540px;\r\n  }\r\n}\r\n\r\n@include breakpoint(md) {\r\n  .wrapper {\r\n    max-width: 740px;\r\n  }\r\n}\r\n\r\n@include breakpoint(lg) {\r\n  .wrapper {\r\n    max-width: 960px;\r\n  }\r\n}\r\n\r\n@include breakpoint(xl) {\r\n  .wrapper {\r\n    max-width: 1140px;\r\n  }\r\n}\r\n\r\n@include breakpoint(xxl) {\r\n  .wrapper {\r\n    max-width: 1400px;\r\n  }\r\n}\r\n\r\n\r\n","// Breakpoints\r\n\r\n$breakpoints: (\r\n  'xs': 400px,\r\n  'sm': 576px,\r\n  'md': 768px,\r\n  'lg': 991px,\r\n  'xl': 1200px,\r\n  'xxl': 1440px\r\n);\r\n\r\n// Use ex: @include breakpoint(md) { ... }\r\n@mixin breakpoint($breakpoint) {\r\n  @media (min-width: map-get($breakpoints, $breakpoint)) {\r\n    @content;\r\n  }\r\n}\r\n\r\n@mixin hide-text {\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n}",".btn-search {\r\n  position: absolute;\r\n  height: 69%;\r\n  top: 6px;\r\n  right: 25px;\r\n  border: none;\r\n  background-color: transparent;\r\n\r\n  i {\r\n    font-size: 2.2rem;\r\n    opacity: 0.7;\r\n\r\n    &:hover {\r\n      opacity: 1;\r\n    }\r\n  }\r\n}",".tag-selected {\r\n  align-items: center;\r\n  margin: 0 15px 0 0;\r\n  padding: 0 10px;\r\n  min-width: fit-content;\r\n  height: 35px;\r\n  border-radius: $radius;\r\n  border: none;\r\n\r\n  .icon-close {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    position: relative;\r\n    margin: 0 0 0 15px;\r\n    padding: 0 10px 0 0;\r\n    transition: all .15s ease-in;\r\n\r\n    &::before {\r\n      position: absolute;\r\n      content: \"\";\r\n      width: 12px;\r\n      height: 12px;\r\n      border-radius: 35px;\r\n      background-color: transparent;\r\n      border: solid 2px white;\r\n  \r\n      @include breakpoint(lg) {\r\n        border: solid 3px white;\r\n      }\r\n    }\r\n  \r\n    &::after {\r\n      position: absolute;\r\n      content: \"\\002716\";\r\n      font-size: 9px;\r\n      color: $body-color;\r\n  \r\n      @include breakpoint(lg) {\r\n        font-weight: 700;\r\n      }\r\n    }\r\n  }\r\n\r\n  &:hover {\r\n    .icon-close {\r\n      &:before {\r\n        background-color: $body-color;\r\n      }\r\n\r\n      &:after {\r\n        color: $primary-color-text;\r\n      }\r\n    }\r\n  }\r\n\r\n  &[data-cat=ingredients]:hover {\r\n    background-color: $primary-dark-color;\r\n  }\r\n  \r\n  &[data-cat=appliances]:hover {\r\n    background-color: $secondary-dark-color;\r\n  }\r\n  \r\n  &[data-cat=ustensils]:hover {\r\n    background-color: $tertiary-dark-color;\r\n  }\r\n}",".recipe-card {\r\n  margin: 1.5rem;\r\n  border-radius: $radius;\r\n  background-color: $grey-light-color;\r\n\r\n  a {\r\n    color: $primary-color-text;\r\n  }\r\n\r\n  &__img {\r\n    height: 15rem;\r\n    border-radius: $radius $radius 0 0;\r\n    background-color: $grey-color;\r\n  }\r\n\r\n  &__content {\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding: 15px;\r\n  \r\n    h2 {\r\n      display: flex;\r\n      flex-direction: column;\r\n      margin: 0;\r\n      font-size: 2.2rem;\r\n      font-weight: 700;\r\n\r\n      @include breakpoint(xs) {\r\n        flex-direction: row;\r\n        justify-content: space-between;\r\n      }\r\n\r\n      @include breakpoint(xl) {\r\n        font-size: 1.8rem;\r\n      }\r\n\r\n      @include breakpoint(xxl) {\r\n        font-size: 2.2rem;\r\n      }\r\n\r\n      .recipe-card__content__title {\r\n        max-width: 255px;\r\n        font-weight: 400;\r\n        @include hide-text;\r\n\r\n        @include breakpoint(xl) {\r\n          max-width: 230px;\r\n        }\r\n  \r\n        @include breakpoint(xxl) {\r\n          max-width: 255px;\r\n        }\r\n      }\r\n    }\r\n  \r\n    &__description {\r\n      display: flex;\r\n      flex-direction: column;\r\n\r\n      @include breakpoint(xs) {\r\n        flex-direction: row;\r\n        justify-content: space-between;\r\n        gap: 25px;\r\n      }\r\n    }\r\n  \r\n    ul {\r\n      width: 50%;\r\n      line-height: 2.2rem;\r\n    }\r\n  \r\n    p {\r\n      display: -webkit-box;\r\n      -webkit-box-orient: vertical;\r\n      -webkit-line-clamp: 10;\r\n      overflow: hidden;\r\n      width: 100%;\r\n      line-height: 2rem;\r\n\r\n      @include breakpoint(xs) {\r\n        width: 50%;\r\n      }\r\n    }\r\n  }\r\n}\r\n",".form-search-bar {\r\n  position: relative;\r\n  margin: 15px 0 0 0;\r\n  padding: 0 15px;\r\n\r\n  input[type=text] {\r\n    width: 100%;\r\n    padding: 20px;\r\n    margin: 0 0 15px 0;\r\n    display: inline-block;\r\n    font-size: 1.2rem;\r\n    border: 1px solid $grey-light-color;\r\n    background-color: $grey-light-color;\r\n    border-radius: $radius;\r\n    box-sizing: border-box;\r\n\r\n    @include breakpoint(lg) {\r\n      font-size: 1.4rem;\r\n    }\r\n\r\n    @include breakpoint(xl) {\r\n      font-size: 1.6rem;\r\n    }\r\n\r\n    &::placeholder {\r\n      opacity: .6;\r\n    }\r\n  }\r\n}",".select {\r\n  position: relative;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  width: 100%;\r\n  margin: 20px 0 0 0;\r\n  border-radius: $radius;\r\n  cursor: pointer;\r\n  transition: width .1s ease-in;\r\n\r\n  &:first-child {\r\n    margin: 0;\r\n\r\n    @include breakpoint(sm) {\r\n      margin: 0 20px 0 0;\r\n    }\r\n  }\r\n\r\n  &:last-child {\r\n\r\n    @include breakpoint(sm) {\r\n      margin: 0;\r\n    }\r\n  }\r\n\r\n  @include breakpoint(sm) {\r\n    margin: 0 20px 0 0;\r\n    width: 170px;\r\n  }\r\n\r\n  input[type=text] {\r\n    padding: 18px 10px 18px 15px;\r\n    width: 85%;\r\n    font-size: 12px;\r\n    font-weight: 700;\r\n    color: $body-color;\r\n    outline: none;\r\n    border-radius: $radius;\r\n    cursor: pointer;\r\n\r\n    @include breakpoint(sm) {\r\n      width: 60%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      font-size: 14px;\r\n    }\r\n\r\n    @include breakpoint(xl) {\r\n      font-size: 16px;\r\n    }\r\n\r\n    &::placeholder {\r\n      font-weight: 700;\r\n      color: $body-color;\r\n      \r\n      &:focus,\r\n      &:active {\r\n        opacity: 0.5;\r\n      }\r\n    }\r\n  }\r\n\r\n  &__tag {\r\n    position: relative;\r\n    margin: 0 4px 0 0;\r\n    height: 50px;\r\n    width: 30px;\r\n    border: none;\r\n    background-color: transparent;\r\n\r\n    @include breakpoint(sm) {\r\n      height: 100%;\r\n    }\r\n\r\n    &:before {\r\n      position: absolute;\r\n      content: \"\";\r\n      right: 14px;\r\n      width: 12px;\r\n      height: 3px;\r\n      transform: rotate(-130deg);\r\n      border-radius: $radius;\r\n      background-color: $body-color;\r\n      transition: transform .2s ease-in;\r\n    }\r\n\r\n    &:after {\r\n      position: absolute;\r\n      content: \"\";\r\n      right: 7px;\r\n      width: 12px;\r\n      height: 3px;\r\n      transform: rotate(130deg);\r\n      border-radius: $radius;\r\n      background-color: $body-color;\r\n      transition: transform .2s ease-in-out;\r\n    }\r\n\r\n    &--selected {\r\n      &:before {\r\n        position: absolute;\r\n        content: \"\";\r\n        right: 14px;\r\n        width: 12px;\r\n        height: 3px;\r\n        transform: rotate(-45deg);\r\n        border-radius: $radius;\r\n        background-color: $body-color;\r\n        transition: transform .2s ease-in;\r\n      }\r\n  \r\n      &:after {\r\n        position: absolute;\r\n        content: \"\";\r\n        right: 7px;\r\n        width: 12px;\r\n        height: 3px;\r\n        transform: rotate(45deg);\r\n        border-radius: $radius;\r\n        background-color: $body-color;\r\n        transition: transform .2s ease-in;\r\n      }\r\n    }\r\n  }\r\n\r\n  .fas {\r\n    color: $body-color;\r\n  }\r\n\r\n  &--ingredients {\r\n    background-color: $primary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $primary-color;\r\n      background-color: $primary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $primary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 1;\r\n      transition: flex .06s ease-in-out;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $primary-color!important;\r\n\r\n        input[type=text] {\r\n          background-color: $primary-color!important;\r\n          border-color: $primary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $primary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $primary-dark-color;\r\n        border-color: $primary-dark-color;\r\n      }\r\n    }\r\n  }\r\n\r\n  &--appliances {\r\n    background-color: $secondary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $secondary-color;\r\n      background-color: $secondary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $secondary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 0.5;\r\n      transition: flex .06s ease-in-out;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      @include breakpoint(lg) {\r\n        flex: 0.5;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $secondary-color!important;\r\n\r\n        input[type=text] {\r\n          background-color: $secondary-color!important;\r\n          border-color: $secondary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $secondary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $secondary-dark-color;\r\n        border-color: $secondary-dark-color;\r\n      }\r\n    }\r\n  }\r\n\r\n  &--ustensils {\r\n    background-color: $tertiary-color;\r\n\r\n    input[type=text] {\r\n      border: 1px solid $tertiary-color;\r\n      background-color: $tertiary-color;\r\n      color: $body-color;\r\n\r\n      &:hover {\r\n        background-color: $tertiary-dark-color;\r\n      }\r\n    }\r\n\r\n    &--open {\r\n      flex: 1;\r\n      transition: flex .06s ease-in-out;\r\n\r\n      @include breakpoint(sm) {\r\n        flex: auto;\r\n      }\r\n\r\n      &:hover {\r\n        background-color: $tertiary-color!important;\r\n        \r\n        input[type=text] {\r\n          background-color: $tertiary-color!important;\r\n          border-color: $tertiary-color!important;\r\n        }\r\n      }\r\n    }\r\n\r\n    &:hover {\r\n      background-color: $tertiary-dark-color;\r\n\r\n      input[type=text] {\r\n        background-color: $tertiary-dark-color;\r\n        border-color: $tertiary-dark-color;\r\n      }\r\n    }\r\n  }\r\n}","header {\r\n  text-align: center;\r\n  padding: 15px;\r\n\r\n  .lpp_logo {\r\n    width: 200px;\r\n\r\n    @include breakpoint(xl) {\r\n      width: 320px;\r\n    }\r\n  }\r\n}",".tags-selection-container {\r\n  display: flex;\r\n  flex-direction: column;\r\n  padding: 15px;\r\n\r\n  @include breakpoint(sm) {\r\n    flex-direction: row;\r\n  }\r\n}\r\n\r\n.select__tags-list {\r\n  position: absolute;\r\n  display: none;\r\n  z-index: 10;\r\n  padding: 5px 0;\r\n  top: 27px;\r\n  max-height: 348px;\r\n  width: -webkit-fill-available;\r\n  overflow: hidden;\r\n  border-radius: $radius;\r\n\r\n  @include breakpoint(md) {\r\n    grid-template-columns: repeat(2, 1fr);\r\n  }\r\n\r\n  @include breakpoint(lg) {\r\n    column-gap: 10px;\r\n    max-height: 284px;\r\n  }\r\n\r\n  .tag {\r\n    width: 100%;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    white-space: nowrap;\r\n    padding: 8px 8px 8px 15px;\r\n    font-weight: 700;\r\n    cursor: pointer;\r\n\r\n    &::first-letter {\r\n      text-transform: uppercase;\r\n    }\r\n\r\n    &--message-empty {\r\n      font-weight: 400;\r\n      opacity: .5;\r\n      cursor: default;\r\n\r\n      &:hover {\r\n        background-color: transparent;\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n.select__tags-list--ingredients {\r\n\r\n  @include breakpoint(lg) {\r\n    grid-template-columns: repeat(3, 1fr);\r\n  }\r\n\r\n  @include breakpoint(xl) {\r\n    grid-template-columns: repeat(5, 1fr);\r\n    max-height: 187px;\r\n  }\r\n\r\n  li {\r\n\r\n    @include breakpoint(sm) {\r\n      max-width: 86%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      max-width: 87%;\r\n    }\r\n  }\r\n\r\n  li:hover {\r\n    background-color: $primary-dark-color;\r\n    color: $body-color;\r\n  }\r\n}\r\n\r\n.select__tags-list--appliances {\r\n\r\n  @include breakpoint(md) {\r\n    max-height: 188px;\r\n  }\r\n\r\n  li {\r\n\r\n    @include breakpoint(sm) {\r\n      max-width: 86%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      max-width: 100%;\r\n    }\r\n  }\r\n\r\n  li:hover {\r\n    background-color: $secondary-dark-color;\r\n    color: $body-color;\r\n  }\r\n}\r\n\r\n.select__tags-list--ustensils {\r\n\r\n  @include breakpoint(lg) {\r\n    grid-template-columns: repeat(3, 1fr);\r\n  }\r\n\r\n  @include breakpoint(xl) {\r\n    grid-template-columns: repeat(4, 1fr);\r\n    max-height: 187px;\r\n  }\r\n\r\n  li {\r\n\r\n    @include breakpoint(sm) {\r\n      max-width: 86%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      max-width: 87%;\r\n    }\r\n\r\n    @include breakpoint(lg) {\r\n      max-width: 90%;\r\n    }\r\n  }\r\n\r\n  li:hover {\r\n    background-color: $tertiary-dark-color;\r\n    color: $body-color;\r\n  }\r\n}",".tags-selected-container {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  row-gap: 15px;\r\n  padding: 0 15px;\r\n}",".info-message-container {\r\n  padding: 15px;\r\n}\r\n\r\n.recipes-list {\r\n  display: flex;\r\n  flex-direction: column;\r\n\r\n  @include breakpoint(lg) {\r\n    display: grid;\r\n    grid-template-columns: repeat(2, 1fr);\r\n    grid-template-rows: auto;\r\n  }\r\n\r\n  @include breakpoint(xl) {\r\n    grid-template-columns: repeat(3, 1fr);\r\n  }\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7295,22 +7427,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ingredientsDataCat = "ingredients";
-var appliancesDataCat = "appliances";
-var ustensilsDataCat = "ustensils";
-(0,_recipesList__WEBPACK_IMPORTED_MODULE_2__.createRecipesList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_recipesList__WEBPACK_IMPORTED_MODULE_2__.createDOMRecipesList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
 (0,_mainSearch__WEBPACK_IMPORTED_MODULE_3__.updateRecipesList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
-(0,_categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_5__.createIngredientsTagsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
-(0,_categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_6__.createAppliancesTagsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
-(0,_categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_7__.createUstensilsTagsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
-(0,_handleTags__WEBPACK_IMPORTED_MODULE_8__.createCategorieSelectedTags)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes, ingredientsDataCat);
-(0,_handleTags__WEBPACK_IMPORTED_MODULE_8__.createCategorieSelectedTags)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes, appliancesDataCat);
-(0,_handleTags__WEBPACK_IMPORTED_MODULE_8__.createCategorieSelectedTags)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes, ustensilsDataCat);
+(0,_categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_5__.handleIngredientTagsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_6__.handleApplianceTagsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_7__.handleUstensilTagsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
 (0,_categoriesList_ingredientsList__WEBPACK_IMPORTED_MODULE_5__.updateIngredientsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
 (0,_categoriesList_appliancesList__WEBPACK_IMPORTED_MODULE_6__.updateAppliancesList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
-(0,_categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_7__.updateUstensilsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes); // filteredRecipesByTags(recipes);
-
-(0,_handleTags__WEBPACK_IMPORTED_MODULE_8__.removeCategorieSelectedTags)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_categoriesList_ustensilsList__WEBPACK_IMPORTED_MODULE_7__.updateUstensilsList)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
+(0,_handleTags__WEBPACK_IMPORTED_MODULE_8__.removeSelectedTags)(_data__WEBPACK_IMPORTED_MODULE_1__.recipes);
 (0,_handleSelects__WEBPACK_IMPORTED_MODULE_4__.handleAllSelects)();
 })();
 
