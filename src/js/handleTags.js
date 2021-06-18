@@ -90,7 +90,7 @@ const filteredRecipesByTags = (recipes) => {
           recipe.ingredients.some(i => normString(i.ingredient).includes(userInputValue))
       );
     });
-      // Filtered recipes and update tags list
+      // Filtered recipes and update tags list with input value if user delete all selected tags
     removeDataDOMRecipes();
     createDataDOMRecipes(filteredRecipes);
   } else {
