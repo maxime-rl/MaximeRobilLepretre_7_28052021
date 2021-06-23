@@ -2,7 +2,7 @@ import "../styles/main.scss";
 
 import { recipes } from "./data";
 import { createDOMRecipesList } from "./recipesList";
-import { updateRecipesList, createAllKeywordsForMainSearch } from "./mainSearch";
+import { updateRecipesList } from "./mainSearch";
 import { handleAllSelects } from "./handleSelects";
 
 import {
@@ -24,8 +24,8 @@ import { removeSelectedTags } from "./handleTags";
 
 createDOMRecipesList(recipes);
 
-// Array with keywords for main search algo v2
-createAllKeywordsForMainSearch(recipes);
+// Array with keywords for main search algo v2.1
+// createAllKeywordsForMainSearch(recipes);
 
 updateRecipesList(recipes);
 
