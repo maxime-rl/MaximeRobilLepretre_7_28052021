@@ -8,7 +8,7 @@
 [Maquette prototype](https://www.figma.com/file/xqeE1ZKlHUWi2Efo8r73NK/UI-Design-Les-Petits-Plats-FR)
 
 > Performance sur la recherche principale !<br>
-> *"Ce que l’on veut avant tout c’est quelque chose de performant car nos utilisateurs veulent une recherche rapide, presque instantanée !
+> *"Ce que l’on veut avant tout c’est quelque chose de performant car nos utilisateurs veulent une recherche rapide, presque instantanée !<br>
 > Dans notre équipe, pour tout algorithme important qu’on développe, on a pour habitude d’en faire deux versions différentes pour pouvoir 
 > comparer leurs performances et choisir la meilleure."*
 
