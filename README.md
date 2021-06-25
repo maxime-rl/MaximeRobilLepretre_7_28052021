@@ -1,4 +1,4 @@
-[![Les petits plats Logo](https://maxime-rl.github.io/MaximeRobilLepretre_7_28052021/img/logo/logo_les-petits-plats.svg)](https://maxime-rl.github.io/MaximeRobilLepretre_7_28052021/)
+[![Les petits plats Logo](https://maxime-rl.github.io/MaximeRobilLepretre_7_28052021/img/logo_les-petits-plats.svg)](https://maxime-rl.github.io/MaximeRobilLepretre_7_28052021/)
 
 ***Projet n°7*** de la formation OpenClassrooms "Développeur Front End"
 
