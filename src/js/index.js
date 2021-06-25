@@ -24,9 +24,6 @@ import { removeSelectedTags } from "./handleTags";
 
 createDOMRecipesList(recipes);
 
-// Array with keywords for main search algo v2.1
-// createAllKeywordsForMainSearch(recipes);
-
 updateRecipesList(recipes);
 
 handleIngredientTagsList(recipes);
