@@ -500,7 +500,7 @@ const recipes = [
     time: 100,
     description: "Mélanger la farine et les oeufs, faire fondre 25 grammes de beurre et ajouter à la pâte. Ajouter du sel. Laisser reposer 1 heure. Faire les galettes et laisser refroidire. Faire chauffer les saucisses avec du beurre et l'oignon. Enrouler les saucisses dans les crêpes avec une partie du fromage. Mettre le reste du fromage à raclette par dessus les crêpes. Passer four pendant 20 minutes",
     appliance: "Four",
-    ustensils: ["poelle à frire", "couteau"]
+    ustensils: ["poêle à frire", "couteau"]
   },
   {
     id: 15,
@@ -739,7 +739,7 @@ const recipes = [
       }
     ],
     time: 30,
-    description: "Cuisiner la viande hachée dans une poelle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraîche à la viande hachée. Serivir.",
+    description: "Cuisiner la viande hachée dans une poêle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraîche à la viande hachée. Serivir.",
     appliance: "Casserole",
     ustensils: ["Cuillère en bois", "louche", "couteau"]
   },
@@ -1302,7 +1302,7 @@ const recipes = [
     time: 60,
     description: "Couper les courgettes dans le sens de la longueur. Vider les courgette dans un saladier. Réserver.Faire revenir la chair des courgettes dans 25cl d'huile d'olive. Ajouter l'oignon puis la viande hachée. Mettre la farce dans les courgettes. Ajouter le coulis de tomates. Mettre au four pendant 30 minutes. Avant la fin de la cuisson ajouter le fromage rapé",
     appliance: "Four",
-    ustensils: ["couteau", "cuillère en bois", "Poelle à frire"]
+    ustensils: ["couteau", "cuillère en bois", "Poêle à frire"]
   },
   {
     id: 38,
@@ -1390,7 +1390,7 @@ const recipes = [
       }
     ],
     time: 10,
-    description: "Dans un saladier mettre l'eau, le jus des cirtons et le sucre. Bien mélanger. Ajouter le bicarbonate. Servir. Ajouter des glaçon et une feuille de menthe pour la déco.",
+    description: "Dans un saladier mettre l'eau, le jus des citrons et le sucre. Bien mélanger. Ajouter le bicarbonate. Servir. Ajouter des glaçon et une feuille de menthe pour la déco.",
     appliance: "Saladier",
     ustensils: ["cuillère en bois"]
   },
