@@ -86,8 +86,8 @@ const filteredRecipesByTags = (recipes) => {
 
       return (
         name.includes(userInputValue) ||
-          description.includes(userInputValue) ||
-          recipe.ingredients.some(i => normString(i.ingredient).includes(userInputValue))
+        description.includes(userInputValue) ||
+        recipe.ingredients.some(i => normString(i.ingredient).includes(userInputValue))
       );
     });
       // Filtered recipes and update tags list with input value if user delete all selected tags
