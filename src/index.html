@@ -22,9 +22,7 @@
   <form class="form-search-bar">
     <label for="search-bar" class="sr-only">Rechercher un ingrédient, appareil, ustensiles ou une recette</label>
     <input id="search-bar" type="text" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
-    <button type="submit" class="btn-search">
-      <i class="fas fa-search"></i>
-    </button>
+    <i class="fas fa-search icon-search"></i>
   </form>
   <!-- TAGS SELECTED -->
   <section>
@@ -36,19 +34,19 @@
     <h2 class="sr-only">Recherche avançée par tags</h2>
     <div class="select select--ingredients">
       <label for="ingredients-research" class="sr-only">Ingrédients</label>
-      <input id="ingredients-research" name="ingredients" type="text" placeholder="Ingrédients">
+      <input id="ingredients-research" name="ingredients" type="text" autocomplete="off" placeholder="Ingrédients">
       <button type="button" class="select__tag select__tag--ingredients"></button>
       <ul class="select__tags-list select__tags-list--ingredients" data-cat="ingredients"></ul>
     </div>
     <div class="select select--appliances">
       <label for="appliances-research" class="sr-only">Appareil</label>
-      <input id="appliances-research" name="appliances" type="text" placeholder="Appareil">
+      <input id="appliances-research" name="appliances" type="text" autocomplete="off" placeholder="Appareil">
       <button type="button" class="select__tag select__tag--appliances"></button>
       <ul class="select__tags-list select__tags-list--appliances" data-cat="appliances"></ul>
     </div>
     <div class="select select--ustensils">
       <label for="ustensils-research" class="sr-only">Ustensiles</label>
-      <input id="ustensils-research" name="ustensils" type="text" placeholder="Ustensiles">
+      <input id="ustensils-research" name="ustensils" type="text" autocomplete="off" placeholder="Ustensiles">
       <button type="button" class="select__tag select__tag--ustensils"></button>
       <ul class="select__tags-list select__tags-list--ustensils" data-cat="ustensils"></ul>
     </div>

@@ -61,7 +61,6 @@ const updateRecipesList = (recipes) => {
           createDataDOMRecipes(filteredRecipesArr);
         } else {
           displayInfoMessage(filteredRecipesArr);
-          removeDataDOMRecipes();
         }
       });
     } else {

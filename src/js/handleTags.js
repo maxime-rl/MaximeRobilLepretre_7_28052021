@@ -77,10 +77,10 @@ const filteredRecipesByTags = (recipes) => {
       }
     });
   } else {
-    // Create full recipes and all tags
+    // Filtered recipes and update tags list
     removeDataDOMRecipes();
     createDataDOMRecipes(recipes);
-  };
+  }
 };
 
 /**

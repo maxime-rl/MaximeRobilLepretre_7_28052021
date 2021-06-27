@@ -6,7 +6,6 @@ import { createElementFactory } from "./utils/createElementFactory";
  * @returns {HTMLElement} recipes list
  */
 const createDOMRecipesList = (recipes) => {
-  console.log(recipes);
   recipes.forEach(recipe => {
     const recipesListDOMElt = document.querySelector(".recipes-list");
     const articleElt = createElementFactory("article", { class: "recipe-card" });
