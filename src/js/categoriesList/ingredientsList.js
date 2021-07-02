@@ -1,4 +1,4 @@
-import { createElementFactory } from "../utils/createElementFactory.js";
+import { createElementFactory } from "../utils/createElementFactory";
 import {
   filteredRecipesByTags,
   hideTagClickedInList,
