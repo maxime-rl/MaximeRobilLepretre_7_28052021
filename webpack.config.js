@@ -24,7 +24,18 @@ module.exports = {
       },
       {
         test: /\.(svg|png|jpe?g|gif|eot|woff|woff2|ttf|json)$/,
-        use: ["file-loader"]
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[path][name].[ext]",
+              context: path.resolve(__dirname, "src/"),
+              outputPath: "public/",
+              publicPath: "../",
+              useRelativePaths: true
+            }
+          }
+        ]
       }
     ]
   },
