@@ -51,6 +51,18 @@
           max-width: 255px;
         }
       }
+
+      .timer-icon {
+        display: inline-block;
+        position: relative;
+        top: 9px;
+        background-image: url("../img/timer.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        width: 35px;
+        height: 35px;
+      }
     }
   
     &__description {
