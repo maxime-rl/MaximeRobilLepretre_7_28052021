@@ -2548,7 +2548,9 @@ var createDOMRecipesList = function createDOMRecipesList(recipes) {
     var timeContainerElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("span", {}, " ".concat(recipe.time, " min"));
     var timeIconElt = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("img", {
       class: "timer-icon",
-      src: "./img/timer.svg"
+      src: "./img/timer.svg",
+      "aria-hidden": "true",
+      alt: "timer icon"
     });
     var descriptionElts = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("div", {
       class: "recipe-card__content__description"
