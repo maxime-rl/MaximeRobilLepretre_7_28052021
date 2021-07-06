@@ -2550,7 +2550,6 @@ var createDOMRecipesList = function createDOMRecipesList(recipes) {
       class: "timer-icon",
       src: "./img/timer.svg"
     });
-    npm;
     var descriptionElts = (0,_utils_createElementFactory__WEBPACK_IMPORTED_MODULE_4__.createElementFactory)("div", {
       class: "recipe-card__content__description"
     });
