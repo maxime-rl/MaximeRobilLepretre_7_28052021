@@ -21,7 +21,7 @@ const createDOMRecipesList = (recipes) => {
       class: "recipe-card__content__title"
     }, `${recipe.name}`);
     const timeContainerElt = createElementFactory("span", {}, ` ${recipe.time} min`);
-    const timeIconElt = createElementFactory("img", { class: "timer-icon", src: "./img/timer.svg" });
+    const timeIconElt = createElementFactory("img", { class: "timer-icon", src: "./img/timer.svg", "aria-hidden": "true", alt: "timer icon" });
 
     const descriptionElts = createElementFactory("div", { class: "recipe-card__content__description" });
     const ingredientsElt = document.createElement("ul");
